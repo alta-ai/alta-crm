@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '../../../lib/supabase';
 import { format, addDays, startOfWeek, eachDayOfInterval, setHours, setMinutes, addMinutes } from 'date-fns';
@@ -23,6 +23,20 @@ interface Appointment {
   end_time: string;
 }
 
+interface DeviceWorkingHours {
+  day_of_week: number;
+  start_time: string;
+  end_time: string;
+}
+
+interface DeviceWorkingHoursException {
+  start_date: string;
+  end_date: string;
+  start_time: string | null;
+  end_time: string | null;
+  reason: string;
+}
+
 interface DeviceCalendarProps {
   device: Device;
   examination: Examination;
@@ -38,7 +52,7 @@ const DeviceCalendar = ({ device, examination, locationId }: DeviceCalendarProps
   const [weekStart, setWeekStart] = useState(() => startOfWeek(new Date(), { weekStartsOn: 1 }));
   const [selectedSlot, setSelectedSlot] = useState<Date | null>(null);
 
-  const { data: appointments, isLoading } = useQuery({
+  const { data: appointments, isLoading: isLoadingAppointments } = useQuery({
     queryKey: ['appointments', device.id, weekStart],
     queryFn: async () => {
       const weekEnd = addDays(weekStart, 7);
@@ -57,6 +71,39 @@ const DeviceCalendar = ({ device, examination, locationId }: DeviceCalendarProps
     }
   });
 
+  // Fetch working hours for this device
+  const { data: workingHours, isLoading: isLoadingWorkingHours } = useQuery({
+    queryKey: ['deviceWorkingHours', device.id],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('device_working_hours')
+        .select('day_of_week, start_time, end_time')
+        .eq('device_id', device.id)
+        .order('day_of_week');
+      
+      if (error) throw error;
+      return data as DeviceWorkingHours[];
+    }
+  });
+
+  // Fetch working hours exceptions for this device
+  const { data: workingHoursExceptions, isLoading: isLoadingExceptions } = useQuery({
+    queryKey: ['deviceWorkingHoursExceptions', device.id, weekStart],
+    queryFn: async () => {
+      const weekEnd = addDays(weekStart, 7);
+      
+      const { data, error } = await supabase
+        .from('device_working_hours_exceptions')
+        .select('start_date, end_date, start_time, end_time, reason')
+        .eq('device_id', device.id)
+        .or(`start_date.lte.${weekEnd.toISOString()},end_date.gte.${weekStart.toISOString()}`)
+        .order('start_date');
+      
+      if (error) throw error;
+      return data as DeviceWorkingHoursException[];
+    }
+  });
+
   const days = eachDayOfInterval({
     start: weekStart,
     end: addDays(weekStart, 6)
@@ -72,10 +119,52 @@ const DeviceCalendar = ({ device, examination, locationId }: DeviceCalendarProps
     setSelectedSlot(null);
   };
 
+  // Function to check if a time slot is within working hours
+  const isWithinWorkingHours = (date: Date): boolean => {
+    if (!workingHours || workingHours.length === 0) {
+      return true; // Default to true if no working hours defined
+    }
+
+    const dayOfWeek = date.getDay() === 0 ? 7 : date.getDay(); // Convert Sunday (0) to 7 to match our schema
+    const timeString = format(date, 'HH:mm:ss');
+    
+    // Check for exceptions first
+    if (workingHoursExceptions && workingHoursExceptions.length > 0) {
+      const dateString = format(date, 'yyyy-MM-dd');
+      
+      for (const exception of workingHoursExceptions) {
+        if (dateString >= exception.start_date && dateString <= exception.end_date) {
+          // If start_time and end_time are null, the device is not available all day
+          if (exception.start_time === null && exception.end_time === null) {
+            return false;
+          }
+          
+          // If we have specific hours for this exception
+          if (exception.start_time && exception.end_time) {
+            return timeString >= exception.start_time && timeString <= exception.end_time;
+          }
+        }
+      }
+    }
+    
+    // Check regular working hours
+    const workingHoursForDay = workingHours.find(wh => wh.day_of_week === dayOfWeek);
+    if (!workingHoursForDay) {
+      return false; // No working hours defined for this day
+    }
+    
+    return timeString >= workingHoursForDay.start_time && timeString <= workingHoursForDay.end_time;
+  };
+
   const isSlotAvailable = (slotStart: Date) => {
     if (!appointments) return true;
 
     const slotEnd = addMinutes(slotStart, examination.duration);
+    
+    // Check if slot is within working hours
+    if (!isWithinWorkingHours(slotStart)) {
+      return false;
+    }
     
     return !appointments.some(appointment => {
       const appointmentStart = new Date(appointment.start_time);
@@ -106,7 +195,7 @@ const DeviceCalendar = ({ device, examination, locationId }: DeviceCalendarProps
     timeSlots.push(hour);
   }
 
-  if (isLoading) {
+  if (isLoadingAppointments || isLoadingWorkingHours || isLoadingExceptions) {
     return (
       <div className="animate-pulse">
         <div className="h-96 bg-gray-200 rounded"></div>
@@ -167,10 +256,12 @@ const DeviceCalendar = ({ device, examination, locationId }: DeviceCalendarProps
                 <div className="py-2 px-4 text-sm text-gray-500">
                   {hour}:00
                 </div>
+                
                 {days.map(day => {
                   const slotStart = setMinutes(setHours(day, hour), 0);
                   const available = isSlotAvailable(slotStart);
                   const isSelected = selectedSlot?.getTime() === slotStart.getTime();
+                  const withinWorkingHours = isWithinWorkingHours(slotStart);
 
                   return (
                     <div
@@ -179,8 +270,8 @@ const DeviceCalendar = ({ device, examination, locationId }: DeviceCalendarProps
                       className={cn(
                         'py-2 px-4 text-sm transition-colors',
                         {
-                          'bg-gray-100 cursor-not-allowed': !available,
-                          'hover:bg-blue-50 cursor-pointer': available && !isSelected,
+                          'bg-gray-100 cursor-not-allowed': !available || !withinWorkingHours,
+                          'hover:bg-blue-50 cursor-pointer': available && withinWorkingHours && !isSelected,
                           'bg-blue-100 hover:bg-blue-200': isSelected
                         }
                       )}

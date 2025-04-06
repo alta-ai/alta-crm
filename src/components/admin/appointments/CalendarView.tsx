@@ -49,6 +49,20 @@ interface Appointment {
   };
 }
 
+interface DeviceWorkingHours {
+  day_of_week: number;
+  start_time: string;
+  end_time: string;
+}
+
+interface DeviceWorkingHoursException {
+  start_date: string;
+  end_date: string;
+  start_time: string | null;
+  end_time: string | null;
+  reason: string;
+}
+
 interface CalendarViewProps {
   viewMode: 'day' | 'week' | 'workweek' | 'month';
   onViewModeChange?: (mode: 'day' | 'week' | 'workweek' | 'month') => void;
@@ -188,6 +202,61 @@ const CalendarView = ({
     }
   });
 
+  // Fetch working hours for devices
+  const { data: deviceWorkingHours } = useQuery({
+    queryKey: ['deviceWorkingHours', selectedDevices],
+    queryFn: async () => {
+      if (selectedDevices.length === 0) return {};
+
+      const { data, error } = await supabase
+        .from('device_working_hours')
+        .select('device_id, day_of_week, start_time, end_time')
+        .in('device_id', selectedDevices);
+
+      if (error) throw error;
+
+      // Group by device_id
+      const workingHoursByDevice = data.reduce((acc, curr) => {
+        if (!acc[curr.device_id]) {
+          acc[curr.device_id] = [];
+        }
+        acc[curr.device_id].push(curr);
+        return acc;
+      }, {} as Record<string, DeviceWorkingHours[]>);
+
+      return workingHoursByDevice;
+    },
+    enabled: selectedDevices.length > 0
+  });
+
+  // Fetch working hours exceptions for devices
+  const { data: deviceWorkingHoursExceptions } = useQuery({
+    queryKey: ['deviceWorkingHoursExceptions', selectedDevices, dateRange.start, dateRange.end],
+    queryFn: async () => {
+      if (selectedDevices.length === 0) return {};
+
+      const { data, error } = await supabase
+        .from('device_working_hours_exceptions')
+        .select('device_id, start_date, end_date, start_time, end_time, reason')
+        .in('device_id', selectedDevices)
+        .or(`start_date.lte.${dateRange.end.toISOString()},end_date.gte.${dateRange.start.toISOString()}`);
+
+      if (error) throw error;
+
+      // Group by device_id
+      const exceptionsByDevice = data.reduce((acc, curr) => {
+        if (!acc[curr.device_id]) {
+          acc[curr.device_id] = [];
+        }
+        acc[curr.device_id].push(curr);
+        return acc;
+      }, {} as Record<string, DeviceWorkingHoursException[]>);
+
+      return exceptionsByDevice;
+    },
+    enabled: selectedDevices.length > 0
+  });
+
   const { data: appointments, refetch } = useQuery({
     queryKey: ['appointments', dateRange.start, dateRange.end, selectedDevices],
     queryFn: async () => {
@@ -236,6 +305,43 @@ const CalendarView = ({
     enabled: selectedDevices.length > 0,
     refetchInterval: 30000 // Refetch every 30 seconds
   });
+
+  // Function to check if a time slot is within working hours
+  const isWithinWorkingHours = (date: Date, deviceId: string): boolean => {
+    if (!deviceWorkingHours || !deviceWorkingHours[deviceId]) {
+      return true; // Default to true if no working hours defined
+    }
+
+    const dayOfWeek = date.getDay() === 0 ? 7 : date.getDay(); // Convert Sunday (0) to 7 to match our schema
+    const timeString = format(date, 'HH:mm:ss');
+    
+    // Check for exceptions first
+    if (deviceWorkingHoursExceptions && deviceWorkingHoursExceptions[deviceId]) {
+      const dateString = format(date, 'yyyy-MM-dd');
+      
+      for (const exception of deviceWorkingHoursExceptions[deviceId]) {
+        if (dateString >= exception.start_date && dateString <= exception.end_date) {
+          // If start_time and end_time are null, the device is not available all day
+          if (exception.start_time === null && exception.end_time === null) {
+            return false;
+          }
+          
+          // If we have specific hours for this exception
+          if (exception.start_time && exception.end_time) {
+            return timeString >= exception.start_time && timeString <= exception.end_time;
+          }
+        }
+      }
+    }
+    
+    // Check regular working hours
+    const workingHoursForDay = deviceWorkingHours[deviceId].find(wh => wh.day_of_week === dayOfWeek);
+    if (!workingHoursForDay) {
+      return false; // No working hours defined for this day
+    }
+    
+    return timeString >= workingHoursForDay.start_time && timeString <= workingHoursForDay.end_time;
+  };
 
   // Lookup für Gerätefarben
   const getDeviceColorClasses = (deviceId: string, index: number) => {
@@ -591,12 +697,16 @@ const CalendarView = ({
                             );
                           });
                           
+                          // Check if this time slot is within working hours
+                          const withinWorkingHours = isWithinWorkingHours(slotTime, deviceId);
+                          
                           return (
                             <div 
                               key={`${currentDate.toISOString()}-${deviceId}-${hour}-${minute}`}
                               className={cn(
                                 "relative border-t border-gray-100 hover:bg-gray-50 cursor-pointer",
-                                minute === 0 && "border-t-2 border-gray-200"
+                                minute === 0 && "border-t-2 border-gray-200",
+                                !withinWorkingHours && "bg-gray-100" // Add gray background for slots outside working hours
                               )}
                               style={{ 
                                 height: `${zoomLevel / 4}px`,
@@ -769,12 +879,16 @@ const CalendarView = ({
                                     );
                                   });
                                   
+                                  // Check if this time slot is within working hours
+                                  const withinWorkingHours = isWithinWorkingHours(slotTime, deviceId);
+                                  
                                   return (
                                     <div 
                                       key={`${day.toISOString()}-${hour}-${minute}`}
                                       className={cn(
                                         "relative border-t border-gray-100 hover:bg-gray-50 cursor-pointer",
-                                        minute === 0 && "border-t-2 border-gray-200"
+                                        minute === 0 && "border-t-2 border-gray-200",
+                                        !withinWorkingHours && "bg-gray-100" // Add gray background for slots outside working hours
                                       )}
                                       style={{ 
                                         height: `${zoomLevel / 4}px`,
@@ -893,12 +1007,25 @@ const CalendarView = ({
                     timeGroups[timeKey].push(apt);
                   });
 
+                  // Check if this day is within working hours
+                  const isWorkingDay = deviceWorkingHours && deviceWorkingHours[deviceId]?.some(wh => {
+                    const dayOfWeek = day.getDay() === 0 ? 7 : day.getDay();
+                    return wh.day_of_week === dayOfWeek;
+                  });
+
+                  // Check for exceptions
+                  const dateString = format(day, 'yyyy-MM-dd');
+                  const hasException = deviceWorkingHoursExceptions && deviceWorkingHoursExceptions[deviceId]?.some(ex => 
+                    dateString >= ex.start_date && dateString <= ex.end_date && ex.start_time === null
+                  );
+
                   return (
                     <div
                       key={day.toString()}
                       className={cn(
-                        'bg-white p-2 min-h-[100px] relative',
-                        !isSameDay(day, currentDate) && format(day, 'M') !== format(currentDate, 'M') && 'bg-gray-50 text-gray-500'
+                        'p-2 min-h-[100px] relative',
+                        !isSameDay(day, currentDate) && format(day, 'M') !== format(currentDate, 'M') && 'bg-gray-50 text-gray-500',
+                        isSameDay(day, currentDate) ? 'bg-white' : (!isWorkingDay || hasException) ? 'bg-gray-100' : 'bg-white'
                       )}
                       onClick={() => {
                         if (!dayAppointments?.length) {
@@ -989,6 +1116,21 @@ const CalendarView = ({
       </button>
     </div>
   );
+
+  const getViewTitle = () => {
+    switch (viewMode) {
+      case 'day':
+        return format(currentDate, "EEEE, d. MMMM yyyy", { locale: de });
+      case 'week':
+        return `${format(startOfWeek(currentDate, { weekStartsOn: 1 }), 'd.M.')} - ${format(endOfWeek(currentDate, { weekStartsOn: 1 }), 'd.M.yyyy')}`;
+      case 'workweek':
+        return `${format(startOfWeek(currentDate, { weekStartsOn: 1 }), 'd.M.')} - ${format(addDays(startOfWeek(currentDate, { weekStartsOn: 1 }), 4), 'd.M.yyyy')} (Mo-Fr)`;
+      case 'month':
+        return format(currentDate, 'MMMM yyyy', { locale: de });
+      default:
+        return '';
+    }
+  };
 
   return (
     <div className="flex flex-col h-full">
