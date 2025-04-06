@@ -195,6 +195,7 @@ const DeviceForm = () => {
     setWorkingHours([
       ...workingHours,
       {
+        id: crypto.randomUUID(), // Generate UUID for new working hours
         day_of_week: dayOfWeek,
         start_time: '08:00',
         end_time: '18:00'
@@ -220,6 +221,7 @@ const DeviceForm = () => {
     setExceptions([
       ...exceptions,
       {
+        id: crypto.randomUUID(), // Generate UUID for new exception
         start_date: format(today, 'yyyy-MM-dd'),
         end_date: format(today, 'yyyy-MM-dd'),
         start_time: null,
@@ -385,7 +387,7 @@ const DeviceForm = () => {
               <div className="space-y-4">
                 {exceptions.map((exception, index) => (
                   <div key={index} className="bg-gray-50 rounded-lg p-4 space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700">
                           Von *
@@ -410,7 +412,7 @@ const DeviceForm = () => {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700">
                           Startzeit (optional)
