@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { FileText, Monitor, FormInput, MapPin, Calendar, Settings, Mail, ChevronLeft, ChevronRight, Users, BarChart, ClipboardList, UserPlus } from 'lucide-react';
+import { FileText, Monitor, FormInput, MapPin, Calendar, Settings, Mail, ChevronLeft, ChevronRight, Users, BarChart, ClipboardList, UserPlus, Receipt } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const AdminLayout = () => {
@@ -14,6 +14,7 @@ const AdminLayout = () => {
     { name: 'To-Dos', href: '/admin/todos', icon: ClipboardList },
     { name: 'Geräte', href: '/admin/devices', icon: Monitor },
     { name: 'Formulare', href: '/admin/forms', icon: FormInput },
+    { name: 'Abrechnung', href: '/admin/billing', icon: Receipt },
     { name: 'Standorte', href: '/admin/locations', icon: MapPin },
     { name: 'Termine', href: '/admin/appointments', icon: Calendar },
     { name: 'Statistiken', href: '/admin/statistics', icon: BarChart },
