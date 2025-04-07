@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '../../../../lib/supabase';
-import { Camera, Eye } from 'lucide-react';
+import { Camera, Eye, Pencil } from 'lucide-react';
 import { cn } from '../../../../lib/utils';
 
 interface FormListProps {
@@ -10,6 +10,7 @@ interface FormListProps {
   billingType: string;
   onPhotoCapture: () => void;
   onViewForm: (formId: string) => void;
+  onPreviewForm: (formId: string) => void;
 }
 
 const FormList: React.FC<FormListProps> = ({
@@ -17,7 +18,8 @@ const FormList: React.FC<FormListProps> = ({
   examinationId,
   billingType,
   onPhotoCapture,
-  onViewForm
+  onViewForm,
+  onPreviewForm
 }) => {
   // Load available forms for this examination and billing type
   const { data: forms, isLoading } = useQuery({
@@ -135,9 +137,8 @@ const FormList: React.FC<FormListProps> = ({
         const isSubmitted = submissions && submissions[form.form_type];
 
         return (
-          <button
+          <div
             key={form.id}
-            onClick={() => onViewForm(form.id)}
             className={cn(
               "w-full flex items-center justify-between p-3 text-left border rounded-lg transition-colors",
               isSubmitted 
@@ -154,8 +155,29 @@ const FormList: React.FC<FormListProps> = ({
                 <p className="text-sm text-green-600 mt-1">Ausgefüllt</p>
               )}
             </div>
-            <Eye className="h-4 w-4 text-gray-400" />
-          </button>
+            <div className="flex space-x-3">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onPreviewForm(form.id);
+                }}
+                title="PDF Vorschau"
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <Eye className="h-4 w-4" />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onViewForm(form.id);
+                }}
+                title="Formular bearbeiten"
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <Pencil className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
         );
       })}
     </div>

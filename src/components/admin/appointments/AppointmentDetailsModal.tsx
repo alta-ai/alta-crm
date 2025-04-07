@@ -11,6 +11,8 @@ import ReportSection from './ReportSection';
 import FormSection from './details/FormSection';
 import PatientPhotoModal from './details/PatientPhotoModal';
 import { AppointmentDetailsProps } from './types';
+import { format } from 'date-fns';
+import { de } from 'date-fns/locale';
 
 const AppointmentDetailsModal: React.FC<AppointmentDetailsProps & {
   isOpen: boolean;
@@ -64,6 +66,32 @@ const AppointmentDetailsModal: React.FC<AppointmentDetailsProps & {
         return data?.photo_data || null;
       } catch (err) {
         console.error('Fehler bei der Foto-Abfrage:', err);
+        return null;
+      }
+    },
+    retry: false,
+    staleTime: 60000
+  });
+  
+  // Lade vollständige Patientendaten inkl. Geburtsdatum
+  const { data: patientData } = useQuery({
+    queryKey: ['patient-details', appointment.patient.id],
+    queryFn: async () => {
+      try {
+        const { data, error } = await supabase
+          .from('patients')
+          .select('*')
+          .eq('id', appointment.patient.id)
+          .single();
+        
+        if (error) {
+          console.error('Fehler beim Laden der Patientendaten:', error);
+          return null;
+        }
+        
+        return data;
+      } catch (err) {
+        console.error('Fehler bei der Patientendaten-Abfrage:', err);
         return null;
       }
     },
@@ -215,6 +243,17 @@ const AppointmentDetailsModal: React.FC<AppointmentDetailsProps & {
         </div>
 
         <div className="p-4">
+          {/* Einheitlicher Header für alle Tabs außer Details */}
+          {activeTab !== 'details' && (
+            <div className="bg-gray-50 p-3 rounded-md mb-6">
+              <p className="text-sm font-medium text-gray-800">
+                {`${appointment.patient.first_name} ${appointment.patient.last_name}`}, 
+                geb.: {patientData?.birth_date ? format(new Date(patientData.birth_date), 'dd.MM.yyyy', { locale: de }) : "Unbekannt"} - {" "}
+                {appointment.examination?.name || "Untersuchung"} am {format(new Date(appointment.start_time), 'dd.MM.yyyy', { locale: de })} in der {appointment.location?.name || "ALTA Klinik Bielefeld"}
+              </p>
+            </div>
+          )}
+          
           {activeTab === 'details' ? (
             <AppointmentDetails
               appointment={appointment}
@@ -241,7 +280,9 @@ const AppointmentDetailsModal: React.FC<AppointmentDetailsProps & {
               examinationId={appointment.examination.id}
               billingType={appointment.billing_type}
               onPhotoUpdated={() => {
-                queryClient.invalidateQueries(['patient-photo', appointment.patient.id]);
+                queryClient.invalidateQueries({
+                  queryKey: ['patient-photo', appointment.patient.id]
+                });
               }}
             />
           ) : activeTab === 'documents' ? (
@@ -252,7 +293,9 @@ const AppointmentDetailsModal: React.FC<AppointmentDetailsProps & {
             <ReferringDoctorSection 
               appointmentId={appointment.id} 
               onUpdateComplete={() => {
-                queryClient.invalidateQueries(['appointment-referring-doctor', appointment.id]);
+                queryClient.invalidateQueries({
+                  queryKey: ['appointment-referring-doctor', appointment.id]
+                });
                 if (refetchAppointments) {
                   refetchAppointments();
                 }

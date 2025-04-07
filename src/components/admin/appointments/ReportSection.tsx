@@ -248,33 +248,7 @@ const ReportSection = ({ appointmentId, patientId }: ReportSectionProps) => {
 
       <div className="bg-white rounded-lg shadow p-6" ref={scrollRef}>
         <div className="space-y-6">
-          {/* Patienteninformationen */}
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Patient</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="font-medium">Name: </span>
-                {patient.title && <span className="text-gray-500">{patient.title} </span>}
-                {patient.first_name} {patient.last_name}
-              </div>
-              <div>
-                <span className="font-medium">Geburtsdatum: </span>
-                {format(new Date(patient.birth_date), 'dd.MM.yyyy', { locale: de })}
-              </div>
-              <div>
-                <span className="font-medium">Untersuchung: </span>
-                {appointment.examination?.name}
-              </div>
-              <div>
-                <span className="font-medium">Datum: </span>
-                {format(new Date(appointment.start_time), 'dd.MM.yyyy', { locale: de })}
-              </div>
-              <div>
-                <span className="font-medium">Standort: </span>
-                {appointment.location?.name || 'Unbekannt'}
-              </div>
-            </div>
-          </div>
+          {/* Patienteninformationen wurden entfernt */}
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">

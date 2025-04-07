@@ -7,6 +7,7 @@ import { supabase } from '../../../lib/supabase';
 import { ArrowLeft, Send, FileUp, Download, Trash2, MessageSquare, FileText, Check, Filter, Eye, X, Maximize, Info, Phone, Flag } from 'lucide-react';
 import { cn } from '../../../lib/utils';
 import DocumentPreviewModal from '../appointments/DocumentPreviewModal';
+import { toast } from 'react-hot-toast';
 
 interface Document {
   id: string;

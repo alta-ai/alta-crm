@@ -12,7 +12,7 @@ import { generateFormToken, getFormsUrl } from "../../../../lib/forms";
 import { PDFPreview } from "../../../PDFPreview";
 import { FormDataProvider } from "../../../pdf/formDataContext";
 import { RegistrationForm } from "../../../pdf/RegistrationForm";
-import { RegistrationFormData } from "./forms/types";
+import PDFFormPreviewModal from "../PDFFormPreviewModal";
 
 interface FormSectionProps {
 	appointmentId: string;
@@ -42,6 +42,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 	const [formUrl, setFormUrl] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [showPDFPreview, setShowPDFPreview] = useState(false);
+	const [isPDFModalOpen, setIsPDFModalOpen] = useState(false);
 
 	// Load patient data for PDF
 	const { data: patient } = useQuery({
@@ -86,62 +87,67 @@ const FormSection: React.FC<FormSectionProps> = ({
 		}
 	};
 
+	// Funktion zum Öffnen der PDF-Vorschau im Modal
+	const handleOpenPDFPreview = () => {
+		setIsPDFModalOpen(true);
+	};
+
+	// Vorbereiten der PDF-Daten
+	const formData = formSubmission
+		? {
+				urologicInformation: {
+					currentlyUndergoingTreatment:
+						formSubmission.current_treatment === "true",
+					recommendationOfUrologist:
+						formSubmission.treatment_recommendations?.join(", "),
+					visitDueToRecommendation:
+						formSubmission.doctor_recommendation === "true",
+					nameOfUrologist: formSubmission.referring_doctor_name,
+					gotTransfer: formSubmission.has_transfer === "true",
+					sendReportToUrologist:
+						formSubmission.send_report_to_doctor === "true",
+				},
+		  }
+		: {};
+
+	const patientData = {
+		title: formSubmission?.title || patient?.title,
+		name: formSubmission?.first_name || patient?.first_name, // Vorname
+		surname: formSubmission?.last_name || patient?.last_name, // Nachname
+		birthdate: formSubmission?.birth_date || patient?.birth_date,
+		contact: {
+			phone: formSubmission?.phone_landline || patient?.phone,
+			mobile: formSubmission?.phone_mobile || patient?.phone,
+			email: formSubmission?.email || patient?.email,
+		},
+		address: {
+			street: formSubmission?.street || patient?.street,
+			houseNumber: formSubmission?.house_number || patient?.house_number,
+			zipCode: formSubmission?.postal_code || patient?.postal_code,
+			city: formSubmission?.city || patient?.city,
+		},
+		insurance: {
+			privateInsurance:
+				formSubmission?.insurance_type === "Private Krankenversicherung (PKV)"
+					? formSubmission?.insurance_provider_id
+					: undefined,
+			eligibleForAid: formSubmission?.has_beihilfe === "true",
+		},
+	};
+
+	const appointmentData = {
+		examination: examinationName,
+		date: format(new Date(appointmentDate), "dd.MM.yyyy", { locale: de }),
+	};
+
 	if (showPDFPreview) {
-		// Prepare data for PDF
-		const formData = formSubmission
-			? {
-					urologicInformation: {
-						currentlyUndergoingTreatment:
-							formSubmission.current_treatment === "true",
-						recommendationOfUrologist:
-							formSubmission.treatment_recommendations?.join(", "),
-						visitDueToRecommendation:
-							formSubmission.doctor_recommendation === "true",
-						nameOfUrologist: formSubmission.referring_doctor_name,
-						gotTransfer: formSubmission.has_transfer === "true",
-						sendReportToUrologist:
-							formSubmission.send_report_to_doctor === "true",
-					},
-			  }
-			: {};
-
-		const patientData = {
-			title: formSubmission?.title || patient?.title,
-			name: formSubmission?.first_name || patient?.first_name, // Vorname
-			surname: formSubmission?.last_name || patient?.last_name, // Nachname
-			birthdate: formSubmission?.birth_date || patient?.birth_date,
-			contact: {
-				phone: formSubmission?.phone_landline || patient?.phone,
-				mobile: formSubmission?.phone_mobile || patient?.phone,
-				email: formSubmission?.email || patient?.email,
-			},
-			address: {
-				street: formSubmission?.street || patient?.street,
-				houseNumber: formSubmission?.house_number || patient?.house_number,
-				zipCode: formSubmission?.postal_code || patient?.postal_code,
-				city: formSubmission?.city || patient?.city,
-			},
-			insurance: {
-				privateInsurance:
-					formSubmission?.insurance_type === "Private Krankenversicherung (PKV)"
-						? formSubmission?.insurance_provider_id
-						: undefined,
-				eligibleForAid: formSubmission?.has_beihilfe === "true",
-			},
-		};
-
-		const appointmentData = {
-			examination: examinationName,
-			date: format(new Date(appointmentDate), "dd.MM.yyyy", { locale: de }),
-		};
-
 		return (
 			<div className="h-full">
 				<PDFPreview
 					document={<RegistrationForm />}
 					contexts={[
 						(props) => (
-							<FormDataProvider<RegistrationFormData>
+							<FormDataProvider
 								initialFormData={formData}
 								initialPatientData={patientData}
 								initialAppointmentData={appointmentData}
@@ -191,47 +197,8 @@ const FormSection: React.FC<FormSectionProps> = ({
 
 	return (
 		<>
-			<h3 className="text-lg font-medium">Termin Details</h3>
-
-			{/* Patient und weitere Infos */}
-			<div className="mt-6 mb-10">
-				<div className="grid grid-cols-2 gap-8">
-					<div>
-						<h4 className="text-sm text-gray-500">Patient</h4>
-						<p>{patientName}</p>
-					</div>
-					<div>
-						<h4 className="text-sm text-gray-500">E-Mail</h4>
-						<p>{patientEmail}</p>
-					</div>
-				</div>
-
-				<div className="grid grid-cols-2 gap-8 mt-6">
-					<div>
-						<h4 className="text-sm text-gray-500">Termin</h4>
-						<p>
-							{format(
-								new Date(appointmentDate),
-								"EEEE, d. MMMM yyyy 'um' HH:mm 'Uhr'",
-								{ locale: de }
-							)}
-						</p>
-					</div>
-					<div>
-						<h4 className="text-sm text-gray-500">Untersuchung</h4>
-						<p>{examinationName}</p>
-					</div>
-				</div>
-			</div>
-
 			<div className="flex justify-between items-center mb-4">
 				<h3 className="text-lg font-medium">Verfügbare Formulare</h3>
-				<button
-					onClick={() => setShowPDFPreview(true)}
-					className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-				>
-					PDF Vorschau
-				</button>
 			</div>
 
 			<FormList
@@ -240,6 +207,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 				billingType={billingType}
 				onPhotoCapture={() => setActiveFormPage("photo-capture")}
 				onViewForm={(formId) => setSelectedFormId(formId)}
+				onPreviewForm={(formId) => handleOpenPDFPreview()}
 			/>
 
 			<div className="mt-10">
@@ -283,6 +251,17 @@ const FormSection: React.FC<FormSectionProps> = ({
 					</button>
 				)}
 			</div>
+
+			{/* PDF Form Preview Modal */}
+			<PDFFormPreviewModal
+				isOpen={isPDFModalOpen}
+				onClose={() => setIsPDFModalOpen(false)}
+				formName="Anmeldeformular"
+				patientName={patientName}
+				formData={formData}
+				patientData={patientData}
+				appointmentData={appointmentData}
+			/>
 		</>
 	);
 };

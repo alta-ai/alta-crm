@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { format, parseISO } from 'date-fns';
 import { de } from 'date-fns/locale';
 import { useQuery } from '@tanstack/react-query';
@@ -83,128 +83,108 @@ const AppointmentDetails: React.FC<AppointmentDetailsComponentProps> = ({
         </div>
       )}
 
-      {/* Appointment Details */}
-      <div className="mb-6 bg-gray-50 rounded-lg p-4 space-y-3">
-        <div className="flex items-center text-sm text-gray-600">
-          <span>
-            {format(new Date(appointment.start_time), "EEEE, d. MMMM yyyy 'um' HH:mm 'Uhr'", { locale: de })}
-          </span>
-          {appointment.previous_appointment_date && (
-            <div className="ml-2 text-sm text-blue-600">
-              (Verschoben vom {format(parseISO(appointment.previous_appointment_date), "dd.MM.yyyy HH:mm", { locale: de })})
-            </div>
-          )}
-        </div>
-        <div className="text-sm text-gray-600">
-          {appointment.location.name}
-        </div>
-        <div className="text-sm text-gray-600">
-          {appointment.device.name}
-        </div>
-        <div className="text-sm text-gray-600 pl-7">
+      {/* Termin-Übersichtsdetails */}
+      <div className="bg-gray-50 p-4 rounded-lg mb-8">
+        <p className="text-sm text-gray-800 mb-2">
+          {format(new Date(appointment.start_time), "EEEE, d. MMMM yyyy 'um' HH:mm 'Uhr'", { locale: de })}
+        </p>
+        <p className="text-sm text-gray-800 mb-2">
+          {appointment.location.name}{appointment.device?.name ? `, ${appointment.device.name}` : ''}
+        </p>
+        <p className="text-sm text-gray-800">
           {appointment.examination.name} ({appointment.examination.duration} Minuten)
-        </div>
-      </div>
-
-      {/* Status Selection */}
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700">
-          Behandlungsstatus {isStatusChanging && <span className="text-sm text-blue-600 ml-2">(wird geändert...)</span>}
-        </label>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {statuses?.map((status) => (
-            <button
-              key={status.id}
-              onClick={() => handleStatusChange(status.id)}
-              disabled={isStatusChanging}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                currentStatus?.id === status.id
-                  ? "bg-opacity-100 text-white"
-                  : "bg-opacity-50 hover:bg-opacity-60 text-gray-900"
-              } ${isStatusChanging && "opacity-50 cursor-not-allowed"}`}
-              style={{
-                backgroundColor: currentStatus?.id === status.id 
-                  ? status.color 
-                  : `${status.color}80`,
-                borderColor: status.color,
-                borderWidth: '1px'
-              }}
-            >
-              {status.name}
-            </button>
-          ))}
-        </div>
+        </p>
       </div>
 
       {/* Patient Info */}
-      <div className="space-y-4 mb-6">
-        <h3 className="text-sm font-medium text-gray-700">Patient</h3>
-        <div className="bg-white border border-gray-200 rounded-lg p-4">
-          <div className="flex justify-between">
-            <div className="space-y-2">
+      <h3 className="text-base font-medium text-gray-900 mb-4">Patient</h3>
+      <div className="bg-white border border-gray-200 rounded-lg p-4 mb-8">
+        <div className="flex justify-between">
+          <div className="space-y-2">
+            <p className="text-sm">
+              <span className="font-medium">Name: </span>
+              {appointment.patient.first_name} {appointment.patient.last_name}
+            </p>
+            <p className="text-sm">
+              <span className="font-medium">E-Mail: </span>
+              {appointment.patient.email}
+            </p>
+            <p className="text-sm">
+              <span className="font-medium">Telefon: </span>
+              {appointment.patient.phone}
+            </p>
+            <p className="text-sm">
+              <span className="font-medium">Abrechnungsart: </span>
+              {BILLING_TYPE_LABELS[appointment.billing_type]}
+            </p>
+            {currentReferringDoctor && (
               <p className="text-sm">
-                <span className="font-medium">Name: </span>
-                {appointment.patient.first_name} {appointment.patient.last_name}
+                <span className="font-medium">Überweiser: </span>
+                {(currentReferringDoctor as any)?.title ? `${(currentReferringDoctor as any).title} ` : ''}
+                {(currentReferringDoctor as any)?.first_name || ''} {(currentReferringDoctor as any)?.last_name || ''}
               </p>
+            )}
+            {appointment.patient_data?.has_transfer && !currentReferringDoctor && (
               <p className="text-sm">
-                <span className="font-medium">E-Mail: </span>
-                {appointment.patient.email}
+                <span className="font-medium">Überweisender Arzt: </span>
+                {appointment.patient_data.referring_doctor}
               </p>
-              <p className="text-sm">
-                <span className="font-medium">Telefon: </span>
-                {appointment.patient.phone}
-              </p>
-              <p className="text-sm">
-                <span className="font-medium">Abrechnungsart: </span>
-                {BILLING_TYPE_LABELS[appointment.billing_type]}
-              </p>
-              {appointment.patient_data?.has_transfer && (
-                <p className="text-sm">
-                  <span className="font-medium">Überweisender Arzt: </span>
-                  {appointment.patient_data.referring_doctor}
-                </p>
-              )}
-              {currentReferringDoctor && (
-                <p className="text-sm">
-                  <span className="font-medium">Überweiser: </span>
-                  {currentReferringDoctor.title && (
-                    <span>{currentReferringDoctor.title} </span>
-                  )}
-                  {currentReferringDoctor.first_name} {currentReferringDoctor.last_name}
-                </p>
-              )}
-              {appointment.patient_data?.with_contrast_medium && (
-                <p className="text-sm text-blue-600">Mit Kontrastmittel</p>
-              )}
-            </div>
-            
-            {/* Patientenfoto rechts */}
-            <div className="flex flex-col items-center">
-              {patientPhoto ? (
-                <div className="relative">
-                  <img 
-                    src={patientPhoto} 
-                    alt="Patientenfoto" 
-                    className="h-24 w-24 rounded-full object-cover cursor-pointer border-2 border-gray-200"
-                    onClick={() => setShowPhotoModal(true)}
-                  />
-                  <button 
-                    className="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-1 shadow-md hover:bg-blue-600"
-                    onClick={() => setShowPhotoModal(true)}
-                  >
-                    <Maximize className="h-4 w-4" />
-                  </button>
-                </div>
-              ) : (
-                <div className="h-24 w-24 rounded-full bg-gray-100 flex items-center justify-center">
-                  <Camera className="h-8 w-8 text-gray-400" />
-                </div>
-              )}
-            </div>
+            )}
+          </div>
+          
+          {/* Patientenfoto rechts */}
+          <div className="flex-shrink-0">
+            {patientPhoto ? (
+              <div className="relative">
+                <img 
+                  src={patientPhoto} 
+                  alt="Patientenfoto" 
+                  className="h-24 w-24 rounded-full object-cover cursor-pointer border-2 border-gray-200"
+                  onClick={() => setShowPhotoModal(true)}
+                />
+                <button 
+                  className="absolute bottom-0 right-0 bg-blue-500 text-white rounded-full p-1 shadow-md hover:bg-blue-600"
+                  onClick={() => setShowPhotoModal(true)}
+                >
+                  <Maximize className="h-4 w-4" />
+                </button>
+              </div>
+            ) : (
+              <div className="h-24 w-24 rounded-full bg-gray-100 flex items-center justify-center">
+                <Camera className="h-8 w-8 text-gray-400" />
+              </div>
+            )}
           </div>
         </div>
       </div>
 
+      {/* Behandlungsstatus */}
+      <h3 className="text-base font-medium text-gray-900 mb-4">Behandlungsstatus</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-8">
+        {statuses?.map((status) => (
+          <button
+            key={status.id}
+            onClick={() => handleStatusChange(status.id)}
+            disabled={isStatusChanging}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              currentStatus?.id === status.id
+                ? "bg-opacity-100 text-white"
+                : "bg-opacity-50 hover:bg-opacity-60 text-gray-900"
+            } ${isStatusChanging && "opacity-50 cursor-not-allowed"}`}
+            style={{
+              backgroundColor: currentStatus?.id === status.id 
+                ? status.color 
+                : `${status.color}80`,
+              borderColor: status.color,
+              borderWidth: '1px'
+            }}
+          >
+            {status.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Aktionsbuttons */}
       <div className="flex justify-end space-x-3 pt-4 border-t">
         <button
           onClick={handleCancel}
