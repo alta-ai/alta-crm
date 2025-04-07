@@ -600,9 +600,9 @@ const PatientHistory = () => {
         </div>
 
         {appointments && appointments.length > 0 ? (
-          <div className="divide-y divide-gray-200">
+          <div className="bg-gray-50 space-y-6 p-6">
             {appointments.map((appointment) => (
-              <div key={appointment.id} className="p-6">
+              <div key={appointment.id} className="bg-white shadow-sm rounded-lg p-6 border border-gray-200">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <h3 className="text-base font-medium text-gray-900">
