@@ -27,6 +27,16 @@ const PatientList = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
 
+  // Add class to HTML element to hide all scrollbars
+  useEffect(() => {
+    document.documentElement.classList.add('hide-all-scrollbars');
+    
+    // Cleanup function to remove the class when component unmounts
+    return () => {
+      document.documentElement.classList.remove('hide-all-scrollbars');
+    };
+  }, []);
+
   // Debounce search term
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -427,11 +437,11 @@ const PatientList = () => {
       )}
 
       <div className="mt-4 flex flex-col">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle">
-            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 hide-scrollbar">
+          <div className="inline-block min-w-full py-2 align-middle hide-scrollbar md:px-6 lg:px-8">
+            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg hide-scrollbar">
               {patients && patients.length > 0 ? (
-                <table className="min-w-full divide-y divide-gray-300">
+                <table className="min-w-full divide-y divide-gray-300 hide-scrollbar">
                   <thead className="bg-gray-50">
                     <tr>
                       <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
