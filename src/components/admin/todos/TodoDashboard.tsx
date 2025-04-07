@@ -280,7 +280,9 @@ const TodoDashboard = () => {
                 className={cn(
                   "p-4 hover:bg-gray-50",
                   todo.completed ? "bg-gray-50" : "",
-                  todo.priority ? "border-l-4 border-l-orange-400" : ""
+                  todo.priority === true 
+                    ? "!border-l-4 !border-l-orange-400" 
+                    : "border-l-4 border-l-gray-200"
                 )}
               >
                 <div className="flex justify-between items-start">
@@ -311,7 +313,7 @@ const TodoDashboard = () => {
                         <div className="flex items-center">
                           <User className="h-3.5 w-3.5 mr-1" />
                           <Link 
-                            to={`/admin/patients/${todo.appointment.patient.id}`}
+                            to={`/admin/patients/${todo.appointment.patient.id}/history`}
                             className="text-blue-600 hover:underline"
                           >
                             {todo.appointment.patient.first_name} {todo.appointment.patient.last_name}
