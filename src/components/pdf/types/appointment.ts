@@ -1,16 +1,18 @@
 import { z } from "zod";
-import { parseISO } from "date-fns";
+import { DBPatientSchema, Patient, PartialPatientSchema } from "./patient";
+import { BODY_SIDE } from "./constants";
 
 const DBAppointmentSchema = z.object({
 	id: z.string().uuid(),
-	start_time: z.string(),
-	end_time: z.string(),
+	start_time: z.coerce.date(),
+	end_time: z.coerce.date(),
 	patient_data: z.object({
-		has_beihilfe: z.boolean().optional(),
-		has_transfer: z.boolean().optional(),
-		referring_doctor: z.string().optional(),
-		with_contrast_medium: z.boolean().optional(),
+		has_beihilfe: z.boolean().optional().nullable(),
+		has_transfer: z.boolean().optional().nullable(),
+		referring_doctor: z.string().optional().nullable(),
+		with_contrast_medium: z.boolean().optional().nullable(),
 	}),
+	body_side: z.enum(BODY_SIDE).optional().nullable(),
 	billing_type: z.string(),
 	status: z.object({
 		id: z.string().uuid(),
@@ -29,16 +31,10 @@ const DBAppointmentSchema = z.object({
 		id: z.string().uuid(),
 		name: z.string(),
 	}),
-	patient: z.object({
-		id: z.string().uuid(),
-		first_name: z.string(),
-		last_name: z.string(),
-		email: z.string(),
-		phone: z.string(),
-	}),
+	patient: DBPatientSchema.partial().optional(),
 	previous_appointment: z
 		.object({
-			start_time: z.string(),
+			start_time: z.coerce.date(),
 		})
 		.nullable(),
 });
@@ -46,8 +42,8 @@ const DBAppointmentSchema = z.object({
 export const AppointmentSchema = DBAppointmentSchema.transform((data) => ({
 	id: data.id,
 	timing: {
-		start: parseISO(data.start_time),
-		end: parseISO(data.end_time),
+		start: data.start_time,
+		end: data.end_time,
 	},
 	status: {
 		id: data.status.id,
@@ -58,6 +54,7 @@ export const AppointmentSchema = DBAppointmentSchema.transform((data) => ({
 		id: data.examination.id,
 		name: data.examination.name,
 		duration: data.examination.duration,
+		bodySide: data.body_side,
 	},
 	device: {
 		id: data.device.id,
@@ -67,21 +64,10 @@ export const AppointmentSchema = DBAppointmentSchema.transform((data) => ({
 		id: data.location.id,
 		name: data.location.name,
 	},
-	patient: {
-		id: data.patient.id,
-		firstName: data.patient.first_name,
-		lastName: data.patient.last_name,
-		contact: {
-			email: data.patient.email,
-			phone: data.patient.phone,
-		},
-		appointmentSpecificData: {
-			...data.patient_data,
-		},
-	},
+	patient: PartialPatientSchema.parse(data.patient) as Patient,
 	previousAppointment: data.previous_appointment
 		? {
-				startTime: parseISO(data.previous_appointment.start_time),
+				startTime: data.previous_appointment.start_time,
 		  }
 		: undefined,
 	details: {

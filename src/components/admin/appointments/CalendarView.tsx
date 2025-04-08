@@ -291,6 +291,7 @@ const CalendarView = ({
           end_time,
           patient_data,
           billing_type,
+					body_side,
           status:appointment_statuses(
             id,
             name
@@ -863,8 +864,8 @@ const CalendarView = ({
 																			{zoomLevel >= 60 &&
 																				appointment.patient && (
 																					<div className="text-xs truncate">
-																						{appointment.patient.firstName}{" "}
-																						{appointment.patient.lastName}
+																						{appointment.patient.name}{" "}
+																						{appointment.patient.surname}
 																					</div>
 																				)}
 																		</button>
@@ -1075,13 +1076,10 @@ const CalendarView = ({
 																							{zoomLevel >= 60 &&
 																								appointment.patient && (
 																									<div className="text-xs truncate">
+																										{appointment.patient.name}{" "}
 																										{
 																											appointment.patient
-																												.firstName
-																										}{" "}
-																										{
-																											appointment.patient
-																												.lastName
+																												.surname
 																										}
 																									</div>
 																								)}

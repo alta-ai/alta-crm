@@ -259,8 +259,8 @@ const AppointmentDetailsModal: React.FC<
 					{activeTab !== "details" && (
 						<div className="bg-gray-50 p-3 rounded-md mb-6">
 							<p className="text-sm font-medium text-gray-800">
-								{`${appointment.patient.firstName} ${appointment.patient.lastName}`}
-								, geb.:{" "}
+								{`${appointment.patient.name} ${appointment.patient.surname}`},
+								geb.:{" "}
 								{patientData?.birth_date
 									? format(new Date(patientData.birth_date), "dd.MM.yyyy", {
 											locale: de,
@@ -292,14 +292,7 @@ const AppointmentDetailsModal: React.FC<
 						/>
 					) : activeTab === "forms" ? (
 						<FormSection
-							appointmentId={appointment.id}
-							patientId={appointment.patient.id}
-							patientName={`${appointment.patient.firstName} ${appointment.patient.lastName}`}
-							patientEmail={appointment.patient.contact.email}
-							appointmentDate={appointment.timing.start}
-							examinationName={appointment.examination.name}
-							examinationId={appointment.examination.id}
-							billingType={appointment.billingType}
+							appointment={appointment}
 							onPhotoUpdated={() => {
 								queryClient.invalidateQueries({
 									queryKey: ["patient-photo", appointment.patient.id],

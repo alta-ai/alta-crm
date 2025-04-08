@@ -1,33 +1,33 @@
 import React, { createContext, useContext } from "react";
 
-import { PatientData, AppointmentData } from "./types";
+import { Patient, Appointment } from "./types";
 
 interface FormDataContextType<TFormData> {
 	formData: TFormData;
-	patientData: PatientData;
-	appointmentData: AppointmentData;
+	patientData: Patient;
+	appointmentData: Appointment;
 }
 
 // Provider component
 interface FormDataProviderProps<TFormData> {
 	children: React.ReactNode;
 	initialFormData?: TFormData;
-	initialPatientData?: PatientData;
-	initialAppointmentData?: AppointmentData;
+	initialPatientData?: Patient;
+	initialAppointmentData?: Appointment;
 }
 
 // Create context with default values
 const FormDataContext = createContext<FormDataContextType<any>>({
 	formData: {},
-	patientData: {},
-	appointmentData: {},
+	patientData: {} as Patient,
+	appointmentData: {} as Appointment,
 });
 
 export const FormDataProvider = <TFormData,>({
 	children,
 	initialFormData = {} as TFormData,
-	initialPatientData = {},
-	initialAppointmentData = {},
+	initialPatientData = {} as Patient,
+	initialAppointmentData = {} as Appointment,
 }: FormDataProviderProps<TFormData>) => {
 	return (
 		<FormDataContext.Provider

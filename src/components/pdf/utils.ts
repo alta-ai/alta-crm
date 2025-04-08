@@ -1,3 +1,5 @@
+import { BODY_SIDE } from "./types/constants";
+
 export const formatDate = (dateString?: string): string => {
 	if (!dateString) return "";
 
@@ -82,7 +84,7 @@ export const deriveDisplayedStreetAddress = ({
 };
 
 interface DeriveDisplayedCityAddressParams {
-	zip?: string;
+	zip?: number;
 	city?: string;
 	sep?: string;
 }
@@ -127,7 +129,13 @@ export const formatExamination = ({
 	let exam = examination || "";
 
 	if (bodySide) {
-		exam += " (" + bodySide + ")";
+		let translatedBodySide =
+			bodySide === "left"
+				? "links"
+				: bodySide === "right"
+				? "rechts"
+				: "beidseitig";
+		exam += " (" + translatedBodySide + ")";
 	}
 	return exam;
 };

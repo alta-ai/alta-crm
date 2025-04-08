@@ -1,4 +1,5 @@
 import { Document, View, Text, StyleSheet } from "@react-pdf/renderer";
+import { format } from "date-fns";
 import {
 	Header,
 	FormRow,
@@ -18,7 +19,7 @@ import {
 } from "./utils";
 import styling from "./styles";
 import { useFormData } from "./formDataContext";
-import { FormProps, RegistrationFormData } from "./types";
+import { FormProps, RegistrationForm as RegistrationFormData } from "./types";
 
 const styles = StyleSheet.create({
 	Page: { fontSize: 10 },
@@ -79,7 +80,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 							{
 								label: "Titel, Nachname, Vorname",
 								value: deriveDisplayedFullName({
-									title: patientData?.title,
+									title: patientData?.title || undefined,
 									name: patientData?.name,
 									surname: patientData?.surname,
 								}),
@@ -88,7 +89,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 							},
 							{
 								label: "Geburtsdatum",
-								value: formatDate(patientData?.birthdate),
+								value: format(patientData?.birthdate, "dd.MM.yyyy"),
 								start: 50,
 								type: "text",
 							},
@@ -132,8 +133,8 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 							{
 								label: "PLZ, Wohnort",
 								value: deriveDisplayedCityAddress({
-									zip: patientData?.address?.zipCode,
-									city: patientData?.address?.city,
+									zip: patientData?.address?.zipCode || undefined,
+									city: patientData?.address?.city || undefined,
 								}),
 								start: 30,
 								type: "text",
@@ -151,9 +152,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 						items={[
 							{
 								label: "PKV/GKV",
-								value:
-									patientData?.insurance?.privateInsurance ||
-									patientData?.insurance?.publicInsurance,
+								value: patientData?.insurance?.name,
 								start: 50,
 								type: "text",
 							},
@@ -163,7 +162,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 									<BoxSelection
 										options={["Ja", "Nein"]}
 										selected={booleanToYesNo(
-											patientData?.insurance?.eligibleForAid
+											appointmentData?.details?.hasBeihilfe
 										)}
 										style={styling.FormTypeLines.BoxSelection}
 									/>
@@ -178,7 +177,10 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 						items={[
 							{
 								label: "Untersuchung",
-								value: formatExamination(appointmentData),
+								value: formatExamination({
+									examination: appointmentData?.examination?.name,
+									bodySide: appointmentData?.examination?.bodySide as string,
+								}),
 								start: 100,
 								type: "text",
 							},

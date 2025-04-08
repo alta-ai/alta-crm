@@ -1,72 +1,83 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "../../../../lib/supabase";
-import { format } from "date-fns";
-import { de } from "date-fns/locale";
-import { Link } from "react-router-dom";
 import { ExternalLink } from "lucide-react";
+
+import { supabase } from "../../../../lib/supabase";
 import PatientPhotoCapture from "../PatientPhotoCapture";
 import FormList from "./FormList";
 import FormViewer from "./FormViewer";
 import { generateFormToken, getFormsUrl } from "../../../../lib/forms";
-import { PDFPreview } from "../../../PDFPreview";
-import { FormDataProvider } from "../../../pdf/formDataContext";
-import { RegistrationForm } from "../../../pdf/RegistrationForm";
 import PDFFormPreviewModal from "../PDFFormPreviewModal";
+import { Patient, Appointment, PartialPatientSchema } from "../../../pdf/types";
 
 interface FormSectionProps {
-	appointmentId: string;
-	patientId: string;
-	patientName: string;
-	patientEmail: string;
-	appointmentDate: string;
-	examinationName: string;
-	examinationId: string;
-	billingType: string;
+	appointment: Appointment;
 	onPhotoUpdated?: () => void;
 }
 
 const FormSection: React.FC<FormSectionProps> = ({
-	appointmentId,
-	patientId,
-	patientName,
-	patientEmail,
-	appointmentDate,
-	examinationName,
-	examinationId,
-	billingType,
+	appointment,
 	onPhotoUpdated,
 }) => {
 	const [activeFormPage, setActiveFormPage] = useState<string | null>(null);
 	const [selectedFormId, setSelectedFormId] = useState<string | null>(null);
 	const [formUrl, setFormUrl] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
-	const [showPDFPreview, setShowPDFPreview] = useState(false);
 	const [isPDFModalOpen, setIsPDFModalOpen] = useState(false);
 
 	// Load patient data for PDF
 	const { data: patient } = useQuery({
-		queryKey: ["patient", patientId],
+		queryKey: ["patient", appointment.patient.id],
 		queryFn: async () => {
 			const { data, error } = await supabase
 				.from("patients")
-				.select("*")
-				.eq("id", patientId)
+				.select(
+					`
+					gender,
+					title,
+					first_name,
+					last_name,
+					birth_date,
+					phone,
+					mobile,
+					email,
+					street,
+					house_number,
+					postal_code,
+					city,
+					country,
+					insurance:insurance_providers(
+						id,
+						name,
+						type
+					)
+					`
+				)
+				.eq("id", appointment.patient.id)
 				.single();
 
-			if (error) throw error;
-			return data;
+			if (error) {
+				console.error(error);
+				throw error;
+			}
+
+			try {
+				const p = PartialPatientSchema.parse(data) as Patient;
+				return p;
+			} catch (valError) {
+				console.error(valError);
+			}
 		},
 	});
 
 	// Load form submission if it exists
 	const { data: formSubmission } = useQuery({
-		queryKey: ["registration-form-submission", appointmentId],
+		queryKey: ["registration-form-submission", appointment.id],
 		queryFn: async () => {
 			const { data, error } = await supabase
 				.from("registration_form_submissions")
 				.select("*")
-				.eq("appointment_id", appointmentId)
+				.eq("appointment_id", appointment.id)
 				.maybeSingle();
 
 			if (error) throw error;
@@ -78,7 +89,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 	const handleGenerateUrl = async () => {
 		try {
 			setError(null);
-			const token = await generateFormToken(appointmentId);
+			const token = await generateFormToken(appointment.id);
 			const url = getFormsUrl(token);
 			setFormUrl(url);
 		} catch (error: any) {
@@ -96,76 +107,21 @@ const FormSection: React.FC<FormSectionProps> = ({
 	const formData = formSubmission
 		? {
 				urologicInformation: {
-					currentlyUndergoingTreatment:
-						formSubmission.current_treatment === "true",
+					currentlyUndergoingTreatment: formSubmission.current_treatment,
 					recommendationOfUrologist:
 						formSubmission.treatment_recommendations?.join(", "),
-					visitDueToRecommendation:
-						formSubmission.doctor_recommendation === "true",
+					visitDueToRecommendation: formSubmission.doctor_recommendation,
 					nameOfUrologist: formSubmission.referring_doctor_name,
-					gotTransfer: formSubmission.has_transfer === "true",
-					sendReportToUrologist:
-						formSubmission.send_report_to_doctor === "true",
+					gotTransfer: formSubmission.has_transfer,
+					sendReportToUrologist: formSubmission.send_report_to_doctor,
 				},
 		  }
 		: {};
 
-	const patientData = {
-		title: formSubmission?.title || patient?.title,
-		name: formSubmission?.first_name || patient?.first_name, // Vorname
-		surname: formSubmission?.last_name || patient?.last_name, // Nachname
-		birthdate: formSubmission?.birth_date || patient?.birth_date,
-		contact: {
-			phone: formSubmission?.phone_landline || patient?.phone,
-			mobile: formSubmission?.phone_mobile || patient?.phone,
-			email: formSubmission?.email || patient?.email,
-		},
-		address: {
-			street: formSubmission?.street || patient?.street,
-			houseNumber: formSubmission?.house_number || patient?.house_number,
-			zipCode: formSubmission?.postal_code || patient?.postal_code,
-			city: formSubmission?.city || patient?.city,
-		},
-		insurance: {
-			privateInsurance:
-				formSubmission?.insurance_type === "Private Krankenversicherung (PKV)"
-					? formSubmission?.insurance_provider_id
-					: undefined,
-			eligibleForAid: formSubmission?.has_beihilfe === "true",
-		},
-	};
-
-	const appointmentData = {
-		examination: examinationName,
-		date: format(new Date(appointmentDate), "dd.MM.yyyy", { locale: de }),
-	};
-
-	if (showPDFPreview) {
-		return (
-			<div className="h-full">
-				<PDFPreview
-					document={<RegistrationForm />}
-					contexts={[
-						(props) => (
-							<FormDataProvider
-								initialFormData={formData}
-								initialPatientData={patientData}
-								initialAppointmentData={appointmentData}
-							>
-								{props}
-							</FormDataProvider>
-						),
-					]}
-					fileName={`Anmeldeformular_${patientName.replace(/\s+/g, "_")}.pdf`}
-				/>
-			</div>
-		);
-	}
-
 	if (activeFormPage === "photo-capture") {
 		return (
 			<PatientPhotoCapture
-				patientId={patientId}
+				patientId={appointment.patient.id}
 				onPhotoUpdated={() => {
 					if (onPhotoUpdated) {
 						onPhotoUpdated();
@@ -188,7 +144,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 				</button>
 				<FormViewer
 					formId={selectedFormId}
-					appointmentId={appointmentId}
+					appointmentId={appointment.id}
 					formType="registration"
 				/>
 			</div>
@@ -202,12 +158,12 @@ const FormSection: React.FC<FormSectionProps> = ({
 			</div>
 
 			<FormList
-				appointmentId={appointmentId}
-				examinationId={examinationId}
-				billingType={billingType}
+				appointmentId={appointment.id}
+				examinationId={appointment.examination.id}
+				billingType={appointment.billingType}
 				onPhotoCapture={() => setActiveFormPage("photo-capture")}
 				onViewForm={(formId) => setSelectedFormId(formId)}
-				onPreviewForm={(formId) => handleOpenPDFPreview()}
+				onPreviewForm={handleOpenPDFPreview}
 			/>
 
 			<div className="mt-10">
@@ -257,10 +213,9 @@ const FormSection: React.FC<FormSectionProps> = ({
 				isOpen={isPDFModalOpen}
 				onClose={() => setIsPDFModalOpen(false)}
 				formName="Anmeldeformular"
-				patientName={patientName}
 				formData={formData}
-				patientData={patientData}
-				appointmentData={appointmentData}
+				patientData={patient || ({} as Patient)}
+				appointmentData={appointment}
 			/>
 		</>
 	);

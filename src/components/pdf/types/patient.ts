@@ -1,48 +1,55 @@
 import { z } from "zod";
+import { GENDER, INSURANCE_TYPE } from "./constants";
 
-const DBPatientSchema = z.object({
+export const DBPatientSchema = z.object({
+	id: z.string().uuid(),
+	patient_number: z.number(),
+	gender: z.enum(GENDER),
 	title: z.string().nullable(),
-	first_name: z.string().nullable(),
-	last_name: z.string().nullable(),
-	birth_date: z.string().nullable(),
-	phone_landline: z.string().nullable(),
-	phone_mobile: z.string().nullable(),
+	first_name: z.string(),
+	last_name: z.string(),
+	birth_date: z.coerce.date(),
+	phone: z.string().nullable(),
+	mobile: z.string().nullable(),
 	email: z.string().nullable(),
-	street: z.string().nullable(),
-	house_number: z.string().nullable(),
-	postal_code: z.string().nullable(),
+	street: z.string(),
+	house_number: z.string(),
+	postal_code: z.number(),
 	city: z.string().nullable(),
-	insurance_type: z.string().nullable(),
-	insurance_provider_id: z.string().nullable(),
-	has_beihilfe: z.string().nullable(),
+	country: z.string().nullable(),
+	insurance: z.object({
+		id: z.string().uuid(),
+		name: z.string(),
+		type: z.enum(INSURANCE_TYPE),
+	}),
 });
 
-const PatientDataSchema = DBPatientSchema.transform((data) => ({
-	title: data.title || undefined,
-	name: data.first_name || undefined,
-	surname: data.last_name || undefined,
-	birthdate: data.birth_date || undefined,
+export const PatientSchema = DBPatientSchema.transform((data) => ({
+	id: data.id,
+	patientID: data.patient_number,
+	title: data.title,
+	name: data.first_name,
+	surname: data.last_name,
+	birthdate: data.birth_date,
 	contact: {
-		phone: data.phone_landline || data.phone_mobile || undefined,
-		mobile: data.phone_mobile || undefined,
-		email: data.email || undefined,
+		phone: data.phone,
+		mobile: data.mobile,
+		email: data.email,
 	},
 	address: {
-		street: data.street || undefined,
-		houseNumber: data.house_number || undefined,
-		zipCode: data.postal_code || undefined,
-		city: data.city || undefined,
-		country: undefined, // Add a default or map if available
+		street: data.street,
+		houseNumber: data.house_number,
+		zipCode: data.postal_code,
+		city: data.city,
+		country: data.country,
 	},
-	insurance: {
-		privateInsurance:
-			data.insurance_type === "Private Krankenversicherung (PKV)"
-				? data.insurance_provider_id || undefined
-				: undefined,
-		eligibleForAid: data.has_beihilfe === "true", // Convert string to boolean
-	},
+	insurance: data.insurance,
 }));
 
+export const PartialPatientSchema = PatientSchema._def.schema
+	.partial()
+	.transform(PatientSchema._def.effect.transform);
+
 // Infer TypeScript type from the Zod schema
-export type Patient = z.infer<typeof PatientDataSchema>;
+export type Patient = z.infer<typeof PatientSchema>;
 export type DBPatient = z.infer<typeof DBPatientSchema>;
