@@ -1,324 +1,345 @@
-import React, { useState } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '../../../lib/supabase';
-import { X } from 'lucide-react';
-import { cn } from '../../../lib/utils';
-import AppointmentDetails from './details/AppointmentDetails';
-import AppointmentComments from './details/AppointmentComments';
-import DocumentUpload from './DocumentUpload';
-import ReferringDoctorSection from './ReferringDoctorSection';
-import ReportSection from './ReportSection';
-import FormSection from './details/FormSection';
-import PatientPhotoModal from './details/PatientPhotoModal';
-import { AppointmentDetailsProps } from './types';
-import { format } from 'date-fns';
-import { de } from 'date-fns/locale';
+import React, { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { X } from "lucide-react";
+import { format } from "date-fns";
+import { de } from "date-fns/locale";
+import { supabase } from "../../../lib/supabase";
+import { cn } from "../../../lib/utils";
+import AppointmentDetails from "./details/AppointmentDetails";
+import AppointmentComments from "./details/AppointmentComments";
+import DocumentUpload from "./DocumentUpload";
+import ReferringDoctorSection from "./ReferringDoctorSection";
+import ReportSection from "./ReportSection";
+import FormSection from "./details/FormSection";
+import PatientPhotoModal from "./details/PatientPhotoModal";
+import { Appointment } from "../../pdf/types";
 
-const AppointmentDetailsModal: React.FC<AppointmentDetailsProps & {
-  isOpen: boolean;
-  onClose: () => void;
-}> = ({
-  isOpen,
-  onClose,
-  appointment,
-  onReschedule,
-  refetchAppointments
-}) => {
-  const [activeTab, setActiveTab] = useState<'details' | 'forms' | 'documents' | 'comments' | 'referringDoctor' | 'report'>('details');
-  const [error, setError] = useState<string | null>(null);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [currentStatusId, setCurrentStatusId] = useState(appointment.status_id);
-  const [isStatusChanging, setIsStatusChanging] = useState(false);
-  const [showPhotoModal, setShowPhotoModal] = useState(false);
-  const queryClient = useQueryClient();
+export interface AppointmentDetailsProps {
+	appointment: Appointment;
+	onReschedule: () => void;
+	refetchAppointments?: () => void;
+}
 
-  // Fetch appointment statuses
-  const { data: statuses } = useQuery({
-    queryKey: ['appointmentStatuses'],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('appointment_statuses')
-        .select('*')
-        .order('name');
+const AppointmentDetailsModal: React.FC<
+	AppointmentDetailsProps & {
+		isOpen: boolean;
+		onClose: () => void;
+	}
+> = ({ isOpen, onClose, appointment, onReschedule, refetchAppointments }) => {
+	const [activeTab, setActiveTab] = useState<
+		| "details"
+		| "forms"
+		| "documents"
+		| "comments"
+		| "referringDoctor"
+		| "report"
+	>("details");
+	const [error, setError] = useState<string | null>(null);
+	const [isDeleting, setIsDeleting] = useState(false);
+	const [currentStatusId, setCurrentStatusId] = useState(appointment.status.id);
+	const [isStatusChanging, setIsStatusChanging] = useState(false);
+	const [showPhotoModal, setShowPhotoModal] = useState(false);
+	const queryClient = useQueryClient();
 
-      if (error) throw error;
-      return data;
-    }
-  });
+	// Fetch appointment statuses
+	const { data: statuses } = useQuery({
+		queryKey: ["appointmentStatuses"],
+		queryFn: async () => {
+			const { data, error } = await supabase
+				.from("appointment_statuses")
+				.select("*")
+				.order("name");
 
-  // Load patient photo
-  const { data: patientPhoto } = useQuery({
-    queryKey: ['patient-photo', appointment.patient.id],
-    queryFn: async () => {
-      try {
-        const { data, error } = await supabase
-          .from('patient_photos')
-          .select('photo_data')
-          .eq('patient_id', appointment.patient.id)
-          .eq('active', true)
-          .maybeSingle();
-        
-        if (error) {
-          console.error('Fehler beim Laden des Patientenfotos:', error);
-          return null;
-        }
-        
-        return data?.photo_data || null;
-      } catch (err) {
-        console.error('Fehler bei der Foto-Abfrage:', err);
-        return null;
-      }
-    },
-    retry: false,
-    staleTime: 60000
-  });
-  
-  // Lade vollständige Patientendaten inkl. Geburtsdatum
-  const { data: patientData } = useQuery({
-    queryKey: ['patient-details', appointment.patient.id],
-    queryFn: async () => {
-      try {
-        const { data, error } = await supabase
-          .from('patients')
-          .select('*')
-          .eq('id', appointment.patient.id)
-          .single();
-        
-        if (error) {
-          console.error('Fehler beim Laden der Patientendaten:', error);
-          return null;
-        }
-        
-        return data;
-      } catch (err) {
-        console.error('Fehler bei der Patientendaten-Abfrage:', err);
-        return null;
-      }
-    },
-    retry: false,
-    staleTime: 60000
-  });
+			if (error) throw error;
+			return data;
+		},
+	});
 
-  const handleCancel = async () => {
-    try {
-      setIsDeleting(true);
-      setError(null);
+	// Load patient photo
+	const { data: patientPhoto } = useQuery({
+		queryKey: ["patient-photo", appointment.patient.id],
+		queryFn: async () => {
+			try {
+				const { data, error } = await supabase
+					.from("patient_photos")
+					.select("photo_data")
+					.eq("patient_id", appointment.patient.id)
+					.eq("active", true)
+					.maybeSingle();
 
-      const { error } = await supabase
-        .from('appointments')
-        .update({
-          status_id: (await supabase
-            .from('appointment_statuses')
-            .select('id')
-            .eq('name', 'Storniert')
-            .single()
-          ).data?.id
-        })
-        .eq('id', appointment.id);
+				if (error) {
+					console.error("Fehler beim Laden des Patientenfotos:", error);
+					return null;
+				}
 
-      if (error) throw error;
+				return data?.photo_data || null;
+			} catch (err) {
+				console.error("Fehler bei der Foto-Abfrage:", err);
+				return null;
+			}
+		},
+		retry: false,
+		staleTime: 60000,
+	});
 
-      refetchAppointments?.();
-      onClose();
-    } catch (error: any) {
-      console.error('Error cancelling appointment:', error);
-      setError('Der Termin konnte nicht storniert werden. Bitte versuchen Sie es später erneut.');
-    } finally {
-      setIsDeleting(false);
-    }
-  };
+	// Lade vollständige Patientendaten inkl. Geburtsdatum
+	const { data: patientData } = useQuery({
+		queryKey: ["patient-details", appointment.patient.id],
+		queryFn: async () => {
+			try {
+				const { data, error } = await supabase
+					.from("patients")
+					.select("*")
+					.eq("id", appointment.patient.id)
+					.single();
 
-  const handleStatusChange = async (statusId: string) => {
-    try {
-      setIsStatusChanging(true);
-      setError(null);
-      setCurrentStatusId(statusId);
+				if (error) {
+					console.error("Fehler beim Laden der Patientendaten:", error);
+					return null;
+				}
 
-      const { error } = await supabase
-        .from('appointments')
-        .update({ status_id: statusId })
-        .eq('id', appointment.id);
+				return data;
+			} catch (err) {
+				console.error("Fehler bei der Patientendaten-Abfrage:", err);
+				return null;
+			}
+		},
+		retry: false,
+		staleTime: 60000,
+	});
 
-      if (error) throw error;
-      
-      refetchAppointments?.();
-    } catch (error: any) {
-      console.error('Error updating appointment status:', error);
-      setError('Der Status konnte nicht aktualisiert werden');
-      setCurrentStatusId(appointment.status_id);
-    } finally {
-      setIsStatusChanging(false);
-    }
-  };
+	const handleCancel = async () => {
+		try {
+			setIsDeleting(true);
+			setError(null);
 
-  if (!isOpen) return null;
+			const { error } = await supabase
+				.from("appointments")
+				.update({
+					status_id: (
+						await supabase
+							.from("appointment_statuses")
+							.select("id")
+							.eq("name", "Storniert")
+							.single()
+					).data?.id,
+				})
+				.eq("id", appointment.id);
 
-  const currentStatus = statuses?.find(s => s.id === currentStatusId);
+			if (error) throw error;
 
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between p-4 border-b">
-          <div className="flex items-center space-x-4">
-            <h2 className="text-lg font-semibold text-gray-900">
-              Termin Details
-            </h2>
-            <div className="border-l border-gray-200 pl-4">
-              <nav className="flex space-x-4">
-                <button
-                  onClick={() => setActiveTab('details')}
-                  className={cn(
-                    'px-3 py-2 text-sm font-medium rounded-md',
-                    activeTab === 'details'
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'text-gray-500 hover:text-gray-700'
-                  )}
-                >
-                  Details
-                </button>
-                <button
-                  onClick={() => setActiveTab('forms')}
-                  className={cn(
-                    'px-3 py-2 text-sm font-medium rounded-md',
-                    activeTab === 'forms'
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'text-gray-500 hover:text-gray-700'
-                  )}
-                >
-                  Formulare
-                </button>
-                <button
-                  onClick={() => setActiveTab('documents')}
-                  className={cn(
-                    'px-3 py-2 text-sm font-medium rounded-md',
-                    activeTab === 'documents'
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'text-gray-500 hover:text-gray-700'
-                  )}
-                >
-                  Dokumente
-                </button>
-                <button
-                  onClick={() => setActiveTab('comments')}
-                  className={cn(
-                    'px-3 py-2 text-sm font-medium rounded-md',
-                    activeTab === 'comments'
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'text-gray-500 hover:text-gray-700'
-                  )}
-                >
-                  Kommentare
-                </button>
-                <button
-                  onClick={() => setActiveTab('referringDoctor')}
-                  className={cn(
-                    'px-3 py-2 text-sm font-medium rounded-md',
-                    activeTab === 'referringDoctor'
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'text-gray-500 hover:text-gray-700'
-                  )}
-                >
-                  Überweiser
-                </button>
-                <button
-                  onClick={() => setActiveTab('report')}
-                  className={cn(
-                    'px-3 py-2 text-sm font-medium rounded-md',
-                    activeTab === 'report'
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'text-gray-500 hover:text-gray-700'
-                  )}
-                >
-                  Befund
-                </button>
-              </nav>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-500"
-          >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
+			refetchAppointments?.();
+			onClose();
+		} catch (error: any) {
+			console.error("Error cancelling appointment:", error);
+			setError(
+				"Der Termin konnte nicht storniert werden. Bitte versuchen Sie es später erneut."
+			);
+		} finally {
+			setIsDeleting(false);
+		}
+	};
 
-        <div className="p-4">
-          {/* Einheitlicher Header für alle Tabs außer Details */}
-          {activeTab !== 'details' && (
-            <div className="bg-gray-50 p-3 rounded-md mb-6">
-              <p className="text-sm font-medium text-gray-800">
-                {`${appointment.patient.first_name} ${appointment.patient.last_name}`}, 
-                geb.: {patientData?.birth_date ? format(new Date(patientData.birth_date), 'dd.MM.yyyy', { locale: de }) : "Unbekannt"} - {" "}
-                {appointment.examination?.name || "Untersuchung"} am {format(new Date(appointment.start_time), 'dd.MM.yyyy', { locale: de })} in der {appointment.location?.name || "ALTA Klinik Bielefeld"}
-              </p>
-            </div>
-          )}
-          
-          {activeTab === 'details' ? (
-            <AppointmentDetails
-              appointment={appointment}
-              error={error}
-              setError={setError}
-              isDeleting={isDeleting}
-              handleCancel={handleCancel}
-              handleStatusChange={handleStatusChange}
-              currentStatus={currentStatus}
-              isStatusChanging={isStatusChanging}
-              statuses={statuses || []}
-              onReschedule={onReschedule}
-              patientPhoto={patientPhoto}
-              setShowPhotoModal={setShowPhotoModal}
-            />
-          ) : activeTab === 'forms' ? (
-            <FormSection
-              appointmentId={appointment.id}
-              patientId={appointment.patient.id}
-              patientName={`${appointment.patient.first_name} ${appointment.patient.last_name}`}
-              patientEmail={appointment.patient.email}
-              appointmentDate={appointment.start_time}
-              examinationName={appointment.examination.name}
-              examinationId={appointment.examination.id}
-              billingType={appointment.billing_type}
-              onPhotoUpdated={() => {
-                queryClient.invalidateQueries({
-                  queryKey: ['patient-photo', appointment.patient.id]
-                });
-              }}
-            />
-          ) : activeTab === 'documents' ? (
-            <DocumentUpload appointmentId={appointment.id} />
-          ) : activeTab === 'comments' ? (
-            <AppointmentComments appointmentId={appointment.id} />
-          ) : activeTab === 'referringDoctor' ? (
-            <ReferringDoctorSection 
-              appointmentId={appointment.id} 
-              onUpdateComplete={() => {
-                queryClient.invalidateQueries({
-                  queryKey: ['appointment-referring-doctor', appointment.id]
-                });
-                if (refetchAppointments) {
-                  refetchAppointments();
-                }
-              }} 
-            />
-          ) : (
-            <ReportSection 
-              appointmentId={appointment.id}
-              patientId={appointment.patient.id}
-            />
-          )}
-        </div>
-      </div>
+	const handleStatusChange = async (statusId: string) => {
+		try {
+			setIsStatusChanging(true);
+			setError(null);
+			setCurrentStatusId(statusId);
 
-      {/* Photo Modal */}
-      {showPhotoModal && patientPhoto && (
-        <PatientPhotoModal 
-          photoUrl={patientPhoto} 
-          onClose={() => setShowPhotoModal(false)} 
-        />
-      )}
-    </div>
-  );
+			const { error } = await supabase
+				.from("appointments")
+				.update({ status_id: statusId })
+				.eq("id", appointment.id);
+
+			if (error) throw error;
+
+			refetchAppointments?.();
+		} catch (error: any) {
+			console.error("Error updating appointment status:", error);
+			setError("Der Status konnte nicht aktualisiert werden");
+			setCurrentStatusId(appointment.status.id);
+		} finally {
+			setIsStatusChanging(false);
+		}
+	};
+
+	if (!isOpen) return null;
+
+	const currentStatus = statuses?.find((s) => s.id === currentStatusId);
+
+	return (
+		<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+			<div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+				<div className="flex items-center justify-between p-4 border-b">
+					<div className="flex items-center space-x-4">
+						<h2 className="text-lg font-semibold text-gray-900">
+							Termin Details
+						</h2>
+						<div className="border-l border-gray-200 pl-4">
+							<nav className="flex space-x-4">
+								<button
+									onClick={() => setActiveTab("details")}
+									className={cn(
+										"px-3 py-2 text-sm font-medium rounded-md",
+										activeTab === "details"
+											? "bg-gray-100 text-gray-900"
+											: "text-gray-500 hover:text-gray-700"
+									)}
+								>
+									Details
+								</button>
+								<button
+									onClick={() => setActiveTab("forms")}
+									className={cn(
+										"px-3 py-2 text-sm font-medium rounded-md",
+										activeTab === "forms"
+											? "bg-gray-100 text-gray-900"
+											: "text-gray-500 hover:text-gray-700"
+									)}
+								>
+									Formulare
+								</button>
+								<button
+									onClick={() => setActiveTab("documents")}
+									className={cn(
+										"px-3 py-2 text-sm font-medium rounded-md",
+										activeTab === "documents"
+											? "bg-gray-100 text-gray-900"
+											: "text-gray-500 hover:text-gray-700"
+									)}
+								>
+									Dokumente
+								</button>
+								<button
+									onClick={() => setActiveTab("comments")}
+									className={cn(
+										"px-3 py-2 text-sm font-medium rounded-md",
+										activeTab === "comments"
+											? "bg-gray-100 text-gray-900"
+											: "text-gray-500 hover:text-gray-700"
+									)}
+								>
+									Kommentare
+								</button>
+								<button
+									onClick={() => setActiveTab("referringDoctor")}
+									className={cn(
+										"px-3 py-2 text-sm font-medium rounded-md",
+										activeTab === "referringDoctor"
+											? "bg-gray-100 text-gray-900"
+											: "text-gray-500 hover:text-gray-700"
+									)}
+								>
+									Überweiser
+								</button>
+								<button
+									onClick={() => setActiveTab("report")}
+									className={cn(
+										"px-3 py-2 text-sm font-medium rounded-md",
+										activeTab === "report"
+											? "bg-gray-100 text-gray-900"
+											: "text-gray-500 hover:text-gray-700"
+									)}
+								>
+									Befund
+								</button>
+							</nav>
+						</div>
+					</div>
+					<button
+						onClick={onClose}
+						className="text-gray-400 hover:text-gray-500"
+					>
+						<X className="h-5 w-5" />
+					</button>
+				</div>
+
+				<div className="p-4">
+					{/* Einheitlicher Header für alle Tabs außer Details */}
+					{activeTab !== "details" && (
+						<div className="bg-gray-50 p-3 rounded-md mb-6">
+							<p className="text-sm font-medium text-gray-800">
+								{`${appointment.patient.firstName} ${appointment.patient.lastName}`}
+								, geb.:{" "}
+								{patientData?.birth_date
+									? format(new Date(patientData.birth_date), "dd.MM.yyyy", {
+											locale: de,
+									  })
+									: "Unbekannt"}{" "}
+								- {appointment.examination?.name || "Untersuchung"} am{" "}
+								{format(new Date(appointment.timing.start), "dd.MM.yyyy", {
+									locale: de,
+								})}{" "}
+								in der {appointment.location.name || "ALTA Klinik Bielefeld"}
+							</p>
+						</div>
+					)}
+
+					{activeTab === "details" ? (
+						<AppointmentDetails
+							appointment={appointment}
+							error={error}
+							setError={setError}
+							isDeleting={isDeleting}
+							handleCancel={handleCancel}
+							handleStatusChange={handleStatusChange}
+							currentStatus={currentStatus}
+							isStatusChanging={isStatusChanging}
+							statuses={statuses || []}
+							onReschedule={onReschedule}
+							patientPhoto={patientPhoto}
+							setShowPhotoModal={setShowPhotoModal}
+						/>
+					) : activeTab === "forms" ? (
+						<FormSection
+							appointmentId={appointment.id}
+							patientId={appointment.patient.id}
+							patientName={`${appointment.patient.firstName} ${appointment.patient.lastName}`}
+							patientEmail={appointment.patient.contact.email}
+							appointmentDate={appointment.timing.start}
+							examinationName={appointment.examination.name}
+							examinationId={appointment.examination.id}
+							billingType={appointment.billingType}
+							onPhotoUpdated={() => {
+								queryClient.invalidateQueries({
+									queryKey: ["patient-photo", appointment.patient.id],
+								});
+							}}
+						/>
+					) : activeTab === "documents" ? (
+						<DocumentUpload appointmentId={appointment.id} />
+					) : activeTab === "comments" ? (
+						<AppointmentComments appointmentId={appointment.id} />
+					) : activeTab === "referringDoctor" ? (
+						<ReferringDoctorSection
+							appointmentId={appointment.id}
+							onUpdateComplete={() => {
+								queryClient.invalidateQueries({
+									queryKey: ["appointment-referring-doctor", appointment.id],
+								});
+								if (refetchAppointments) {
+									refetchAppointments();
+								}
+							}}
+						/>
+					) : (
+						<ReportSection
+							appointmentId={appointment.id}
+							patientId={appointment.patient.id}
+						/>
+					)}
+				</div>
+			</div>
+
+			{/* Photo Modal */}
+			{showPhotoModal && patientPhoto && (
+				<PatientPhotoModal
+					photoUrl={patientPhoto}
+					onClose={() => setShowPhotoModal(false)}
+				/>
+			)}
+		</div>
+	);
 };
 
 export default AppointmentDetailsModal;

@@ -1,51 +1,9 @@
-import { RegistrationFormData } from "./registration";
+import { RegistrationForm } from "./registration";
+export type * from "./patient";
+export type * from "./appointment";
+export { AppointmentSchema } from "./appointment";
+export type { RegistrationForm as RegistrationFormData };
 
-export type { RegistrationFormData };
-
-interface FormProps {
+export interface FormProps {
 	onRender?: () => void;
 }
-
-// Define types for the data
-interface PatientData {
-	patientNumber?: string; // Patienten-ID (patient_id)
-	title?: string;
-	name?: string; // Vorname (first_name)
-	surname?: string; // Nachname (last_name)
-	birthdate?: string;
-	contact?: {
-		phone?: string;
-		mobile?: string;
-		email?: string;
-	};
-	address?: {
-		street?: string;
-		houseNumber?: string;
-		zipCode?: string;
-		city?: string;
-		country?: string;
-	};
-	insurance?: {
-		privateInsurance?: string;
-		publicInsurance?: string;
-		eligibleForAid?: boolean;
-	};
-}
-
-interface AppointmentData {
-	examination?: string;
-	date?: string;
-	time?: string;
-	location?: string;
-	bodySide?: string;
-}
-
-interface WithSignature {
-	signature?: {
-		data?: string;
-		signedAtDate?: string;
-		signedAtTime?: string;
-	};
-}
-
-export type { FormProps, PatientData, AppointmentData, WithSignature };
