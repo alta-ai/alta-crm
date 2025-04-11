@@ -1,74 +1,149 @@
-import React from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { supabase } from '../../../../lib/supabase';
-import { format } from 'date-fns';
-import { de } from 'date-fns/locale';
-import { Info } from 'lucide-react';
-import RegistrationForm from '../../../RegistrationForm';
+import React, { useCallback, useMemo } from "react";
+import { z } from "zod";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { format } from "date-fns";
+import { de } from "date-fns/locale";
+import { Info } from "lucide-react";
+
+import { supabase } from "../../../../lib/supabase";
+import RegistrationForm from "../../../RegistrationForm";
+import {
+	RegistrationFormSchema,
+	PartialAppointmentSchema,
+	InsuranceProviderSchema,
+} from "../../../types";
+import { toDBRegistrationForm } from "../../../types/forms/registration";
+
+import type {
+	RegistrationForm as RegistrationFormType,
+	Appointment,
+	InsuranceProvider,
+} from "../../../types";
 
 interface FormViewerProps {
-  formId: string;
-  appointmentId: string;
-  formType: string;
+	formId: string;
+	appointmentId: string;
+	formType: string;
 }
 
-const FormViewer: React.FC<FormViewerProps> = ({
-  formId,
-  appointmentId,
-  formType
-}) => {
-  const queryClient = useQueryClient();
+const FormViewer: React.FC<FormViewerProps> = ({ formId, appointmentId }) => {
+	const [refreshKey, setRefreshKey] = React.useState(0);
 
-  // Load form submission if it exists
-  const { data: submission, isLoading: isLoadingSubmission } = useQuery({
-    queryKey: ['registration-form-submission', appointmentId],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('registration_form_submissions')
-        .select('*')
-        .eq('appointment_id', appointmentId)
-        .maybeSingle();
+	const queryClient = useQueryClient();
 
-      if (error) throw error;
+	// Load form submission if it exists
+	const {
+		data: rawSubmission,
+		isLoading: isLoadingSubmission,
+		refetch: refetchSubmission,
+	} = useQuery({
+		queryKey: ["registration-form-submission", appointmentId, refreshKey],
+		queryFn: async () => {
+			const { data, error } = await supabase
+				.from("registration_form_submissions")
+				.select(
+					`
+            *,
+            insurance:insurance_providers(
+              id,
+              name,
+              type
+            )
+          `
+				)
+				.eq("appointment_id", appointmentId)
+				.maybeSingle();
 
-      // Convert boolean fields to strings for form
-      if (data) {
-        return {
-          ...data,
-          has_beihilfe: data.has_beihilfe?.toString(),
-          has_transfer: data.has_transfer?.toString(),
-          current_treatment: data.current_treatment?.toString(),
-          doctor_recommendation: data.doctor_recommendation?.toString(),
-          send_report_to_doctor: data.send_report_to_doctor?.toString()
-        };
-      }
+			if (error) {
+				console.error(error);
+				throw error;
+			}
 
-      return data;
-    }
-  });
+			try {
+				return RegistrationFormSchema.parse(data) as RegistrationFormType;
+			} catch (valError) {
+				console.error(valError);
+			}
+		},
+	});
 
-  // Load form data
-  const { data: form, isLoading: isLoadingForm } = useQuery({
-    queryKey: ['form', formId],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('forms')
-        .select('*')
-        .eq('id', formId)
-        .single();
+	// Abrufen der Versicherungen
+	const { data: insurances = [], isLoading: isLoadingInsurances } = useQuery<
+		InsuranceProvider[]
+	>({
+		queryKey: ["insuranceProviders"],
+		queryFn: async () => {
+			const { data, error } = await supabase
+				.from("insurance_providers")
+				.select("*")
+				.order("name");
 
-      if (error) throw error;
-      return data;
-    }
-  });
+			if (error) {
+				console.error(error);
+				throw error;
+			}
 
-  // Load appointment data for form context
-  const { data: appointment, isLoading: isLoadingAppointment } = useQuery({
-    queryKey: ['appointment', appointmentId],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('appointments')
-        .select(`
+			try {
+				const _insurances = z
+					.array(InsuranceProviderSchema)
+					.parse(data) as InsuranceProvider[];
+				return _insurances;
+			} catch (valError) {
+				console.error(valError);
+			}
+
+			return [];
+		},
+	});
+
+	const transformFormData = useCallback((form: RegistrationFormType) => {
+		if (!form) return null;
+
+		return {
+			...form,
+			birthdate: form.birthdate
+				? format(new Date(form.birthdate), "yyyy-MM-dd")
+				: "",
+			details: {
+				...form.details,
+				hasBeihilfe: form.details?.hasBeihilfe?.toString() || "false",
+				hasTransfer: form.details?.hasTransfer?.toString() || "false",
+				currentTreatment: form.details?.currentTreatment?.toString() || "false",
+				sendReportToDoctor:
+					form.details?.sendReportToDoctor?.toString() || "false",
+				doctorRecommendation:
+					form.details?.doctorRecommendation?.toString() || "false",
+			},
+		};
+	}, []);
+
+	const submission = useMemo(() => {
+		return rawSubmission ? transformFormData(rawSubmission) : null;
+	}, [rawSubmission, transformFormData]);
+
+	// Load form data
+	const { data: form, isLoading: isLoadingForm } = useQuery({
+		queryKey: ["form", formId],
+		queryFn: async () => {
+			const { data, error } = await supabase
+				.from("forms")
+				.select("*")
+				.eq("id", formId)
+				.single();
+
+			if (error) throw error;
+			return data;
+		},
+	});
+
+	// Load appointment data for form context
+	const { data: appointment, isLoading: isLoadingAppointment } = useQuery({
+		queryKey: ["appointment", appointmentId],
+		queryFn: async () => {
+			const { data, error } = await supabase
+				.from("appointments")
+				.select(
+					`
           *,
           patient:patients(
             id,
@@ -84,119 +159,168 @@ const FormViewer: React.FC<FormViewerProps> = ({
             id,
             name
           )
-        `)
-        .eq('id', appointmentId)
-        .single();
+        `
+				)
+				.eq("id", appointmentId)
+				.single();
 
-      if (error) throw error;
-      return data;
-    }
-  });
+			if (error) {
+				console.error(error);
+				throw error;
+			}
 
-  // Mutation for saving form data
-  const saveMutation = useMutation({
-    mutationFn: async (formData: any) => {
-      // Convert string boolean values to actual booleans
-      const submissionData = {
-        ...formData,
-        appointment_id: appointmentId,
-        patient_id: appointment?.patient.id,
-        has_beihilfe: formData.has_beihilfe === 'true',
-        has_transfer: formData.has_transfer === 'true',
-        current_treatment: formData.current_treatment === 'true',
-        doctor_recommendation: formData.doctor_recommendation === 'true',
-        send_report_to_doctor: formData.send_report_to_doctor === 'true'
-      };
+			try {
+				return PartialAppointmentSchema.parse(data) as Appointment;
+			} catch (valError) {
+				console.error(valError);
+			}
+		},
+	});
 
-      if (submission) {
-        // Update existing submission
-        const { error } = await supabase
-          .from('registration_form_submissions')
-          .update(submissionData)
-          .eq('id', submission.id);
+	// Mutation for saving form data
+	const saveMutation = useMutation({
+		mutationFn: async (formData: any) => {
+			// Convert string boolean values to actual booleans
+			const submissionData = toDBRegistrationForm({
+				...formData,
+				appointment_id: appointmentId,
+				patient_id: appointment?.patient.id,
+				has_beihilfe: formData.has_beihilfe === "true",
+				has_transfer: formData.has_transfer === "true",
+				current_treatment: formData.current_treatment === "true",
+				doctor_recommendation: formData.doctor_recommendation === "true",
+				send_report_to_doctor: formData.send_report_to_doctor === "true",
+			});
 
-        if (error) throw error;
-      } else {
-        // Create new submission
-        const { error } = await supabase
-          .from('registration_form_submissions')
-          .insert([submissionData]);
+			if (submission) {
+				// Update existing submission
+				const { error } = await supabase
+					.from("registration_form_submissions")
+					.update(submissionData)
+					.eq("id", submission.id);
 
-        if (error) throw error;
-      }
-    },
-    onSuccess: () => {
-      // Invalidate relevant queries
-      queryClient.invalidateQueries(['registration-form-submission', appointmentId]);
-      queryClient.invalidateQueries(['patients']);
-    }
-  });
+				if (error) {
+					console.error(error);
+					throw error;
+				}
+			} else {
+				// Create new submission
+				const { error } = await supabase
+					.from("registration_form_submissions")
+					.insert([submissionData]);
 
-  if (isLoadingForm || isLoadingSubmission || isLoadingAppointment) {
-    return <div className="text-gray-500">Formular wird geladen...</div>;
-  }
+				if (error) {
+					console.error(error);
+					throw error;
+				}
+			}
+		},
+		onSuccess: async () => {
+			// Invalidate relevant queries
+			queryClient.invalidateQueries({
+				queryKey: ["registration-form-submission", appointmentId, refreshKey],
+			});
+			queryClient.invalidateQueries({ queryKey: ["patients"] });
+			queryClient.invalidateQueries({
+				queryKey: ["patient-details", appointment?.patient.id],
+			});
 
-  if (!form || !appointment) {
-    return <div className="text-red-500">Formular konnte nicht geladen werden</div>;
-  }
+			queryClient.refetchQueries({
+				queryKey: ["registration-form-submission", appointmentId],
+			});
 
-  // Prepare initial data from patient if no submission exists
-  const initialData = submission || {
-    gender: appointment.patient.gender,
-    title: appointment.patient.title,
-    first_name: appointment.patient.first_name,
-    last_name: appointment.patient.last_name,
-    email: appointment.patient.email,
-    phone_mobile: appointment.patient.phone,
-    birth_date: format(new Date(appointment.patient.birth_date), 'yyyy-MM-dd')
-  };
+			setRefreshKey(refreshKey + 1);
 
-  return (
-    <div className="space-y-6">
-      <div className="bg-white p-6 rounded-lg shadow-sm">
-        <h3 className="text-lg font-medium text-gray-900 mb-2">{form.name}</h3>
-        {form.description && (
-          <p className="text-sm text-gray-500">{form.description}</p>
-        )}
-      </div>
+			await refetchSubmission();
+		},
+		onError: (error) => {
+			console.error("Error saving form data:", error);
+		},
+	});
 
-      <div className="bg-white p-6 rounded-lg shadow-sm">
-        {submission ? (
-          <div className="mb-6">
-            <div className="flex items-start space-x-3">
-              <Info className="h-5 w-5 text-blue-500 mt-0.5" />
-              <div>
-                <p className="text-sm text-gray-900">
-                  Formular wurde am {format(new Date(submission.created_at), 'dd.MM.yyyy HH:mm', { locale: de })} ausgefüllt
-                </p>
-                {submission.updated_at !== submission.created_at && (
-                  <p className="text-sm text-gray-500">
-                    Zuletzt bearbeitet: {format(new Date(submission.updated_at), 'dd.MM.yyyy HH:mm', { locale: de })}
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div className="mb-6">
-            <div className="flex items-start space-x-3">
-              <Info className="h-5 w-5 text-blue-500 mt-0.5" />
-              <p className="text-sm text-gray-900">
-                Dieses Formular wurde noch nicht ausgefüllt.
-              </p>
-            </div>
-          </div>
-        )}
+	if (
+		isLoadingForm ||
+		isLoadingSubmission ||
+		isLoadingAppointment ||
+		isLoadingInsurances
+	) {
+		return <div className="text-gray-500">Formular wird geladen...</div>;
+	}
 
-        <RegistrationForm
-          initialData={initialData}
-          onSubmit={saveMutation.mutate}
-          appointment={appointment}
-          readOnly={false}
-        />
-      </div>
-    </div>
-  );
+	if (!form || !appointment) {
+		return (
+			<div className="text-red-500">Formular konnte nicht geladen werden</div>
+		);
+	}
+
+	const createInitialData = () => {
+		return (
+			submission || {
+				gender: appointment.patient.gender,
+				title: appointment.patient.title,
+				name: appointment.patient.name,
+				surname: appointment.patient.surname,
+				birthdate: format(appointment.patient.birthdate, "yyyy-MM-dd"),
+				contact: appointment.patient.contact,
+			}
+		);
+	};
+
+	// Prepare initial data from patient if no submission exists
+
+	return (
+		<div className="space-y-6">
+			<div className="bg-white p-6 rounded-lg shadow-sm">
+				<h3 className="text-lg font-medium text-gray-900 mb-2">{form.name}</h3>
+				{form.description && (
+					<p className="text-sm text-gray-500">{form.description}</p>
+				)}
+			</div>
+
+			<div className="bg-white p-6 rounded-lg shadow-sm">
+				{submission ? (
+					<div className="mb-6">
+						<div className="flex items-start space-x-3">
+							<Info className="h-5 w-5 text-blue-500 mt-0.5" />
+							<div>
+								<p className="text-sm text-gray-900">
+									Formular wurde am{" "}
+									{format(submission.createdAt, "dd.MM.yyyy HH:mm", {
+										locale: de,
+									})}{" "}
+									ausgefüllt
+								</p>
+								{submission.updatedAt !== submission.createdAt && (
+									<p className="text-sm text-gray-500">
+										Zuletzt bearbeitet:{" "}
+										{format(submission.updatedAt, "dd.MM.yyyy HH:mm", {
+											locale: de,
+										})}
+									</p>
+								)}
+							</div>
+						</div>
+					</div>
+				) : (
+					<div className="mb-6">
+						<div className="flex items-start space-x-3">
+							<Info className="h-5 w-5 text-blue-500 mt-0.5" />
+							<p className="text-sm text-gray-900">
+								Dieses Formular wurde noch nicht ausgefüllt.
+							</p>
+						</div>
+					</div>
+				)}
+
+				<RegistrationForm
+					initialData={createInitialData() as any}
+					onSubmit={saveMutation.mutate as any}
+					insurances={insurances}
+					readOnly={false}
+				/>
+			</div>
+		</div>
+	);
 };
 
 export default FormViewer;

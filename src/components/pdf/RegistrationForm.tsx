@@ -14,12 +14,11 @@ import {
 	deriveDisplayedCityAddress,
 	deriveDisplayedFullName,
 	deriveDisplayedStreetAddress,
-	formatDate,
 	formatExamination,
 } from "./utils";
 import styling from "./styles";
 import { useFormData } from "./formDataContext";
-import { FormProps, RegistrationForm as RegistrationFormData } from "./types";
+import { FormProps, RegistrationForm as RegistrationFormData } from "../types";
 
 const styles = StyleSheet.create({
 	Page: { fontSize: 10 },
@@ -205,9 +204,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 					>
 						<BoxSelection
 							options={["Ja", "Nein"]}
-							selected={booleanToYesNo(
-								formData?.urologicInformation?.currentlyUndergoingTreatment
-							)}
+							selected={booleanToYesNo(formData?.details?.currentTreatment)}
 							style={styles.QuestionBox.BoxSelection}
 						/>
 					</Question>
@@ -216,7 +213,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 						style={styles.QuestionBox.Question}
 					>
 						<Text style={styles.QuestionBox.TextField}>
-							{formData?.urologicInformation?.recommendationOfUrologist}
+							{formData?.details?.treatmentRecommendations?.join(", ")}
 						</Text>
 					</Question>
 					<Question
@@ -225,9 +222,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 					>
 						<BoxSelection
 							options={["Ja", "Nein"]}
-							selected={booleanToYesNo(
-								formData?.urologicInformation?.visitDueToRecommendation
-							)}
+							selected={booleanToYesNo(formData?.details?.doctorRecommendation)}
 							style={styles.QuestionBox.BoxSelection}
 						/>
 					</Question>
@@ -236,7 +231,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 						style={styles.QuestionBox.Question}
 					>
 						<Text style={styles.QuestionBox.TextField}>
-							{formData?.urologicInformation?.nameOfUrologist}
+							{formData?.details?.referringDoctorName}
 						</Text>
 					</Question>
 					<Question
@@ -245,18 +240,14 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 					>
 						<BoxSelection
 							options={["Ja", "Nein"]}
-							selected={booleanToYesNo(
-								formData?.urologicInformation?.gotTransfer
-							)}
+							selected={booleanToYesNo(formData?.details?.hasTransfer)}
 							style={styles.QuestionBox.BoxSelection}
 						/>
 					</Question>
 					<Question question="Soll der Befundbericht an den Behandler geschickt werden?">
 						<BoxSelection
 							options={["Ja", "Nein"]}
-							selected={booleanToYesNo(
-								formData?.urologicInformation?.sendReportToUrologist
-							)}
+							selected={booleanToYesNo(formData?.details?.sendReportToDoctor)}
 							style={{ ...styles.QuestionBox.BoxSelection, marginBottom: 0 }}
 						/>
 					</Question>

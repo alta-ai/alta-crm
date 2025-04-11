@@ -1,4 +1,4 @@
-import { BODY_SIDE } from "./types/constants";
+import { BODY_SIDE } from "../types/constants";
 
 export const formatDate = (dateString?: string): string => {
 	if (!dateString) return "";

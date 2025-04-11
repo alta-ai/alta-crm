@@ -8,7 +8,13 @@ import FormList from "./FormList";
 import FormViewer from "./FormViewer";
 import { generateFormToken, getFormsUrl } from "../../../../lib/forms";
 import PDFFormPreviewModal from "../PDFFormPreviewModal";
-import { Patient, Appointment, PartialPatientSchema } from "../../../pdf/types";
+import {
+	Patient,
+	Appointment,
+	PartialPatientSchema,
+	RegistrationForm,
+	RegistrationFormSchema,
+} from "../../../types";
 
 interface FormSectionProps {
 	appointment: Appointment;
@@ -71,7 +77,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 	});
 
 	// Load form submission if it exists
-	const { data: formSubmission } = useQuery({
+	const { data: formData } = useQuery({
 		queryKey: ["registration-form-submission", appointment.id],
 		queryFn: async () => {
 			const { data, error } = await supabase
@@ -80,8 +86,17 @@ const FormSection: React.FC<FormSectionProps> = ({
 				.eq("appointment_id", appointment.id)
 				.maybeSingle();
 
-			if (error) throw error;
-			return data;
+			if (error) {
+				console.error(error);
+				throw error;
+			}
+
+			try {
+				const p = RegistrationFormSchema.parse(data) as RegistrationForm;
+				return p;
+			} catch (valError) {
+				console.error(valError);
+			}
 		},
 	});
 
@@ -102,21 +117,6 @@ const FormSection: React.FC<FormSectionProps> = ({
 	const handleOpenPDFPreview = () => {
 		setIsPDFModalOpen(true);
 	};
-
-	// Vorbereiten der PDF-Daten
-	const formData = formSubmission
-		? {
-				urologicInformation: {
-					currentlyUndergoingTreatment: formSubmission.current_treatment,
-					recommendationOfUrologist:
-						formSubmission.treatment_recommendations?.join(", "),
-					visitDueToRecommendation: formSubmission.doctor_recommendation,
-					nameOfUrologist: formSubmission.referring_doctor_name,
-					gotTransfer: formSubmission.has_transfer,
-					sendReportToUrologist: formSubmission.send_report_to_doctor,
-				},
-		  }
-		: {};
 
 	if (activeFormPage === "photo-capture") {
 		return (
