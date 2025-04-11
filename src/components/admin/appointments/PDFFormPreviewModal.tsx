@@ -4,7 +4,7 @@ import { PDFViewer, pdf } from "@react-pdf/renderer";
 
 import { FormDataProvider } from "../../pdf/formDataContext";
 import { RegistrationForm } from "../../pdf/RegistrationForm";
-import { Patient, Appointment } from "../../pdf/types";
+import { Patient, Appointment } from "../../types";
 
 interface PDFFormPreviewModalProps {
 	isOpen: boolean;

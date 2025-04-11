@@ -1,3 +1,3 @@
-export {RegistrationForm} from './RegistrationForm'
+export { RegistrationForm } from "./RegistrationForm";
 
-export type {FormProps} from './types'
+export type { FormProps } from "../types";

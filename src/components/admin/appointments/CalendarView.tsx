@@ -33,7 +33,7 @@ import { supabase } from "../../../lib/supabase";
 import { cn } from "../../../lib/utils";
 import AppointmentBookingModal from "./AppointmentBookingModal";
 import AppointmentDetailsModal from "./AppointmentDetailsModal";
-import { Appointment, AppointmentSchema } from "../../pdf/types";
+import { Appointment, AppointmentSchema } from "../../types";
 
 interface Device {
 	id: string;

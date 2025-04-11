@@ -12,7 +12,7 @@ import ReferringDoctorSection from "./ReferringDoctorSection";
 import ReportSection from "./ReportSection";
 import FormSection from "./details/FormSection";
 import PatientPhotoModal from "./details/PatientPhotoModal";
-import { Appointment } from "../../pdf/types";
+import { Appointment } from "../../types";
 
 export interface AppointmentDetailsProps {
 	appointment: Appointment;

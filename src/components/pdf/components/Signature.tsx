@@ -4,7 +4,7 @@ import { View, Text, Image } from "@react-pdf/renderer";
 import { formatDate, formatTime } from "../utils";
 import { useFormData } from "../formDataContext";
 import styling from "../styles";
-import { WithSignature } from "../types";
+import { WithSignature } from "../../types";
 
 const styles = {
 	marginTop: "5px",

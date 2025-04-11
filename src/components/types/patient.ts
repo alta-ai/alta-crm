@@ -3,7 +3,7 @@ import { GENDER, INSURANCE_TYPE } from "./constants";
 
 export const DBPatientSchema = z.object({
 	id: z.string().uuid(),
-	patient_number: z.number(),
+	patient_number: z.string(),
 	gender: z.enum(GENDER),
 	title: z.string().nullable(),
 	first_name: z.string(),
@@ -14,7 +14,7 @@ export const DBPatientSchema = z.object({
 	email: z.string().nullable(),
 	street: z.string(),
 	house_number: z.string(),
-	postal_code: z.number(),
+	postal_code: z.string(),
 	city: z.string().nullable(),
 	country: z.string().nullable(),
 	insurance: z.object({
@@ -27,6 +27,7 @@ export const DBPatientSchema = z.object({
 export const PatientSchema = DBPatientSchema.transform((data) => ({
 	id: data.id,
 	patientID: data.patient_number,
+	gender: data.gender,
 	title: data.title,
 	name: data.first_name,
 	surname: data.last_name,
@@ -46,9 +47,10 @@ export const PatientSchema = DBPatientSchema.transform((data) => ({
 	insurance: data.insurance,
 }));
 
+// We have to handle this separately since
 export const PartialPatientSchema = PatientSchema._def.schema
 	.partial()
-	.transform(PatientSchema._def.effect.transform);
+	.transform((PatientSchema._def.effect as any).transform);
 
 // Infer TypeScript type from the Zod schema
 export type Patient = z.infer<typeof PatientSchema>;

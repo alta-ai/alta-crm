@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from "react";
 
-import { Patient, Appointment } from "./types";
+import { Patient, Appointment } from "../types";
 
 interface FormDataContextType<TFormData> {
 	formData: TFormData;
