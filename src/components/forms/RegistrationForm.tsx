@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Info } from "lucide-react";
 
 import type {
 	RegistrationForm as RegistrationFormType,
 	InsuranceProvider,
-} from "./types";
-import { INSURANCE_TYPE } from "./types/constants";
+} from "../types";
+import { INSURANCE_TYPE } from "../types/constants";
 
 interface RegistrationFormProps {
 	onComplete?: () => void;
@@ -16,13 +16,13 @@ interface RegistrationFormProps {
 	onSubmit?: (data: RegistrationFormType) => Promise<void>;
 }
 
-const RegistrationForm: React.FC<RegistrationFormProps> = ({
+const RegistrationForm = ({
 	onComplete,
 	readOnly = false,
 	initialData,
 	insurances,
 	onSubmit: externalSubmit,
-}) => {
+}: RegistrationFormProps) => {
 	const [isSaving, setIsSaving] = useState(false);
 	const [saveError, setSaveError] = useState<string | null>(null);
 	const [saveSuccess, setSaveSuccess] = useState(false);

@@ -6,10 +6,9 @@ import { de } from "date-fns/locale";
 import { Info } from "lucide-react";
 
 import { supabase } from "../../../../lib/supabase";
-import RegistrationForm from "../../../RegistrationForm";
+import RegistrationForm from "../../../forms/RegistrationForm";
 import {
 	RegistrationFormSchema,
-	PartialAppointmentSchema,
 	InsuranceProviderSchema,
 } from "../../../types";
 import { toDBRegistrationForm } from "../../../types/forms/registration";
@@ -22,11 +21,11 @@ import type {
 
 interface FormViewerProps {
 	formId: string;
-	appointmentId: string;
+	appointment: Appointment;
 	formType: string;
 }
 
-const FormViewer: React.FC<FormViewerProps> = ({ formId, appointmentId }) => {
+const FormViewer: React.FC<FormViewerProps> = ({ formId, appointment }) => {
 	const [refreshKey, setRefreshKey] = React.useState(0);
 
 	const queryClient = useQueryClient();
@@ -37,7 +36,7 @@ const FormViewer: React.FC<FormViewerProps> = ({ formId, appointmentId }) => {
 		isLoading: isLoadingSubmission,
 		refetch: refetchSubmission,
 	} = useQuery({
-		queryKey: ["registration-form-submission", appointmentId, refreshKey],
+		queryKey: ["registration-form-submission", appointment.id, refreshKey],
 		queryFn: async () => {
 			const { data, error } = await supabase
 				.from("registration_form_submissions")
@@ -51,7 +50,7 @@ const FormViewer: React.FC<FormViewerProps> = ({ formId, appointmentId }) => {
             )
           `
 				)
-				.eq("appointment_id", appointmentId)
+				.eq("appointment_id", appointment.id)
 				.maybeSingle();
 
 			if (error) {
@@ -136,54 +135,13 @@ const FormViewer: React.FC<FormViewerProps> = ({ formId, appointmentId }) => {
 		},
 	});
 
-	// Load appointment data for form context
-	const { data: appointment, isLoading: isLoadingAppointment } = useQuery({
-		queryKey: ["appointment", appointmentId],
-		queryFn: async () => {
-			const { data, error } = await supabase
-				.from("appointments")
-				.select(
-					`
-          *,
-          patient:patients(
-            id,
-            gender,
-            title,
-            first_name,
-            last_name,
-            email,
-            phone,
-            birth_date
-          ),
-          examination:examinations(
-            id,
-            name
-          )
-        `
-				)
-				.eq("id", appointmentId)
-				.single();
-
-			if (error) {
-				console.error(error);
-				throw error;
-			}
-
-			try {
-				return PartialAppointmentSchema.parse(data) as Appointment;
-			} catch (valError) {
-				console.error(valError);
-			}
-		},
-	});
-
 	// Mutation for saving form data
 	const saveMutation = useMutation({
 		mutationFn: async (formData: any) => {
 			// Convert string boolean values to actual booleans
 			const submissionData = toDBRegistrationForm({
 				...formData,
-				appointment_id: appointmentId,
+				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
 				has_beihilfe: formData.has_beihilfe === "true",
 				has_transfer: formData.has_transfer === "true",
@@ -218,7 +176,7 @@ const FormViewer: React.FC<FormViewerProps> = ({ formId, appointmentId }) => {
 		onSuccess: async () => {
 			// Invalidate relevant queries
 			queryClient.invalidateQueries({
-				queryKey: ["registration-form-submission", appointmentId, refreshKey],
+				queryKey: ["registration-form-submission", appointment.id, refreshKey],
 			});
 			queryClient.invalidateQueries({ queryKey: ["patients"] });
 			queryClient.invalidateQueries({
@@ -226,7 +184,7 @@ const FormViewer: React.FC<FormViewerProps> = ({ formId, appointmentId }) => {
 			});
 
 			queryClient.refetchQueries({
-				queryKey: ["registration-form-submission", appointmentId],
+				queryKey: ["registration-form-submission", appointment.id],
 			});
 
 			setRefreshKey(refreshKey + 1);
@@ -238,12 +196,7 @@ const FormViewer: React.FC<FormViewerProps> = ({ formId, appointmentId }) => {
 		},
 	});
 
-	if (
-		isLoadingForm ||
-		isLoadingSubmission ||
-		isLoadingAppointment ||
-		isLoadingInsurances
-	) {
+	if (isLoadingForm || isLoadingSubmission || isLoadingInsurances) {
 		return <div className="text-gray-500">Formular wird geladen...</div>;
 	}
 

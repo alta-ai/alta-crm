@@ -144,7 +144,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 				</button>
 				<FormViewer
 					formId={selectedFormId}
-					appointmentId={appointment.id}
+					appointment={appointment}
 					formType="registration"
 				/>
 			</div>
