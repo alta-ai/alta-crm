@@ -5,24 +5,28 @@ import { Info } from "lucide-react";
 import type {
 	RegistrationForm as RegistrationFormType,
 	InsuranceProvider,
-} from "../types";
-import { INSURANCE_TYPE } from "../types/constants";
+} from "../../types";
+import { INSURANCE_TYPE } from "../../types/constants";
+import { useFormContext } from "../formContext";
 
 interface RegistrationFormProps {
 	onComplete?: () => void;
 	readOnly?: boolean;
-	initialData?: Partial<RegistrationFormType>;
-	insurances: InsuranceProvider[];
 	onSubmit?: (data: RegistrationFormType) => Promise<void>;
 }
 
-const RegistrationForm = ({
+interface RegistrationFormDataContextType {
+	insurances: InsuranceProvider[];
+	submission: RegistrationFormType;
+}
+
+export const RegistrationForm = ({
 	onComplete,
-	readOnly = false,
-	initialData,
-	insurances,
+	readOnly,
 	onSubmit: externalSubmit,
 }: RegistrationFormProps) => {
+	const { data } = useFormContext<RegistrationFormDataContextType>();
+
 	const [isSaving, setIsSaving] = useState(false);
 	const [saveError, setSaveError] = useState<string | null>(null);
 	const [saveSuccess, setSaveSuccess] = useState(false);
@@ -33,7 +37,7 @@ const RegistrationForm = ({
 		watch,
 		formState: { errors },
 	} = useForm<RegistrationFormType>({
-		defaultValues: initialData,
+		defaultValues: data?.submission,
 	});
 
 	// Watch fields for conditional rendering
@@ -66,7 +70,7 @@ const RegistrationForm = ({
 	};
 
 	const renderInsuranceOptions = (insuranceType: string) => {
-		const selectedInsurances = insurances
+		const selectedInsurances = data?.insurances
 			.filter((insurance) => insurance.type === insuranceType)
 			.map((insurance) => (
 				<option key={insurance.id} value={insurance.id}>

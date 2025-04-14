@@ -15,6 +15,8 @@ import {
 	RegistrationForm,
 	RegistrationFormSchema,
 } from "../../../types";
+import { FormContextProvider } from "../../../forms/formContext";
+import { RegistrationFormData } from "../../../forms/registration";
 
 interface FormSectionProps {
 	appointment: Appointment;
@@ -142,11 +144,17 @@ const FormSection: React.FC<FormSectionProps> = ({
 				>
 					← Zurück zur Formularübersicht
 				</button>
-				<FormViewer
-					formId={selectedFormId}
-					appointment={appointment}
-					formType="registration"
-				/>
+				<FormContextProvider>
+					<RegistrationFormData
+						appointment={appointment}
+						formId={selectedFormId}
+					/>
+					<FormViewer
+						formId={selectedFormId}
+						appointment={appointment}
+						formType="registration"
+					/>
+				</FormContextProvider>
 			</div>
 		);
 	}
