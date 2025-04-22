@@ -8,3 +8,15 @@ export const INSURANCE_TYPE = [
 ] as const;
 
 export const BODY_SIDE = ["left", "right", "both_sides"] as const;
+
+export enum FormType {
+	REGISTRATION = "registration",
+	COST_REIMBURSEMENT = "cost_reimbursement",
+	PRIVACY = "privacy",
+	EXAMINATION = "examination",
+	CT_CONSENT = "ct_consent",
+	CT_THERAPY = "ct_therapy",
+	MRI_CT_CONSENT = "mri_ct_consent",
+	MRI_CONSENT = "mri_consent",
+	PROSTATE_QUESTIONNAIRE = "prostate_questionnaire",
+}
