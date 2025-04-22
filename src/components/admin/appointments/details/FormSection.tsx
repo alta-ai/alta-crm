@@ -11,12 +11,13 @@ import PDFFormPreviewModal from "../PDFFormPreviewModal";
 import {
 	Patient,
 	Appointment,
-	PartialPatientSchema,
+	PatientSchema,
 	RegistrationForm,
 	RegistrationFormSchema,
 } from "../../../types";
 import { FormContextProvider } from "../../../forms/formContext";
 import { RegistrationFormData } from "../../../forms/registration";
+import { FormMap } from "./formMap";
 
 interface FormSectionProps {
 	appointment: Appointment;
@@ -35,7 +36,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 
 	// Load patient data for PDF
 	const { data: patient } = useQuery({
-		queryKey: ["patient", appointment.patient.id],
+		queryKey: ["patient", appointment.patient?.id],
 		queryFn: async () => {
 			const { data, error } = await supabase
 				.from("patients")
@@ -61,7 +62,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 					)
 					`
 				)
-				.eq("id", appointment.patient.id)
+				.eq("id", appointment.patient?.id)
 				.single();
 
 			if (error) {
@@ -70,7 +71,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 			}
 
 			try {
-				const p = PartialPatientSchema.parse(data) as Patient;
+				const p = PatientSchema.partial().parse(data) as Patient;
 				return p;
 			} catch (valError) {
 				console.error(valError);
@@ -123,7 +124,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 	if (activeFormPage === "photo-capture") {
 		return (
 			<PatientPhotoCapture
-				patientId={appointment.patient.id}
+				patientId={appointment.patient.id as string}
 				onPhotoUpdated={() => {
 					if (onPhotoUpdated) {
 						onPhotoUpdated();
@@ -150,9 +151,8 @@ const FormSection: React.FC<FormSectionProps> = ({
 						formId={selectedFormId}
 					/>
 					<FormViewer
-						formId={selectedFormId}
 						appointment={appointment}
-						formType="registration"
+						FormComponent={FormMap["registration"].editForm}
 					/>
 				</FormContextProvider>
 			</div>
@@ -168,7 +168,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 			<FormList
 				appointmentId={appointment.id}
 				examinationId={appointment.examination.id}
-				billingType={appointment.billingType}
+				billingType={appointment.billing_type}
 				onPhotoCapture={() => setActiveFormPage("photo-capture")}
 				onViewForm={(formId) => setSelectedFormId(formId)}
 				onPreviewForm={handleOpenPDFPreview}

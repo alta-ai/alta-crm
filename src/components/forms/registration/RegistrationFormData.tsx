@@ -9,11 +9,7 @@ import type {
 	Appointment,
 	InsuranceProvider,
 } from "../../types";
-import {
-	RegistrationFormSchema,
-	InsuranceProviderSchema,
-	toDBRegistrationForm,
-} from "../../types";
+import { RegistrationFormSchema, InsuranceProviderSchema } from "../../types";
 import { format } from "date-fns";
 import { useFormContext } from "../formContext";
 
@@ -123,19 +119,14 @@ export const RegistrationFormData = ({
 
 		return {
 			...form,
-			birthdate: form.birthdate
-				? format(new Date(form.birthdate), "yyyy-MM-dd")
+			birth_date: form.birth_date
+				? format(new Date(form.birth_date), "yyyy-MM-dd")
 				: "",
-			details: {
-				...form.details,
-				hasBeihilfe: form.details?.hasBeihilfe?.toString() || "false",
-				hasTransfer: form.details?.hasTransfer?.toString() || "false",
-				currentTreatment: form.details?.currentTreatment?.toString() || "false",
-				sendReportToDoctor:
-					form.details?.sendReportToDoctor?.toString() || "false",
-				doctorRecommendation:
-					form.details?.doctorRecommendation?.toString() || "false",
-			},
+			has_beihilfe: form.has_beihilfe?.toString() || "false",
+			has_transfer: form.has_transfer?.toString() || "false",
+			current_treatment: form.current_treatment?.toString() || "false",
+			send_report_to_doctor: form.send_report_to_doctor?.toString() || "false",
+			doctor_recommendation: form.doctor_recommendation?.toString() || "false",
 		};
 	}, []);
 
@@ -147,7 +138,7 @@ export const RegistrationFormData = ({
 	const saveMutation = useMutation({
 		mutationFn: async (formData: any) => {
 			// Convert string boolean values to actual booleans
-			const submissionData = toDBRegistrationForm({
+			const submissionData = RegistrationFormSchema.parse({
 				...formData,
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
@@ -157,6 +148,9 @@ export const RegistrationFormData = ({
 				doctor_recommendation: formData.doctor_recommendation === "true",
 				send_report_to_doctor: formData.send_report_to_doctor === "true",
 			});
+
+			// Remove populated fields
+			delete submissionData.insurance;
 
 			if (submission) {
 				// Update existing submission
@@ -207,12 +201,10 @@ export const RegistrationFormData = ({
 	const createInitialData = () => {
 		return (
 			submission || {
-				gender: appointment.patient.gender,
-				title: appointment.patient.title,
-				name: appointment.patient.name,
-				surname: appointment.patient.surname,
-				birthdate: format(appointment.patient.birthdate, "yyyy-MM-dd"),
-				contact: appointment.patient.contact,
+				...appointment.patient,
+				...(appointment.patient.birth_date && {
+					birth_date: format(appointment.patient.birth_date, "yyyy-MM-dd"),
+				}),
 			}
 		);
 	};

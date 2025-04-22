@@ -79,16 +79,19 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 							{
 								label: "Titel, Nachname, Vorname",
 								value: deriveDisplayedFullName({
-									title: patientData?.title || undefined,
-									name: patientData?.name,
-									surname: patientData?.surname,
+									title: formData.title || patientData.title || undefined,
+									name: formData.first_name || patientData.first_name,
+									surname: formData.last_name || patientData.last_name,
 								}),
 								start: 50,
 								type: "text",
 							},
 							{
 								label: "Geburtsdatum",
-								value: format(patientData?.birthdate, "dd.MM.yyyy"),
+								value: format(
+									formData.birth_date || patientData.birth_date,
+									"dd.MM.yyyy"
+								),
 								start: 50,
 								type: "text",
 							},
@@ -99,19 +102,19 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 						items={[
 							{
 								label: "Telefon (tagsüber)",
-								value: patientData?.contact?.phone,
+								value: formData.phone || patientData.phone,
 								start: 30,
 								type: "text",
 							},
 							{
 								label: "Mobil",
-								value: patientData?.contact?.mobile,
+								value: formData.mobile || patientData.mobile,
 								start: 30,
 								type: "text",
 							},
 							{
 								label: "E-Mail",
-								value: patientData?.contact?.email,
+								value: formData.email || patientData.email,
 								start: 40,
 								type: "text",
 							},
@@ -123,8 +126,9 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 							{
 								label: "Straße, Hausnummer",
 								value: deriveDisplayedStreetAddress({
-									street: patientData?.address?.street,
-									houseNumber: patientData?.address?.houseNumber,
+									street: formData.street || patientData.street,
+									houseNumber:
+										formData.house_number || patientData.house_number,
 								}),
 								start: 30,
 								type: "text",
@@ -132,15 +136,15 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 							{
 								label: "PLZ, Wohnort",
 								value: deriveDisplayedCityAddress({
-									zip: patientData?.address?.zipCode || undefined,
-									city: patientData?.address?.city || undefined,
+									zip: formData.postal_code || patientData.postal_code,
+									city: formData.city || patientData.city || undefined,
 								}),
 								start: 30,
 								type: "text",
 							},
 							{
 								label: "Land",
-								value: patientData?.address?.country,
+								value: formData.country || patientData.country,
 								start: 40,
 								type: "text",
 							},
@@ -151,7 +155,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 						items={[
 							{
 								label: "PKV/GKV",
-								value: patientData?.insurance?.name,
+								value: formData.insurance?.name || patientData?.insurance?.name,
 								start: 50,
 								type: "text",
 							},
@@ -161,7 +165,8 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 									<BoxSelection
 										options={["Ja", "Nein"]}
 										selected={booleanToYesNo(
-											appointmentData?.details?.hasBeihilfe
+											formData.has_beihilfe ||
+												appointmentData.patient_data?.has_beihilfe
 										)}
 										style={styling.FormTypeLines.BoxSelection}
 									/>
@@ -178,7 +183,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 								label: "Untersuchung",
 								value: formatExamination({
 									examination: appointmentData?.examination?.name,
-									bodySide: appointmentData?.examination?.bodySide as string,
+									bodySide: appointmentData?.body_side as string,
 								}),
 								start: 100,
 								type: "text",
@@ -204,7 +209,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 					>
 						<BoxSelection
 							options={["Ja", "Nein"]}
-							selected={booleanToYesNo(formData?.details?.currentTreatment)}
+							selected={booleanToYesNo(formData?.current_treatment)}
 							style={styles.QuestionBox.BoxSelection}
 						/>
 					</Question>
@@ -213,7 +218,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 						style={styles.QuestionBox.Question}
 					>
 						<Text style={styles.QuestionBox.TextField}>
-							{formData?.details?.treatmentRecommendations?.join(", ")}
+							{formData?.treatment_recommendations?.join(", ")}
 						</Text>
 					</Question>
 					<Question
@@ -222,7 +227,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 					>
 						<BoxSelection
 							options={["Ja", "Nein"]}
-							selected={booleanToYesNo(formData?.details?.doctorRecommendation)}
+							selected={booleanToYesNo(formData?.doctor_recommendation)}
 							style={styles.QuestionBox.BoxSelection}
 						/>
 					</Question>
@@ -231,7 +236,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 						style={styles.QuestionBox.Question}
 					>
 						<Text style={styles.QuestionBox.TextField}>
-							{formData?.details?.referringDoctorName}
+							{formData?.referring_doctor_name}
 						</Text>
 					</Question>
 					<Question
@@ -240,14 +245,14 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 					>
 						<BoxSelection
 							options={["Ja", "Nein"]}
-							selected={booleanToYesNo(formData?.details?.hasTransfer)}
+							selected={booleanToYesNo(formData?.has_transfer)}
 							style={styles.QuestionBox.BoxSelection}
 						/>
 					</Question>
 					<Question question="Soll der Befundbericht an den Behandler geschickt werden?">
 						<BoxSelection
 							options={["Ja", "Nein"]}
-							selected={booleanToYesNo(formData?.details?.sendReportToDoctor)}
+							selected={booleanToYesNo(formData?.send_report_to_doctor)}
 							style={{ ...styles.QuestionBox.BoxSelection, marginBottom: 0 }}
 						/>
 					</Question>

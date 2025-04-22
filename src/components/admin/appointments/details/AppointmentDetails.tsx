@@ -89,7 +89,7 @@ const AppointmentDetails: React.FC<AppointmentDetailsComponentProps> = ({
 			<div className="bg-gray-50 p-4 rounded-lg mb-8">
 				<p className="text-sm text-gray-800 mb-2">
 					{format(
-						new Date(appointment.timing.start),
+						new Date(appointment.start_time),
 						"EEEE, d. MMMM yyyy 'um' HH:mm 'Uhr'",
 						{ locale: de }
 					)}
@@ -111,19 +111,19 @@ const AppointmentDetails: React.FC<AppointmentDetailsComponentProps> = ({
 					<div className="space-y-2">
 						<p className="text-sm">
 							<span className="font-medium">Name: </span>
-							{appointment.patient.firstName} {appointment.patient.lastName}
+							{appointment.patient.first_name} {appointment.patient.last_name}
 						</p>
 						<p className="text-sm">
 							<span className="font-medium">E-Mail: </span>
-							{appointment.patient.contact.email}
+							{appointment.patient.email}
 						</p>
 						<p className="text-sm">
 							<span className="font-medium">Telefon: </span>
-							{appointment.patient.contact.phone}
+							{appointment.patient.phone}
 						</p>
 						<p className="text-sm">
 							<span className="font-medium">Abrechnungsart: </span>
-							{BILLING_TYPE_LABELS[appointment.billingType]}
+							{BILLING_TYPE_LABELS[appointment.billing_type]}
 						</p>
 						{currentReferringDoctor && (
 							<p className="text-sm">
@@ -135,12 +135,13 @@ const AppointmentDetails: React.FC<AppointmentDetailsComponentProps> = ({
 								{(currentReferringDoctor as any)?.last_name || ""}
 							</p>
 						)}
-						{appointment.details.hasTransfer && !currentReferringDoctor && (
-							<p className="text-sm">
-								<span className="font-medium">Überweisender Arzt: </span>
-								{appointment.details.referringDoctor}
-							</p>
-						)}
+						{appointment.patient_data.has_transfer &&
+							!currentReferringDoctor && (
+								<p className="text-sm">
+									<span className="font-medium">Überweisender Arzt: </span>
+									{appointment.patient_data.referring_doctor}
+								</p>
+							)}
 					</div>
 
 					{/* Patientenfoto rechts */}

@@ -259,15 +259,15 @@ const AppointmentDetailsModal: React.FC<
 					{activeTab !== "details" && (
 						<div className="bg-gray-50 p-3 rounded-md mb-6">
 							<p className="text-sm font-medium text-gray-800">
-								{`${appointment.patient.name} ${appointment.patient.surname}`},
-								geb.:{" "}
+								{`${appointment.patient.first_name} ${appointment.patient.last_name}`}
+								, geb.:{" "}
 								{patientData?.birth_date
 									? format(new Date(patientData.birth_date), "dd.MM.yyyy", {
 											locale: de,
 									  })
 									: "Unbekannt"}{" "}
 								- {appointment.examination?.name || "Untersuchung"} am{" "}
-								{format(new Date(appointment.timing.start), "dd.MM.yyyy", {
+								{format(new Date(appointment.start_time), "dd.MM.yyyy", {
 									locale: de,
 								})}{" "}
 								in der {appointment.location.name || "ALTA Klinik Bielefeld"}
@@ -318,7 +318,7 @@ const AppointmentDetailsModal: React.FC<
 					) : (
 						<ReportSection
 							appointmentId={appointment.id}
-							patientId={appointment.patient.id}
+							patientId={appointment.patient.id as string}
 						/>
 					)}
 				</div>

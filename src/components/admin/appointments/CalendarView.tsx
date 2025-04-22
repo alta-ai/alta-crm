@@ -311,10 +311,12 @@ const CalendarView = ({
           ),
           patient:patients(
             id,
+						patient_number,
             first_name,
             last_name,
             email,
-            phone
+            phone,
+						birth_date
           ),
           previous_appointment:previous_appointment_id(
             start_time
@@ -326,7 +328,10 @@ const CalendarView = ({
 				.lte("end_time", dateRange.end.toISOString())
 				.order("start_time");
 
-			if (error) throw error;
+			if (error) {
+				console.error(error);
+				throw error;
+			}
 			try {
 				return z.array(AppointmentSchema).parse(data) as Appointment[];
 			} catch (valError) {
@@ -505,8 +510,8 @@ const CalendarView = ({
 
 				// Finde alle Termine, die diesen Slot überlappen
 				const slotAppointments = appointments.filter((apt) => {
-					const aptStart = apt.timing.start;
-					const aptEnd = apt.timing.end;
+					const aptStart = apt.start_time;
+					const aptEnd = apt.end_time;
 
 					return (
 						isSameDay(aptStart, day) &&
@@ -532,7 +537,7 @@ const CalendarView = ({
 	) => {
 		// Get status color from appointmentStatuses
 		const status = appointmentStatuses?.find(
-			(s) => s.id === appointment.status.id
+			(s) => s.id === appointment.status?.id
 		);
 		const verschobenStatus = appointmentStatuses?.find(
 			(s) => s.name === "Verschoben"
@@ -550,7 +555,7 @@ const CalendarView = ({
 				color: "#dc2626", // Rot
 				textDecoration: "line-through",
 			};
-		} else if (appointment.previousAppointment) {
+		} else if (appointment.previous_appointment) {
 			// Termine, die aus verschobenen hervorgegangen sind in orange
 			baseStyle = {
 				backgroundColor: "#ea580c80", // orange-600 mit 50% opacity
@@ -726,7 +731,7 @@ const CalendarView = ({
 						const dayAppointments =
 							appointments?.filter(
 								(apt) =>
-									isSameDay(apt.timing.start, currentDate) &&
+									isSameDay(apt.start_time, currentDate) &&
 									apt.device?.id === deviceId
 							) || [];
 
@@ -788,8 +793,8 @@ const CalendarView = ({
 													const startingAppointments = dayAppointments.filter(
 														(apt) => {
 															return (
-																apt.timing.start.getHours() === hour &&
-																Math.floor(apt.timing.start.getMinutes() / 15) *
+																apt.start_time.getHours() === hour &&
+																Math.floor(apt.start_time.getMinutes() / 15) *
 																	15 ===
 																	minute
 															);
@@ -822,7 +827,7 @@ const CalendarView = ({
 															{startingAppointments.map(
 																(appointment, index) => {
 																	const appointmentDuration =
-																		appointment.examination.duration;
+																		appointment.examination?.duration;
 																	const appointmentHeight =
 																		(appointmentDuration / 15) *
 																		(zoomLevel / 4);
@@ -864,8 +869,8 @@ const CalendarView = ({
 																			{zoomLevel >= 60 &&
 																				appointment.patient && (
 																					<div className="text-xs truncate">
-																						{appointment.patient.name}{" "}
-																						{appointment.patient.surname}
+																						{appointment.patient.first_name}{" "}
+																						{appointment.patient.last_name}
 																					</div>
 																				)}
 																		</button>
@@ -970,7 +975,7 @@ const CalendarView = ({
 													const dayAppointments =
 														appointments?.filter(
 															(apt) =>
-																isSameDay(apt.timing.start, day) &&
+																isSameDay(apt.start_time, day) &&
 																apt.device?.id === deviceId
 														) || [];
 
@@ -998,10 +1003,10 @@ const CalendarView = ({
 																	const startingAppointments =
 																		dayAppointments.filter((apt) => {
 																			return (
-																				isSameDay(apt.timing.start, day) &&
-																				apt.timing.start.getHours() === hour &&
+																				isSameDay(apt.start_time, day) &&
+																				apt.start_time.getHours() === hour &&
 																				Math.floor(
-																					apt.timing.start.getMinutes() / 15
+																					apt.start_time.getMinutes() / 15
 																				) *
 																					15 ===
 																					minute
@@ -1076,10 +1081,13 @@ const CalendarView = ({
 																							{zoomLevel >= 60 &&
 																								appointment.patient && (
 																									<div className="text-xs truncate">
-																										{appointment.patient.name}{" "}
 																										{
 																											appointment.patient
-																												.surname
+																												.last_name
+																										}{" "}
+																										{
+																											appointment.patient
+																												.last_name
 																										}
 																									</div>
 																								)}
@@ -1144,7 +1152,7 @@ const CalendarView = ({
 									const dayAppointments =
 										appointments?.filter(
 											(apt) =>
-												isSameDay(apt.timing.start, day) &&
+												isSameDay(apt.start_time, day) &&
 												apt.device?.id === deviceId
 										) || [];
 
@@ -1152,7 +1160,7 @@ const CalendarView = ({
 									const timeGroups: Record<string, Appointment[]> = {};
 
 									dayAppointments.forEach((apt) => {
-										const timeKey = format(apt.timing.start, "HH:mm");
+										const timeKey = format(apt.start_time, "HH:mm");
 										if (!timeGroups[timeKey]) {
 											timeGroups[timeKey] = [];
 										}
@@ -1225,7 +1233,7 @@ const CalendarView = ({
 																		top: `${top}px`,
 																	}}
 																>
-																	{format(appointment.timing.start, "HH:mm")} -{" "}
+																	{format(appointment.start_time, "HH:mm")} -{" "}
 																	{appointment.examination.name}
 																</button>
 															);

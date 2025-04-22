@@ -3,25 +3,27 @@ import { format } from "date-fns";
 import { de } from "date-fns/locale";
 import { Info } from "lucide-react";
 
-import RegistrationForm from "../../../forms/registration/RegistrationForm";
-
 import type { Appointment } from "../../../types";
 import { useFormContext } from "../../../forms/formContext";
 
 interface FormViewerProps {
-	formId: string;
 	appointment: Appointment;
-	formType: string;
+	FormComponent: React.FC<{
+		readOnly: boolean;
+	}>;
 }
 
 interface DataContext {
 	submission: {
-		createdAt: Date;
-		updatedAt: Date;
+		created_at: Date;
+		updated_at: Date;
 	};
 }
 
-const FormViewer: React.FC<FormViewerProps> = ({ appointment }) => {
+const FormViewer: React.FC<FormViewerProps> = ({
+	appointment,
+	FormComponent,
+}) => {
 	const { isLoading, form, data } = useFormContext<DataContext>();
 
 	if (isLoading) {
@@ -51,15 +53,15 @@ const FormViewer: React.FC<FormViewerProps> = ({ appointment }) => {
 							<div>
 								<p className="text-sm text-gray-900">
 									Formular wurde am{" "}
-									{format(data.submission.createdAt, "dd.MM.yyyy HH:mm", {
+									{format(data.submission.created_at, "dd.MM.yyyy HH:mm", {
 										locale: de,
 									})}{" "}
 									ausgefüllt
 								</p>
-								{data.submission.updatedAt !== data.submission.createdAt && (
+								{data.submission.updated_at !== data.submission.created_at && (
 									<p className="text-sm text-gray-500">
 										Zuletzt bearbeitet:{" "}
-										{format(data.submission.updatedAt, "dd.MM.yyyy HH:mm", {
+										{format(data.submission.updated_at, "dd.MM.yyyy HH:mm", {
 											locale: de,
 										})}
 									</p>
@@ -78,7 +80,7 @@ const FormViewer: React.FC<FormViewerProps> = ({ appointment }) => {
 					</div>
 				)}
 
-				<RegistrationForm readOnly={false} />
+				<FormComponent readOnly={false} />
 			</div>
 		</div>
 	);

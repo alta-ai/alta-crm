@@ -84,7 +84,7 @@ export const deriveDisplayedStreetAddress = ({
 };
 
 interface DeriveDisplayedCityAddressParams {
-	zip?: number;
+	zip?: string;
 	city?: string;
 	sep?: string;
 }
