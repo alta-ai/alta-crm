@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Settings } from "lucide-react";
 import RegistrationForm from "./components/forms/registration/RegistrationForm";
 import CostReimbursementForm from "./components/forms/CostReimbursementForm";
-import PrivacyForm from "./components/forms/PrivacyForm";
+import PrivacyForm from "./components/forms/privacy/PrivacyForm";
 import AdminLayout from "./components/admin/AdminLayout";
 import ExaminationList from "./components/admin/ExaminationList";
 import ExaminationForm from "./components/admin/ExaminationForm";

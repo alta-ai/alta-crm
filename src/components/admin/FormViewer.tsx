@@ -7,9 +7,9 @@ import { cn } from "../../lib/utils";
 // Dynamic form components import
 import RegistrationForm from "../forms/registration/RegistrationForm";
 import CostReimbursementForm from "../forms/CostReimbursementForm";
-import PrivacyForm from "../forms/PrivacyForm";
-import CompleteForm from "../forms/MRTForm";
-import CTConsentForm from "../forms/CTConsentForm";
+import PrivacyForm from "../forms/privacy/PrivacyForm";
+import CompleteForm from "../forms/mri/MRIForm";
+import CTConsentForm from "../forms/ct/CTForm";
 import CTTherapyForm from "../forms/CTTherapyGorm";
 import MRTCTConsentForm from "../forms/MRTCTConsentForm";
 import ProstateQuestionnaireForm from "../forms/ProstateQuestionnaireForm";

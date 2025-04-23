@@ -2,21 +2,14 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Info } from "lucide-react";
 
-import type {
-	RegistrationForm as RegistrationFormType,
-	InsuranceProvider,
-} from "../../types";
+import type { RegistrationForm as RegistrationFormType } from "../../types";
+import type { RegistrationFormDataContextType } from "./RegistrationFormData";
 import { INSURANCE_TYPE } from "../../types/constants";
 import { useFormContext } from "../formContext";
 
 interface RegistrationFormProps {
 	onComplete?: () => void;
 	readOnly?: boolean;
-}
-
-interface RegistrationFormDataContextType {
-	insurances: InsuranceProvider[];
-	submission: RegistrationFormType;
 }
 
 export const RegistrationForm = ({
@@ -214,6 +207,7 @@ export const RegistrationForm = ({
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+					{/* Zip Code */}
 					<div>
 						<label className="block text-sm font-medium text-gray-700">
 							PLZ *
@@ -236,7 +230,9 @@ export const RegistrationForm = ({
 							</p>
 						)}
 					</div>
-					<div className="md:col-span-2">
+
+					{/* City */}
+					<div className="md:col-span-1">
 						<label className="block text-sm font-medium text-gray-700">
 							Wohnort *
 						</label>
@@ -250,6 +246,26 @@ export const RegistrationForm = ({
 						/>
 						{errors.city && (
 							<p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
+						)}
+					</div>
+
+					{/* Country */}
+					<div className="md:col-span-1">
+						<label className="block text-sm font-medium text-gray-700">
+							Land *
+						</label>
+						<input
+							type="text"
+							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+							disabled={readOnly}
+							{...register("country", {
+								required: "Land ist erforderlich",
+							})}
+						/>
+						{errors.country && (
+							<p className="text-red-500 text-sm mt-1">
+								{errors.country.message}
+							</p>
 						)}
 					</div>
 				</div>

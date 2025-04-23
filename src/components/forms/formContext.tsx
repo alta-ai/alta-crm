@@ -1,3 +1,4 @@
+import { da } from "date-fns/locale";
 import { createContext, useContext, ReactNode, useState } from "react";
 
 interface FormContextType<T> {
@@ -15,11 +16,16 @@ const FormContext = createContext<FormContextType<any> | null>(null);
 
 interface FormContextProviderProps {
 	children: ReactNode;
+	dataProvider?: any;
 }
 
 export const FormContextProvider = <T,>({
 	children,
+	dataProvider,
+	...props
 }: FormContextProviderProps) => {
+	const DataProvider = dataProvider as (props: any) => ReactNode;
+
 	const [data, setData] = useState<T | null>(null);
 	const [form, setForm] = useState<any>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -41,6 +47,9 @@ export const FormContextProvider = <T,>({
 			}}
 		>
 			{children}
+			<div className="hidden">
+				{dataProvider && <DataProvider {...props} />}
+			</div>
 		</FormContext.Provider>
 	);
 };

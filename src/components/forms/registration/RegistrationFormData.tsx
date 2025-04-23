@@ -18,9 +18,9 @@ interface RegistrationFormDataProps {
 	formId: string;
 }
 
-interface RegistrationFormDataContextType {
+export interface RegistrationFormDataContextType {
 	insurances: InsuranceProvider[];
-	submission: RegistrationFormType | null;
+	submission: RegistrationFormType;
 }
 
 export const RegistrationFormData = ({
@@ -221,7 +221,7 @@ export const RegistrationFormData = ({
 	}, [isLoadingForm, isLoadingSubmission, isLoadingInsurances]);
 
 	useEffect(() => {
-		if (!isLoadingInsurances && !isLoadingInsurances) {
+		if (!isLoadingInsurances && !isLoadingSubmission) {
 			setData({
 				...data,
 				submission: createInitialData() as any,

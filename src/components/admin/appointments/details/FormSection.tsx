@@ -145,14 +145,13 @@ const FormSection: React.FC<FormSectionProps> = ({
 				>
 					← Zurück zur Formularübersicht
 				</button>
-				<FormContextProvider>
-					<RegistrationFormData
-						appointment={appointment}
-						formId={selectedFormId}
-					/>
+				<FormContextProvider
+					dataProvider={FormMap["privacy"].data}
+					{...{ appointment, formId: selectedFormId }}
+				>
 					<FormViewer
 						appointment={appointment}
-						FormComponent={FormMap["registration"].editForm}
+						FormComponent={FormMap["privacy"].editForm}
 					/>
 				</FormContextProvider>
 			</div>
