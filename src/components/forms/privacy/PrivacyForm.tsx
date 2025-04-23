@@ -81,7 +81,15 @@ export const PrivacyForm = ({ onComplete, readOnly }: PrivacyFormProps) => {
 
 					<div className="bg-blue-50 border-l-4 border-blue-500 p-4">
 						<div className="flex">
-							<Info className="h-6 w-6 text-blue-500 mr-2" />
+							<Info
+								className="text-blue-500 mr-2"
+								style={{
+									height: "16px",
+									width: "16px",
+									minWidth: "16px",
+									flexShrink: 0,
+								}}
+							/>
 							<div>
 								<p className="text-blue-700">
 									Die Patienteninformation zur Datenverarbeitung in der ALTA

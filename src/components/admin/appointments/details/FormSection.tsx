@@ -16,7 +16,6 @@ import {
 	RegistrationFormSchema,
 } from "../../../types";
 import { FormContextProvider } from "../../../forms/formContext";
-import { RegistrationFormData } from "../../../forms/registration";
 import { FormMap } from "./formMap";
 
 interface FormSectionProps {
@@ -146,12 +145,12 @@ const FormSection: React.FC<FormSectionProps> = ({
 					← Zurück zur Formularübersicht
 				</button>
 				<FormContextProvider
-					dataProvider={FormMap["privacy"].data}
+					dataProvider={FormMap["ct_consent"].data}
 					{...{ appointment, formId: selectedFormId }}
 				>
 					<FormViewer
 						appointment={appointment}
-						FormComponent={FormMap["privacy"].editForm}
+						FormComponent={FormMap["ct_consent"].editForm}
 					/>
 				</FormContextProvider>
 			</div>
