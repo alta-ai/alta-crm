@@ -9,3 +9,7 @@ export { CTFormSchema } from "./ct";
 
 export type * from "./privacy";
 export { PrivacyFormSchema } from "./privacy";
+
+export type * from "./prostate_new_patient";
+export { ProstateNewPatientFormSchema } from "./prostate_new_patient";
+

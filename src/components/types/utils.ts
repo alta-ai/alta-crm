@@ -13,6 +13,19 @@ export function enumToZod<T extends Record<string, string>>(enumObj: T) {
 	return z.enum(values);
 }
 
+// Add a helper to unwrap wrapper types and check for ZodBoolean
+function isBooleanSchema(schema: z.ZodTypeAny): boolean {
+	let unwrapped = schema;
+	// Unwrap common wrappers like ZodOptional and ZodNullable
+	while (
+		unwrapped instanceof z.ZodOptional ||
+		unwrapped instanceof z.ZodNullable
+	) {
+		unwrapped = unwrapped._def.innerType;
+	}
+	return unwrapped instanceof z.ZodBoolean;
+}
+
 /**
  * Converts boolean values in a JavaScript object to strings based on the Zod schema
  *
@@ -36,7 +49,8 @@ export function boolToString<T extends z.ZodObject<any>>(
 
 		if (!fieldSchema) continue; // Skip if field doesn't exist in schema
 
-		if (fieldSchema instanceof z.ZodBoolean && typeof value === "boolean") {
+		// Use the generic solution to identify boolean schemas
+		if (isBooleanSchema(fieldSchema) && typeof value === "boolean") {
 			// Convert boolean to string
 			result[key] = String(value); // Will be "true" or "false"
 		} else if (
@@ -85,7 +99,8 @@ export function stringToBool<T extends z.ZodObject<any>>(
 
 		if (!fieldSchema) continue; // Skip if field doesn't exist in schema
 
-		if (fieldSchema instanceof z.ZodBoolean && typeof value === "string") {
+		// Use the generic solution to identify boolean schemas
+		if (isBooleanSchema(fieldSchema) && typeof value === "string") {
 			// Convert string to boolean
 			result[key] = value.toLowerCase() === "true";
 		} else if (

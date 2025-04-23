@@ -4,6 +4,10 @@ import {
 	RegistrationFormData,
 	RegistrationForm,
 } from "../../../forms/registration";
+import {
+	ProstateNewPatientForm,
+	ProstateNewPatientFormData,
+} from "../../../forms/prostate_new_patient";
 import { FormType } from "../../../types/constants";
 
 export const FormMap = {
@@ -18,5 +22,9 @@ export const FormMap = {
 	[FormType.CT_CONSENT]: {
 		data: CTFormData,
 		editForm: CTForm,
+	},
+	[FormType.PROSTATE_NEW_PATIENT]: {
+		data: ProstateNewPatientFormData,
+		editForm: ProstateNewPatientForm,
 	},
 };
