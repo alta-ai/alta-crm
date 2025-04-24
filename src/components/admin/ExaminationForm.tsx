@@ -18,8 +18,6 @@ interface Form {
   description: string;
 }
 
-<<<<<<< Updated upstream
-=======
 interface Category {
   id: string;
   name: string;
@@ -34,8 +32,8 @@ interface BillingCode {
   category_id: string;
 }
 
->>>>>>> Stashed changes
 interface ExaminationFormData {
+  id: string;
   name: string;
   description: string;
   category: string;
@@ -69,20 +67,6 @@ interface ExaminationFormData {
 
 const DURATION_OPTIONS = [15, 30, 45, 60, 75, 90];
 
-const CATEGORIES = [
-  'MRT',
-  'CT',
-  'Biopsie',
-  'TULSA-PRO',
-  'DaVinci-OP',
-  'HoLEP',
-  'TURP',
-  'Urologie',
-  'Kardiologie',
-  'Checkup-Frau',
-  'Checkup-Mann'
-];
-
 const BILLING_TYPES = [
   { value: 'self_payer', label: 'Selbstzahler' },
   { value: 'private_patient', label: 'Privatpatient' },
@@ -100,6 +84,7 @@ const ExaminationForm = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [billingCodes, setBillingCodes] = useState<BillingCode[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const {
     register,
@@ -145,9 +130,6 @@ const ExaminationForm = () => {
         setLoading(true);
         setError(null);
 
-<<<<<<< Updated upstream
-        // Fetch devices
-=======
         const { data: categoriesData, error: categoriesError } = await supabase
           .from('examination_categories')
           .select('id, name, description')
@@ -156,7 +138,6 @@ const ExaminationForm = () => {
         if (categoriesError) throw categoriesError;
         setCategories(categoriesData || []);
 
->>>>>>> Stashed changes
         const { data: devicesData, error: devicesError } = await supabase
           .from('devices')
           .select('id, name')
@@ -559,9 +540,9 @@ const ExaminationForm = () => {
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
               >
                 <option value="">Bitte wählen</option>
-                {CATEGORIES.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
+                {categories.map((category) => (
+                  <option key={category.id} value={category.name}>
+                    {category.name}
                   </option>
                 ))}
               </select>

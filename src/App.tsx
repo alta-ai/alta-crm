@@ -27,6 +27,7 @@ import SettingsLayout from './components/admin/settings/SettingsLayout';
 import InsuranceSettings from './components/admin/settings/InsuranceSettings';
 import AppointmentStatusSettings from './components/admin/settings/AppointmentStatusSettings';
 import SpecialtySettings from './components/admin/settings/SpecialtySettings';
+import ExaminationCategorySettings from './components/admin/settings/ExaminationCategorySettings';
 import BillingCategories from './components/admin/settings/BillingCategories';
 import StatisticsOverview from './components/admin/statistics/StatisticsOverview';
 import TodoDashboard from './components/admin/todos/TodoDashboard';
@@ -111,6 +112,7 @@ function App() {
             <Route path="insurance" element={<InsuranceSettings />} />
             <Route path="appointment-status" element={<AppointmentStatusSettings />} />
             <Route path="specialties" element={<SpecialtySettings />} />
+            <Route path="examination-categories" element={<ExaminationCategorySettings />} />
             <Route path="billing-categories" element={<BillingCategories />} />
           </Route>
         </Route>
