@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { FileText, Monitor, FormInput, MapPin, Calendar, Settings, Mail, ChevronLeft, ChevronRight, Users, BarChart, ClipboardList, UserPlus, Receipt } from 'lucide-react';
+import { 
+  FileText, Monitor, FormInput, MapPin, Calendar, Settings, 
+  Mail, ChevronLeft, ChevronRight, Users, BarChart2, 
+  ClipboardList, UserPlus, Receipt, CreditCard, CheckSquare, File
+} from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { supabase } from '../../lib/supabase';
 
 const AdminLayout = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const location = useLocation();
-  const [isMainSidebarCollapsed, setIsMainSidebarCollapsed] = useState(false);
 
   const navigation = [
     { name: 'Untersuchungen', href: '/admin', icon: FileText },
     { name: 'Patienten', href: '/admin/patients', icon: Users },
     { name: 'Überweiser', href: '/admin/referring-doctors', icon: UserPlus },
-    { name: 'To-Dos', href: '/admin/todos', icon: ClipboardList },
+    { name: 'To-Dos', href: '/admin/todos', icon: CheckSquare },
     { name: 'Geräte', href: '/admin/devices', icon: Monitor },
-    { name: 'Formulare', href: '/admin/forms', icon: FormInput },
-    { name: 'Abrechnung', href: '/admin/billing', icon: Receipt },
+    { name: 'Formulare', href: '/admin/forms', icon: File },
+    { name: 'Abrechnung', href: '/admin/billing', icon: CreditCard },
+    { name: 'Abrechnungsbögen', href: '/admin/billing/forms', icon: Receipt },
     { name: 'Standorte', href: '/admin/locations', icon: MapPin },
     { name: 'Termine', href: '/admin/appointments', icon: Calendar },
-    { name: 'Statistiken', href: '/admin/statistics', icon: BarChart },
+    { name: 'Statistiken', href: '/admin/statistics', icon: BarChart2 },
     { name: 'E-Mails', href: '/admin/emails', icon: Mail },
     { name: 'Einstellungen', href: '/admin/settings', icon: Settings },
   ];
@@ -37,22 +43,22 @@ const AdminLayout = () => {
       <div 
         className={cn(
           "flex flex-col fixed inset-y-0 z-50 bg-white border-r border-gray-200 transition-all duration-300 ease-in-out",
-          isMainSidebarCollapsed ? "w-16" : "w-64"
+          sidebarOpen ? "w-64" : "w-16"
         )}
       >
         <div className="flex-1 flex flex-col pt-5 pb-4">
           <div className="flex items-center justify-between px-4">
-            {!isMainSidebarCollapsed && (
+            {sidebarOpen && (
               <h1 className="text-xl font-bold">ALTA Admin</h1>
             )}
             <button
-              onClick={() => setIsMainSidebarCollapsed(!isMainSidebarCollapsed)}
+              onClick={() => setSidebarOpen(!sidebarOpen)}
               className="p-2 rounded-md text-gray-500 hover:bg-gray-100"
             >
-              {isMainSidebarCollapsed ? (
-                <ChevronRight className="h-5 w-5" />
-              ) : (
+              {sidebarOpen ? (
                 <ChevronLeft className="h-5 w-5" />
+              ) : (
+                <ChevronRight className="h-5 w-5" />
               )}
             </button>
           </div>
@@ -71,7 +77,7 @@ const AdminLayout = () => {
                       ? "bg-gray-100 text-gray-900"
                       : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                   )}
-                  title={isMainSidebarCollapsed ? item.name : undefined}
+                  title={!sidebarOpen ? item.name : undefined}
                 >
                   <Icon
                     className={cn(
@@ -79,7 +85,7 @@ const AdminLayout = () => {
                       active ? "text-gray-500" : "text-gray-400 group-hover:text-gray-500"
                     )}
                   />
-                  {!isMainSidebarCollapsed && (
+                  {sidebarOpen && (
                     <span className="ml-3">{item.name}</span>
                   )}
                 </Link>
@@ -93,7 +99,7 @@ const AdminLayout = () => {
       <div 
         className={cn(
           "flex-1 transition-all duration-300 ease-in-out",
-          isMainSidebarCollapsed ? "ml-16" : "ml-64"
+          sidebarOpen ? "ml-64" : "ml-16"
         )}
       >
         <main className={cn(

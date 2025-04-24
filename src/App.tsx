@@ -32,6 +32,8 @@ import StatisticsOverview from './components/admin/statistics/StatisticsOverview
 import TodoDashboard from './components/admin/todos/TodoDashboard';
 import BillingList from './components/admin/BillingList';
 import BillingForm from './components/admin/BillingForm';
+import BillingFormList from './components/admin/billing/BillingFormList';
+import BillingFormEditor from './components/admin/billing/BillingFormEditor';
 
 function App() {
   return (
@@ -95,6 +97,9 @@ function App() {
           <Route path="billing" element={<BillingList />} />
           <Route path="billing/new" element={<BillingForm />} />
           <Route path="billing/:id" element={<BillingForm />} />
+          <Route path="billing/forms" element={<BillingFormList />} />
+          <Route path="billing/forms/new" element={<BillingFormEditor />} />
+          <Route path="billing/forms/:id" element={<BillingFormEditor />} />
           <Route path="appointments" element={<AppointmentScheduler />} />
           <Route path="statistics" element={<StatisticsOverview />} />
           <Route path="emails" element={<EmailTemplateList />} />
