@@ -29,6 +29,7 @@ import { MRIForm, MRIFormData } from "../../../forms/mri";
 import { MRICTForm, MRICTFormData } from "../../../forms/mri_ct";
 
 import { FormType } from "../../../types/constants";
+import { BiopsyForm, BiopsyFormData } from "../../../forms/biopsy";
 
 export const FormMap = {
 	[FormType.REGISTRATION]: {
@@ -74,5 +75,9 @@ export const FormMap = {
 	[FormType.MRI_CT_CONSENT]: {
 		data: MRICTFormData,
 		editForm: MRICTForm,
+	},
+	[FormType.BIOPSY]: {
+		data: BiopsyFormData,
+		editForm: BiopsyForm,
 	},
 };

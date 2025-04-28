@@ -23,4 +23,5 @@ export enum FormType {
 	PROSTATE_FOLLOWUP = "prostate_followup",
 	PROSTATE_TULSA = "prostate_tulsa",
 	PROSTATE_HOLEP = "prostate_holep",
+	BIOPSY = "biopsy",
 }

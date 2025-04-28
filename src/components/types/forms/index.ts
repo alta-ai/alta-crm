@@ -45,3 +45,6 @@ export {
 	ProstateHoLEPFormSchema,
 	defaultProstateHoLEPForm,
 } from "./prostate_holep";
+
+export type * from "./biopsy";
+export { BiopsyFormSchema, defaultBiopsyForm } from "./biopsy";
