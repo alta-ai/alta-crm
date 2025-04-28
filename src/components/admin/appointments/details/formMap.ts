@@ -24,8 +24,9 @@ import {
 	ProstateHoLEPForm,
 	ProstateHoLEPFormData,
 } from "../../../forms/prostate_holep";
-
 import { MRIForm, MRIFormData } from "../../../forms/mri";
+import { MRICTForm, MRICTFormData } from "../../../forms/mri_ct";
+
 import { FormType } from "../../../types/constants";
 
 export const FormMap = {
@@ -64,5 +65,9 @@ export const FormMap = {
 	[FormType.MRI_CONSENT]: {
 		data: MRIFormData,
 		editForm: MRIForm,
+	},
+	[FormType.MRI_CT_CONSENT]: {
+		data: MRICTFormData,
+		editForm: MRICTForm,
 	},
 };

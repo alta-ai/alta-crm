@@ -16,6 +16,9 @@ export { PrivacyFormSchema } from "./privacy";
 export type * from "./mri";
 export { MRIFormSchema } from "./mri";
 
+export type * from "./mri_ct";
+export { MRICTFormSchema, defaultMRICTForm } from "./mri_ct";
+
 export type * from "./prostate_new_patient";
 export {
 	ProstateNewPatientFormSchema,
