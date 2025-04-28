@@ -2,9 +2,13 @@ import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Info } from "lucide-react";
 
-import type { ProstateNewPatientForm as ProstateNewPatientFormType } from "../../types";
+import {
+	defaultProstateNewPatientForm,
+	type ProstateNewPatientForm as ProstateNewPatientFormType,
+} from "../../types";
 import type { ProstateNewPatientDataContextType } from "./ProstateNewPatientFormData";
 import { useFormContext } from "../formContext";
+import PSATable from "../components/PSATable";
 
 interface ProstateNewPatientFormProps {
 	onComplete?: () => void;
@@ -147,10 +151,13 @@ export const ProstateNewPatientForm = ({
 		register,
 		handleSubmit,
 		watch,
+		trigger,
 		control,
 		setValue,
 		formState: { errors },
-	} = useForm<ProstateNewPatientFormType>({ defaultValues: data?.submission });
+	} = useForm<ProstateNewPatientFormType>({
+		defaultValues: data?.submission || defaultProstateNewPatientForm,
+	});
 
 	// Watch fields for conditional rendering
 	const familyProstateDisease = watch(
@@ -408,86 +415,13 @@ export const ProstateNewPatientForm = ({
 			</div>
 
 			{/* PSA Values */}
-			<div className="bg-white p-6 rounded-lg shadow-sm space-y-6">
-				<h3 className="text-lg font-semibold mb-4">PSA-Werte</h3>
-				<p className="text-sm text-gray-600 mb-4">
-					Bitte tragen Sie Ihre letzten PSA-Werte ein (sofern bekannt). Der
-					PSA-Wert wird in ng/ml angegeben.
-				</p>
-
-				<div className="space-y-4">
-					{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((index) => (
-						<div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-							<div>
-								<label className="block text-sm font-medium text-gray-700">
-									PSA-Wert {index}
-								</label>
-								<input
-									type="number"
-									step="0.01"
-									{...register(`psa_value_${index}` as any, {
-										valueAsNumber: true,
-										min: {
-											value: 0,
-											message: "Der Wert muss größer als 0 sein",
-										},
-									})}
-									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-									placeholder="z.B. 4.5"
-									disabled={readOnly}
-								/>
-								{errors[
-									`psa_value_${index}` as keyof ProstateNewPatientFormType
-								] && (
-									<p className="text-red-500 text-sm mt-1">
-										{String(
-											errors[
-												`psa_value_${index}` as keyof ProstateNewPatientFormType
-											]?.message
-										)}
-									</p>
-								)}
-							</div>
-							<div>
-								<label className="block text-sm font-medium text-gray-700">
-									Datum PSA-Wert {index}
-								</label>
-								<input
-									type="date"
-									{...register(`psa_date_${index}` as any)}
-									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-									disabled={readOnly}
-								/>
-							</div>
-						</div>
-					))}
-
-					<div>
-						<label className="block text-sm font-medium text-gray-700">
-							Freies PSA (falls bekannt)
-						</label>
-						<input
-							type="number"
-							step="0.01"
-							{...register("free_psa_value", {
-								valueAsNumber: true,
-								min: {
-									value: 0,
-									message: "Der Wert muss größer als 0 sein",
-								},
-							})}
-							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
-							placeholder="Freies PSA in ng/ml"
-							disabled={readOnly}
-						/>
-						{errors.free_psa_value && (
-							<p className="text-red-500 text-sm mt-1">
-								{errors.free_psa_value.message}
-							</p>
-						)}
-					</div>
-				</div>
-			</div>
+			<PSATable
+				count={10}
+				showFreePSA={true}
+				register={register}
+				trigger={trigger}
+				errors={errors}
+			/>
 
 			{/* Family History */}
 			<div className="bg-white p-6 rounded-lg shadow-sm space-y-6">
