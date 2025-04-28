@@ -20,4 +20,5 @@ export enum FormType {
 	MRI_CT_CONSENT = "mri_ct_consent",
 	MRI_CONSENT = "mri_consent",
 	PROSTATE_NEW_PATIENT = "prostate_new_patient",
+	PROSTATE_FOLLOWUP = "prostate_followup",
 }

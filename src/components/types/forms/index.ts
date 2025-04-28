@@ -19,3 +19,8 @@ export {
 	defaultProstateNewPatientForm,
 } from "./prostate_new_patient";
 
+export type * from "./prostate_follow_up";
+export {
+	ProstateFollowUpFormSchema,
+	defaultProstateFollowUpForm,
+} from "./prostate_follow_up";

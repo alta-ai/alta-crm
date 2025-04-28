@@ -12,6 +12,10 @@ import {
 	ProstateNewPatientForm,
 	ProstateNewPatientFormData,
 } from "../../../forms/prostate_new_patient";
+import {
+	ProstateFollowUpForm,
+	ProstateFollowUpFormData,
+} from "../../../forms/prostate_follow_up";
 import { FormType } from "../../../types/constants";
 
 export const FormMap = {
