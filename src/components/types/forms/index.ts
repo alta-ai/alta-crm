@@ -10,6 +10,9 @@ export { FormSchema } from "./form";
 export type * from "./ct";
 export { CTFormSchema } from "./ct";
 
+export type * from "./ct_therapy";
+export { CTTherapyFormSchema, defaultCTTherapyForm } from "./ct_therapy";
+
 export type * from "./privacy";
 export { PrivacyFormSchema } from "./privacy";
 

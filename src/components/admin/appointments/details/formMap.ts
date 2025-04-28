@@ -1,4 +1,5 @@
 import { CTForm, CTFormData } from "../../../forms/ct";
+import { CTTherapyForm, CTTherapyFormData } from "../../../forms/ct_therapy";
 import { PrivacyForm, PrivacyFormData } from "../../../forms/privacy";
 import {
 	RegistrationFormData,
@@ -45,6 +46,10 @@ export const FormMap = {
 	[FormType.CT_CONSENT]: {
 		data: CTFormData,
 		editForm: CTForm,
+	},
+	[FormType.CT_THERAPY]: {
+		data: CTTherapyFormData,
+		editForm: CTTherapyForm,
 	},
 	[FormType.PROSTATE_NEW_PATIENT]: {
 		data: ProstateNewPatientFormData,
