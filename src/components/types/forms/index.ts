@@ -24,3 +24,9 @@ export {
 	ProstateFollowUpFormSchema,
 	defaultProstateFollowUpForm,
 } from "./prostate_follow_up";
+
+export type * from "./prostate_tulsa";
+export {
+	ProstateTULSAFormSchema,
+	defaultProstateTULSAForm,
+} from "./prostate_tulsa";

@@ -16,6 +16,10 @@ import {
 	ProstateFollowUpForm,
 	ProstateFollowUpFormData,
 } from "../../../forms/prostate_follow_up";
+import {
+	ProstateTULSAForm,
+	ProstateTULSAFormData,
+} from "../../../forms/prostate_tulsa";
 import { FormType } from "../../../types/constants";
 
 export const FormMap = {
@@ -38,5 +42,13 @@ export const FormMap = {
 	[FormType.PROSTATE_NEW_PATIENT]: {
 		data: ProstateNewPatientFormData,
 		editForm: ProstateNewPatientForm,
+	},
+	[FormType.PROSTATE_FOLLOWUP]: {
+		data: ProstateFollowUpFormData,
+		editForm: ProstateFollowUpForm,
+	},
+	[FormType.PROSTATE_TULSA]: {
+		data: ProstateTULSAFormData,
+		editForm: ProstateTULSAForm,
 	},
 };
