@@ -133,12 +133,12 @@ export const ProstateFollowUpForm = ({
 	const prostateBeenTreated = watch("prostate_treatment_types") || [];
 	const enlargementTherapyTypes = watch("enlargement_therapy_types") || [];
 	const enlargementMedTypes = watch("enlargement_medication_types") || [];
-	const hasOtherProblems = watch("has_other_problems");
 	const inflammationTherapyTypes = watch("inflammation_therapy_types") || [];
 	const cancerTherapyTypes = watch("cancer_therapy_types") || [];
 	const biopsyTypes = watch("biopsy_types") || [];
 	const lastBiopsyResult = watch("last_biopsy_result");
 	const urinationSymptoms = watch("urination_symptoms") || [];
+	const hasOtherProblems = watch("has_other_problems") as unknown as string;
 
 	// Reset conditional fields when toggled off:
 	useEffect(() => {
@@ -832,7 +832,7 @@ export const ProstateFollowUpForm = ({
 					true
 				)}
 
-				{hasOtherProblems === true && (
+				{hasOtherProblems === "true" && (
 					<>
 						<div>
 							<label className="block text-sm font-medium text-gray-700">
