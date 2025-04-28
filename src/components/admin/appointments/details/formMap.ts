@@ -20,6 +20,11 @@ import {
 	ProstateTULSAForm,
 	ProstateTULSAFormData,
 } from "../../../forms/prostate_tulsa";
+import {
+	ProstateHoLEPForm,
+	ProstateHoLEPFormData,
+} from "../../../forms/prostate_holep";
+
 import { MRIForm, MRIFormData } from "../../../forms/mri";
 import { FormType } from "../../../types/constants";
 
@@ -51,6 +56,10 @@ export const FormMap = {
 	[FormType.PROSTATE_TULSA]: {
 		data: ProstateTULSAFormData,
 		editForm: ProstateTULSAForm,
+	},
+	[FormType.PROSTATE_HOLEP]: {
+		data: ProstateHoLEPFormData,
+		editForm: ProstateHoLEPForm,
 	},
 	[FormType.MRI_CONSENT]: {
 		data: MRIFormData,

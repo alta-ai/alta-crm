@@ -33,3 +33,9 @@ export {
 	ProstateTULSAFormSchema,
 	defaultProstateTULSAForm,
 } from "./prostate_tulsa";
+
+export type * from "./prostate_holep";
+export {
+	ProstateHoLEPFormSchema,
+	defaultProstateHoLEPForm,
+} from "./prostate_holep";
