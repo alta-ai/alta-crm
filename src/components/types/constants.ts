@@ -11,6 +11,7 @@ export const BODY_SIDE = ["left", "right", "both_sides"] as const;
 
 export enum FormType {
 	REGISTRATION = "registration",
+	REGISTRATION_BG = "registration_bg",
 	COST_REIMBURSEMENT = "cost_reimbursement",
 	PRIVACY = "privacy",
 	EXAMINATION = "examination",

@@ -5,6 +5,10 @@ import {
 	RegistrationForm,
 } from "../../../forms/registration";
 import {
+	RegistrationBGForm,
+	RegistrationBGFormData,
+} from "../../../forms/registration_bg";
+import {
 	ProstateNewPatientForm,
 	ProstateNewPatientFormData,
 } from "../../../forms/prostate_new_patient";
@@ -14,6 +18,10 @@ export const FormMap = {
 	[FormType.REGISTRATION]: {
 		data: RegistrationFormData,
 		editForm: RegistrationForm,
+	},
+	[FormType.REGISTRATION_BG]: {
+		data: RegistrationBGFormData,
+		editForm: RegistrationBGForm,
 	},
 	[FormType.PRIVACY]: {
 		data: PrivacyFormData,

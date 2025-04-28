@@ -1,6 +1,9 @@
 export type * from "./registration";
 export { RegistrationFormSchema } from "./registration";
 
+export type * from "./registration_bg";
+export { RegistrationBGFormSchema } from "./registration_bg";
+
 export type * from "./form";
 export { FormSchema } from "./form";
 
