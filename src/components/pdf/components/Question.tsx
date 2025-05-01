@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import { StyleSheet, View, Text } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 });
 
 interface QuestionProps {
-	question: string;
+	question: string | ReactElement;
 	children?: ReactNode;
 	style?: {
 		Question?: Record<string, any>;

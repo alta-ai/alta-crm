@@ -35,10 +35,14 @@ export const SignatureString = () => {
 	return (
 		<View style={styling.Row as any} debug={false}>
 			<Text style={{ marginTop: "10px" }}>
-				{formatDate(formData?.signature?.signedAt) ||
-					formatDate(appointmentData?.start_time)}{" "}
-				{formData?.signature?.signedAt &&
-					`(${formatTime(formData?.signature?.signedAt)})`}
+				{`${
+					formatDate(formData?.signature?.signedAt) ||
+					formatDate(appointmentData?.start_time)
+				} ${
+					formData?.signature?.signedAt
+						? formatTime(formData?.signature?.signedAt)
+						: ""
+				}`}
 			</Text>
 
 			{formData?.signature?.data && (

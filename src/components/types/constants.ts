@@ -7,7 +7,11 @@ export const INSURANCE_TYPE = [
 	"Foreigners",
 ] as const;
 
-export const BODY_SIDE = ["left", "right", "both_sides"] as const;
+export enum BodySide {
+	LEFT = "left",
+	RIGHT = "right",
+	BOTH_SIDES = "both_sides",
+}
 
 export enum FormType {
 	REGISTRATION = "registration",

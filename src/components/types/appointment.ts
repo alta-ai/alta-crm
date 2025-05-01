@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { PatientSchema } from "./patient";
-import { BODY_SIDE } from "./constants";
+import { BodySide } from "./constants";
+import { enumToZod } from "./utils";
 
 export const AppointmentSchema = z.object({
 	id: z.string().uuid(),
@@ -12,7 +13,7 @@ export const AppointmentSchema = z.object({
 		referring_doctor: z.string().optional().nullable(),
 		with_contrast_medium: z.boolean().optional().nullable(),
 	}),
-	body_side: z.enum(BODY_SIDE).optional().nullable(),
+	body_side: enumToZod(BodySide).optional().nullable(),
 	billing_type: z.string(),
 	status: z.object({
 		id: z.string().uuid(),

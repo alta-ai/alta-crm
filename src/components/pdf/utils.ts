@@ -1,3 +1,5 @@
+import { BodySide } from "../types/constants";
+
 export const formatDateString = (dateString?: string): string => {
 	if (!dateString) return "";
 
@@ -133,7 +135,7 @@ export const deriveFullAdress = ({
 
 interface FormatExaminationParams {
 	examination?: string;
-	bodySide?: string;
+	bodySide?: BodySide;
 }
 
 export const formatExamination = ({

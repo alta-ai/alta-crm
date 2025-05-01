@@ -36,9 +36,9 @@ const styling = {
 	},
 
 	Center: {
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
+		display: "flex" as const,
+		justifyContent: "center" as const,
+		alignItems: "center" as const,
 	},
 
 	Column: {
@@ -47,8 +47,8 @@ const styling = {
 	},
 
 	Row: {
-		display: "flex",
-		flexDirection: "row",
+		display: "flex" as const,
+		flexDirection: "row" as const,
 	},
 
 	Emph: {

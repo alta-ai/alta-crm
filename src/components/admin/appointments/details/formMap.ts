@@ -1,15 +1,17 @@
 import { CTForm, CTFormData } from "../../../forms/ct";
 import { CTTherapyForm, CTTherapyFormData } from "../../../forms/ct_therapy";
 import { PrivacyForm, PrivacyFormData } from "../../../forms/privacy";
+
 import {
 	RegistrationFormData,
 	RegistrationForm,
 } from "../../../forms/registration";
-import { RegistrationForm as RegistrationFormPDF } from "../../../pdf";
+
 import {
 	RegistrationBGForm,
 	RegistrationBGFormData,
 } from "../../../forms/registration_bg";
+
 import {
 	ProstateNewPatientForm,
 	ProstateNewPatientFormData,
@@ -28,11 +30,23 @@ import {
 } from "../../../forms/prostate_holep";
 import { MRIForm, MRIFormData } from "../../../forms/mri";
 import { MRICTForm, MRICTFormData } from "../../../forms/mri_ct";
-
 import { FormType } from "../../../types/constants";
 import { BiopsyForm, BiopsyFormData } from "../../../forms/biopsy";
 
-export const FormMap = {
+import {
+	MRIForm as MRIFormPDF,
+	RegistrationForm as RegistrationFormPDF,
+	PrivacyForm as PrivacyFormPDF,
+} from "../../../pdf";
+
+type FormMapEntry = {
+	data: unknown;
+	editForm: unknown;
+	pdfForm: unknown;
+	label: string;
+};
+
+export const FormMap: Record<FormType, any> = {
 	[FormType.REGISTRATION]: {
 		data: RegistrationFormData,
 		editForm: RegistrationForm,
@@ -47,6 +61,7 @@ export const FormMap = {
 	[FormType.PRIVACY]: {
 		data: PrivacyFormData,
 		editForm: PrivacyForm,
+		pdfForm: PrivacyFormPDF,
 		label: "Datenschutzformular",
 	},
 	[FormType.CT_CONSENT]: {
@@ -82,6 +97,7 @@ export const FormMap = {
 	[FormType.MRI_CONSENT]: {
 		data: MRIFormData,
 		editForm: MRIForm,
+		pdfForm: MRIFormPDF,
 		label: "MRT Aufklärungsbogen",
 	},
 	[FormType.MRI_CT_CONSENT]: {
