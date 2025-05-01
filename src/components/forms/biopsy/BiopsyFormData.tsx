@@ -10,10 +10,11 @@ import {
 } from "../../types";
 import { useFormContext } from "../formContext";
 import { boolToString, stringToBool } from "../../types/utils";
+import { FormType } from "../../types/constants";
 
 interface BiopsyFormDataProps {
 	appointment: Appointment;
-	formId: string;
+	formType: FormType;
 }
 
 export interface BiopsyFormDataContextType {
@@ -23,7 +24,7 @@ export interface BiopsyFormDataContextType {
 
 export const BiopsyFormData = ({
 	appointment,
-	formId,
+	formType: formType,
 }: BiopsyFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<BiopsyFormDataContextType>();
@@ -65,12 +66,12 @@ export const BiopsyFormData = ({
 
 	// Load form data
 	const { data: form, isLoading: isLoadingForm } = useQuery({
-		queryKey: ["form", formId],
+		queryKey: ["form", formType],
 		queryFn: async () => {
 			const { data, error } = await supabase
 				.from("forms")
 				.select("*")
-				.eq("id", formId)
+				.eq("form_type", formType)
 				.single();
 
 			if (error) throw error;

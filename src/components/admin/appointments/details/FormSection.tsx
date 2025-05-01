@@ -17,6 +17,7 @@ import {
 } from "../../../types";
 import { FormContextProvider } from "../../../forms/formContext";
 import { FormMap } from "./formMap";
+import { FormType } from "../../../types/constants";
 
 interface FormSectionProps {
 	appointment: Appointment;
@@ -28,7 +29,9 @@ const FormSection: React.FC<FormSectionProps> = ({
 	onPhotoUpdated,
 }) => {
 	const [activeFormPage, setActiveFormPage] = useState<string | null>(null);
-	const [selectedFormId, setSelectedFormId] = useState<string | null>(null);
+	const [selectedFormType, setSelectedFormType] = useState<FormType | null>(
+		null
+	);
 	const [formUrl, setFormUrl] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [isPDFModalOpen, setIsPDFModalOpen] = useState(false);
@@ -135,22 +138,22 @@ const FormSection: React.FC<FormSectionProps> = ({
 		);
 	}
 
-	if (selectedFormId) {
+	if (selectedFormType) {
 		return (
 			<div>
 				<button
-					onClick={() => setSelectedFormId(null)}
+					onClick={() => setSelectedFormType(null)}
 					className="mb-6 text-sm text-blue-600 hover:text-blue-800"
 				>
 					← Zurück zur Formularübersicht
 				</button>
 				<FormContextProvider
-					dataProvider={FormMap["ct_consent"].data}
-					{...{ appointment, formId: selectedFormId }}
+					dataProvider={FormMap[selectedFormType].data}
+					{...{ appointment, formType: selectedFormType }}
 				>
 					<FormViewer
 						appointment={appointment}
-						FormComponent={FormMap["ct_consent"].editForm}
+						FormComponent={FormMap[selectedFormType].editForm}
 					/>
 				</FormContextProvider>
 			</div>
@@ -168,7 +171,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 				examinationId={appointment.examination.id}
 				billingType={appointment.billing_type}
 				onPhotoCapture={() => setActiveFormPage("photo-capture")}
-				onViewForm={(formId) => setSelectedFormId(formId)}
+				onViewForm={(formType) => setSelectedFormType(formType)}
 				onPreviewForm={handleOpenPDFPreview}
 			/>
 

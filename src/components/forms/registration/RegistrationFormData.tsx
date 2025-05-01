@@ -12,10 +12,11 @@ import type {
 import { RegistrationFormSchema, InsuranceProviderSchema } from "../../types";
 import { format } from "date-fns";
 import { useFormContext } from "../formContext";
+import { FormType } from "../../types/constants";
 
 interface RegistrationFormDataProps {
 	appointment: Appointment;
-	formId: string;
+	formType: FormType;
 }
 
 export interface RegistrationFormDataContextType {
@@ -25,7 +26,7 @@ export interface RegistrationFormDataContextType {
 
 export const RegistrationFormData = ({
 	appointment,
-	formId,
+	formType: formType,
 }: RegistrationFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<RegistrationFormDataContextType>();
@@ -72,12 +73,12 @@ export const RegistrationFormData = ({
 
 	// Load form data
 	const { data: form, isLoading: isLoadingForm } = useQuery({
-		queryKey: ["form", formId],
+		queryKey: ["form", formType],
 		queryFn: async () => {
 			const { data, error } = await supabase
 				.from("forms")
 				.select("*")
-				.eq("id", formId)
+				.eq("form_type", formType)
 				.single();
 
 			if (error) throw error;

@@ -14,7 +14,7 @@ interface FormListProps {
 	examinationId: string;
 	billingType: string;
 	onPhotoCapture: () => void;
-	onViewForm: (formId: string) => void;
+	onViewForm: (formType: FormType) => void;
 	onPreviewForm: (formId: string) => void;
 }
 
@@ -75,7 +75,6 @@ const FormList: React.FC<FormListProps> = ({
 				// Load all form submissions for this appointment
 				const [
 					{ data: registrationData },
-					{ data: costReimbursementData },
 					{ data: privacyData },
 					{ data: examinationData },
 					{ data: ctConsentData },
@@ -85,11 +84,6 @@ const FormList: React.FC<FormListProps> = ({
 				] = await Promise.all([
 					supabase
 						.from("registration_form_submissions")
-						.select("*")
-						.eq("appointment_id", appointmentId)
-						.maybeSingle(),
-					supabase
-						.from("cost_reimbursement_form_submissions")
 						.select("*")
 						.eq("appointment_id", appointmentId)
 						.maybeSingle(),
@@ -127,7 +121,6 @@ const FormList: React.FC<FormListProps> = ({
 
 				return {
 					registration: registrationData,
-					cost_reimbursement: costReimbursementData,
 					privacy: privacyData,
 					examination: examinationData,
 					ct_consent: ctConsentData,
@@ -191,7 +184,7 @@ const FormList: React.FC<FormListProps> = ({
 							<button
 								onClick={(e) => {
 									e.stopPropagation();
-									onViewForm(form.id);
+									onViewForm(form.form_type);
 								}}
 								title="Formular bearbeiten"
 								className="text-gray-400 hover:text-gray-600"
