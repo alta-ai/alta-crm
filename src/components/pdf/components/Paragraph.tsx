@@ -16,7 +16,7 @@ interface CustomStyle extends Style {
 }
 
 interface ParagraphProps {
-	text: string;
+	text?: string;
 	heading?: string;
 	children?: React.ReactNode;
 	lineHeight?: number;

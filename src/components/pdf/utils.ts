@@ -1,9 +1,13 @@
-import { BODY_SIDE } from "../types/constants";
-
-export const formatDate = (dateString?: string): string => {
+export const formatDateString = (dateString?: string): string => {
 	if (!dateString) return "";
 
 	const date = new Date(dateString);
+
+	return formatDate(date);
+};
+
+export const formatDate = (date?: Date): string => {
+	if (!date) return "";
 
 	// Get the day, month, and year from the Date object
 	const day = String(date.getDate()).padStart(2, "0");
@@ -14,10 +18,20 @@ export const formatDate = (dateString?: string): string => {
 	return `${day}.${month}.${year}`;
 };
 
-export const formatTime = (timeString: string): string => {
+export const formatTimeString = (timeString: string): string => {
 	if (!timeString) return "";
 
 	return timeString.split(".")[0];
+};
+
+export const formatTime = (date?: Date): string => {
+	if (!date) return "";
+
+	// Get the hours and minutes from the Date object
+	const hours = String(date.getHours()).padStart(2, "0");
+	const minutes = String(date.getMinutes()).padStart(2, "0");
+	// Return the formatted time string
+	return `${hours}:${minutes}`;
 };
 
 interface GenderToFormOfAddressParams {

@@ -7,6 +7,7 @@ export const PrivacyFormSchema = z.object({
 	request_report_consent: z.boolean(),
 	transmit_report_consent: z.boolean(),
 	data_processing_consent: z.boolean(),
+	foto_consent: z.boolean().nullable().optional(),
 	created_at: z.coerce.date(),
 	updated_at: z.coerce.date(),
 });

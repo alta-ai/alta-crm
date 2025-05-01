@@ -33,12 +33,12 @@ const styles = {
 export const SignatureString = () => {
 	const { formData, appointmentData } = useFormData<WithSignature>();
 	return (
-		<View style={styling.Row} debug={false}>
+		<View style={styling.Row as any} debug={false}>
 			<Text style={{ marginTop: "10px" }}>
-				{formatDate(formData?.signature?.signedAtDate) ||
-					formatDate(appointmentData?.date)}{" "}
-				{formData?.signature?.signedAtTime &&
-					`(${formatTime(formData?.signature?.signedAtTime)})`}
+				{formatDate(formData?.signature?.signedAt) ||
+					formatDate(appointmentData?.start_time)}{" "}
+				{formData?.signature?.signedAt &&
+					`(${formatTime(formData?.signature?.signedAt)})`}
 			</Text>
 
 			{formData?.signature?.data && (

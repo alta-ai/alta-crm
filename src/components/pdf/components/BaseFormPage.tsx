@@ -2,7 +2,7 @@ import { Page, View, Text } from "@react-pdf/renderer";
 import { Footer } from "./";
 import styling from "../styles";
 import { useFormData } from "../formDataContext";
-import { deriveDisplayedFullName, formatDate } from "../utils";
+import { deriveDisplayedFullName, formatDateString } from "../utils";
 
 const styles = {
 	position: "relative" as const,
@@ -63,7 +63,7 @@ const BaseFormPage: React.FC<BaseFormPageProps> = ({
 								surname: patientData?.surname,
 							})}{" "}
 							(Pat-ID: {patientData.patientNumber}) - Untersuchung vom{" "}
-							{formatDate(appointmentData?.date)}
+							{formatDateString(appointmentData?.date)}
 						</Text>
 					) : (
 						<Text />

@@ -11,3 +11,9 @@ export type * from "./forms";
 export interface FormProps {
 	onRender?: () => void;
 }
+export interface WithSignature {
+	signature: {
+		signedAt?: Date;
+		data?: string;
+	};
+}

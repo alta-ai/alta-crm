@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ children, showPatientID = true }) => {
 			{children}
 			{showPatientID && (
 				<Text style={style.PatientID}>
-					Patienten-ID: {patientData?.patientNumber}
+					Patienten-ID: {patientData?.patient_number}
 				</Text>
 			)}
 			<Image src={logo} style={style.Image} />

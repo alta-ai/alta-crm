@@ -18,10 +18,10 @@ interface CheckboxProps {
 }
 
 // Interface for BoxSelection props
-interface BoxSelectionProps {
-	options: string[];
+interface BoxSelectionProps<T> {
+	options: T[];
 	labels?: string[];
-	selected: string | string[];
+	selected: T | T[];
 	style?: {
 		checkbox?: CheckboxStyle;
 		[key: string]: any;
