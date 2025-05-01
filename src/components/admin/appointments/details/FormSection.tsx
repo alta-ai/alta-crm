@@ -29,12 +29,13 @@ const FormSection: React.FC<FormSectionProps> = ({
 	onPhotoUpdated,
 }) => {
 	const [activeFormPage, setActiveFormPage] = useState<string | null>(null);
-	const [selectedFormType, setSelectedFormType] = useState<FormType | null>(
-		null
-	);
+	const [selectedFormTypeForEdit, setSelectedFormTypeForEdit] =
+		useState<FormType | null>(null);
+	const [selectedFormTypeForPreview, setSelectedFormTypeForPreview] =
+		useState<FormType | null>(null);
+
 	const [formUrl, setFormUrl] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
-	const [isPDFModalOpen, setIsPDFModalOpen] = useState(false);
 
 	// Load patient data for PDF
 	const { data: patient } = useQuery({
@@ -46,6 +47,7 @@ const FormSection: React.FC<FormSectionProps> = ({
 					`
 					gender,
 					title,
+					patient_number,
 					first_name,
 					last_name,
 					birth_date,
@@ -81,30 +83,6 @@ const FormSection: React.FC<FormSectionProps> = ({
 		},
 	});
 
-	// Load form submission if it exists
-	const { data: formData } = useQuery({
-		queryKey: ["registration-form-submission", appointment.id],
-		queryFn: async () => {
-			const { data, error } = await supabase
-				.from("registration_form_submissions")
-				.select("*")
-				.eq("appointment_id", appointment.id)
-				.maybeSingle();
-
-			if (error) {
-				console.error(error);
-				throw error;
-			}
-
-			try {
-				const p = RegistrationFormSchema.parse(data) as RegistrationForm;
-				return p;
-			} catch (valError) {
-				console.error(valError);
-			}
-		},
-	});
-
 	// Generate form URL
 	const handleGenerateUrl = async () => {
 		try {
@@ -116,11 +94,6 @@ const FormSection: React.FC<FormSectionProps> = ({
 			console.error("Error generating form URL:", error);
 			setError(error.message || "Fehler beim Generieren der Formular-URL");
 		}
-	};
-
-	// Funktion zum Öffnen der PDF-Vorschau im Modal
-	const handleOpenPDFPreview = () => {
-		setIsPDFModalOpen(true);
 	};
 
 	if (activeFormPage === "photo-capture") {
@@ -138,22 +111,22 @@ const FormSection: React.FC<FormSectionProps> = ({
 		);
 	}
 
-	if (selectedFormType) {
+	if (selectedFormTypeForEdit) {
 		return (
 			<div>
 				<button
-					onClick={() => setSelectedFormType(null)}
+					onClick={() => setSelectedFormTypeForEdit(null)}
 					className="mb-6 text-sm text-blue-600 hover:text-blue-800"
 				>
 					← Zurück zur Formularübersicht
 				</button>
 				<FormContextProvider
-					dataProvider={FormMap[selectedFormType].data}
-					{...{ appointment, formType: selectedFormType }}
+					dataProvider={FormMap[selectedFormTypeForEdit].data}
+					{...{ appointment, formType: selectedFormTypeForEdit }}
 				>
 					<FormViewer
 						appointment={appointment}
-						FormComponent={FormMap[selectedFormType].editForm}
+						FormComponent={FormMap[selectedFormTypeForEdit].editForm}
 					/>
 				</FormContextProvider>
 			</div>
@@ -171,8 +144,8 @@ const FormSection: React.FC<FormSectionProps> = ({
 				examinationId={appointment.examination.id}
 				billingType={appointment.billing_type}
 				onPhotoCapture={() => setActiveFormPage("photo-capture")}
-				onViewForm={(formType) => setSelectedFormType(formType)}
-				onPreviewForm={handleOpenPDFPreview}
+				onViewForm={(formType) => setSelectedFormTypeForEdit(formType)}
+				onPreviewForm={(formType) => setSelectedFormTypeForPreview(formType)}
 			/>
 
 			<div className="mt-10">
@@ -218,14 +191,24 @@ const FormSection: React.FC<FormSectionProps> = ({
 			</div>
 
 			{/* PDF Form Preview Modal */}
-			<PDFFormPreviewModal
-				isOpen={isPDFModalOpen}
-				onClose={() => setIsPDFModalOpen(false)}
-				formName="Anmeldeformular"
-				formData={formData}
-				patientData={patient || ({} as Patient)}
-				appointmentData={appointment}
-			/>
+			{selectedFormTypeForPreview && (
+				<FormContextProvider
+					dataProvider={FormMap[selectedFormTypeForPreview].data}
+					{...{
+						appointment,
+						formType: selectedFormTypeForPreview,
+						stringify: false,
+					}}
+				>
+					<PDFFormPreviewModal
+						onClose={() => setSelectedFormTypeForPreview(null)}
+						form={FormMap[selectedFormTypeForPreview].pdfForm}
+						formName={FormMap[selectedFormTypeForPreview].label}
+						patientData={patient || ({} as Patient)}
+						appointmentData={appointment}
+					/>
+				</FormContextProvider>
+			)}
 		</>
 	);
 };

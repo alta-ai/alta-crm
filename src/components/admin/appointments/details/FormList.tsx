@@ -15,7 +15,7 @@ interface FormListProps {
 	billingType: string;
 	onPhotoCapture: () => void;
 	onViewForm: (formType: FormType) => void;
-	onPreviewForm: (formId: string) => void;
+	onPreviewForm: (formId: FormType) => void;
 }
 
 type FormList = {
@@ -81,6 +81,7 @@ const FormList: React.FC<FormListProps> = ({
 					{ data: ctTherapyData },
 					{ data: mrtCtConsentData },
 					{ data: prostateData },
+					{ data: mriConsentData },
 				] = await Promise.all([
 					supabase
 						.from("registration_form_submissions")
@@ -117,6 +118,11 @@ const FormList: React.FC<FormListProps> = ({
 						.select("*")
 						.eq("appointment_id", appointmentId)
 						.maybeSingle(),
+					supabase
+						.from("mri_consent_form_submissions")
+						.select("*")
+						.eq("appointment_id", appointmentId)
+						.maybeSingle(),
 				]);
 
 				return {
@@ -127,7 +133,7 @@ const FormList: React.FC<FormListProps> = ({
 					ct_therapy: ctTherapyData,
 					mri_ct_consent: mrtCtConsentData,
 					prostate_questionnaire: prostateData,
-					mri_consent: null,
+					mri_consent: mriConsentData,
 				};
 			},
 		});
@@ -174,7 +180,7 @@ const FormList: React.FC<FormListProps> = ({
 							<button
 								onClick={(e) => {
 									e.stopPropagation();
-									onPreviewForm(form.id);
+									onPreviewForm(form.form_type);
 								}}
 								title="PDF Vorschau"
 								className="text-gray-400 hover:text-gray-600"

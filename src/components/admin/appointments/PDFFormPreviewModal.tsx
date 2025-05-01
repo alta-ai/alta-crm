@@ -3,31 +3,36 @@ import { X, Download, ExternalLink, FileText } from "lucide-react";
 import { PDFViewer, pdf } from "@react-pdf/renderer";
 
 import { FormDataProvider } from "../../pdf/formDataContext";
-import { RegistrationForm } from "../../pdf/RegistrationForm";
 import { Patient, Appointment } from "../../types";
+import { useFormContext } from "../../forms/formContext";
 
 interface PDFFormPreviewModalProps {
-	isOpen: boolean;
 	onClose: () => void;
+	form: any;
 	formName: any;
-	formData: any;
 	patientData: Patient;
 	appointmentData: Appointment;
 }
 
+interface DataContext {
+	submission: {
+		created_at: Date;
+		updated_at: Date;
+	};
+}
+
 const PDFFormPreviewModal: React.FC<PDFFormPreviewModalProps> = ({
-	isOpen,
 	onClose,
+	form: Form,
 	formName,
-	formData,
 	patientData,
 	appointmentData,
 }) => {
-	if (!isOpen) return null;
+	const { isLoading, data } = useFormContext<DataContext>();
 
-	const patientName = `${patientData.title || ""} ${patientData.name} ${
-		patientData.surname
-	}`;
+	const patientName = `${patientData.title ? patientData.title + " " : ""}${
+		patientData.first_name
+	} ${patientData.last_name}`;
 
 	// Funktion zum Öffnen des PDFs in einem neuen Tab
 	const openInNewTab = () => {
@@ -81,11 +86,11 @@ const PDFFormPreviewModal: React.FC<PDFFormPreviewModalProps> = ({
 			// PDF erstellen
 			const pdfDoc = pdf(
 				<FormDataProvider
-					initialFormData={formData}
+					initialFormData={data?.submission}
 					initialPatientData={patientData}
 					initialAppointmentData={appointmentData}
 				>
-					<RegistrationForm />
+					<Form />
 				</FormDataProvider>
 			);
 
@@ -109,6 +114,16 @@ const PDFFormPreviewModal: React.FC<PDFFormPreviewModalProps> = ({
 			);
 		}
 	};
+
+	if (isLoading) {
+		return (
+			<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+				<div className="bg-white rounded-lg shadow-xl w-full max-w-5xl h-[85vh] flex items-center justify-center">
+					<p className="text-gray-500">Lade PDF...</p>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -149,11 +164,11 @@ const PDFFormPreviewModal: React.FC<PDFFormPreviewModalProps> = ({
 				<div className="flex-1 overflow-hidden">
 					<PDFViewer style={{ width: "100%", height: "100%" }}>
 						<FormDataProvider
-							initialFormData={formData}
+							initialFormData={data?.submission}
 							initialPatientData={patientData}
 							initialAppointmentData={appointmentData}
 						>
-							<RegistrationForm />
+							<Form />
 						</FormDataProvider>
 					</PDFViewer>
 				</div>

@@ -15,7 +15,7 @@ export const PatientSchema = z.object({
 	street: z.string(),
 	house_number: z.string(),
 	postal_code: z.string(),
-	city: z.string().nullable(),
+	city: z.string(),
 	country: z.string().nullable(),
 	insurance: z.object({
 		id: z.string().uuid(),

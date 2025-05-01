@@ -28,7 +28,7 @@ export const FormContextProvider = <T,>({
 
 	const [data, setData] = useState<T | null>(null);
 	const [form, setForm] = useState<any>(null);
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [mutateFn, setMutateFn] = useState<((newData?: T) => void) | null>(
 		null
 	);
