@@ -15,6 +15,7 @@ import { FormType } from "../../types/constants";
 interface BiopsyFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean;
 }
 
 export interface BiopsyFormDataContextType {
@@ -25,6 +26,7 @@ export interface BiopsyFormDataContextType {
 export const BiopsyFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true,
 }: BiopsyFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<BiopsyFormDataContextType>();
@@ -79,12 +81,15 @@ export const BiopsyFormData = ({
 		},
 	});
 
-	const transformFormData = useCallback((form: BiopsyFormType) => {
-		if (!form) return null;
+	const transformFormData = useCallback(
+		(form: BiopsyFormType) => {
+			if (!form) return null;
 
-		// cast boolean fields to string
-		return boolToString(BiopsyFormSchema, form);
-	}, []);
+			// cast boolean fields to string if stringify is true
+			return stringify ? boolToString(BiopsyFormSchema, form) : form;
+		},
+		[stringify]
+	);
 
 	const submission = useMemo(() => {
 		return rawSubmission ? transformFormData(rawSubmission) : null;
@@ -93,12 +98,12 @@ export const BiopsyFormData = ({
 	// Mutation for saving form data
 	const saveMutation = useMutation({
 		mutationFn: async (formData: any) => {
-			// Convert string boolean values to actual booleans
+			// Convert string boolean values to actual booleans if stringify is true
 			const submissionData = {
 				...formData,
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				...stringToBool(BiopsyFormSchema, formData),
+				...(stringify ? stringToBool(BiopsyFormSchema, formData) : {}),
 			};
 
 			if (submission) {

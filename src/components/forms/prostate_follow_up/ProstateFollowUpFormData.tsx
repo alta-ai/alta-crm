@@ -15,6 +15,7 @@ import { FormType } from "../../types/constants";
 interface ProstateFollowUpFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean; // added
 }
 
 export interface ProstateFollowUpFormDataContextType {
@@ -25,6 +26,7 @@ export interface ProstateFollowUpFormDataContextType {
 export const ProstateFollowUpFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true, // added default
 }: ProstateFollowUpFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<ProstateFollowUpFormDataContextType>();
@@ -85,12 +87,15 @@ export const ProstateFollowUpFormData = ({
 		},
 	});
 
-	const transformFormData = useCallback((form: ProstateFollowUpFormType) => {
-		if (!form) return null;
+	const transformFormData = useCallback(
+		(form: ProstateFollowUpFormType) => {
+			if (!form) return null;
 
-		// cast boolean fields to string
-		return boolToString(ProstateFollowUpFormSchema, form);
-	}, []);
+			// cast boolean fields to string if stringify is true
+			return stringify ? boolToString(ProstateFollowUpFormSchema, form) : form;
+		},
+		[stringify]
+	);
 
 	const submission = useMemo(() => {
 		return rawSubmission ? transformFormData(rawSubmission) : null;
@@ -99,12 +104,14 @@ export const ProstateFollowUpFormData = ({
 	// Mutation for saving form data
 	const saveMutation = useMutation({
 		mutationFn: async (formData: ProstateFollowUpFormType) => {
-			// Convert string boolean values to actual booleans
+			// Convert string boolean values to actual booleans if stringify is true
 			const submissionData = {
 				...formData,
 				patient_id: appointment?.patient.id,
 				appointment_id: appointment.id,
-				...stringToBool(ProstateFollowUpFormSchema, formData),
+				...(stringify
+					? stringToBool(ProstateFollowUpFormSchema, formData)
+					: {}),
 			};
 
 			if (rawSubmission) {

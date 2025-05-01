@@ -15,6 +15,7 @@ import { FormType } from "../../types/constants";
 interface RegistrationBGFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean;
 }
 
 export interface RegistrationBGFormDataContextType {
@@ -25,6 +26,7 @@ export interface RegistrationBGFormDataContextType {
 export const RegistrationBGFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true,
 }: RegistrationBGFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<RegistrationBGFormDataContextType>();
@@ -79,12 +81,15 @@ export const RegistrationBGFormData = ({
 		},
 	});
 
-	const transformFormData = useCallback((form: RegistrationBGFormType) => {
-		if (!form) return null;
+	const transformFormData = useCallback(
+		(form: RegistrationBGFormType) => {
+			if (!form) return null;
 
-		// cast boolean fields to string
-		return boolToString(RegistrationBGFormSchema, form);
-	}, []);
+			// cast boolean fields to string if stringify is true
+			return stringify ? boolToString(RegistrationBGFormSchema, form) : form;
+		},
+		[stringify]
+	);
 
 	const submission = useMemo(() => {
 		return rawSubmission ? transformFormData(rawSubmission) : null;
@@ -98,7 +103,7 @@ export const RegistrationBGFormData = ({
 				...formData,
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				...stringToBool(RegistrationBGFormSchema, formData),
+				...(stringify ? stringToBool(RegistrationBGFormSchema, formData) : {}),
 			};
 
 			if (submission) {

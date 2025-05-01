@@ -15,6 +15,7 @@ import { FormType } from "../../types/constants";
 interface CTFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean; // added
 }
 
 export interface CTFormDataContextType {
@@ -25,6 +26,7 @@ export interface CTFormDataContextType {
 export const CTFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true, // added default
 }: CTFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<CTFormDataContextType>();
@@ -79,12 +81,15 @@ export const CTFormData = ({
 		},
 	});
 
-	const transformFormData = useCallback((form: CTFormType) => {
-		if (!form) return null;
+	const transformFormData = useCallback(
+		(form: CTFormType) => {
+			if (!form) return null;
 
-		// cast boolean fields to string
-		return boolToString(CTFormSchema, form);
-	}, []);
+			// cast boolean fields to string if stringify is true
+			return stringify ? boolToString(CTFormSchema, form) : form;
+		},
+		[stringify]
+	);
 
 	const submission = useMemo(() => {
 		return rawSubmission ? transformFormData(rawSubmission) : null;
@@ -98,7 +103,7 @@ export const CTFormData = ({
 				...formData,
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				...stringToBool(CTFormSchema, formData),
+				...(stringify ? stringToBool(CTFormSchema, formData) : {}),
 			};
 
 			if (submission) {

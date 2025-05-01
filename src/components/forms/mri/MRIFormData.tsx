@@ -15,6 +15,7 @@ import { FormType } from "../../types/constants";
 interface MRIFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean; // added
 }
 
 export interface MRIFormDataContextType {
@@ -25,6 +26,7 @@ export interface MRIFormDataContextType {
 export const MRIFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true, // added default
 }: MRIFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<MRIFormDataContextType>();
@@ -79,12 +81,15 @@ export const MRIFormData = ({
 		},
 	});
 
-	const transformFormData = useCallback((form: MRIFormType) => {
-		if (!form) return null;
+	const transformFormData = useCallback(
+		(form: MRIFormType) => {
+			if (!form) return null;
 
-		// cast boolean fields to string
-		return boolToString(MRIFormSchema, form);
-	}, []);
+			// cast boolean fields to string if stringify is true
+			return stringify ? boolToString(MRIFormSchema, form) : form;
+		},
+		[stringify]
+	);
 
 	const submission = useMemo(() => {
 		return rawSubmission ? transformFormData(rawSubmission) : null;
@@ -98,7 +103,7 @@ export const MRIFormData = ({
 				...formData,
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				...stringToBool(MRIFormSchema, formData),
+				...(stringify ? stringToBool(MRIFormSchema, formData) : {}),
 			};
 
 			if (submission) {

@@ -15,6 +15,7 @@ import { FormType } from "../../types/constants";
 interface MRICTFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean; // added
 }
 
 export interface MRICTFormDataContextType {
@@ -25,6 +26,7 @@ export interface MRICTFormDataContextType {
 export const MRICTFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true, // added default
 }: MRICTFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<MRICTFormDataContextType>();
@@ -79,12 +81,15 @@ export const MRICTFormData = ({
 		},
 	});
 
-	const transformFormData = useCallback((form: MRICTFormType) => {
-		if (!form) return null;
+	const transformFormData = useCallback(
+		(form: MRICTFormType) => {
+			if (!form) return null;
 
-		// cast boolean fields to string
-		return boolToString(MRICTFormSchema, form);
-	}, []);
+			// cast boolean fields to string if stringify is true
+			return stringify ? boolToString(MRICTFormSchema, form) : form;
+		},
+		[stringify]
+	);
 
 	const submission = useMemo(() => {
 		return rawSubmission ? transformFormData(rawSubmission) : null;
@@ -98,7 +103,7 @@ export const MRICTFormData = ({
 				...formData,
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				...stringToBool(MRICTFormSchema, formData),
+				...(stringify ? stringToBool(MRICTFormSchema, formData) : {}),
 			};
 
 			if (submission) {

@@ -15,6 +15,7 @@ import { FormType } from "../../types/constants";
 interface PrivacyFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean;
 }
 
 export interface PrivacyFormDataContextType {
@@ -24,6 +25,7 @@ export interface PrivacyFormDataContextType {
 export const PrivacyFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true,
 }: PrivacyFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<PrivacyFormDataContextType>();
@@ -82,7 +84,7 @@ export const PrivacyFormData = ({
 		if (!form) return null;
 
 		// cast boolean fields to string
-		return boolToString(PrivacyFormSchema, form);
+		return stringify ? boolToString(PrivacyFormSchema, form) : form;
 	}, []);
 
 	const submission = useMemo(() => {
@@ -96,7 +98,7 @@ export const PrivacyFormData = ({
 			const submissionData = {
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				...stringToBool(PrivacyFormSchema, formData),
+				...(stringify && stringToBool(PrivacyFormSchema, form)),
 			};
 
 			if (submission) {

@@ -15,6 +15,7 @@ import { FormType } from "../../types/constants";
 interface ProstateTULSAFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean; // added
 }
 
 export interface ProstateTULSAFormDataContextType {
@@ -25,6 +26,7 @@ export interface ProstateTULSAFormDataContextType {
 export const ProstateTULSAFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true, // added default
 }: ProstateTULSAFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<ProstateTULSAFormDataContextType>();
@@ -79,12 +81,15 @@ export const ProstateTULSAFormData = ({
 		},
 	});
 
-	const transformFormData = useCallback((form: ProstateTULSAFormType) => {
-		if (!form) return null;
+	const transformFormData = useCallback(
+		(form: ProstateTULSAFormType) => {
+			if (!form) return null;
 
-		// cast boolean fields to string
-		return boolToString(ProstateTULSAFormSchema, form);
-	}, []);
+			// cast boolean fields to string if stringify is true
+			return stringify ? boolToString(ProstateTULSAFormSchema, form) : form;
+		},
+		[stringify]
+	);
 
 	const submission = useMemo(() => {
 		return rawSubmission ? transformFormData(rawSubmission) : null;
@@ -98,7 +103,7 @@ export const ProstateTULSAFormData = ({
 				...formData,
 				patient_id: appointment?.patient.id,
 				appointment_id: appointment.id,
-				...stringToBool(ProstateTULSAFormSchema, formData),
+				...(stringify ? stringToBool(ProstateTULSAFormSchema, formData) : {}),
 			};
 
 			if (rawSubmission) {

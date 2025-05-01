@@ -15,6 +15,7 @@ import { FormType } from "../../types/constants";
 interface CTTherapyFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean; // added
 }
 
 export interface CTTherapyFormDataContextType {
@@ -25,6 +26,7 @@ export interface CTTherapyFormDataContextType {
 export const CTTherapyFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true, // added default
 }: CTTherapyFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<CTTherapyFormDataContextType>();
@@ -79,12 +81,15 @@ export const CTTherapyFormData = ({
 		},
 	});
 
-	const transformFormData = useCallback((form: CTTherapyFormType) => {
-		if (!form) return null;
+	const transformFormData = useCallback(
+		(form: CTTherapyFormType) => {
+			if (!form) return null;
 
-		// cast boolean fields to string
-		return boolToString(CTTherapyFormSchema, form);
-	}, []);
+			// cast boolean fields to string if stringify is true
+			return stringify ? boolToString(CTTherapyFormSchema, form) : form;
+		},
+		[stringify]
+	);
 
 	const submission = useMemo(() => {
 		return rawSubmission ? transformFormData(rawSubmission) : null;
@@ -98,7 +103,7 @@ export const CTTherapyFormData = ({
 				...formData,
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				...stringToBool(CTTherapyFormSchema, formData),
+				...(stringify ? stringToBool(CTTherapyFormSchema, formData) : {}),
 			};
 
 			if (submission) {

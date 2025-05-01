@@ -13,10 +13,12 @@ import { RegistrationFormSchema, InsuranceProviderSchema } from "../../types";
 import { format } from "date-fns";
 import { useFormContext } from "../formContext";
 import { FormType } from "../../types/constants";
+import { boolToString, stringToBool } from "../../types/utils";
 
 interface RegistrationFormDataProps {
 	appointment: Appointment;
 	formType: FormType;
+	stringify?: boolean;
 }
 
 export interface RegistrationFormDataContextType {
@@ -27,6 +29,7 @@ export interface RegistrationFormDataContextType {
 export const RegistrationFormData = ({
 	appointment,
 	formType: formType,
+	stringify = true,
 }: RegistrationFormDataProps): ReactNode => {
 	const { setIsLoading, setData, setForm, data, setMutateFn } =
 		useFormContext<RegistrationFormDataContextType>();
@@ -120,14 +123,10 @@ export const RegistrationFormData = ({
 
 		return {
 			...form,
+			...(stringify && boolToString(RegistrationFormSchema, form)),
 			birth_date: form.birth_date
 				? format(new Date(form.birth_date), "yyyy-MM-dd")
 				: "",
-			has_beihilfe: form.has_beihilfe?.toString() || "false",
-			has_transfer: form.has_transfer?.toString() || "false",
-			current_treatment: form.current_treatment?.toString() || "false",
-			send_report_to_doctor: form.send_report_to_doctor?.toString() || "false",
-			doctor_recommendation: form.doctor_recommendation?.toString() || "false",
 		};
 	}, []);
 
@@ -143,11 +142,7 @@ export const RegistrationFormData = ({
 				...formData,
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				has_beihilfe: formData.has_beihilfe === "true",
-				has_transfer: formData.has_transfer === "true",
-				current_treatment: formData.current_treatment === "true",
-				doctor_recommendation: formData.doctor_recommendation === "true",
-				send_report_to_doctor: formData.send_report_to_doctor === "true",
+				...(stringify && stringToBool(RegistrationFormSchema, form)),
 			});
 
 			// Remove populated fields
