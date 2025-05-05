@@ -164,7 +164,7 @@ export const CTTherapyForm = ({ onComplete, readOnly }: CTTherapyFormProps) => {
 						<input
 							type="number"
 							step="0.01"
-							{...register("height_in_cm", {
+							{...register("height", {
 								required: "Größe ist erforderlich",
 								valueAsNumber: true,
 								min: { value: 0, message: "Größe muss größer als 0 sein" },
@@ -174,9 +174,9 @@ export const CTTherapyForm = ({ onComplete, readOnly }: CTTherapyFormProps) => {
 							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 							disabled={readOnly}
 						/>
-						{errors.height_in_cm && (
+						{errors.height && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.height_in_cm.message}
+								{errors.height.message}
 							</p>
 						)}
 					</div>
@@ -187,7 +187,7 @@ export const CTTherapyForm = ({ onComplete, readOnly }: CTTherapyFormProps) => {
 						</label>
 						<input
 							type="number"
-							{...register("weight_in_kg", {
+							{...register("weight", {
 								required: "Gewicht ist erforderlich",
 								valueAsNumber: true,
 								min: { value: 0, message: "Gewicht muss größer als 0 sein" },
@@ -200,9 +200,9 @@ export const CTTherapyForm = ({ onComplete, readOnly }: CTTherapyFormProps) => {
 							placeholder="Bitte in kg und ohne Nachkommastelle angeben."
 							disabled={readOnly}
 						/>
-						{errors.weight_in_kg && (
+						{errors.weight && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.weight_in_kg.message}
+								{errors.weight.message}
 							</p>
 						)}
 					</div>
@@ -366,9 +366,9 @@ export const CTTherapyForm = ({ onComplete, readOnly }: CTTherapyFormProps) => {
 						<div className="relative flex items-start">
 							<div className="flex items-center h-5">
 								<input
-									id="confirms_not_pregnant"
+									id="pregnant"
 									type="checkbox"
-									{...register("confirms_not_pregnant", {
+									{...register("pregnant", {
 										required:
 											"Bitte bestätigen Sie, dass bei Ihnen keine Schwangerschaft besteht",
 									})}
@@ -377,10 +377,7 @@ export const CTTherapyForm = ({ onComplete, readOnly }: CTTherapyFormProps) => {
 								/>
 							</div>
 							<div className="ml-3 text-sm">
-								<label
-									htmlFor="confirms_not_pregnant"
-									className="font-medium text-gray-700"
-								>
+								<label htmlFor="pregnant" className="font-medium text-gray-700">
 									Ich bestätige hiermit, dass bei mir z. Zt. keine
 									Schwangerschaft besteht. Eine fragliche Schwangerschaft
 									während der Therapie werde ich sofort mitteilen. Mir ist eine
@@ -389,10 +386,8 @@ export const CTTherapyForm = ({ onComplete, readOnly }: CTTherapyFormProps) => {
 								</label>
 							</div>
 						</div>
-						{errors.confirms_not_pregnant && (
-							<p className="text-red-500 text-sm">
-								{errors.confirms_not_pregnant.message}
-							</p>
+						{errors.pregnant && (
+							<p className="text-red-500 text-sm">{errors.pregnant.message}</p>
 						)}
 
 						<div>
@@ -410,6 +405,33 @@ export const CTTherapyForm = ({ onComplete, readOnly }: CTTherapyFormProps) => {
 							{errors.last_menstruation && (
 								<p className="text-red-500 text-sm mt-1">
 									{errors.last_menstruation.message}
+								</p>
+							)}
+						</div>
+
+						<div>
+							<label className="block text-sm font-medium text-gray-700">
+								Stillen Sie zurzeit? *
+							</label>
+							<div className="mt-2 space-x-4">
+								{["Ja", "Nein"].map((option) => (
+									<label key={option} className="inline-flex items-center">
+										<input
+											type="radio"
+											value={option === "Ja" ? "true" : "false"}
+											{...register("breastfeeding", {
+												required: "Diese Angabe ist erforderlich",
+											})}
+											className="form-radio h-4 w-4 text-blue-600"
+											disabled={readOnly}
+										/>
+										<span className="ml-2 text-gray-700">{option}</span>
+									</label>
+								))}
+							</div>
+							{errors.breastfeeding && (
+								<p className="text-red-500 text-sm mt-1">
+									{errors.breastfeeding.message}
 								</p>
 							)}
 						</div>

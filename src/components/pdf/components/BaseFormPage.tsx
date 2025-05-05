@@ -2,7 +2,11 @@ import { Page, View, Text } from "@react-pdf/renderer";
 import { Footer } from "./";
 import styling from "../styles";
 import { useFormData } from "../formDataContext";
-import { deriveDisplayedFullName, formatDateString } from "../utils";
+import {
+	deriveDisplayedFullName,
+	formatDate,
+	formatDateString,
+} from "../utils";
 
 const styles = {
 	position: "relative" as const,
@@ -22,7 +26,7 @@ const styles = {
 	},
 	PatientID: {
 		position: "absolute" as const,
-		top: 0,
+		top: -5,
 		right: 0,
 		fontSize: 9,
 	},
@@ -49,22 +53,31 @@ const BaseFormPage: React.FC<BaseFormPageProps> = ({
 		<Page style={{ ...styling.page, ...styles, ...customStyle }} size="A4">
 			<View
 				render={({ pageNumber }) =>
-					withPatientInfo && pageNumber > 1 && patientData?.patientNumber ? (
-						<Text
-							style={{
-								...styles.PatientID,
-								marginTop: "1px",
-								marginRight: "1px",
-							}}
-						>
-							{deriveDisplayedFullName({
-								title: patientData?.title,
-								name: patientData?.name,
-								surname: patientData?.surname,
-							})}{" "}
-							(Pat-ID: {patientData.patientNumber}) - Untersuchung vom{" "}
-							{formatDateString(appointmentData?.date)}
-						</Text>
+					withPatientInfo && pageNumber > 1 && patientData?.patient_number ? (
+						<>
+							<View
+								style={{
+									...styles.PatientID,
+									display: "flex",
+									marginTop: "1px",
+									marginRight: "1px",
+								}}
+							>
+								<Text>
+									{deriveDisplayedFullName({
+										title: patientData?.title || undefined,
+										name: patientData?.first_name,
+										surname: patientData?.last_name,
+									})}{" "}
+									(Pat-ID: {patientData.patient_number})
+								</Text>
+								<View style={{ alignItems: "flex-end" }}>
+									<Text>
+										Untersuchung vom {formatDate(appointmentData?.start_time)}
+									</Text>
+								</View>
+							</View>
+						</>
 					) : (
 						<Text />
 					)

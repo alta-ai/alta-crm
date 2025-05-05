@@ -162,13 +162,18 @@ export const RegistrationBGFormData = ({
 		}
 	}, [isLoadingForm, isLoadingSubmission]);
 
+	const createInitialData: () => RegistrationBGFormType = () => {
+		return {
+			...extract(RegistrationBGFormSchema, appointment.patient),
+			...submission,
+		} as RegistrationBGFormType;
+	};
+
 	useEffect(() => {
 		if (!isLoadingSubmission) {
 			setData({
 				...data,
-				submission: (submission || {
-					...extract(RegistrationBGFormSchema, appointment.patient),
-				}) as RegistrationBGFormType,
+				submission: createInitialData(),
 				patient: appointment.patient as Patient,
 			});
 		}

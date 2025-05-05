@@ -40,6 +40,7 @@ import {
 	PrivacyForm as PrivacyFormPDF,
 	BiopsyForm as BiopsyFormPDF,
 	CTForm as CTFormPDF,
+	CTTherapyForm as CTTherapyFormPDF,
 } from "../../../pdf";
 
 type FormMapEntry = {
@@ -83,6 +84,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: CTTherapyFormData,
 		editForm: CTTherapyForm,
 		label: "CT-Therapie Aufklärungsbogen",
+		pdfForm: CTTherapyFormPDF,
 		tableName: "ct_therapy_form_submissions",
 	},
 	[FormType.PROSTATE_NEW_PATIENT]: {

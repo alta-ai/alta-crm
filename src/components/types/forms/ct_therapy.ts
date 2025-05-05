@@ -28,12 +28,13 @@ export const CTTherapyFormSchema = z.object({
 	which_anticoagulants: z.string().nullable(),
 
 	// Physical measurements
-	height_in_cm: z.number().nullable(),
-	weight_in_kg: z.number().nullable(),
+	height: z.number().nullable(),
+	weight: z.number().nullable(),
 
 	// Female-specific information
-	confirms_not_pregnant: z.boolean().nullable(),
+	pregnant: z.boolean().nullable(),
 	last_menstruation: z.string().nullable(),
+	breastfeeding: z.boolean().nullable(),
 });
 
 // Infer TypeScript type from the Zod schema
@@ -64,10 +65,11 @@ export const defaultCTTherapyForm: Partial<CTTherapyForm> = {
 	which_anticoagulants: null,
 
 	// Physical measurements
-	height_in_cm: null,
-	weight_in_kg: null,
+	height: null,
+	weight: null,
 
 	// Female-specific information
-	confirms_not_pregnant: null,
+	pregnant: null,
 	last_menstruation: null,
+	breastfeeding: null,
 };

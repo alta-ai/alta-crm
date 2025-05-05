@@ -72,7 +72,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 
 	return (
 		<>
-			<BaseFormPage withFooter={false} withPatientInfo={!onlyForMen}>
+			<BaseFormPage withFooter={true} withPatientInfo={!onlyForMen}>
 				<Header>
 					<View style={styles.HeaderWrapper}>
 						<Text style={styles.Heading}>CT Aufklärungsbogen</Text>
@@ -136,7 +136,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 				<Notes customStyling={{ marginTop: "16px", height: "300px" }} />
 			</BaseFormPage>
 
-			<BaseFormPage withFooter={false}>
+			<BaseFormPage withFooter={true}>
 				<Paragraph heading={"Relevante Informationen für die Untersuchung"}>
 					<View style={styles.QuestionBox}>
 						<Question
@@ -554,7 +554,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 					</View>
 				)}
 
-				<Text style={{ fontWeight: "bold", marginBottom: "10px" }}>
+				<Text style={{ fontWeight: "bold" }}>
 					Den Aufklärungsbogen habe ich gelesen und verstanden.
 				</Text>
 
