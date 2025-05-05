@@ -9,7 +9,7 @@ import {
 	RegistrationBGFormSchema,
 } from "../../types";
 import { useFormContext } from "../formContext";
-import { boolToString, stringToBool } from "../../types/utils";
+import { boolToString, extract, stringToBool } from "../../types/utils";
 import { FormType } from "../../types/constants";
 
 interface RegistrationBGFormDataProps {
@@ -166,7 +166,9 @@ export const RegistrationBGFormData = ({
 		if (!isLoadingSubmission) {
 			setData({
 				...data,
-				submission: submission as RegistrationBGFormType,
+				submission: (submission || {
+					...extract(RegistrationBGFormSchema, appointment.patient),
+				}) as RegistrationBGFormType,
 				patient: appointment.patient as Patient,
 			});
 		}
