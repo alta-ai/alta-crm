@@ -9,7 +9,7 @@ import {
 	PrivacyFormSchema,
 } from "../../types";
 import { useFormContext } from "../formContext";
-import { boolToString, stringToBool } from "../../types/utils";
+import { boolToString, extract, stringToBool } from "../../types/utils";
 import { FormType } from "../../types/constants";
 
 interface PrivacyFormDataProps {
@@ -98,7 +98,7 @@ export const PrivacyFormData = ({
 			const submissionData = {
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				...(stringify && stringToBool(PrivacyFormSchema, form)),
+				...(stringify && stringToBool(PrivacyFormSchema, formData)),
 			};
 
 			if (submission) {
@@ -152,11 +152,18 @@ export const PrivacyFormData = ({
 		}
 	}, [isLoadingForm, isLoadingSubmission]);
 
+	const createInitialData: () => PrivacyFormType = () => {
+		return {
+			...extract(PrivacyFormSchema, appointment.patient),
+			...submission,
+		} as PrivacyFormType;
+	};
+
 	useEffect(() => {
 		if (!isLoadingSubmission) {
 			setData({
 				...data,
-				submission: submission as any,
+				submission: createInitialData(),
 			});
 		}
 
