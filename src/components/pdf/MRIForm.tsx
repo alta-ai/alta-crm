@@ -267,7 +267,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 				<SignatureDoc customStyle={{ marginTop: "3px", fontSize: "9px" }} />
 			</BaseFormPage>
 
-			<BaseFormPage withFooter={false}>
+			<BaseFormPage withFooter={false} customStyle={styles.Page}>
 				<Paragraph
 					heading={
 						"Informationen zur Untersuchung: " +

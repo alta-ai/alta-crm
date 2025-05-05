@@ -20,7 +20,7 @@ import { useFormData } from "./formDataContext";
 import { FormProps, PrivacyForm as PrivacyFormData } from "../types";
 
 const styles = {
-	Page: { fontSize: 10 },
+	Page: { fontSize: 11 },
 	HeaderWrapper: {
 		display: "flex" as const,
 		flexDirection: "column" as const,
@@ -81,7 +81,7 @@ export const PrivacyForm: React.FC<FormProps> = (props) => {
 
 	return (
 		<Document onRender={props?.onRender}>
-			<BaseFormPage withFooter={true} customStyle={styles.Page}>
+			<BaseFormPage withFooter={false} customStyle={styles.Page}>
 				<Header>
 					<View style={styles.HeaderWrapper}>
 						<Text style={styles.Heading}>Datenschutzformular</Text>
