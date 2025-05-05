@@ -38,6 +38,7 @@ import {
 	RegistrationForm as RegistrationFormPDF,
 	RegistrationBGForm as RegistrationBGFormPDF,
 	PrivacyForm as PrivacyFormPDF,
+	BiopsyForm as BiopsyFormPDF,
 } from "../../../pdf";
 
 type FormMapEntry = {
@@ -123,6 +124,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: BiopsyFormData,
 		editForm: BiopsyForm,
 		label: "Biopsieformular",
+		pdfForm: BiopsyFormPDF,
 		tableName: "biopsy_form_submissions",
 	},
 };

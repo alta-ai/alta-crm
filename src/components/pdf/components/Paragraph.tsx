@@ -27,7 +27,7 @@ const Paragraph: React.FC<ParagraphProps> = ({
 	text,
 	heading,
 	children,
-	lineHeight = 1.5,
+	lineHeight = 1.0,
 	customStyle,
 }) => {
 	return (

@@ -14,7 +14,7 @@ const styles = {
 		marginRight: "5px",
 	},
 	Signature: {
-		height: "30px",
+		height: "32px",
 		backgroundColor: "lightgrey",
 		Inner: {
 			height: "100%",

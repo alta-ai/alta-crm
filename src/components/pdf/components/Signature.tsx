@@ -34,7 +34,7 @@ export const SignatureString = () => {
 	const { formData, appointmentData } = useFormData<WithSignature>();
 	return (
 		<View style={styling.Row as any} debug={false}>
-			<Text style={{ marginTop: "10px" }}>
+			<Text style={{ marginTop: "8px" }}>
 				{`${
 					formatDate(formData?.signature?.signedAt) ||
 					formatDate(appointmentData?.start_time)

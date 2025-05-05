@@ -22,13 +22,18 @@ export const BiopsyForm = ({ onComplete, readOnly }: BiopsyFormProps) => {
 	const [saveSuccess, setSaveSuccess] = useState(false);
 	const [currentStep, setCurrentStep] = useState(1);
 	const totalSteps = 4;
+	const [stepValidationErrors, setStepValidationErrors] = useState<string[]>(
+		[]
+	);
 
 	const {
 		register,
 		handleSubmit,
 		watch,
 		control,
-		setValue, // <-- Added setValue here
+		setValue,
+		getValues,
+		trigger, // <-- Added trigger for validation
 		formState: { errors },
 	} = useForm<BiopsyFormType>({
 		defaultValues: data?.submission || defaultBiopsyForm,
@@ -130,39 +135,43 @@ export const BiopsyForm = ({ onComplete, readOnly }: BiopsyFormProps) => {
 		required = false
 	) => {
 		return (
-			<div className="space-y-2">
-				<label className="block text-sm font-medium text-gray-700">
-					{label} {required && "*"}
-				</label>
-				<div className="space-x-4">
-					{options.map((option) => (
-						<label key={option} className="inline-flex items-center">
-							<input
-								type="radio"
-								value={
+			<Controller
+				key={`${name}-${currentStep}`} // Add key to force re-render when step changes
+				name={name as any}
+				control={control}
+				rules={required ? { required: `${label} ist erforderlich` } : {}}
+				render={({ field, fieldState: { error } }) => (
+					<div className="space-y-2">
+						<label className="block text-sm font-medium text-gray-700">
+							{label} {required && "*"}
+						</label>
+						<div className="space-x-4">
+							{options.map((option) => {
+								const value =
 									option === "Ja"
 										? "true"
 										: option === "Nein"
 										? "false"
-										: option
-								}
-								{...register(
-									name as any,
-									required ? { required: `${label} ist erforderlich` } : {}
-								)}
-								className="form-radio h-4 w-4 text-blue-600"
-								disabled={readOnly}
-							/>
-							<span className="ml-2 text-gray-700">{option}</span>
-						</label>
-					))}
-				</div>
-				{errors[name] && (
-					<p className="text-red-500 text-sm">
-						{String(errors[name]?.message)}
-					</p>
+										: option;
+								return (
+									<label key={option} className="inline-flex items-center">
+										<input
+											type="radio"
+											value={value}
+											checked={field.value === value}
+											onChange={(e) => field.onChange(e.target.value)}
+											className="form-radio h-4 w-4 text-blue-600"
+											disabled={readOnly}
+										/>
+										<span className="ml-2 text-gray-700">{option}</span>
+									</label>
+								);
+							})}
+						</div>
+						{error && <p className="text-red-500 text-sm">{error.message}</p>}
+					</div>
 				)}
-			</div>
+			/>
 		);
 	};
 
@@ -182,6 +191,16 @@ export const BiopsyForm = ({ onComplete, readOnly }: BiopsyFormProps) => {
 					<Controller
 						name={fieldName as any}
 						control={control}
+						rules={{
+							required: required
+								? "Bitte wählen Sie mindestens eine Option"
+								: undefined,
+							validate: required
+								? (value) =>
+										(Array.isArray(value) && value.length > 0) ||
+										"Bitte wählen Sie mindestens eine Option"
+								: undefined,
+						}}
 						render={({ field }) => (
 							<>
 								{options.map((option) => (
@@ -197,7 +216,7 @@ export const BiopsyForm = ({ onComplete, readOnly }: BiopsyFormProps) => {
 													field.onChange([...values, option.value]);
 												} else {
 													field.onChange(
-														values.filter((v) => v !== option.value)
+														values.filter((v: string) => v !== option.value)
 													);
 												}
 											}}
@@ -225,10 +244,74 @@ export const BiopsyForm = ({ onComplete, readOnly }: BiopsyFormProps) => {
 		);
 	};
 
-	const nextStep = () => {
-		if (currentStep < totalSteps) {
+	const nextStep = async () => {
+		let fieldsToValidate: (keyof BiopsyFormType)[] = [];
+		switch (currentStep) {
+			case 1:
+				fieldsToValidate = ["consent_pelvis_ct"];
+				break;
+			case 2:
+				// No required fields in step 2
+				fieldsToValidate = [];
+				break;
+			case 3:
+				fieldsToValidate = [
+					"has_disorders_of_metabolism_or_organs",
+					"risk_factors",
+					"has_acute_infectious_disease",
+					"has_infectious_disease",
+				];
+				if (hasDisordersOfMetabolismOrOrgans === "true")
+					fieldsToValidate.push("which_disorders");
+				if ((watch("risk_factors") || []).includes("weitere Risikofaktoren"))
+					fieldsToValidate.push("further_risk_factors");
+				if (hasAcuteInfectiousDisease === "true")
+					fieldsToValidate.push("which_acute_infectious_disease");
+				if (hasInfectiousDisease === "true")
+					fieldsToValidate.push("which_infectious_disease");
+				break;
+			case 4:
+				fieldsToValidate = [
+					"taking_blood_thinning_medication",
+					"stopped_medication",
+					"taking_regular_medication",
+					"taken_aspirin_or_blood_thinner",
+				];
+				if (takingBloodThinningMedication === "true")
+					fieldsToValidate.push(
+						"which_blood_thinning_medication",
+						"since_when_taking_medication"
+					);
+				if (watch("stopped_medication") === "Ja, abgesetzt")
+					fieldsToValidate.push("when_stopped_medication_in_days");
+				if (watch("stopped_medication") === "Ja, umgestellt")
+					fieldsToValidate.push(
+						"which_new_medication",
+						"when_adapted_medication_in_days"
+					);
+				if (takingRegularMedication === "true")
+					fieldsToValidate.push("which_regular_medication");
+				if (takenAspirinOrBloodThinner === "true")
+					fieldsToValidate.push("when_taken_aspirin_or_blood_thinner");
+				break;
+			default:
+				fieldsToValidate = [];
+		}
+		if (fieldsToValidate.length === 0) {
 			setCurrentStep(currentStep + 1);
 			window.scrollTo(0, 0);
+			return;
+		}
+		const isStepValid = await trigger(fieldsToValidate);
+		if (isStepValid) {
+			setStepValidationErrors([]);
+			setCurrentStep(currentStep + 1);
+			window.scrollTo(0, 0);
+		} else {
+			const errorMessages = fieldsToValidate
+				.filter((field) => errors[field])
+				.map((field) => errors[field]?.message || `${field} is required`);
+			setStepValidationErrors(errorMessages);
 		}
 	};
 
@@ -273,6 +356,8 @@ export const BiopsyForm = ({ onComplete, readOnly }: BiopsyFormProps) => {
 
 	// Render different form sections based on current step
 	const renderFormStep = () => {
+		console.log(getValues());
+
 		switch (currentStep) {
 			case 1:
 				return (
@@ -887,6 +972,15 @@ export const BiopsyForm = ({ onComplete, readOnly }: BiopsyFormProps) => {
 			</div>
 
 			{renderFormStep()}
+
+			{/* Display step validation errors */}
+			{stepValidationErrors.length > 0 && (
+				<div className="text-red-500 text-sm">
+					{stepValidationErrors.map((err, idx) => (
+						<p key={idx}>{err}</p>
+					))}
+				</div>
+			)}
 
 			{/* Navigation buttons */}
 			<div className="flex justify-between mt-6">

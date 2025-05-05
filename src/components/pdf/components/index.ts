@@ -9,4 +9,7 @@ export { default as Footer } from "./Footer";
 export { default as Notes } from "./Notes";
 export { default as BoldText } from "./BoldText";
 export { default as SignatureDoc } from "./SignatureDoc";
+export { default as SignatureAlt } from "./SignatureAlt";
 export { PatientInfoHeader, PatientInfoHeaderSmall } from "./PatientInfoHeader";
+export { default as BulletPoint } from "./BulletPoint";
+export { default as Listing } from "./Listing";

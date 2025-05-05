@@ -62,36 +62,6 @@ export const RegistrationBGForm = ({
 		}
 	}, [data?.submission, currentStep]);
 
-	// Preserve form values when switching between steps
-	// const preserveFormData = () => {
-	// 	const formValues = getValues();
-
-	// 	// Ensure birth_date is properly formatted
-	// 	if (formValues.birth_date && formValues.birth_date instanceof Date) {
-	// 		const birthDate = formValues.birth_date;
-	// 		// Check if the date is valid (not NaN)
-	// 		console.log(birthDate);
-	// 		if (!isNaN(birthDate.getTime())) {
-	// 			setValue("birth_date", birthDate.toISOString().substring(0, 10) as any);
-	// 		}
-	// 	}
-
-	// 	// Ensure datetime_of_accident is properly formatted
-	// 	if (
-	// 		formValues.datetime_of_accident &&
-	// 		formValues.datetime_of_accident instanceof Date
-	// 	) {
-	// 		const accidentDate = formValues.datetime_of_accident;
-	// 		// Check if the date is valid (not NaN)
-	// 		if (!isNaN(accidentDate.getTime())) {
-	// 			setValue(
-	// 				"datetime_of_accident",
-	// 				accidentDate.toISOString().substring(0, 10) as any
-	// 			);
-	// 		}
-	// 	}
-	// };
-
 	const onFormSubmit = async (data: RegistrationBGFormType) => {
 		try {
 			setIsSaving(true);
