@@ -41,10 +41,10 @@ export const CTFormData = ({
 		isLoading: isLoadingSubmission,
 		refetch: refetchSubmission,
 	} = useQuery({
-		queryKey: ["c_form_submissions", appointment.id, refreshKey],
+		queryKey: ["ct_form_submissions", appointment.id, refreshKey],
 		queryFn: async () => {
 			const { data, error } = await supabase
-				.from("c_form_submissions")
+				.from("ct_form_submissions")
 				.select(
 					`
             *
@@ -109,7 +109,7 @@ export const CTFormData = ({
 			if (submission) {
 				// Update existing submission
 				const { error } = await supabase
-					.from("c_form_submissions")
+					.from("ct_form_submissions")
 					.update(submissionData)
 					.eq("id", submission.id);
 
@@ -120,7 +120,7 @@ export const CTFormData = ({
 			} else {
 				// Create new submission
 				const { error } = await supabase
-					.from("c_form_submissions")
+					.from("ct_form_submissions")
 					.insert([submissionData]);
 
 				if (error) {
@@ -132,11 +132,11 @@ export const CTFormData = ({
 		onSuccess: async () => {
 			// Invalidate relevant queries
 			queryClient.invalidateQueries({
-				queryKey: ["c_form_submissions", appointment.id, refreshKey],
+				queryKey: ["ct_form_submissions", appointment.id, refreshKey],
 			});
 
 			queryClient.refetchQueries({
-				queryKey: ["c_form_submissions", appointment.id],
+				queryKey: ["ct_form_submissions", appointment.id],
 			});
 
 			setRefreshKey(refreshKey + 1);
