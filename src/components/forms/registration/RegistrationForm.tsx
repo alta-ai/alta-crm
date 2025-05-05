@@ -33,9 +33,11 @@ export const RegistrationForm = ({
 
 	// Watch fields for conditional rendering
 	const insuranceType = watch("insurance_type");
-	const doctorRecommendation = watch("doctor_recommendation");
-	const currentTreatment = watch("current_treatment");
-	const hasTransfer = watch("has_transfer");
+	const doctorRecommendation = watch(
+		"doctor_recommendation"
+	) as unknown as string;
+	const currentTreatment = watch("current_treatment") as unknown as string;
+	const hasTransfer = watch("has_transfer") as unknown as string;
 	const foundThroughDoctor = watch("found_through");
 
 	const onFormSubmit = async (data: RegistrationFormType) => {
@@ -487,7 +489,7 @@ export const RegistrationForm = ({
 					)}
 				</div>
 
-				{currentTreatment && (
+				{currentTreatment === "true" && (
 					<div>
 						<label className="block text-sm font-medium text-gray-700">
 							Welche Empfehlung haben Sie von Ihrem Urologen erhalten?
@@ -550,7 +552,7 @@ export const RegistrationForm = ({
 					)}
 				</div>
 
-				{doctorRecommendation && (
+				{doctorRecommendation === "true" && (
 					<div>
 						<label className="block text-sm font-medium text-gray-700">
 							Wie heißt Ihr behandelnder Arzt? *
@@ -602,7 +604,7 @@ export const RegistrationForm = ({
 						)}
 					</div>
 
-					{hasTransfer && (
+					{hasTransfer === "true" && (
 						<div className="bg-blue-50 border-l-4 border-blue-500 p-4">
 							<div className="flex">
 								<Info className="h-6 w-6 text-blue-500 mr-2" />

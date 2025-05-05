@@ -125,3 +125,25 @@ export function stringToBool<T extends z.ZodObject<any>>(
 
 	return result;
 }
+
+/**
+ * Extracts keys from a JavaScript object based on a Zod schema
+ *
+ * @param schema A Zod object schema
+ * @param data A JavaScript object to filter
+ * @returns A new object containing only the keys specified in the schema
+ */
+export function extract<T extends z.ZodObject<any>>(
+	schema: T,
+	data: Record<string, any>
+): Partial<Record<keyof T["shape"], any>> {
+	if (data === null || typeof data !== "object") return {};
+	const result: Partial<Record<keyof T["shape"], any>> = {};
+	const shape = schema.shape;
+	for (const key in shape) {
+		if (Object.prototype.hasOwnProperty.call(data, key)) {
+			result[key as keyof T["shape"]] = data[key];
+		}
+	}
+	return result;
+}

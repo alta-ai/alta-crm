@@ -13,7 +13,7 @@ import { RegistrationFormSchema, InsuranceProviderSchema } from "../../types";
 import { format } from "date-fns";
 import { useFormContext } from "../formContext";
 import { FormType } from "../../types/constants";
-import { boolToString, stringToBool } from "../../types/utils";
+import { boolToString, extract, stringToBool } from "../../types/utils";
 
 interface RegistrationFormDataProps {
 	appointment: Appointment;
@@ -138,12 +138,12 @@ export const RegistrationFormData = ({
 	const saveMutation = useMutation({
 		mutationFn: async (formData: any) => {
 			// Convert string boolean values to actual booleans
-			const submissionData = RegistrationFormSchema.parse({
+			const submissionData = {
 				...formData,
 				appointment_id: appointment.id,
 				patient_id: appointment?.patient.id,
-				...(stringify && stringToBool(RegistrationFormSchema, form)),
-			});
+				...(stringify && stringToBool(RegistrationFormSchema, formData)),
+			};
 
 			// Remove populated fields
 			delete submissionData.insurance;
@@ -197,7 +197,7 @@ export const RegistrationFormData = ({
 	const createInitialData = () => {
 		return (
 			submission || {
-				...appointment.patient,
+				...extract(RegistrationFormSchema, appointment.patient),
 				...(appointment.patient.birth_date && {
 					birth_date: format(appointment.patient.birth_date, "yyyy-MM-dd"),
 				}),

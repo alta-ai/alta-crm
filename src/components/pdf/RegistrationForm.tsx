@@ -183,7 +183,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 								label: "Untersuchung",
 								value: formatExamination({
 									examination: appointmentData?.examination?.name,
-									bodySide: appointmentData?.body_side as string,
+									bodySide: appointmentData?.body_side,
 								}),
 								start: 100,
 								type: "text",
