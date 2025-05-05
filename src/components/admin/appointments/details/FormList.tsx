@@ -8,6 +8,7 @@ import { cn } from "../../../../lib/utils";
 import { FormType } from "../../../types/constants";
 import { FormSchema } from "../../../types";
 import type { Form } from "../../../types";
+import { FormMap } from "./formMap";
 
 interface FormListProps {
 	appointmentId: string;
@@ -73,68 +74,24 @@ const FormList: React.FC<FormListProps> = ({
 			queryKey: ["form-submissions", appointmentId],
 			queryFn: async () => {
 				// Load all form submissions for this appointment
-				const [
-					{ data: registrationData },
-					{ data: privacyData },
-					{ data: examinationData },
-					{ data: ctConsentData },
-					{ data: ctTherapyData },
-					{ data: mrtCtConsentData },
-					{ data: prostateData },
-					{ data: mriConsentData },
-				] = await Promise.all([
+				const promises = Object.values(FormMap).map((f) =>
 					supabase
-						.from("registration_form_submissions")
+						.from(f.tableName)
 						.select("*")
 						.eq("appointment_id", appointmentId)
-						.maybeSingle(),
-					supabase
-						.from("privacy_form_submissions")
-						.select("*")
-						.eq("appointment_id", appointmentId)
-						.maybeSingle(),
-					supabase
-						.from("examination_form_submissions")
-						.select("*")
-						.eq("appointment_id", appointmentId)
-						.maybeSingle(),
-					supabase
-						.from("ct_consent_form_submissions")
-						.select("*")
-						.eq("appointment_id", appointmentId)
-						.maybeSingle(),
-					supabase
-						.from("ct_therapy_form_submissions")
-						.select("*")
-						.eq("appointment_id", appointmentId)
-						.maybeSingle(),
-					supabase
-						.from("mrt_ct_consent_form_submissions")
-						.select("*")
-						.eq("appointment_id", appointmentId)
-						.maybeSingle(),
-					supabase
-						.from("prostate_questionnaire_submissions")
-						.select("*")
-						.eq("appointment_id", appointmentId)
-						.maybeSingle(),
-					supabase
-						.from("mri_consent_form_submissions")
-						.select("*")
-						.eq("appointment_id", appointmentId)
-						.maybeSingle(),
-				]);
+						.maybeSingle()
+				);
 
-				return {
-					registration: registrationData,
-					privacy: privacyData,
-					examination: examinationData,
-					ct_consent: ctConsentData,
-					ct_therapy: ctTherapyData,
-					mri_ct_consent: mrtCtConsentData,
-					prostate_questionnaire: prostateData,
-					mri_consent: mriConsentData,
-				};
+				const resolved = await Promise.all(promises);
+				const dataMap = Object.values(FormType).reduce<Record<FormType, any>>(
+					(acc, key, index) => {
+						acc[key] = resolved[index].data;
+						return acc;
+					},
+					{} as Record<FormType, any>
+				);
+
+				return dataMap;
 			},
 		});
 

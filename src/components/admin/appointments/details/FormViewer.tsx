@@ -36,6 +36,8 @@ const FormViewer: React.FC<FormViewerProps> = ({
 		);
 	}
 
+	const hasSubmission = data?.submission && data.submission.created_at;
+
 	return (
 		<div className="space-y-6">
 			<div className="bg-white p-6 rounded-lg shadow-sm">
@@ -46,7 +48,7 @@ const FormViewer: React.FC<FormViewerProps> = ({
 			</div>
 
 			<div className="bg-white p-6 rounded-lg shadow-sm">
-				{data?.submission ? (
+				{hasSubmission ? (
 					<div className="mb-6">
 						<div className="flex items-start space-x-3">
 							<Info className="h-5 w-5 text-blue-500 mt-0.5" />

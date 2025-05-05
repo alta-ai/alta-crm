@@ -310,13 +310,7 @@ const CalendarView = ({
             name
           ),
           patient:patients(
-            id,
-						patient_number,
-            first_name,
-            last_name,
-            email,
-            phone,
-						birth_date
+            *
           ),
           previous_appointment:previous_appointment_id(
             start_time

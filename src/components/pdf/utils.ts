@@ -116,10 +116,10 @@ export const deriveDisplayedCityAddress = ({
 };
 
 interface DeriveFullAddressParams {
-	street: string;
-	houseNumber: string;
-	zipCode: string;
-	city: string;
+	street: string | null;
+	houseNumber: string | null;
+	zipCode: string | null;
+	city: string | null;
 }
 
 export const deriveFullAdress = ({
@@ -135,7 +135,7 @@ export const deriveFullAdress = ({
 
 interface FormatExaminationParams {
 	examination?: string;
-	bodySide?: BodySide;
+	bodySide?: BodySide | null;
 }
 
 export const formatExamination = ({
