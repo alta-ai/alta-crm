@@ -37,7 +37,7 @@ const FORM_TYPE_LABELS: Record<string, string> = {
 	examination: "Untersuchung",
 	ct_consent: "CT Aufklärungsbogen",
 	ct_therapy: "CT-Therapie Aufklärungsbogen",
-	mrt_ct_consent: "MRT/CT Einwilligungserklärung",
+	mri_ct_consent: "MRT/CT Einwilligungserklärung",
 	prostate_questionnaire: "Prostata-Fragebogen",
 	custom: "Benutzerdefiniert",
 };

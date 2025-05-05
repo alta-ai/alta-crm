@@ -41,10 +41,10 @@ export const MRIFormData = ({
 		isLoading: isLoadingSubmission,
 		refetch: refetchSubmission,
 	} = useQuery({
-		queryKey: ["mri_consent_form_submissions", appointment.id, refreshKey],
+		queryKey: ["mri_form_submissions", appointment.id, refreshKey],
 		queryFn: async () => {
 			const { data, error } = await supabase
-				.from("mri_consent_form_submissions")
+				.from("mri_form_submissions")
 				.select(
 					`
             *
@@ -109,7 +109,7 @@ export const MRIFormData = ({
 			if (submission) {
 				// Update existing submission
 				const { error } = await supabase
-					.from("mri_consent_form_submissions")
+					.from("mri_form_submissions")
 					.update(submissionData)
 					.eq("id", submission.id);
 
@@ -120,7 +120,7 @@ export const MRIFormData = ({
 			} else {
 				// Create new submission
 				const { error } = await supabase
-					.from("mri_consent_form_submissions")
+					.from("mri_form_submissions")
 					.insert([submissionData]);
 
 				if (error) {
@@ -132,11 +132,11 @@ export const MRIFormData = ({
 		onSuccess: async () => {
 			// Invalidate relevant queries
 			queryClient.invalidateQueries({
-				queryKey: ["mri_consent_form_submissions", appointment.id, refreshKey],
+				queryKey: ["mri_form_submissions", appointment.id, refreshKey],
 			});
 
 			queryClient.refetchQueries({
-				queryKey: ["mri_consent_form_submissions", appointment.id],
+				queryKey: ["mri_form_submissions", appointment.id],
 			});
 
 			setRefreshKey(refreshKey + 1);
