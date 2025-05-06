@@ -17,7 +17,7 @@ import {
 	formatExamination,
 } from "./utils";
 import styling from "./styles";
-import { useFormData } from "./formDataContext";
+import { useFormData } from "./contexts/formDataContext";
 import { FormProps, RegistrationForm as RegistrationFormData } from "../types";
 
 const styles = StyleSheet.create({

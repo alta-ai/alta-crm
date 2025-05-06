@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { ProstateNewPatientForm } from "./forms/prostate_new_patient";
+import { parse } from "date-fns";
 
 // Fix the enumToZod function for better type safety
 export function enumToZod<T extends Record<string, string>>(enumObj: T) {
@@ -144,6 +146,20 @@ export function extract<T extends z.ZodObject<any>>(
 		if (Object.prototype.hasOwnProperty.call(data, key)) {
 			result[key as keyof T["shape"]] = data[key];
 		}
+	}
+	return result;
+}
+
+// Returns an array with entries like { psaValue: ..., psaData: ... }
+export function dumpPsaValues(form: any) {
+	const result = [];
+	for (let i = 1; i <= 10; i++) {
+		if (!form[`psa_value_${i}`] || !form[`psa_date_${i}`]) continue;
+
+		result.push({
+			psaValue: form[`psa_value_${i}`] as number,
+			testDate: parse(form[`psa_date_${i}`], "dd.MM.yyyy", new Date()),
+		});
 	}
 	return result;
 }

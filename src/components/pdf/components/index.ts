@@ -13,3 +13,4 @@ export { default as SignatureAlt } from "./SignatureAlt";
 export { PatientInfoHeader, PatientInfoHeaderSmall } from "./PatientInfoHeader";
 export { default as BulletPoint } from "./BulletPoint";
 export { default as Listing } from "./Listing";
+export { default as PSAValues } from "./PSAValues";

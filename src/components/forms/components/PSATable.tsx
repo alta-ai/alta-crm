@@ -90,6 +90,7 @@ export const PSATable = ({
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="in ng/ml z. B. 5.78"
 									disabled={readOnly}
+									step={0.001}
 								/>
 								{errors[`psa_value_${index}`] && (
 									<p className="absolute top-full mt-1 left-0 text-red-500 text-sm">

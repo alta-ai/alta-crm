@@ -6,5 +6,6 @@ export { default as MRIForm } from "./MRIForm";
 export { default as CTForm } from "./CTForm";
 export { CTTherapyForm } from "./CTTherapyForm";
 export { CTMRIForm } from "./CTMRIForm";
+export { ProstateNewPatientForm } from "./ProstateNewPatientForm";
 
 export type { FormProps } from "../types";

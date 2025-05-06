@@ -16,7 +16,7 @@ import {
 	formatDate,
 } from "./utils";
 import styling from "./styles";
-import { useFormData } from "./formDataContext";
+import { useFormData } from "./contexts/formDataContext";
 import { FormProps, PrivacyForm as PrivacyFormData } from "../types";
 
 const styles = {

@@ -57,16 +57,18 @@ export const PatientInfoHeaderSmall: React.FC<PatientInfoHeaderSmallProps> = ({
 	data,
 }) => {
 	return (
-		<View style={{ position: "absolute", right: 0, top: "-8px" }}>
+		<View style={{ position: "absolute", right: 0, top: "-8px", fontSize: 9 }}>
 			<Text>
 				{deriveDisplayedFullName({
 					title: data?.title || undefined,
 					name: data?.first_name,
 					surname: data?.last_name,
 				})}{" "}
-				- Geb. Datum: {formatDate(data?.birth_date)} - Untersuchungsdatum:{" "}
-				{formatDate(data?.start_time)}
+				(Pat-ID: {data.patient_number})
 			</Text>
+			<View style={{ alignItems: "flex-end" }}>
+				<Text>Untersuchung vom {formatDate(data?.start_time)}</Text>
+			</View>
 		</View>
 	);
 };

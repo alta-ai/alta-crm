@@ -42,12 +42,19 @@ import {
 	CTForm as CTFormPDF,
 	CTTherapyForm as CTTherapyFormPDF,
 	CTMRIForm as CTMRIFormPDF,
+	ProstateNewPatientForm as ProstateNewPatientFormPDF,
 } from "../../../pdf";
+
+import { PSADiagramContextProvider } from "../../../pdf/contexts";
+import React from "react";
 
 type FormMapEntry = {
 	data: unknown;
-	editForm: unknown;
+	editForm: React.FC;
 	pdfForm?: unknown;
+	customContext?: React.FC<{
+		children?: React.ReactNode;
+	}>;
 	label: string;
 	tableName: string;
 };
@@ -92,6 +99,8 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: ProstateNewPatientFormData,
 		editForm: ProstateNewPatientForm,
 		label: "Prostata-Fragebogen (Neupatient)",
+		pdfForm: ProstateNewPatientFormPDF,
+		customContext: PSADiagramContextProvider,
 		tableName: "prostate_new_patient_form_submissions",
 	},
 	[FormType.PROSTATE_FOLLOWUP]: {

@@ -8,13 +8,7 @@ import FormList from "./FormList";
 import FormViewer from "./FormViewer";
 import { generateFormToken, getFormsUrl } from "../../../../lib/forms";
 import PDFFormPreviewModal from "../PDFFormPreviewModal";
-import {
-	Patient,
-	Appointment,
-	PatientSchema,
-	RegistrationForm,
-	RegistrationFormSchema,
-} from "../../../types";
+import { Patient, Appointment, PatientSchema } from "../../../types";
 import { FormContextProvider } from "../../../forms/formContext";
 import { FormMap } from "./formMap";
 import { FormType } from "../../../types/constants";
@@ -190,7 +184,6 @@ const FormSection: React.FC<FormSectionProps> = ({
 				)}
 			</div>
 
-			{/* PDF Form Preview Modal */}
 			{selectedFormTypeForPreview && (
 				<FormContextProvider
 					dataProvider={FormMap[selectedFormTypeForPreview].data}
@@ -206,9 +199,15 @@ const FormSection: React.FC<FormSectionProps> = ({
 						formName={FormMap[selectedFormTypeForPreview].label}
 						patientData={patient || ({} as Patient)}
 						appointmentData={appointment}
+						CustomContext={FormMap[selectedFormTypeForPreview].customContext}
 					/>
 				</FormContextProvider>
 			)}
+
+			<canvas
+				style={{ display: "none", maxWidth: "400px", maxHeight: "200px" }}
+				id="render-canvas-chart"
+			/>
 		</>
 	);
 };

@@ -40,7 +40,7 @@ export const ProstateNewPatientFormSchema = z.object({
 	// Diagnosis and treatment
 	known_diagnosis: z.boolean().nullable(),
 	diagnosis_type: z.array(z.string()).nullable(),
-	prostate_treated: z.boolean().nullable(),
+	prostate_treated: z.array(z.string()).nullable(),
 	prostate_not_treated_reason: z.string().nullable(),
 
 	// Treatment details - Enlargement
@@ -126,7 +126,7 @@ export const defaultProstateNewPatientForm: Partial<ProstateNewPatientForm> = {
 	// Diagnosis and treatment
 	known_diagnosis: null,
 	diagnosis_type: [],
-	prostate_treated: null,
+	prostate_treated: [],
 	prostate_not_treated_reason: null,
 
 	// Treatment details - Enlargement
