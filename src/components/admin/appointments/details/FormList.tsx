@@ -74,9 +74,9 @@ const FormList: React.FC<FormListProps> = ({
 			queryKey: ["form-submissions", appointmentId],
 			queryFn: async () => {
 				// Load all form submissions for this appointment
-				const promises = Object.values(FormMap).map((f) =>
+				const promises = Object.values(FormType).map((f) =>
 					supabase
-						.from(f.tableName)
+						.from(FormMap[f].tableName)
 						.select("*")
 						.eq("appointment_id", appointmentId)
 						.maybeSingle()

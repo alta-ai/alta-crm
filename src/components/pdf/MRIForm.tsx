@@ -294,7 +294,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.has_pacemaker}
+								selected={formData?.wearing_interfearing_devices}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -303,7 +303,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							style={{ marginLeft: "16px", ...styles.QuestionBox.Question }}
 						>
 							<Text style={styles.QuestionBox.TextField}>
-								{formData?.pacemaker_details}
+								{formData?.interfearing_devices}
 							</Text>
 						</Question>
 
@@ -322,7 +322,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.had_brain_or_heart_surgery}
+								selected={formData?.had_brain_or_heart_op}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -333,13 +333,13 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<Text
 								style={{ ...styles.QuestionBox.TextField, marginRight: "5px" }}
 							>
-								{formData?.surgery_details}
+								{formData?.which_op}
 							</Text>
 							<BoldText text={"und wann?"} />
 							<Text
 								style={{ ...styles.QuestionBox.TextField, marginLeft: "15px" }}
 							>
-								{formData?.surgery_date}
+								{formData?.when_op}
 							</Text>
 						</Question>
 
@@ -355,7 +355,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.organs_removed}
+								selected={formData?.had_organ_removed}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -366,13 +366,13 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<Text
 								style={{ ...styles.QuestionBox.TextField, marginRight: "5px" }}
 							>
-								{formData?.organs_details}
+								{formData?.which_organ}
 							</Text>
 							<BoldText text={"und wann?"} />
 							<Text
 								style={{ ...styles.QuestionBox.TextField, marginLeft: "15px" }}
 							>
-								{formData?.organs_removed_date}
+								{formData?.when_organ}
 							</Text>
 						</Question>
 
@@ -388,7 +388,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.kidney_disease}
+								selected={formData?.has_kidney_disease}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -397,7 +397,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							style={{ marginLeft: "16px", ...styles.QuestionBox.Question }}
 						>
 							<Text style={styles.QuestionBox.TextField}>
-								{formData?.kidney_disease_details}
+								{formData?.which_kidney_disease}
 							</Text>
 						</Question>
 
@@ -416,7 +416,9 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.implants_metal_parts}
+								selected={
+									formData?.wearing_interfearing_implants_or_metal_objects
+								}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -427,13 +429,13 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<Text
 								style={{ ...styles.QuestionBox.TextField, marginRight: "5px" }}
 							>
-								{formData?.implants_details}
+								{formData?.which_interfearing_implants}
 							</Text>
 							<BoldText text={"und wann?"} />
 							<Text
 								style={{ ...styles.QuestionBox.TextField, marginLeft: "15px" }}
 							>
-								{formData?.implants_date}
+								{formData?.when_interfearing_implants}
 							</Text>
 						</Question>
 						<Text
@@ -463,7 +465,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.metallic_injuries}
+								selected={formData?.has_injuries_by_metallic_objects}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -472,7 +474,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							style={{ marginLeft: "16px", ...styles.QuestionBox.Question }}
 						>
 							<Text style={styles.QuestionBox.TextField}>
-								{formData?.injuries_details}
+								{formData?.which_injuries}
 							</Text>
 						</Question>
 
@@ -488,7 +490,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.allergies}
+								selected={formData?.has_allergies}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -497,7 +499,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							style={{ marginLeft: "16px", ...styles.QuestionBox.Question }}
 						>
 							<Text style={styles.QuestionBox.TextField}>
-								{formData?.allergies_details}
+								{formData?.which_allergies}
 							</Text>
 						</Question>
 
@@ -516,7 +518,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.glaucoma}
+								selected={formData?.has_glaucoma}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -538,7 +540,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.preliminary_examinations}
+								selected={formData?.has_preliminary_examinations}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -581,7 +583,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.infectious_disease}
+								selected={formData?.has_infectious_disease}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -609,7 +611,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.blood_thinners}
+								selected={formData?.taking_blood_thinners}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -637,7 +639,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.other_medications}
+								selected={formData?.taking_other_medications}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -663,7 +665,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.claustrophobia}
+								selected={formData?.has_claustrophobia}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -729,7 +731,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 								<BoxSelection
 									options={[true, false]}
 									labels={["Ja", "Nein"]}
-									selected={formData?.breastfeeding}
+									selected={formData?.pregnant}
 									style={styles.QuestionBox.BoxSelection}
 								/>
 							</Question>
@@ -751,12 +753,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 
 							<Question
 								question={
-									<Text style={{ textIndent: -15 }}>
-										<Text style={{ textIndent: -15, fontWeight: 700 }}>
-											Stillen
-										</Text>{" "}
-										Sie zurzeit?
-									</Text>
+									<Text style={{ textIndent: -15 }}>Stillen Sie zurzeit?</Text>
 								}
 								style={{ ...styles.QuestionBox.Question, marginBottom: 0 }}
 							>

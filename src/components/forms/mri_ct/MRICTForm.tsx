@@ -46,16 +46,16 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 		"taking_medication_for_hyperthyroidism"
 	) as unknown as string;
 	const areTherePreliminaryExams = watch(
-		"are_there_preliminary_exams_of_the_bodypart"
+		"has_preliminary_examinations"
 	) as unknown as string;
 	const hasInfectiousDisease = watch(
 		"has_infectious_disease"
 	) as unknown as string;
 	const takingBloodThinningMedication = watch(
-		"taking_blood_thinning_medication"
+		"taking_blood_thinners"
 	) as unknown as string;
 	const takingRegularMedication = watch(
-		"taking_regular_medication"
+		"taking_other_medications"
 	) as unknown as string;
 
 	// Add hooks to reset dependent fields
@@ -112,27 +112,27 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 
 	useEffect(() => {
 		if (areTherePreliminaryExams === "false") {
-			setValue("which_preliminary_exams", null);
-			setValue("when_preliminary_exams", null);
+			setValue("preliminary_examinations_details", null);
+			setValue("preliminary_examinations_date", null);
 		}
 	}, [areTherePreliminaryExams, setValue]);
 
 	useEffect(() => {
 		if (hasInfectiousDisease === "false") {
-			setValue("which_infectious_disease", null);
+			setValue("infectious_disease_details", null);
 		}
 	}, [hasInfectiousDisease, setValue]);
 
 	useEffect(() => {
 		if (takingBloodThinningMedication === "false") {
-			setValue("which_blood_thinning_medication", null);
-			setValue("since_when_taking_medication", null);
+			setValue("blood_thinners_details", null);
+			setValue("blood_thinners_since", null);
 		}
 	}, [takingBloodThinningMedication, setValue]);
 
 	useEffect(() => {
 		if (takingRegularMedication === "false") {
-			setValue("which_regular_medication", null);
+			setValue("other_medications_details", null);
 		}
 	}, [takingRegularMedication, setValue]);
 
@@ -699,7 +699,7 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 				)}
 
 				{renderRadioGroup(
-					"has_increased_intraocular_pressure",
+					"has_glaucoma",
 					"Besteht bei Ihnen ein erhöhter Augeninnendruck (Glaukom)?",
 					["Ja", "Nein"],
 					true
@@ -711,7 +711,7 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 				<h3 className="text-lg font-semibold mb-4">Voruntersuchungen</h3>
 
 				{renderRadioGroup(
-					"are_there_preliminary_exams_of_the_bodypart",
+					"has_preliminary_examinations",
 					"Gibt es Voruntersuchungen des heute zu untersuchenden Körperteils?",
 					["Ja", "Nein"],
 					true
@@ -725,15 +725,15 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 							</label>
 							<input
 								type="text"
-								{...register("which_preliminary_exams", {
+								{...register("preliminary_examinations_details", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								disabled={readOnly}
 							/>
-							{errors.which_preliminary_exams && (
+							{errors.preliminary_examinations_details && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.which_preliminary_exams.message}
+									{errors.preliminary_examinations_details.message}
 								</p>
 							)}
 						</div>
@@ -743,15 +743,15 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 							</label>
 							<input
 								type="text"
-								{...register("when_preliminary_exams", {
+								{...register("preliminary_examinations_date", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								disabled={readOnly}
 							/>
-							{errors.when_preliminary_exams && (
+							{errors.preliminary_examinations_date && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.when_preliminary_exams.message}
+									{errors.preliminary_examinations_date.message}
 								</p>
 							)}
 						</div>
@@ -777,15 +777,15 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 						</label>
 						<input
 							type="text"
-							{...register("which_infectious_disease", {
+							{...register("has_infectious_disease", {
 								required: "Diese Angabe ist erforderlich",
 							})}
 							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 							disabled={readOnly}
 						/>
-						{errors.which_infectious_disease && (
+						{errors.has_infectious_disease && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.which_infectious_disease.message}
+								{errors.has_infectious_disease.message}
 							</p>
 						)}
 					</div>
@@ -797,7 +797,7 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 				<h3 className="text-lg font-semibold mb-4">Medikamente</h3>
 
 				{renderRadioGroup(
-					"taking_blood_thinning_medication",
+					"taking_blood_thinners",
 					"Nehmen Sie Blutverdünner?",
 					["Ja", "Nein"],
 					true
@@ -811,15 +811,15 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 							</label>
 							<input
 								type="text"
-								{...register("which_blood_thinning_medication", {
+								{...register("blood_thinners_details", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								disabled={readOnly}
 							/>
-							{errors.which_blood_thinning_medication && (
+							{errors.blood_thinners_details && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.which_blood_thinning_medication.message}
+									{errors.blood_thinners_details.message}
 								</p>
 							)}
 						</div>
@@ -829,15 +829,15 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 							</label>
 							<input
 								type="text"
-								{...register("since_when_taking_medication", {
+								{...register("blood_thinners_since", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								disabled={readOnly}
 							/>
-							{errors.since_when_taking_medication && (
+							{errors.blood_thinners_since && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.since_when_taking_medication.message}
+									{errors.blood_thinners_since.message}
 								</p>
 							)}
 						</div>
@@ -845,7 +845,7 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 				)}
 
 				{renderRadioGroup(
-					"taking_regular_medication",
+					"taking_other_medications",
 					"Nehmen Sie regelmäßig sonstige Medikamente ein?",
 					["Ja", "Nein"],
 					true
@@ -858,15 +858,15 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 						</label>
 						<input
 							type="text"
-							{...register("which_regular_medication", {
+							{...register("other_medications_details", {
 								required: "Diese Angabe ist erforderlich",
 							})}
 							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 							disabled={readOnly}
 						/>
-						{errors.which_regular_medication && (
+						{errors.other_medications_details && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.which_regular_medication.message}
+								{errors.other_medications_details.message}
 							</p>
 						)}
 					</div>
@@ -882,7 +882,7 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 						<input
 							id="has_read_and_understood"
 							type="checkbox"
-							{...register("has_read_and_understood", {
+							{...register("consent_form_read", {
 								required:
 									"Bitte bestätigen Sie, dass Sie den Aufklärungsbogen gelesen und verstanden haben",
 							})}
@@ -901,9 +901,9 @@ export const MRICTForm = ({ onComplete, readOnly }: MRICTFormFormProps) => {
 						</label>
 					</div>
 				</div>
-				{errors.has_read_and_understood && (
+				{errors.consent_form_read && (
 					<p className="text-red-500 text-sm">
-						{errors.has_read_and_understood.message}
+						{errors.consent_form_read.message}
 					</p>
 				)}
 			</div>

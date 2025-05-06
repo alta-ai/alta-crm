@@ -29,50 +29,56 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 
 	// Watch fields for conditional rendering
 	const previousContrastMedia = watch(
-		"previous_contrast_media"
+		"had_previous_exam_with_contrast_media"
 	) as unknown as string;
-	const allergies = watch("allergies") as unknown as string;
-	const prelimExams = watch("prelim_exams") as unknown as string;
-	const thyroidMedication = watch("thyroid_medication") as unknown as string;
-	const bloodThinners = watch("blood_thinners") as unknown as string;
-	const infectiousDisease = watch("infectious_disease") as unknown as string;
+	const allergies = watch("has_allergies") as unknown as string;
+	const prelimExams = watch(
+		"has_preliminary_examinations"
+	) as unknown as string;
+	const thyroidMedication = watch(
+		"taking_medication_for_hyperthyroidism"
+	) as unknown as string;
+	const bloodThinners = watch("taking_blood_thinners") as unknown as string;
+	const infectiousDisease = watch(
+		"has_infectious_disease"
+	) as unknown as string;
 
 	// Reset dependent fields when conditional fields are toggled to false
 	useEffect(() => {
 		if (previousContrastMedia === "false") {
-			setValue("contrast_media_side_effects", null);
+			setValue("had_side_effects_from_contrast_media", null);
 		}
 	}, [previousContrastMedia, setValue]);
 
 	useEffect(() => {
 		if (allergies === "false") {
-			setValue("allergies_description", null);
+			setValue("which_allergies", null);
 		}
 	}, [allergies, setValue]);
 
 	useEffect(() => {
 		if (prelimExams === "false") {
-			setValue("prelim_exams_description", null);
-			setValue("prelim_exams_date", null);
+			setValue("preliminary_examinations_details", null);
+			setValue("preliminary_examinations_date", null);
 		}
 	}, [prelimExams, setValue]);
 
 	useEffect(() => {
 		if (thyroidMedication === "false") {
-			setValue("thyroid_medication_description", null);
+			setValue("which_hyperthyroidism_medication", null);
 		}
 	}, [thyroidMedication, setValue]);
 
 	useEffect(() => {
 		if (bloodThinners === "false") {
-			setValue("blood_thinners_description", null);
-			setValue("blood_thinners_date", null);
+			setValue("blood_thinners_details", null);
+			setValue("blood_thinners_since", null);
 		}
 	}, [bloodThinners, setValue]);
 
 	useEffect(() => {
 		if (infectiousDisease === "false") {
-			setValue("infectious_disease_description", null);
+			setValue("infectious_disease_details", null);
 		}
 	}, [infectiousDisease, setValue]);
 
@@ -254,7 +260,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("previous_contrast_media", {
+										{...register("had_previous_exam_with_contrast_media", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -263,9 +269,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.previous_contrast_media && (
+						{errors.had_previous_exam_with_contrast_media && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.previous_contrast_media.message}
+								{errors.had_previous_exam_with_contrast_media.message}
 							</p>
 						)}
 					</div>
@@ -283,7 +289,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 										<input
 											type="radio"
 											value={option === "Ja" ? "true" : "false"}
-											{...register("contrast_media_side_effects", {
+											{...register("had_side_effects_from_contrast_media", {
 												required: "Diese Angabe ist erforderlich",
 											})}
 											className="form-radio h-4 w-4 text-blue-600"
@@ -292,9 +298,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									</label>
 								))}
 							</div>
-							{errors.contrast_media_side_effects && (
+							{errors.had_side_effects_from_contrast_media && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.contrast_media_side_effects.message}
+									{errors.had_side_effects_from_contrast_media.message}
 								</p>
 							)}
 						</div>
@@ -313,7 +319,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("allergies", {
+										{...register("has_allergies", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -322,9 +328,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.allergies && (
+						{errors.has_allergies && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.allergies.message}
+								{errors.has_allergies.message}
 							</p>
 						)}
 					</div>
@@ -338,13 +344,13 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								type="text"
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								placeholder="Bitte angeben"
-								{...register("allergies_description", {
+								{...register("which_allergies", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 							/>
-							{errors.allergies_description && (
+							{errors.which_allergies && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.allergies_description.message}
+									{errors.which_allergies.message}
 								</p>
 							)}
 						</div>
@@ -363,7 +369,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("asthma", {
+										{...register("has_asthma", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -372,9 +378,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.asthma && (
+						{errors.has_asthma && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.asthma.message}
+								{errors.has_asthma.message}
 							</p>
 						)}
 					</div>
@@ -393,7 +399,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("prelim_exams", {
+										{...register("has_preliminary_examinations", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -402,9 +408,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.prelim_exams && (
+						{errors.has_preliminary_examinations && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.prelim_exams.message}
+								{errors.has_preliminary_examinations.message}
 							</p>
 						)}
 					</div>
@@ -419,13 +425,13 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Bitte angeben"
-									{...register("prelim_exams_description", {
+									{...register("preliminary_examinations_details", {
 										required: "Diese Angabe ist erforderlich",
 									})}
 								/>
-								{errors.prelim_exams_description && (
+								{errors.preliminary_examinations_details && (
 									<p className="text-red-500 text-sm mt-1">
-										{errors.prelim_exams_description.message}
+										{errors.preliminary_examinations_details.message}
 									</p>
 								)}
 							</div>
@@ -437,7 +443,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Datum oder Zeitraum"
-									{...register("prelim_exams_date")}
+									{...register("preliminary_examinations_date")}
 								/>
 							</div>
 						</div>
@@ -456,7 +462,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("thyroid_overfunction", {
+										{...register("has_known_hyperthyroidism", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -465,9 +471,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.thyroid_overfunction && (
+						{errors.has_known_hyperthyroidism && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.thyroid_overfunction.message}
+								{errors.has_known_hyperthyroidism.message}
 							</p>
 						)}
 					</div>
@@ -482,7 +488,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("thyroid_medication", {
+										{...register("taking_medication_for_hyperthyroidism", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -491,9 +497,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.thyroid_medication && (
+						{errors.taking_medication_for_hyperthyroidism && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.thyroid_medication.message}
+								{errors.taking_medication_for_hyperthyroidism.message}
 							</p>
 						)}
 					</div>
@@ -507,13 +513,13 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								type="text"
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								placeholder="Bitte angeben"
-								{...register("thyroid_medication_description", {
+								{...register("which_hyperthyroidism_medication", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 							/>
-							{errors.thyroid_medication_description && (
+							{errors.which_hyperthyroidism_medication && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.thyroid_medication_description.message}
+									{errors.which_hyperthyroidism_medication.message}
 								</p>
 							)}
 						</div>
@@ -530,18 +536,24 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("thyroid_surgery", {
-											required: "Diese Angabe ist erforderlich",
-										})}
+										{...register(
+											"had_thyroid_surgery_or_radioactive_iodine_therapy",
+											{
+												required: "Diese Angabe ist erforderlich",
+											}
+										)}
 										className="form-radio h-4 w-4 text-blue-600"
 									/>
 									<span className="ml-2 text-gray-700">{option}</span>
 								</label>
 							))}
 						</div>
-						{errors.thyroid_surgery && (
+						{errors.had_thyroid_surgery_or_radioactive_iodine_therapy && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.thyroid_surgery.message}
+								{
+									errors.had_thyroid_surgery_or_radioactive_iodine_therapy
+										.message
+								}
 							</p>
 						)}
 					</div>
@@ -559,7 +571,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("diabetes", {
+										{...register("has_diabetes", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -568,9 +580,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.diabetes && (
+						{errors.has_diabetes && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.diabetes.message}
+								{errors.has_diabetes.message}
 							</p>
 						)}
 					</div>
@@ -585,7 +597,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("metformin", {
+										{...register("taking_metformin_or_similar", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -594,9 +606,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.metformin && (
+						{errors.taking_metformin_or_similar && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.metformin.message}
+								{errors.taking_metformin_or_similar.message}
 							</p>
 						)}
 					</div>
@@ -614,7 +626,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("kidney_impairment", {
+										{...register("has_renal_impairment", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -623,9 +635,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.kidney_impairment && (
+						{errors.has_renal_impairment && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.kidney_impairment.message}
+								{errors.has_renal_impairment.message}
 							</p>
 						)}
 					</div>
@@ -643,7 +655,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("blood_thinners", {
+										{...register("taking_blood_thinners", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -652,9 +664,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.blood_thinners && (
+						{errors.taking_blood_thinners && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.blood_thinners.message}
+								{errors.taking_blood_thinners.message}
 							</p>
 						)}
 					</div>
@@ -669,13 +681,13 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Bitte angeben"
-									{...register("blood_thinners_description", {
+									{...register("blood_thinners_details", {
 										required: "Diese Angabe ist erforderlich",
 									})}
 								/>
-								{errors.blood_thinners_description && (
+								{errors.blood_thinners_details && (
 									<p className="text-red-500 text-sm mt-1">
-										{errors.blood_thinners_description.message}
+										{errors.blood_thinners_details.message}
 									</p>
 								)}
 							</div>
@@ -687,7 +699,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Datum oder Zeitraum"
-									{...register("blood_thinners_date")}
+									{...register("blood_thinners_since")}
 								/>
 							</div>
 						</div>
@@ -707,7 +719,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("infectious_disease", {
+										{...register("has_infectious_disease", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -716,9 +728,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.infectious_disease && (
+						{errors.has_infectious_disease && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.infectious_disease.message}
+								{errors.has_infectious_disease.message}
 							</p>
 						)}
 					</div>
@@ -732,13 +744,13 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								type="text"
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								placeholder="Bitte angeben"
-								{...register("infectious_disease_description", {
+								{...register("infectious_disease_details", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 							/>
-							{errors.infectious_disease_description && (
+							{errors.infectious_disease_details && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.infectious_disease_description.message}
+									{errors.infectious_disease_details.message}
 								</p>
 							)}
 						</div>
@@ -762,7 +774,7 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								<label className="inline-flex items-center">
 									<input
 										type="checkbox"
-										{...register("no_pregnancy", {
+										{...register("pregnant", {
 											required: "Bitte bestätigen Sie diesen Hinweis",
 										})}
 										className="form-checkbox h-4 w-4 text-blue-600"
@@ -773,9 +785,9 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 										Röntgenstrahlen auf das ungeborene Leben bekannt.
 									</span>
 								</label>
-								{errors.no_pregnancy && (
+								{errors.pregnant && (
 									<p className="text-red-500 text-sm mt-1">
-										{errors.no_pregnancy.message}
+										{errors.pregnant.message}
 									</p>
 								)}
 							</div>
@@ -789,13 +801,13 @@ export const CTForm = ({ onComplete, readOnly }: CTFormProps) => {
 								type="text"
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								placeholder="Datum oder Zeitraum"
-								{...register("last_period", {
+								{...register("last_menstruation", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 							/>
-							{errors.last_period && (
+							{errors.last_menstruation && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.last_period.message}
+									{errors.last_menstruation.message}
 								</p>
 							)}
 						</div>

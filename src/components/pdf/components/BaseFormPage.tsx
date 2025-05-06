@@ -2,11 +2,7 @@ import { Page, View, Text } from "@react-pdf/renderer";
 import { Footer } from "./";
 import styling from "../styles";
 import { useFormData } from "../formDataContext";
-import {
-	deriveDisplayedFullName,
-	formatDate,
-	formatDateString,
-} from "../utils";
+import { deriveDisplayedFullName, formatDate } from "../utils";
 
 const styles = {
 	position: "relative" as const,

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { nullable, z } from "zod";
 
 export const MRICTFormSchema = z.object({
 	id: z.string().uuid(),
@@ -47,23 +47,23 @@ export const MRICTFormSchema = z.object({
 	has_diabetes: z.boolean().nullable(),
 	taking_metformin_or_similar: z.boolean().nullable(),
 	has_renal_impairment: z.boolean().nullable(),
-	has_increased_intraocular_pressure: z.boolean().nullable(),
+	has_glaucoma: z.boolean().nullable(),
 
-	// Previous examinations
-	are_there_preliminary_exams_of_the_bodypart: z.boolean().nullable(),
-	which_preliminary_exams: z.string().nullable(),
-	when_preliminary_exams: z.string().nullable(),
+	// preliminary examinations
+	has_preliminary_examinations: z.boolean().nullable(),
+	preliminary_examinations_details: z.string().nullable(),
+	preliminary_examinations_date: z.string().nullable(),
 
-	// Infectious diseases
+	// infectious diseases
 	has_infectious_disease: z.boolean().nullable(),
-	which_infectious_disease: z.string().nullable(),
+	infectious_disease_details: z.string().nullable(),
 
 	// Medications
-	taking_blood_thinning_medication: z.boolean().nullable(),
-	which_blood_thinning_medication: z.string().nullable(),
-	since_when_taking_medication: z.string().nullable(),
-	taking_regular_medication: z.boolean().nullable(),
-	which_regular_medication: z.string().nullable(),
+	taking_blood_thinners: z.boolean().nullable(),
+	blood_thinners_details: z.string().nullable(),
+	blood_thinners_since: z.string().nullable(),
+	taking_other_medications: z.boolean().nullable(),
+	other_medications_details: z.string().nullable(),
 
 	// Other relevant information
 	has_claustrophobia: z.boolean().nullable(),
@@ -71,7 +71,7 @@ export const MRICTFormSchema = z.object({
 	weight: z.number().int().nullable(),
 
 	// Consent
-	has_read_and_understood: z.boolean().nullable(),
+	consent_form_read: z.boolean().nullable(),
 });
 
 // Infer TypeScript type from the Zod schema
@@ -105,19 +105,19 @@ export const defaultMRICTForm: Partial<MRICTForm> = {
 	has_diabetes: null,
 	taking_metformin_or_similar: null,
 	has_renal_impairment: null,
-	has_increased_intraocular_pressure: null,
-	are_there_preliminary_exams_of_the_bodypart: null,
-	which_preliminary_exams: null,
-	when_preliminary_exams: null,
+	has_glaucoma: null,
+	has_preliminary_examinations: null,
+	preliminary_examinations_details: null,
+	preliminary_examinations_date: null,
 	has_infectious_disease: null,
-	which_infectious_disease: null,
-	taking_blood_thinning_medication: null,
-	which_blood_thinning_medication: null,
-	since_when_taking_medication: null,
-	taking_regular_medication: null,
-	which_regular_medication: null,
+	infectious_disease_details: null,
+	taking_blood_thinners: null,
+	blood_thinners_details: null,
+	blood_thinners_since: null,
+	taking_other_medications: null,
+	other_medications_details: null,
 	has_claustrophobia: null,
 	height: null,
 	weight: null,
-	has_read_and_understood: null,
+	consent_form_read: null,
 };

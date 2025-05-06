@@ -41,6 +41,7 @@ import {
 	BiopsyForm as BiopsyFormPDF,
 	CTForm as CTFormPDF,
 	CTTherapyForm as CTTherapyFormPDF,
+	CTMRIForm as CTMRIFormPDF,
 } from "../../../pdf";
 
 type FormMapEntry = {
@@ -122,6 +123,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: MRICTFormData,
 		editForm: MRICTForm,
 		label: "MRT/CT Aufklärungsbogen",
+		pdfForm: CTMRIFormPDF,
 		tableName: "mri_ct_form_submissions",
 	},
 	[FormType.BIOPSY]: {

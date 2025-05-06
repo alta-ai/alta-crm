@@ -146,7 +146,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.previous_contrast_media}
+								selected={formData?.had_previous_exam_with_contrast_media}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -166,7 +166,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.contrast_media_side_effects}
+								selected={formData?.had_side_effects_from_contrast_media}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -194,7 +194,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.allergies}
+								selected={formData?.has_allergies}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -207,7 +207,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							style={{ marginLeft: "16px", ...styles.QuestionBox.Question }}
 						>
 							<Text style={styles.QuestionBox.TextField}>
-								{formData?.allergies_description}
+								{formData?.which_allergies}
 							</Text>
 						</Question>
 
@@ -218,7 +218,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.asthma}
+								selected={formData?.has_asthma}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -240,7 +240,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.prelim_exams}
+								selected={formData?.has_preliminary_examinations}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -255,13 +255,13 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<Text
 								style={{ ...styles.QuestionBox.TextField, marginRight: "5px" }}
 							>
-								{formData?.prelim_exams_description}
+								{formData?.preliminary_examinations_details}
 							</Text>
 							<BoldText text={"und wann?"} />
 							<Text
 								style={{ ...styles.QuestionBox.TextField, marginLeft: "15px" }}
 							>
-								{formData?.prelim_exams_date}
+								{formData?.preliminary_examinations_date}
 							</Text>
 						</Question>
 						<Text
@@ -287,7 +287,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.thyroid_overfunction}
+								selected={formData?.has_known_hyperthyroidism}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -307,7 +307,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.thyroid_medication}
+								selected={formData?.taking_medication_for_hyperthyroidism}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -320,7 +320,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							style={{ marginLeft: "16px", ...styles.QuestionBox.Question }}
 						>
 							<Text style={styles.QuestionBox.TextField}>
-								{formData?.thyroid_medication_description}
+								{formData?.which_hyperthyroidism_medication}
 							</Text>
 						</Question>
 
@@ -338,7 +338,9 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.thyroid_surgery}
+								selected={
+									formData?.had_thyroid_surgery_or_radioactive_iodine_therapy
+								}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -355,7 +357,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.diabetes}
+								selected={formData?.has_diabetes}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -375,7 +377,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.metformin}
+								selected={formData?.taking_metformin_or_similar}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -395,7 +397,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.kidney_impairment}
+								selected={formData?.has_renal_impairment}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -415,7 +417,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.blood_thinners}
+								selected={formData?.taking_blood_thinners}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -429,7 +431,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							style={{ marginLeft: "16px", ...styles.QuestionBox.Question }}
 						>
 							<Text style={styles.QuestionBox.TextField}>
-								{formData?.blood_thinners_description}
+								{formData?.blood_thinners_details}
 							</Text>
 						</Question>
 
@@ -446,7 +448,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							<BoxSelection
 								options={[true, false]}
 								labels={["Ja", "Nein"]}
-								selected={formData?.infectious_disease}
+								selected={formData?.has_infectious_disease}
 								style={styles.QuestionBox.BoxSelection}
 							/>
 						</Question>
@@ -460,7 +462,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 							style={{ marginLeft: "16px", ...styles.QuestionBox.Question }}
 						>
 							<Text style={styles.QuestionBox.TextField}>
-								{formData?.infectious_disease_description}
+								{formData?.infectious_disease_details}
 							</Text>
 						</Question>
 
@@ -512,7 +514,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 								<BoxSelection
 									options={[true, false]}
 									labels={["Ja", "Nein"]}
-									selected={formData?.no_pregnancy}
+									selected={formData?.pregnant}
 									style={styles.QuestionBox.BoxSelection}
 								/>
 							</Question>
@@ -528,7 +530,7 @@ export const CTForm = ({ onlyForMen = false }) => {
 								style={styles.QuestionBox.Question}
 							>
 								<Text style={styles.QuestionBox.TextField}>
-									{formData?.last_period}
+									{formData?.last_menstruation}
 								</Text>
 							</Question>
 

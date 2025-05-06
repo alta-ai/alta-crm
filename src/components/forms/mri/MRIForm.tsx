@@ -28,66 +28,74 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 	} = useForm<MRIFormType>({ defaultValues: data?.submission });
 
 	// Watch fields for conditional rendering
-	const heartPacemaker = watch("has_pacemaker") as unknown as string;
-	const brainHeartSurgery = watch(
-		"had_brain_or_heart_surgery"
+	const heartPacemaker = watch(
+		"wearing_interfearing_devices"
 	) as unknown as string;
-	const organsRemoved = watch("organs_removed") as unknown as string;
-	const kidneyDisease = watch("kidney_disease") as unknown as string;
-	const implantsOrMetal = watch("implants_metal_parts") as unknown as string;
-	const metalInjuries = watch("metallic_injuries") as unknown as string;
-	const allergies = watch("allergies") as unknown as string;
+	const brainHeartSurgery = watch("had_brain_or_heart_op") as unknown as string;
+	const organsRemoved = watch("had_organ_removed") as unknown as string;
+	const kidneyDisease = watch("has_kidney_disease") as unknown as string;
+	const implantsOrMetal = watch(
+		"wearing_interfearing_implants_or_metal_objects"
+	) as unknown as string;
+	const metalInjuries = watch(
+		"has_injuries_by_metallic_objects"
+	) as unknown as string;
+	const allergies = watch("has_allergies") as unknown as string;
 	const preliminaryExams = watch(
-		"preliminary_examinations"
+		"has_preliminary_examinations"
 	) as unknown as string;
-	const infectiousDisease = watch("infectious_disease") as unknown as string;
-	const bloodThinners = watch("blood_thinners") as unknown as string;
-	const regularMedication = watch("other_medications") as unknown as string;
+	const infectiousDisease = watch(
+		"has_infectious_disease"
+	) as unknown as string;
+	const bloodThinners = watch("taking_blood_thinners") as unknown as string;
+	const regularMedication = watch(
+		"taking_other_medications"
+	) as unknown as string;
 	const pregnancy = watch("pregnant") as unknown as string;
 
 	// Reset dependent fields when conditional fields are toggled to false
 	useEffect(() => {
 		if (heartPacemaker === "false") {
-			setValue("pacemaker_details", null);
+			setValue("interfearing_devices", null);
 		}
 	}, [heartPacemaker, setValue]);
 
 	useEffect(() => {
 		if (brainHeartSurgery === "false") {
-			setValue("surgery_details", null);
-			setValue("surgery_date", null);
+			setValue("which_op", null);
+			setValue("when_op", null);
 		}
 	}, [brainHeartSurgery, setValue]);
 
 	useEffect(() => {
 		if (organsRemoved === "false") {
-			setValue("organs_details", null);
-			setValue("organs_removed_date", null);
+			setValue("which_organ", null);
+			setValue("when_organ", null);
 		}
 	}, [organsRemoved, setValue]);
 
 	useEffect(() => {
 		if (kidneyDisease === "false") {
-			setValue("kidney_disease_details", null);
+			setValue("which_kidney_disease", null);
 		}
 	}, [kidneyDisease, setValue]);
 
 	useEffect(() => {
 		if (implantsOrMetal === "false") {
-			setValue("implants_details", null);
-			setValue("implants_date", null);
+			setValue("which_interfearing_implants", null);
+			setValue("when_interfearing_implants", null);
 		}
 	}, [implantsOrMetal, setValue]);
 
 	useEffect(() => {
 		if (metalInjuries === "false") {
-			setValue("injuries_details", null);
+			setValue("which_injuries", null);
 		}
 	}, [metalInjuries, setValue]);
 
 	useEffect(() => {
 		if (allergies === "false") {
-			setValue("allergies_details", null);
+			setValue("which_allergies", null);
 		}
 	}, [allergies, setValue]);
 
@@ -284,7 +292,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("has_pacemaker", {
+										{...register("wearing_interfearing_devices", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -294,9 +302,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.has_pacemaker && (
+						{errors.wearing_interfearing_devices && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.has_pacemaker.message}
+								{errors.wearing_interfearing_devices.message}
 							</p>
 						)}
 					</div>
@@ -310,14 +318,14 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								type="text"
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								placeholder="Bitte angeben"
-								{...register("pacemaker_details", {
+								{...register("interfearing_devices", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 								disabled={readOnly}
 							/>
-							{errors.pacemaker_details && (
+							{errors.interfearing_devices && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.pacemaker_details.message}
+									{errors.interfearing_devices.message}
 								</p>
 							)}
 						</div>
@@ -336,7 +344,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("had_brain_or_heart_surgery", {
+										{...register("had_brain_or_heart_op", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -346,9 +354,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.had_brain_or_heart_surgery && (
+						{errors.had_brain_or_heart_op && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.had_brain_or_heart_surgery.message}
+								{errors.had_brain_or_heart_op.message}
 							</p>
 						)}
 					</div>
@@ -363,14 +371,14 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Bitte angeben"
-									{...register("surgery_details", {
+									{...register("which_op", {
 										required: "Diese Angabe ist erforderlich",
 									})}
 									disabled={readOnly}
 								/>
-								{errors.surgery_details && (
+								{errors.which_op && (
 									<p className="text-red-500 text-sm mt-1">
-										{errors.surgery_details.message}
+										{errors.which_op.message}
 									</p>
 								)}
 							</div>
@@ -382,14 +390,14 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Datum oder Zeitraum"
-									{...register("surgery_date", {
+									{...register("when_op", {
 										required: "Diese Angabe ist erforderlich",
 									})}
 									disabled={readOnly}
 								/>
-								{errors.surgery_date && (
+								{errors.when_op && (
 									<p className="text-red-500 text-sm mt-1">
-										{errors.surgery_date.message}
+										{errors.when_op.message}
 									</p>
 								)}
 							</div>
@@ -409,7 +417,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("organs_removed", {
+										{...register("had_organ_removed", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -419,9 +427,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.organs_removed && (
+						{errors.had_organ_removed && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.organs_removed.message}
+								{errors.had_organ_removed.message}
 							</p>
 						)}
 					</div>
@@ -436,14 +444,14 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Bitte angeben"
-									{...register("organs_details", {
+									{...register("which_organ", {
 										required: "Diese Angabe ist erforderlich",
 									})}
 									disabled={readOnly}
 								/>
-								{errors.organs_details && (
+								{errors.which_organ && (
 									<p className="text-red-500 text-sm mt-1">
-										{errors.organs_details.message}
+										{errors.which_organ.message}
 									</p>
 								)}
 							</div>
@@ -455,14 +463,14 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Datum oder Zeitraum"
-									{...register("organs_removed_date", {
+									{...register("when_organ", {
 										required: "Diese Angabe ist erforderlich",
 									})}
 									disabled={readOnly}
 								/>
-								{errors.organs_removed_date && (
+								{errors.when_organ && (
 									<p className="text-red-500 text-sm mt-1">
-										{errors.organs_removed_date.message}
+										{errors.when_organ.message}
 									</p>
 								)}
 							</div>
@@ -482,7 +490,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("kidney_disease", {
+										{...register("has_kidney_disease", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -492,9 +500,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.kidney_disease && (
+						{errors.has_kidney_disease && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.kidney_disease.message}
+								{errors.has_kidney_disease.message}
 							</p>
 						)}
 					</div>
@@ -508,14 +516,14 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								type="text"
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								placeholder="Bitte angeben"
-								{...register("kidney_disease_details", {
+								{...register("which_kidney_disease", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 								disabled={readOnly}
 							/>
-							{errors.kidney_disease_details && (
+							{errors.which_kidney_disease && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.kidney_disease_details.message}
+									{errors.which_kidney_disease.message}
 								</p>
 							)}
 						</div>
@@ -538,9 +546,12 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("implants_metal_parts", {
-											required: "Diese Angabe ist erforderlich",
-										})}
+										{...register(
+											"wearing_interfearing_implants_or_metal_objects",
+											{
+												required: "Diese Angabe ist erforderlich",
+											}
+										)}
 										className="form-radio h-4 w-4 text-blue-600"
 										disabled={readOnly}
 									/>
@@ -548,9 +559,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.implants_metal_parts && (
+						{errors.wearing_interfearing_implants_or_metal_objects && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.implants_metal_parts.message}
+								{errors.wearing_interfearing_implants_or_metal_objects.message}
 							</p>
 						)}
 					</div>
@@ -565,14 +576,14 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Bitte angeben"
-									{...register("implants_details", {
+									{...register("which_interfearing_implants", {
 										required: "Diese Angabe ist erforderlich",
 									})}
 									disabled={readOnly}
 								/>
-								{errors.implants_details && (
+								{errors.which_interfearing_implants && (
 									<p className="text-red-500 text-sm mt-1">
-										{errors.implants_details.message}
+										{errors.which_interfearing_implants.message}
 									</p>
 								)}
 							</div>
@@ -584,7 +595,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									type="text"
 									className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 									placeholder="Datum oder Zeitraum"
-									{...register("implants_date")}
+									{...register("when_interfearing_implants")}
 									disabled={readOnly}
 								/>
 							</div>
@@ -605,7 +616,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("metallic_injuries", {
+										{...register("has_injuries_by_metallic_objects", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -615,9 +626,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.metallic_injuries && (
+						{errors.has_injuries_by_metallic_objects && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.metallic_injuries.message}
+								{errors.has_injuries_by_metallic_objects.message}
 							</p>
 						)}
 					</div>
@@ -631,14 +642,14 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								type="text"
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								placeholder="Bitte angeben"
-								{...register("injuries_details", {
+								{...register("which_injuries", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 								disabled={readOnly}
 							/>
-							{errors.injuries_details && (
+							{errors.which_injuries && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.injuries_details.message}
+									{errors.which_injuries.message}
 								</p>
 							)}
 						</div>
@@ -658,7 +669,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("allergies", {
+										{...register("has_allergies", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -668,9 +679,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.allergies && (
+						{errors.has_allergies && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.allergies.message}
+								{errors.has_allergies.message}
 							</p>
 						)}
 					</div>
@@ -684,14 +695,14 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								type="text"
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								placeholder="Bitte angeben"
-								{...register("allergies_details", {
+								{...register("which_allergies", {
 									required: "Diese Angabe ist erforderlich",
 								})}
 								disabled={readOnly}
 							/>
-							{errors.allergies_details && (
+							{errors.which_allergies && (
 								<p className="text-red-500 text-sm mt-1">
-									{errors.allergies_details.message}
+									{errors.which_allergies.message}
 								</p>
 							)}
 						</div>
@@ -710,7 +721,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("glaucoma", {
+										{...register("has_glaucoma", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -720,9 +731,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.glaucoma && (
+						{errors.has_glaucoma && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.glaucoma.message}
+								{errors.has_glaucoma.message}
 							</p>
 						)}
 					</div>
@@ -741,7 +752,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("preliminary_examinations", {
+										{...register("has_preliminary_examinations", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -751,9 +762,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.preliminary_examinations && (
+						{errors.has_preliminary_examinations && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.preliminary_examinations.message}
+								{errors.has_preliminary_examinations.message}
 							</p>
 						)}
 					</div>
@@ -815,7 +826,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("infectious_disease", {
+										{...register("has_infectious_disease", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -825,9 +836,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.infectious_disease && (
+						{errors.has_infectious_disease && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.infectious_disease.message}
+								{errors.has_infectious_disease.message}
 							</p>
 						)}
 					</div>
@@ -867,7 +878,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("blood_thinners", {
+										{...register("taking_blood_thinners", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -877,9 +888,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.blood_thinners && (
+						{errors.taking_blood_thinners && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.blood_thinners.message}
+								{errors.taking_blood_thinners.message}
 							</p>
 						)}
 					</div>
@@ -940,7 +951,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("other_medications", {
+										{...register("taking_other_medications", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -950,9 +961,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.other_medications && (
+						{errors.taking_other_medications && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.other_medications.message}
+								{errors.taking_other_medications.message}
 							</p>
 						)}
 					</div>
@@ -993,7 +1004,7 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 									<input
 										type="radio"
 										value={option === "Ja" ? "true" : "false"}
-										{...register("claustrophobia", {
+										{...register("has_claustrophobia", {
 											required: "Diese Angabe ist erforderlich",
 										})}
 										className="form-radio h-4 w-4 text-blue-600"
@@ -1003,9 +1014,9 @@ export const MRIForm = ({ onComplete, readOnly }: MRIFormProps) => {
 								</label>
 							))}
 						</div>
-						{errors.claustrophobia && (
+						{errors.has_claustrophobia && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.claustrophobia.message}
+								{errors.has_claustrophobia.message}
 							</p>
 						)}
 					</div>

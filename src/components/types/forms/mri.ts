@@ -2,43 +2,67 @@ import { z } from "zod";
 
 export const MRIFormSchema = z.object({
 	id: z.string().uuid(),
-	height: z.number(),
-	weight: z.number(),
-	has_pacemaker: z.boolean(),
-	pacemaker_details: z.string().nullable(),
-	had_brain_or_heart_surgery: z.boolean(),
-	surgery_details: z.string().nullable(),
-	surgery_date: z.string().nullable(),
-	organs_removed: z.boolean(),
-	organs_details: z.string().nullable(),
-	organs_removed_date: z.string().nullable(),
-	kidney_disease: z.boolean(),
-	kidney_disease_details: z.string().nullable(),
-	implants_metal_parts: z.boolean(),
-	implants_details: z.string().nullable(),
-	implants_date: z.string().nullable(),
-	metallic_injuries: z.boolean(),
-	injuries_details: z.string().nullable(),
-	allergies: z.boolean(),
-	allergies_details: z.string().nullable(),
-	glaucoma: z.boolean(),
-	preliminary_examinations: z.boolean(),
+	created_at: z.coerce.date(),
+	updated_at: z.coerce.date(),
+
+	// Medical history - Cardiac/Implants
+	wearing_interfearing_devices: z.boolean().nullable(),
+	interfearing_devices: z.string().nullable(),
+	had_brain_or_heart_op: z.boolean().nullable(),
+	which_op: z.string().nullable(),
+	when_op: z.string().nullable(),
+
+	// Organ removal
+	had_organ_removed: z.boolean().nullable(),
+	which_organ: z.string().nullable(),
+	when_organ: z.string().nullable(),
+
+	// Medical conditions
+	has_kidney_disease: z.boolean().nullable(),
+	which_kidney_disease: z.string().nullable(),
+
+	// Implants and metal objects
+	wearing_interfearing_implants_or_metal_objects: z.boolean().nullable(),
+	which_interfearing_implants: z.string().nullable(),
+	when_interfearing_implants: z.string().nullable(),
+
+	// Injuries from metal objects
+	has_injuries_by_metallic_objects: z.boolean().nullable(),
+	which_injuries: z.string().nullable(),
+
+	// Allergies
+	has_allergies: z.boolean(),
+	which_allergies: z.string().nullable(),
+
+	has_glaucoma: z.boolean(),
+
+	// preliminary examinations
+	has_preliminary_examinations: z.boolean(),
 	preliminary_examinations_details: z.string().nullable(),
 	preliminary_examinations_date: z.string().nullable(),
-	infectious_disease: z.boolean(),
+
+	// infectious diseases
+	has_infectious_disease: z.boolean(),
 	infectious_disease_details: z.string().nullable(),
-	blood_thinners: z.boolean(),
+
+	// Medications
+	taking_blood_thinners: z.boolean(),
 	blood_thinners_details: z.string().nullable(),
 	blood_thinners_since: z.string().nullable(),
-	other_medications: z.boolean(),
+	taking_other_medications: z.boolean(),
 	other_medications_details: z.string().nullable(),
-	claustrophobia: z.boolean(),
+
+	// pregnancy
 	pregnant: z.boolean().nullable(),
 	last_menstruation: z.string().nullable(),
 	breastfeeding: z.boolean().nullable(),
+
+	has_claustrophobia: z.boolean(),
+	height: z.number(),
+	weight: z.number(),
+
+	// consent
 	consent_form_read: z.boolean(),
-	created_at: z.coerce.date(),
-	updated_at: z.coerce.date(),
 });
 
 // Infer TypeScript type from the Zod schema
