@@ -179,6 +179,7 @@ export const ProstateNewPatientForm = ({
 	const urinationSymptoms = watch("urination_symptoms") || [];
 	const biopsyTypes = watch("biopsy_types") as unknown as string[];
 	const previousBiopsyTypes = usePrevious(biopsyTypes);
+	const lastBiopsyResult = watch("last_biopsy_result") as unknown as string;
 
 	// Reset fields based on conditional toggles
 	useEffect(() => {
@@ -300,6 +301,12 @@ export const ProstateNewPatientForm = ({
 			setValue("last_biopsy_result", null);
 		}
 	}, [biopsyTypes, setValue]);
+
+	useEffect(() => {
+		if (lastBiopsyResult !== "Karzinom (positiv)") {
+			setValue("biopsy_gleason_score", []);
+		}
+	}, [lastBiopsyResult, setValue]);
 
 	// Function to render a checkbox group
 	const renderCheckboxGroup = (
@@ -1056,7 +1063,7 @@ export const ProstateNewPatientForm = ({
 								BIOPSY_RESULTS
 							)}
 
-							{watch("last_biopsy_result") === "Prostatakrebs" && (
+							{watch("last_biopsy_result") === "Karzinom (positiv)" && (
 								<div>
 									{renderCheckboxGroup(
 										GLEASON_SCORES,
