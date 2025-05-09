@@ -44,6 +44,7 @@ import {
 	CTMRIForm as CTMRIFormPDF,
 	ProstateNewPatientForm as ProstateNewPatientFormPDF,
 	ProstateTULSAForm as ProstateTULSAFormPDF,
+	ProstateFollowUpForm as ProstateFollowUpFormPDF,
 } from "../../../pdf";
 
 import { PSADiagramContextProvider } from "../../../pdf/contexts";
@@ -108,6 +109,8 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: ProstateFollowUpFormData,
 		editForm: ProstateFollowUpForm,
 		label: "Prostata-Fragebogen (Folgeuntersuchung)",
+		pdfForm: ProstateFollowUpFormPDF,
+		customContext: PSADiagramContextProvider as any,
 		tableName: "prostate_followup_form_submissions",
 	},
 	[FormType.PROSTATE_TULSA]: {

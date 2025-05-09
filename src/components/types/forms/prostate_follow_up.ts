@@ -29,24 +29,24 @@ export const ProstateFollowUpFormSchema = z.object({
 
 	// Treatment information
 	prostate_treatment_types: z.array(z.string()).nullable(),
-	treatment_other_reason: z.string().nullable(),
+	prostate_not_treated_reason: z.string().nullable(),
 
 	// Enlargement treatment
-	enlargement_therapy_types: z.array(z.string()).nullable(),
+	enlargement_therapy_type: z.array(z.string()).nullable(),
 	enlargement_therapy_other: z.string().nullable(),
 	enlargement_therapy_date: z.string().nullable(),
-	enlargement_medication_types: z.array(z.string()).nullable(),
+	enlargement_medication_type: z.array(z.string()).nullable(),
 	enlargement_medication_other: z.string().nullable(),
 	enlargement_medication_since: z.string().nullable(),
 
 	// Inflammation treatment
-	inflammation_therapy_types: z.array(z.string()).nullable(),
+	inflammation_therapy_type: z.array(z.string()).nullable(),
 	inflammation_therapy_other: z.string().nullable(),
 	inflammation_therapy_date: z.string().nullable(),
 	inflammation_therapy_duration: z.string().nullable(),
 
 	// Cancer treatment
-	cancer_therapy_types: z.array(z.string()).nullable(),
+	cancer_therapy_type: z.array(z.string()).nullable(),
 	cancer_therapy_other: z.string().nullable(),
 	cancer_therapy_date: z.string().nullable(),
 
@@ -104,24 +104,24 @@ export const defaultProstateFollowUpForm: Partial<ProstateFollowUpForm> = {
 
 	// Treatment information
 	prostate_treatment_types: null,
-	treatment_other_reason: null,
+	prostate_not_treated_reason: null,
 
 	// Enlargement treatment
-	enlargement_therapy_types: null,
+	enlargement_therapy_type: null,
 	enlargement_therapy_other: null,
 	enlargement_therapy_date: null,
-	enlargement_medication_types: null,
+	enlargement_medication_type: null,
 	enlargement_medication_other: null,
 	enlargement_medication_since: null,
 
 	// Inflammation treatment
-	inflammation_therapy_types: null,
+	inflammation_therapy_type: null,
 	inflammation_therapy_other: null,
 	inflammation_therapy_date: null,
 	inflammation_therapy_duration: null,
 
 	// Cancer treatment
-	cancer_therapy_types: null,
+	cancer_therapy_type: null,
 	cancer_therapy_other: null,
 	cancer_therapy_date: null,
 

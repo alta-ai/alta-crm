@@ -8,5 +8,6 @@ export { CTTherapyForm } from "./CTTherapyForm";
 export { CTMRIForm } from "./CTMRIForm";
 export { ProstateNewPatientForm } from "./ProstateNewPatientForm";
 export { ProstateTULSAForm } from "./ProstateTULSAForm";
+export { ProstateFollowUpForm } from "./ProstateFollowUpForm";
 
 export type { FormProps } from "../types";
