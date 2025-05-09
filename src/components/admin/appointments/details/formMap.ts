@@ -43,6 +43,7 @@ import {
 	CTTherapyForm as CTTherapyFormPDF,
 	CTMRIForm as CTMRIFormPDF,
 	ProstateNewPatientForm as ProstateNewPatientFormPDF,
+	ProstateTULSAForm as ProstateTULSAFormPDF,
 } from "../../../pdf";
 
 import { PSADiagramContextProvider } from "../../../pdf/contexts";
@@ -100,7 +101,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: ProstateNewPatientForm,
 		label: "Prostata-Fragebogen (Neupatient)",
 		pdfForm: ProstateNewPatientFormPDF,
-		customContext: PSADiagramContextProvider,
+		customContext: PSADiagramContextProvider as any,
 		tableName: "prostate_new_patient_form_submissions",
 	},
 	[FormType.PROSTATE_FOLLOWUP]: {
@@ -113,6 +114,8 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: ProstateTULSAFormData,
 		editForm: ProstateTULSAForm,
 		label: "Prostata-Fragebogen (TULSA)",
+		pdfForm: ProstateTULSAFormPDF,
+		customContext: PSADiagramContextProvider as any,
 		tableName: "prostate_tulsa_form_submissions",
 	},
 	[FormType.PROSTATE_HOLEP]: {
