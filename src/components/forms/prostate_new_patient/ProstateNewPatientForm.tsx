@@ -175,8 +175,10 @@ export const ProstateNewPatientForm = ({
 	const urologistTreatment = watch("urologist_treatment") as unknown as string;
 	const knownDiagnosis = watch("known_diagnosis") as unknown as string;
 	const prostateTreated = watch("prostate_treated") as unknown as string[];
+	const previousProstateTreated = usePrevious(prostateTreated);
 	const hadMRI = watch("had_mri") as unknown as string;
 	const urinationSymptoms = watch("urination_symptoms") || [];
+	const previousUrinationSymptoms = usePrevious(urinationSymptoms);
 	const biopsyTypes = watch("biopsy_types") as unknown as string[];
 	const previousBiopsyTypes = usePrevious(biopsyTypes);
 	const lastBiopsyResult = watch("last_biopsy_result") as unknown as string;
@@ -202,6 +204,76 @@ export const ProstateNewPatientForm = ({
 			setValue("prostate_not_treated_reason", "");
 		}
 	}, [knownDiagnosis, setValue]);
+
+	useEffect(() => {
+		if (
+			prostateTreated?.includes("nein, da keine Diagnose bekannt ist") &&
+			!previousProstateTreated?.includes("nein, da keine Diagnose bekannt ist")
+		) {
+			setValue("prostate_treated", ["nein, da keine Diagnose bekannt ist"]);
+			return;
+		}
+
+		if (
+			prostateTreated?.includes(
+				"nein, da bisher keine Notwendigkeit bestand"
+			) &&
+			!previousProstateTreated?.includes(
+				"nein, da bisher keine Notwendigkeit bestand"
+			)
+		) {
+			setValue("prostate_treated", [
+				"nein, da bisher keine Notwendigkeit bestand",
+			]);
+			return;
+		}
+
+		if (
+			prostateTreated?.includes(
+				"nein, da ich Sorge/Angst vor Nebenwirkungen/Komplikationen habe"
+			) &&
+			!previousProstateTreated?.includes(
+				"nein, da ich Sorge/Angst vor Nebenwirkungen/Komplikationen habe"
+			)
+		) {
+			setValue("prostate_treated", [
+				"nein, da ich Sorge/Angst vor Nebenwirkungen/Komplikationen habe",
+			]);
+			return;
+		}
+
+		if (
+			prostateTreated?.includes("nein, aus anderen Gründen") &&
+			!previousProstateTreated?.includes("nein, aus anderen Gründen")
+		) {
+			setValue("prostate_treated", ["nein, aus anderen Gründen"]);
+			return;
+		}
+
+		[
+			"ja, wegen gutartiger Prostatavergrösserung (BPH, BPS, Hyperplasie)",
+			"ja, wegen Prostataentzündung (Prostatitis)",
+			"ja, wegen Prostatakrebs",
+		].forEach((option) => {
+			if (
+				prostateTreated?.includes(option) &&
+				!previousProstateTreated?.includes(option)
+			) {
+				setValue("prostate_treated", [
+					option,
+					...(prostateTreated?.filter(
+						(item) =>
+							![
+								"nein, da keine Diagnose bekannt ist",
+								"nein, da bisher keine Notwendigkeit bestand",
+								"nein, da ich Sorge/Angst vor Nebenwirkungen/Komplikationen habe",
+								"nein, aus anderen Gründen",
+							].includes(item)
+					) || []),
+				]);
+			}
+		});
+	}, [prostateTreated, setValue]);
 
 	useEffect(() => {
 		if (!prostateTreated?.includes("nein, aus anderen Gründen")) {
@@ -240,12 +312,91 @@ export const ProstateNewPatientForm = ({
 		}
 	}, [prostateTreated, setValue]);
 
+	// Reset fields based on enlargement therapy type
+	useEffect(() => {
+		if (watch("enlargement_therapy_type")?.length === 0) {
+			setValue("enlargement_therapy_other", "");
+			setValue("enlargement_therapy_date", "");
+			setValue("enlargement_medication_type", []);
+			setValue("enlargement_medication_other", "");
+			setValue("enlargement_medication_since", "");
+		}
+
+		if (!watch("enlargement_therapy_type")?.includes("Medikamente")) {
+			setValue("enlargement_medication_type", []);
+			setValue("enlargement_medication_other", "");
+			setValue("enlargement_medication_since", "");
+		}
+
+		if (!watch("enlargement_therapy_type")?.includes("andere Behandlung")) {
+			setValue("enlargement_therapy_other", "");
+		}
+	}, [watch("enlargement_therapy_type"), setValue]);
+
+	// Reset fields based on enlargement medication type
+	useEffect(() => {
+		if (watch("enlargement_medication_type")?.length === 0) {
+			setValue("enlargement_medication_other", "");
+			setValue("enlargement_medication_since", "");
+		}
+
+		if (
+			!watch("enlargement_medication_type")?.includes(
+				"andere (z.B. Tamsulosin, Finasterid)"
+			)
+		) {
+			setValue("enlargement_medication_other", "");
+		}
+	}, [watch("enlargement_medication_type"), setValue]);
+
+	// Reset fields based on inflammation therapy type
+	useEffect(() => {
+		if (watch("inflammation_therapy_type")?.length === 0) {
+			setValue("inflammation_therapy_other", "");
+			setValue("inflammation_therapy_date", "");
+			setValue("inflammation_therapy_duration", "");
+		}
+
+		if (!watch("inflammation_therapy_type")?.includes("andere, welche")) {
+			setValue("inflammation_therapy_other", "");
+		}
+	}, [watch("inflammation_therapy_type"), setValue]);
+
+	// Reset fields based on cancer therapy type
+	useEffect(() => {
+		if (watch("cancer_therapy_type")?.length === 0) {
+			setValue("cancer_therapy_other", "");
+			setValue("cancer_therapy_date", "");
+		}
+
+		if (!watch("cancer_therapy_type")?.includes("andere Behandlung")) {
+			setValue("cancer_therapy_other", "");
+		}
+	}, [watch("cancer_therapy_type"), setValue]);
+
 	useEffect(() => {
 		if (hadMRI !== "true") {
 			setValue("mri_date", "");
 			setValue("brings_mri_cd", "");
 		}
 	}, [hadMRI, setValue]);
+
+	useEffect(() => {
+		if (
+			urinationSymptoms.includes("nein") &&
+			!previousUrinationSymptoms?.includes("nein")
+		) {
+			setValue("urination_symptoms", ["nein"]);
+			return;
+		}
+
+		if (urinationSymptoms.includes("nein") && urinationSymptoms.length > 1) {
+			setValue(
+				"urination_symptoms",
+				urinationSymptoms.filter((symptom) => symptom !== "nein")
+			);
+		}
+	}, [urinationSymptoms, setValue]);
 
 	useEffect(() => {
 		if (!urinationSymptoms.includes("Schmerzen")) {
@@ -261,19 +412,6 @@ export const ProstateNewPatientForm = ({
 		) {
 			setValue("biopsy_types", ["nein"]);
 			return;
-		}
-
-		if (
-			biopsyTypes?.includes(
-				"ja, jedoch bin ich mir unsicher, welche Biopsie bei mir durchgeführt wurde"
-			) &&
-			!previousBiopsyTypes?.includes(
-				"ja, jedoch bin ich mir unsicher, welche Biopsie bei mir durchgeführt wurde"
-			)
-		) {
-			setValue("biopsy_types", [
-				"ja, jedoch bin ich mir unsicher, welche Biopsie bei mir durchgeführt wurde",
-			]);
 		}
 
 		// if "nein" is selected and there are other types, remove "nein"
@@ -659,11 +797,14 @@ export const ProstateNewPatientForm = ({
 								) && (
 									<div>
 										<label className="block text-sm font-medium text-gray-700">
-											Andere Therapie (bitte angeben)
+											Mit welcher anderen Methode wurde Ihre gutartige
+											Prostatavergrößerung behandelt? *
 										</label>
 										<input
 											type="text"
-											{...register("enlargement_therapy_other")}
+											{...register("enlargement_therapy_other", {
+												required: "Dieses Feld ist erforderlich",
+											})}
 											className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 											disabled={readOnly}
 										/>
@@ -673,11 +814,14 @@ export const ProstateNewPatientForm = ({
 								{(watch("enlargement_therapy_type") || []).length > 0 && (
 									<div>
 										<label className="block text-sm font-medium text-gray-700">
-											Wann wurde die Therapie durchgeführt?
+											Wann war die Behandlung gegen Ihre gutartige
+											Prostatavergrößerung? *
 										</label>
 										<input
 											type="text"
-											{...register("enlargement_therapy_date")}
+											{...register("enlargement_therapy_date", {
+												required: "Dieses Feld ist erforderlich",
+											})}
 											className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 											placeholder="z.B. Mai 2023"
 											disabled={readOnly}
@@ -698,11 +842,14 @@ export const ProstateNewPatientForm = ({
 										) && (
 											<div>
 												<label className="block text-sm font-medium text-gray-700">
-													Andere Medikamente (bitte angeben)
+													Welche anderen Medikamente haben Sie gegen Ihre
+													gutartige Prostatavergrößerung eingenommen? *
 												</label>
 												<input
 													type="text"
-													{...register("enlargement_medication_other")}
+													{...register("enlargement_medication_other", {
+														required: "Dieses Feld ist erforderlich",
+													})}
 													className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 													disabled={readOnly}
 												/>
@@ -711,11 +858,14 @@ export const ProstateNewPatientForm = ({
 
 										<div>
 											<label className="block text-sm font-medium text-gray-700">
-												Seit wann nehmen Sie die Medikamente?
+												Seit wann nehmen Sie Medikamente gegen Ihre
+												Prostatavergrößerung? *
 											</label>
 											<input
 												type="text"
-												{...register("enlargement_medication_since")}
+												{...register("enlargement_medication_since", {
+													required: "Dieses Feld ist erforderlich",
+												})}
 												className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 												placeholder="z.B. Januar 2023"
 												disabled={readOnly}
@@ -737,7 +887,8 @@ export const ProstateNewPatientForm = ({
 								{renderCheckboxGroup(
 									INFLAMMATION_THERAPY_TYPES,
 									"inflammation_therapy_type",
-									"Art der Therapie"
+									"Art der Therapie",
+									true
 								)}
 
 								{watch("inflammation_therapy_type")?.includes(
@@ -745,11 +896,14 @@ export const ProstateNewPatientForm = ({
 								) && (
 									<div>
 										<label className="block text-sm font-medium text-gray-700">
-											Andere Therapie (bitte angeben)
+											Mit welcher anderen Methode wurde Ihre Prostataentzündung
+											behandelt? *
 										</label>
 										<input
 											type="text"
-											{...register("inflammation_therapy_other")}
+											{...register("inflammation_therapy_other", {
+												required: "Dieses Feld ist erforderlich",
+											})}
 											className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 											disabled={readOnly}
 										/>
@@ -759,11 +913,13 @@ export const ProstateNewPatientForm = ({
 								{(watch("inflammation_therapy_type") || []).length > 0 && (
 									<div>
 										<label className="block text-sm font-medium text-gray-700">
-											Wann wurde die Therapie durchgeführt?
+											Wann wurde Ihre Prostataentzündung behandelt? *
 										</label>
 										<input
 											type="text"
-											{...register("inflammation_therapy_date")}
+											{...register("inflammation_therapy_date", {
+												required: "Dieses Feld ist erforderlich",
+											})}
 											className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 											placeholder="z.B. Mai 2023"
 											disabled={readOnly}
@@ -774,11 +930,13 @@ export const ProstateNewPatientForm = ({
 								{(watch("inflammation_therapy_type") || []).length > 0 && (
 									<div>
 										<label className="block text-sm font-medium text-gray-700">
-											Wie lange dauerte die Therapie?
+											Wie lange wurde Ihre Prostataentzündung behandelt? *
 										</label>
 										<input
 											type="text"
-											{...register("inflammation_therapy_duration")}
+											{...register("inflammation_therapy_duration", {
+												required: "Dieses Feld ist erforderlich",
+											})}
 											className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 											placeholder="z.B. 2 Wochen"
 											disabled={readOnly}
@@ -797,7 +955,8 @@ export const ProstateNewPatientForm = ({
 								{renderCheckboxGroup(
 									CANCER_THERAPY_TYPES,
 									"cancer_therapy_type",
-									"Art der Therapie"
+									"Art der Therapie",
+									true
 								)}
 
 								{watch("cancer_therapy_type")?.includes(
@@ -805,11 +964,14 @@ export const ProstateNewPatientForm = ({
 								) && (
 									<div>
 										<label className="block text-sm font-medium text-gray-700">
-											Andere Therapie (bitte angeben)
+											Mit welcher anderen Methode wurde Ihr Prostatakrebs
+											behandelt? *
 										</label>
 										<input
 											type="text"
-											{...register("cancer_therapy_other")}
+											{...register("cancer_therapy_other", {
+												required: "Dieses Feld ist erforderlich",
+											})}
 											className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 											disabled={readOnly}
 										/>
@@ -819,11 +981,13 @@ export const ProstateNewPatientForm = ({
 								{(watch("cancer_therapy_type") || []).length > 0 && (
 									<div>
 										<label className="block text-sm font-medium text-gray-700">
-											Wann wurde die Therapie durchgeführt?
+											Wann wurden Sie wegen Prostatakrebs behandelt? *
 										</label>
 										<input
 											type="text"
-											{...register("cancer_therapy_date")}
+											{...register("cancer_therapy_date", {
+												required: "Dieses Feld ist erforderlich",
+											})}
 											className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 											placeholder="z.B. Mai 2023"
 											disabled={readOnly}
@@ -852,11 +1016,13 @@ export const ProstateNewPatientForm = ({
 				{watch("urination_symptoms")?.includes("Schmerzen") && (
 					<div>
 						<label className="block text-sm font-medium text-gray-700">
-							Wo treten die Schmerzen auf?
+							Wo treten die Schmerzen während des Wasserlassens auf? *
 						</label>
 						<input
 							type="text"
-							{...register("urination_pain_location")}
+							{...register("urination_pain_location", {
+								required: "Dieses Feld ist erforderlich",
+							})}
 							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 							placeholder="z.B. in der Harnröhre, im Unterbauch"
 							disabled={readOnly}
@@ -869,19 +1035,22 @@ export const ProstateNewPatientForm = ({
 						{renderSelect(
 							"night_urination_frequency",
 							"Wie oft müssen Sie nachts aufstehen, um Wasser zu lassen?",
-							FREQUENCY_OPTIONS
+							FREQUENCY_OPTIONS,
+							true
 						)}
 
 						{renderSelect(
 							"urination_symptoms_duration",
 							"Wie lange bestehen die Beschwerden schon?",
-							DURATION_OPTIONS
+							DURATION_OPTIONS,
+							true
 						)}
 
 						{renderSelect(
 							"urination_satisfaction_level",
 							"Wie zufrieden sind Sie mit Ihrer Blasenentleerung?",
-							SATISFACTION_LEVELS
+							SATISFACTION_LEVELS,
+							true
 						)}
 					</>
 				)}
@@ -921,11 +1090,13 @@ export const ProstateNewPatientForm = ({
 					<>
 						<div>
 							<label className="block text-sm font-medium text-gray-700">
-								Wann wurde die MRT-Untersuchung durchgeführt?
+								Wann wurde die MRT-Untersuchung durchgeführt? *
 							</label>
 							<input
 								type="text"
-								{...register("mri_date")}
+								{...register("mri_date", {
+									required: "Dieses Feld ist erforderlich",
+								})}
 								className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 								placeholder="z.B. Mai 2023"
 								disabled={readOnly}
@@ -935,7 +1106,8 @@ export const ProstateNewPatientForm = ({
 						{renderRadioGroup(
 							"brings_mri_cd",
 							"Bringen Sie die CD/DVD der MRT-Untersuchung mit?",
-							MRI_CD_OPTIONS
+							MRI_CD_OPTIONS,
+							true
 						)}
 					</>
 				)}
@@ -960,11 +1132,14 @@ export const ProstateNewPatientForm = ({
 							) && (
 								<div>
 									<label className="block text-sm font-medium text-gray-700">
-										Datum der letzten ultraschallgesteuerten Biopsie
+										Wann war Ihre letzte ultraschallgesteuerte Stanzbiopsie
+										(klassisch ohne MRT)? *
 									</label>
 									<input
 										type="text"
-										{...register("last_usg_biopsy_date")}
+										{...register("last_usg_biopsy_date", {
+											required: "Dieses Feld ist erforderlich",
+										})}
 										className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 										placeholder="z.B. Mai 2023"
 										disabled={readOnly}
@@ -977,11 +1152,13 @@ export const ProstateNewPatientForm = ({
 							) && (
 								<div>
 									<label className="block text-sm font-medium text-gray-700">
-										Datum der letzten Fusionsbiopsie
+										Wann war Ihre letzte Fusionsbiopsie (mit MRT-Aufnahmen)? *
 									</label>
 									<input
 										type="text"
-										{...register("last_fusion_biopsy_date")}
+										{...register("last_fusion_biopsy_date", {
+											required: "Dieses Feld ist erforderlich",
+										})}
 										className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 										placeholder="z.B. Mai 2023"
 										disabled={readOnly}
@@ -994,11 +1171,14 @@ export const ProstateNewPatientForm = ({
 							) && (
 								<div>
 									<label className="block text-sm font-medium text-gray-700">
-										Datum der letzten Sättigungsbiopsie
+										Wann war Ihre letzte Sättigungsbiopsie (mehr als 20 Proben)?
+										*
 									</label>
 									<input
 										type="text"
-										{...register("last_saturation_biopsy_date")}
+										{...register("last_saturation_biopsy_date", {
+											required: "Dieses Feld ist erforderlich",
+										})}
 										className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 										placeholder="z.B. Mai 2023"
 										disabled={readOnly}
@@ -1011,11 +1191,13 @@ export const ProstateNewPatientForm = ({
 							) && (
 								<div>
 									<label className="block text-sm font-medium text-gray-700">
-										Datum der letzten Biopsie (unbekannter Art)
+										Wann war Ihre letzte Biopsie? *
 									</label>
 									<input
 										type="text"
-										{...register("last_unknown_biopsy_date")}
+										{...register("last_unknown_biopsy_date", {
+											required: "Dieses Feld ist erforderlich",
+										})}
 										className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 										placeholder="z.B. Mai 2023"
 										disabled={readOnly}
@@ -1030,17 +1212,19 @@ export const ProstateNewPatientForm = ({
 						<>
 							{renderRadioGroup(
 								"last_biopsy_access_route",
-								"Wie wurde die letzte Biopsie durchgeführt?",
-								BIOPSY_ROUTES
+								"Welcher Zugang wurde bei der letzten Biopsie gewählt? *",
+								BIOPSY_ROUTES,
+								true
 							)}
 
 							<div>
 								<label className="block text-sm font-medium text-gray-700">
-									Anzahl der bisherigen Biopsien
+									Wie viele Biopsien hatten Sie? *
 								</label>
 								<input
 									type="number"
 									{...register("biopsy_count", {
+										required: "Dieses Feld ist erforderlich",
 										valueAsNumber: true,
 										min: {
 											value: 0,
@@ -1059,17 +1243,54 @@ export const ProstateNewPatientForm = ({
 
 							{renderSelect(
 								"last_biopsy_result",
-								"Ergebnis der letzten Biopsie",
-								BIOPSY_RESULTS
+								"Was war das Ergebnis Ihrer letzten Biopsie? *",
+								BIOPSY_RESULTS,
+								true
 							)}
 
 							{watch("last_biopsy_result") === "Karzinom (positiv)" && (
 								<div>
-									{renderCheckboxGroup(
-										GLEASON_SCORES,
-										"biopsy_gleason_score",
-										"Gleason-Score (falls bekannt)"
-									)}
+									<label className="block text-sm font-medium text-gray-700">
+										Welcher Gleason-Score wurde festgestellt (falls bekannt)?
+									</label>
+									<div className="mt-1 grid grid-cols-2 md:grid-cols-3 gap-2">
+										<Controller
+											name="biopsy_gleason_score"
+											control={control}
+											render={({ field }) => (
+												<>
+													{GLEASON_SCORES.map((score) => (
+														<div key={score} className="flex items-center">
+															<input
+																type="checkbox"
+																id={`gleason-${score}`}
+																value={score}
+																checked={field.value?.includes(score) || false}
+																onChange={(e) => {
+																	const values = field.value || [];
+																	if (e.target.checked) {
+																		field.onChange([...values, score]);
+																	} else {
+																		field.onChange(
+																			values.filter((v) => v !== score)
+																		);
+																	}
+																}}
+																className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+																disabled={readOnly}
+															/>
+															<label
+																htmlFor={`gleason-${score}`}
+																className="ml-2 block text-sm text-gray-700"
+															>
+																{score}
+															</label>
+														</div>
+													))}
+												</>
+											)}
+										/>
+									</div>
 								</div>
 							)}
 						</>
