@@ -234,7 +234,7 @@ export const ProstateTULSAForm: React.FC<FormProps> = (props) => {
 							style={{ marginLeft: "16px", ...styles.QuestionBox.Question }}
 						>
 							<Text style={styles.QuestionBox.TextField}>
-								{formData?.phosphodiesterase_preparation}
+								{formData?.phosphodiesterase_inhibitors_details}
 							</Text>
 						</Question>
 

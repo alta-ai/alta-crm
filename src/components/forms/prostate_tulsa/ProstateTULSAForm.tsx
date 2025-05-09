@@ -322,15 +322,15 @@ export const ProstateTULSAForm = ({
 						</label>
 						<input
 							type="text"
-							{...register("phosphodiesterase_preparation", {
+							{...register("phosphodiesterase_inhibitors_details", {
 								required: "Dieses Feld ist erforderlich",
 							})}
 							className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
 							disabled={readOnly}
 						/>
-						{errors.phosphodiesterase_preparation && (
+						{errors.phosphodiesterase_inhibitors_details && (
 							<p className="text-red-500 text-sm mt-1">
-								{errors.phosphodiesterase_preparation.message}
+								{errors.phosphodiesterase_inhibitors_details.message}
 							</p>
 						)}
 					</div>

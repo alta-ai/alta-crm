@@ -31,7 +31,7 @@ export const ProstateTULSAFormSchema = z.object({
 
 	// Medications
 	taking_phosphodiesterase_inhibitors: z.boolean(),
-	phosphodiesterase_preparation: z.string().nullable(),
+	phosphodiesterase_inhibitors_details: z.string().nullable(),
 	night_toilet_frequency: z.string(),
 	taking_prostate_medication: z.boolean(),
 	prostate_medication_description: z.string().nullable(),
@@ -79,7 +79,7 @@ export const defaultProstateTULSAForm: Partial<ProstateTULSAForm> = {
 
 	// Medications
 	taking_phosphodiesterase_inhibitors: false,
-	phosphodiesterase_preparation: null,
+	phosphodiesterase_inhibitors_details: null,
 	night_toilet_frequency: "",
 	taking_prostate_medication: false,
 	prostate_medication_description: null,
