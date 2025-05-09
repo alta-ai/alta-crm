@@ -45,6 +45,7 @@ import {
 	ProstateNewPatientForm as ProstateNewPatientFormPDF,
 	ProstateTULSAForm as ProstateTULSAFormPDF,
 	ProstateFollowUpForm as ProstateFollowUpFormPDF,
+	ProstateHoLEPForm as ProstateHoLEPFormPDF,
 } from "../../../pdf";
 
 import { PSADiagramContextProvider } from "../../../pdf/contexts";
@@ -125,6 +126,8 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: ProstateHoLEPFormData,
 		editForm: ProstateHoLEPForm,
 		label: "Prostata-Fragebogen (HoLEP)",
+		pdfForm: ProstateHoLEPFormPDF,
+		customContext: PSADiagramContextProvider as any,
 		tableName: "prostate_holep_form_submissions",
 	},
 	[FormType.MRI_CONSENT]: {

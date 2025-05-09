@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Info } from "lucide-react";
 
@@ -39,6 +39,7 @@ export const ProstateHoLEPForm = ({
 		trigger,
 		handleSubmit,
 		watch,
+		setValue,
 		formState: { errors },
 	} = useForm<ProstateHoLEPFormType>({ defaultValues: data?.submission });
 
@@ -58,6 +59,58 @@ export const ProstateHoLEPForm = ({
 		"taking_blood_thinners"
 	) as unknown as string;
 	const hasOtherComplaints = watch("has_other_complaints") as unknown as string;
+
+	// clean up complaints fields if the user selects "Nein"
+	useEffect(() => {
+		if (hasComplaints !== "true") {
+			setValue("complaints_description", "");
+		}
+	}, [hasComplaints, setValue]);
+
+	// clean up incontinence fields if the user selects "Nein"
+	useEffect(() => {
+		if (hasIncontinence !== "true") {
+			setValue("templates_per_day", "");
+		}
+	}, [hasIncontinence, setValue]);
+
+	// clean up other complaints fields if the user selects "Nein"
+	useEffect(() => {
+		if (hasOtherComplaints !== "true") {
+			setValue("other_complaints_description", "");
+		}
+	}, [hasOtherComplaints, setValue]);
+
+	// clean up phosphodiesterase medication fields if the user selects "Nein"
+	useEffect(() => {
+		if (takesPhosphodiesterase !== "true") {
+			setValue("phosphodiesterase_inhibitors_details", "");
+		}
+	}, [takesPhosphodiesterase, setValue]);
+
+	// clean up prostate medication fields if the user selects "Nein"
+	useEffect(() => {
+		if (takesProstateMedication !== "true") {
+			setValue("prostate_medication_description", "");
+			setValue("prostate_medication_since_when", "");
+		}
+	}, [takesProstateMedication, setValue]);
+
+	// clean up antibiotic therapy fields if the user selects "Nein"
+	useEffect(() => {
+		if (hadAntibioticTherapy !== "true") {
+			setValue("antibiotic_therapy_when", "");
+			setValue("antibiotic_therapy_duration", "");
+		}
+	}, [hadAntibioticTherapy, setValue]);
+
+	// clean up blood thinners fields if the user selects "Nein"
+	useEffect(() => {
+		if (takesBloodThinners !== "true") {
+			setValue("blood_thinners_description", "");
+			setValue("blood_thinners_since_when", "");
+		}
+	}, [takesBloodThinners, setValue]);
 
 	// Function to render a radio button group
 	const renderRadioGroup = (
