@@ -1,50 +1,50 @@
-export type * from "./registration";
-export { RegistrationFormSchema } from "./registration";
+export { RegistrationFormSchema, type RegistrationForm } from "./registration";
 
-export type * from "./registration_bg";
-export { RegistrationBGFormSchema } from "./registration_bg";
+export {
+	RegistrationBGFormSchema,
+	type RegistrationBGForm,
+} from "./registration_bg";
 
-export type * from "./form";
-export { FormSchema } from "./form";
+export { FormSchema, type Form } from "./form";
 
-export type * from "./ct";
-export { CTFormSchema } from "./ct";
+export { CTFormSchema, type CTForm } from "./ct";
 
-export type * from "./ct_therapy";
-export { CTTherapyFormSchema, defaultCTTherapyForm } from "./ct_therapy";
+export {
+	CTTherapyFormSchema,
+	defaultCTTherapyForm,
+	type CTTherapyForm,
+} from "./ct_therapy";
 
-export type * from "./privacy";
-export { PrivacyFormSchema } from "./privacy";
+export { PrivacyFormSchema, type PrivacyForm } from "./privacy";
 
-export type * from "./mri";
-export { MRIFormSchema } from "./mri";
+export { MRIFormSchema, type MRIForm } from "./mri";
 
-export type * from "./mri_ct";
-export { MRICTFormSchema, defaultMRICTForm } from "./mri_ct";
+export { MRICTFormSchema, defaultMRICTForm, type MRICTForm } from "./mri_ct";
 
-export type * from "./prostate_new_patient";
 export {
 	ProstateNewPatientFormSchema,
 	defaultProstateNewPatientForm,
+	type ProstateNewPatientForm,
 } from "./prostate_new_patient";
 
-export type * from "./prostate_follow_up";
 export {
 	ProstateFollowUpFormSchema,
 	defaultProstateFollowUpForm,
+	type ProstateFollowUpForm,
 } from "./prostate_follow_up";
 
-export type * from "./prostate_tulsa";
 export {
 	ProstateTULSAFormSchema,
 	defaultProstateTULSAForm,
+	type ProstateTULSAForm,
 } from "./prostate_tulsa";
 
-export type * from "./prostate_holep";
 export {
 	ProstateHoLEPFormSchema,
 	defaultProstateHoLEPForm,
+	type ProstateHoLEPForm,
 } from "./prostate_holep";
 
-export type * from "./biopsy";
-export { BiopsyFormSchema, defaultBiopsyForm } from "./biopsy";
+export { IPSSFormSchema, type IPSSForm } from "./ipss";
+
+export { BiopsyFormSchema, defaultBiopsyForm, type BiopsyForm } from "./biopsy";

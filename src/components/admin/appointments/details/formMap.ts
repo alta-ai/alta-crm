@@ -28,6 +28,7 @@ import {
 	ProstateHoLEPForm,
 	ProstateHoLEPFormData,
 } from "../../../forms/prostate_holep";
+import { IPSSForm, IPSSFormData } from "../../../forms/ipss";
 import { MRIForm, MRIFormData } from "../../../forms/mri";
 import { MRICTForm, MRICTFormData } from "../../../forms/mri_ct";
 import { FormType } from "../../../types/constants";
@@ -46,6 +47,7 @@ import {
 	ProstateTULSAForm as ProstateTULSAFormPDF,
 	ProstateFollowUpForm as ProstateFollowUpFormPDF,
 	ProstateHoLEPForm as ProstateHoLEPFormPDF,
+	IPSSForm as IPSSFormPDF,
 } from "../../../pdf";
 
 import { PSADiagramContextProvider } from "../../../pdf/contexts";
@@ -150,5 +152,12 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		label: "Biopsieformular",
 		pdfForm: BiopsyFormPDF,
 		tableName: "biopsy_form_submissions",
+	},
+	[FormType.IPSS]: {
+		data: IPSSFormData,
+		editForm: IPSSForm,
+		label: "IPSS Formular",
+		pdfForm: IPSSFormPDF,
+		tableName: "ipss_form_submissions",
 	},
 };
