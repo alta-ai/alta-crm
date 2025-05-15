@@ -4,7 +4,7 @@ import { View, Text, Image } from "@react-pdf/renderer";
 import { formatDate, formatTime } from "../utils";
 import { useFormData } from "../contexts/formDataContext";
 import styling from "../styles";
-import { WithSignature } from "../../types";
+import { useSignature } from "../contexts";
 
 const styles = {
 	marginTop: "5px",
@@ -31,25 +31,25 @@ const styles = {
 };
 
 export const SignatureString = () => {
-	const { formData, appointmentData } = useFormData<WithSignature>();
+	const { appointmentData } = useFormData();
+	const { data: signatureData } = useSignature();
+
 	return (
 		<View style={styling.Row as any} debug={false}>
 			<Text style={{ marginTop: "8px" }}>
 				{`${
-					formatDate(formData?.signature?.signedAt) ||
+					formatDate(signatureData?.created_at) ||
 					formatDate(appointmentData?.start_time)
 				} ${
-					formData?.signature?.signedAt
-						? formatTime(formData?.signature?.signedAt)
-						: ""
+					signatureData?.created_at ? formatTime(signatureData?.created_at) : ""
 				}`}
 			</Text>
 
-			{formData?.signature?.data && (
+			{signatureData?.signature && (
 				<View>
 					<Image
 						style={styles.Signature.Image}
-						src={formData?.signature?.data}
+						src={signatureData?.signature}
 					/>
 				</View>
 			)}

@@ -231,11 +231,9 @@ const FormSection: React.FC<FormSectionProps> = ({
 				>
 					<PDFFormPreviewModal
 						onClose={() => setSelectedFormTypeForPreview(null)}
-						form={FormMap[selectedFormTypeForPreview].pdfForm}
-						formName={FormMap[selectedFormTypeForPreview].label}
+						formType={selectedFormTypeForPreview}
 						patientData={patient || ({} as Patient)}
 						appointmentData={appointment}
-						CustomContext={FormMap[selectedFormTypeForPreview].customContext}
 					/>
 				</FormContextProvider>
 			)}

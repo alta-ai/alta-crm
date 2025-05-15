@@ -8,16 +8,11 @@ export { AppointmentStatusSchema, type AppointmentStatus } from "./status";
 export { ExaminationSchema, type Examination } from "./examination";
 export { DeviceSchema, type Device } from "./device";
 export { LocationSchema, type Location } from "./location";
+export { SignatureSchema, type Signature } from "./signature";
 
 export * from "./forms";
 export type * from "./forms";
 
 export interface FormProps {
 	onRender?: () => void;
-}
-export interface WithSignature {
-	signature: {
-		signedAt?: Date;
-		data?: string;
-	};
 }

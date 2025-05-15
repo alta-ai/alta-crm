@@ -50,16 +50,19 @@ import {
 	IPSSForm as IPSSFormPDF,
 } from "../../../pdf";
 
-import { PSADiagramContextProvider } from "../../../pdf/contexts";
+import {
+	PSADiagramContextProvider,
+	SignatureContextProvider,
+} from "../../../pdf/contexts";
 import React from "react";
 
 type FormMapEntry = {
 	data: unknown;
 	editForm: React.FC;
-	pdfForm?: unknown;
-	customContext?: React.FC<{
+	pdfForm: React.ComponentType<any>;
+	customContexts?: React.FC<{
 		children?: React.ReactNode;
-	}>;
+	}>[];
 	label: string;
 	tableName: string;
 };
@@ -69,6 +72,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: RegistrationFormData,
 		editForm: RegistrationForm,
 		pdfForm: RegistrationFormPDF,
+		customContexts: [SignatureContextProvider as any],
 		label: "Anmeldeformular",
 		tableName: "registration_form_submissions",
 	},
@@ -76,6 +80,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: RegistrationBGFormData,
 		editForm: RegistrationBGForm,
 		pdfForm: RegistrationBGFormPDF,
+		customContexts: [SignatureContextProvider as any],
 		label: "Anmeldeformular (Berufsgenossenschaft)",
 		tableName: "registration_bg_form_submissions",
 	},
@@ -83,6 +88,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		data: PrivacyFormData,
 		editForm: PrivacyForm,
 		pdfForm: PrivacyFormPDF,
+		customContexts: [SignatureContextProvider as any],
 		label: "Datenschutzformular",
 		tableName: "privacy_form_submissions",
 	},
@@ -91,6 +97,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: CTForm,
 		label: "CT Aufklärungsbogen",
 		pdfForm: CTFormPDF,
+		customContexts: [SignatureContextProvider as any],
 		tableName: "ct_form_submissions",
 	},
 	[FormType.CT_THERAPY]: {
@@ -98,6 +105,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: CTTherapyForm,
 		label: "CT-Therapie Aufklärungsbogen",
 		pdfForm: CTTherapyFormPDF,
+		customContexts: [SignatureContextProvider as any],
 		tableName: "ct_therapy_form_submissions",
 	},
 	[FormType.PROSTATE_NEW_PATIENT]: {
@@ -105,7 +113,10 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: ProstateNewPatientForm,
 		label: "Prostata-Fragebogen (Neupatient)",
 		pdfForm: ProstateNewPatientFormPDF,
-		customContext: PSADiagramContextProvider as any,
+		customContexts: [
+			SignatureContextProvider as any,
+			PSADiagramContextProvider as any,
+		],
 		tableName: "prostate_new_patient_form_submissions",
 	},
 	[FormType.PROSTATE_FOLLOWUP]: {
@@ -113,7 +124,10 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: ProstateFollowUpForm,
 		label: "Prostata-Fragebogen (Folgeuntersuchung)",
 		pdfForm: ProstateFollowUpFormPDF,
-		customContext: PSADiagramContextProvider as any,
+		customContexts: [
+			SignatureContextProvider as any,
+			PSADiagramContextProvider as any,
+		],
 		tableName: "prostate_followup_form_submissions",
 	},
 	[FormType.PROSTATE_TULSA]: {
@@ -121,7 +135,10 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: ProstateTULSAForm,
 		label: "Prostata-Fragebogen (TULSA)",
 		pdfForm: ProstateTULSAFormPDF,
-		customContext: PSADiagramContextProvider as any,
+		customContexts: [
+			SignatureContextProvider as any,
+			PSADiagramContextProvider as any,
+		],
 		tableName: "prostate_tulsa_form_submissions",
 	},
 	[FormType.PROSTATE_HOLEP]: {
@@ -129,13 +146,17 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: ProstateHoLEPForm,
 		label: "Prostata-Fragebogen (HoLEP)",
 		pdfForm: ProstateHoLEPFormPDF,
-		customContext: PSADiagramContextProvider as any,
+		customContexts: [
+			SignatureContextProvider as any,
+			PSADiagramContextProvider as any,
+		],
 		tableName: "prostate_holep_form_submissions",
 	},
 	[FormType.MRI_CONSENT]: {
 		data: MRIFormData,
 		editForm: MRIForm,
 		pdfForm: MRIFormPDF,
+		customContexts: [SignatureContextProvider as any],
 		label: "MRT Aufklärungsbogen",
 		tableName: "mri_form_submissions",
 	},
@@ -144,6 +165,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: MRICTForm,
 		label: "MRT/CT Aufklärungsbogen",
 		pdfForm: CTMRIFormPDF,
+		customContexts: [SignatureContextProvider as any],
 		tableName: "mri_ct_form_submissions",
 	},
 	[FormType.BIOPSY]: {
@@ -151,6 +173,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: BiopsyForm,
 		label: "Biopsieformular",
 		pdfForm: BiopsyFormPDF,
+		customContexts: [SignatureContextProvider as any],
 		tableName: "biopsy_form_submissions",
 	},
 	[FormType.IPSS]: {
@@ -158,6 +181,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		editForm: IPSSForm,
 		label: "IPSS Formular",
 		pdfForm: IPSSFormPDF,
+		customContexts: [SignatureContextProvider as any],
 		tableName: "ipss_form_submissions",
 	},
 };

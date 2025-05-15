@@ -4,7 +4,7 @@ import { View, Text } from "@react-pdf/renderer";
 import { useFormData } from "../contexts/formDataContext";
 import { deriveDisplayedFullName, formatDate } from "../utils";
 import { SignatureString } from "./Signature";
-import { WithSignature } from "../../types";
+import { useSignature } from "../contexts";
 
 const styles = {
 	marginTop: "5px",
@@ -26,7 +26,7 @@ const styles = {
 	},
 };
 const SignatureAlt: React.FC = () => {
-	const { patientData } = useFormData<WithSignature>();
+	const { patientData } = useFormData();
 
 	return (
 		<View style={styles}>
