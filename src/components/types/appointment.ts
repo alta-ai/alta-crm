@@ -2,6 +2,10 @@ import { z } from "zod";
 import { PatientSchema } from "./patient";
 import { BodySide } from "./constants";
 import { enumToZod } from "./utils";
+import { AppointmentStatusSchema } from "./status";
+import { ExaminationSchema } from "./examination";
+import { DeviceSchema } from "./device";
+import { LocationSchema } from "./location";
 
 export const AppointmentSchema = z.object({
 	id: z.string().uuid(),
@@ -15,25 +19,10 @@ export const AppointmentSchema = z.object({
 	}),
 	body_side: enumToZod(BodySide).optional().nullable(),
 	billing_type: z.string(),
-	status: z.object({
-		id: z.string().uuid(),
-		name: z.string(),
-	}),
-	examination: z.object({
-		id: z.string().uuid(),
-		name: z.string(),
-		duration: z.number(),
-	}),
-	device: z
-		.object({
-			id: z.string().uuid(),
-			name: z.string(),
-		})
-		.optional(),
-	location: z.object({
-		id: z.string().uuid(),
-		name: z.string(),
-	}),
+	status: AppointmentStatusSchema.partial(),
+	examination: ExaminationSchema.partial(),
+	device: DeviceSchema.partial().optional(),
+	location: LocationSchema.partial(),
 	patient: PatientSchema.partial(),
 	previous_appointment: z
 		.object({

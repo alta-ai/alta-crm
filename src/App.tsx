@@ -32,6 +32,7 @@ import StatisticsOverview from "./components/admin/statistics/StatisticsOverview
 import TodoDashboard from "./components/admin/todos/TodoDashboard";
 import BillingList from "./components/admin/BillingList";
 import BillingForm from "./components/admin/BillingForm";
+import { SignaturePage } from "./components/admin/signatures";
 
 function App() {
 	return (
@@ -124,6 +125,7 @@ function App() {
 						<Route path="billing-categories" element={<BillingCategories />} />
 					</Route>
 				</Route>
+				<Route path="signatures" element={<SignaturePage />} />
 			</Routes>
 		</Router>
 	);

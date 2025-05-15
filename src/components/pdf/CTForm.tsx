@@ -73,20 +73,19 @@ export const CTForm = ({ onlyForMen = false }) => {
 	return (
 		<>
 			<BaseFormPage withFooter={true} withPatientInfo={!onlyForMen}>
+				?
 				<Header>
 					<View style={styles.HeaderWrapper}>
 						<Text style={styles.Heading}>CT Aufklärungsbogen</Text>
 						<Text style={styles.SubHeading}>
 							{formatExamination({
-								examination: appointmentData.examination.name,
+								examination: appointmentData.examination?.name,
 								bodySide: appointmentData.body_side || undefined,
 							})}
 						</Text>
 					</View>
 				</Header>
-
 				<PatientInfoHeader data={{ ...appointmentData, ...patientData }} />
-
 				<View>
 					<Text style={styles.WithBottomMargin}>
 						Die Computertomographie (CT) ist ein diagnostisches Verfahren, bei
@@ -122,7 +121,6 @@ export const CTForm = ({ onlyForMen = false }) => {
 						Übelkeit oder Schmerzen im Bereich der Injektionsnadel.
 					</Text>
 				</View>
-
 				{!onlyForMen && (
 					<View style={{ marginTop: "16px", ...styling.Emph }}>
 						<Text>
@@ -132,7 +130,6 @@ export const CTForm = ({ onlyForMen = false }) => {
 						</Text>
 					</View>
 				)}
-
 				<Notes customStyling={{ marginTop: "16px", height: "300px" }} />
 			</BaseFormPage>
 

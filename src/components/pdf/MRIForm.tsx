@@ -89,7 +89,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 						<Text style={styles.Heading}>MRT Aufklärungsbogen</Text>
 						<Text style={styles.SubHeading}>
 							{formatExamination({
-								examination: appointmentData.examination.name,
+								examination: appointmentData.examination?.name,
 								bodySide: appointmentData.body_side || undefined,
 							})}
 						</Text>
@@ -272,7 +272,7 @@ export const MRIForm = ({ onlyForMen = false }) => {
 					heading={
 						"Informationen zur Untersuchung: " +
 						formatExamination({
-							examination: appointmentData.examination.name,
+							examination: appointmentData.examination?.name,
 							bodySide: appointmentData.body_side || undefined,
 						})
 					}

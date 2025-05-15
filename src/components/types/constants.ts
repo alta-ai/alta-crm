@@ -25,5 +25,20 @@ export enum FormType {
 	PROSTATE_FOLLOWUP = "prostate_followup",
 	PROSTATE_TULSA = "prostate_tulsa",
 	PROSTATE_HOLEP = "prostate_holep",
+	IPSS = "ipss",
 	BIOPSY = "biopsy",
+}
+
+export enum ExaminationCategory {
+	MRT = "MRT",
+	CT = "CT",
+	BIOPSY = "Biopsie",
+	TULSA = "TULSA-PRO",
+	DAVINCHI = "DaVinci-OP",
+	HOLEP = "HoLEP",
+	TURP = "TURP",
+	UROLOGY = "Urologie",
+	CARDIOLOGY = "Kardiologie",
+	CHECKUP_WOMEN = "Checkup-Frau",
+	CHECKUP_MEN = "Checkup-Mann",
 }

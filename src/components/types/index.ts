@@ -1,9 +1,13 @@
-export type * from "./patient";
-export { PatientSchema } from "./patient";
-export type * from "./appointment";
-export { AppointmentSchema } from "./appointment";
-export type * from "./insurance_providers";
-export { InsuranceProviderSchema } from "./insurance_providers";
+export { PatientSchema, type Patient } from "./patient";
+export { AppointmentSchema, type Appointment } from "./appointment";
+export {
+	InsuranceProviderSchema,
+	type InsuranceProvider,
+} from "./insurance_providers";
+export { AppointmentStatusSchema, type AppointmentStatus } from "./status";
+export { ExaminationSchema, type Examination } from "./examination";
+export { DeviceSchema, type Device } from "./device";
+export { LocationSchema, type Location } from "./location";
 
 export * from "./forms";
 export type * from "./forms";

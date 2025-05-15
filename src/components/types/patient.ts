@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { GENDER, INSURANCE_TYPE } from "./constants";
+import { GENDER } from "./constants";
+import { InsuranceSchema } from "./insurance";
 
 export const PatientSchema = z.object({
 	id: z.string().uuid(),
@@ -17,11 +18,7 @@ export const PatientSchema = z.object({
 	postal_code: z.string(),
 	city: z.string(),
 	country: z.string().nullable(),
-	insurance: z.object({
-		id: z.string().uuid(),
-		name: z.string(),
-		type: z.enum(INSURANCE_TYPE),
-	}),
+	insurance: InsuranceSchema.partial().nullable(),
 });
 
 // Infer TypeScript type from the Zod schema

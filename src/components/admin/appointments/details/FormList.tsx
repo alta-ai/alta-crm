@@ -129,9 +129,18 @@ const FormList: React.FC<FormListProps> = ({
 							{form.description && (
 								<p className="text-sm text-gray-500 mt-1">{form.description}</p>
 							)}
-							{isSubmitted && (
-								<p className="text-sm text-green-600 mt-1">Ausgefüllt</p>
-							)}
+							<div className="flex space-x-2">
+								{isSubmitted && (
+									<span className="inline-flex items-center justify-center bg-green-200 border border-green-300 rounded-full px-2 py-1 text-sm text-green-700 mt-1">
+										Ausgefüllt
+									</span>
+								)}
+								{isSubmitted && (
+									<span className="inline-flex items-center justify-center bg-blue-200 border border-blue-300 rounded-full px-2 py-1 text-sm text-blue-700 mt-1">
+										Unterschrieben
+									</span>
+								)}
+							</div>
 						</div>
 						<div className="flex space-x-3">
 							<button
