@@ -95,7 +95,34 @@ const FormList: React.FC<FormListProps> = ({
 			},
 		});
 
-	if (isLoadingExamination || isLoadingSubmissions) {
+	const { data: signatures, isLoading: isLoadingSignatures } =
+		useQuery<FormList>({
+			queryKey: ["signatures", appointmentId],
+			queryFn: async () => {
+				// Load all form submissions for this appointment
+				const promises = Object.values(FormType).map((f) =>
+					supabase
+						.from("signatures")
+						.select("id, form:forms!inner(form_type)")
+						.eq("appointment_id", appointmentId)
+						.eq("form.form_type", f)
+						.maybeSingle()
+				);
+
+				const resolved = await Promise.all(promises);
+				const dataMap = Object.values(FormType).reduce<Record<FormType, any>>(
+					(acc, key, index) => {
+						acc[key] = resolved[index].data;
+						return acc;
+					},
+					{} as Record<FormType, any>
+				);
+
+				return dataMap;
+			},
+		});
+
+	if (isLoadingExamination || isLoadingSubmissions || isLoadingSignatures) {
 		return <div className="text-gray-500">Formulare werden geladen...</div>;
 	}
 
@@ -113,6 +140,7 @@ const FormList: React.FC<FormListProps> = ({
 			{/* Form List */}
 			{forms?.map((form) => {
 				const isSubmitted = submissions && submissions[form?.form_type];
+				const isSigned = signatures && signatures[form?.form_type];
 
 				return (
 					<div
@@ -135,7 +163,7 @@ const FormList: React.FC<FormListProps> = ({
 										Ausgefüllt
 									</span>
 								)}
-								{isSubmitted && (
+								{isSigned && (
 									<span className="inline-flex items-center justify-center bg-blue-200 border border-blue-300 rounded-full px-2 py-1 text-sm text-blue-700 mt-1">
 										Unterschrieben
 									</span>
