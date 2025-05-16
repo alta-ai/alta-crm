@@ -287,53 +287,74 @@ const BillingFormEditor = () => {
       setLoading(true);
       setError(null);
       
-      // Stelle sicher, dass questions ein Array ist, bevor wir es als JSON stringifizieren
-      if (!Array.isArray(data.questions)) {
-        throw new Error('Ungültiges Datenformat: Fragen müssen ein Array sein');
+      // Verwende die ursprünglichen Fragen inklusive Abhängigkeiten
+      const cleanedQuestions = data.questions;
+      console.log("Fragen mit Abhängigkeiten zum Speichern:", cleanedQuestions);
+      
+      // Starte eine Transaktion zur Sicherheit
+      const { error: beginError } = await supabase.rpc('begin_transaction');
+      if (beginError) throw beginError;
+      
+      try {
+        let formId = id;
+        
+        // Wenn es ein neuer Bogen ist, erstelle ihn zuerst
+        if (!formId) {
+          const { data: newForm, error: formError } = await supabase
+            .from('billing_forms')
+            .insert({
+              name: data.name,
+              description: data.description,
+              category_id: data.category_id
+            })
+            .select()
+            .single();
+            
+          if (formError) throw formError;
+          formId = newForm.id;
+        } else {
+          // Aktualisiere den vorhandenen Bogen
+          const { error: updateFormError } = await supabase
+            .from('billing_forms')
+            .update({
+              name: data.name,
+              description: data.description,
+              category_id: data.category_id
+            })
+            .eq('id', formId);
+            
+          if (updateFormError) throw updateFormError;
+          
+          // Lösche alle bestehenden Fragen und deren Optionen
+          // Dies vereinfacht die Implementierung, wir müssen keine Änderungen tracken
+          const { error: deleteQuestionsError } = await supabase
+            .from('billing_form_questions')
+            .delete()
+            .eq('form_id', formId);
+            
+          if (deleteQuestionsError) throw deleteQuestionsError;
+        }
+        
+        // formId ist jetzt garantiert ein String
+        if (!formId) {
+          throw new Error('Fehler beim Erstellen oder Abrufen der Formular-ID');
+        }
+        
+        // Verwende unsere Hilfsfunktion, um alle Fragen und Optionen zu erstellen
+        await createQuestionsAndOptions(formId, cleanedQuestions);
+        
+        // Commit der Transaktion
+        const { error: commitError } = await supabase.rpc('commit_transaction');
+        if (commitError) throw commitError;
+        
+        // Daten aktualisieren und zurück zur Liste navigieren
+        queryClient.invalidateQueries({ queryKey: ['billing-forms'] });
+        navigate('/admin/billing/forms');
+      } catch (error) {
+        // Rollback bei Fehler
+        await supabase.rpc('rollback_transaction');
+        throw error;
       }
-      
-      // Vor dem Speichern: Debug-Ausgabe der Abhängigkeiten
-      data.questions.forEach((question, index) => {
-        console.log(`Frage ${index}:`, {
-          question_text: question.question_text,
-          question_type: question.question_type,
-          depends_on_question_id: question.depends_on_question_id,
-          depends_on_option_id: question.depends_on_option_id
-        });
-      });
-      
-      // Erstelle eine JSONB-ähnliche Darstellung der Fragen
-      const questionsJson = data.questions;
-      
-      // Rufe die Stored Procedure auf, die alle Operationen in einer Transaktion durchführt
-      const { data: result, error: saveError } = await supabase.rpc('save_billing_form', {
-        p_form_id: id || null,
-        p_form_name: data.name,
-        p_form_description: data.description,
-        p_form_category_id: data.category_id,
-        p_questions: questionsJson
-      });
-      
-      if (saveError) {
-        console.error('Fehler beim Speichern:', saveError);
-        throw saveError;
-      }
-      
-      // Debug-Ausgabe des Ergebnisses
-      console.log('Speichern erfolgreich, Ergebnis:', result);
-      
-      if (result.debug) {
-        console.log('Debug-Informationen:', result.debug);
-      }
-      
-      if (!result.success) {
-        throw new Error(result.error || 'Fehler beim Speichern des Abrechnungsbogens');
-      }
-      
-      // Daten aktualisieren und zurück zur Liste navigieren
-      queryClient.invalidateQueries({ queryKey: ['billing-forms'] });
-      navigate('/admin/billing/forms');
-      
     } catch (err: any) {
       console.error('Error saving form:', err);
       setError(err.message || 'Fehler beim Speichern des Abrechnungsbogens');
@@ -344,9 +365,9 @@ const BillingFormEditor = () => {
   
   // Hilfsfunktion zum Erstellen der Fragen und Optionen
   const createQuestionsAndOptions = async (formId: string, questions: FormQuestion[]) => {
-    // Starte eine Transaktion, damit die Constraints erst am Ende überprüft werden
-    const { error: beginError } = await supabase.rpc('begin_transaction');
-    if (beginError) throw beginError;
+    // Hier ist der Fehler: die Stored Procedure für die Transaktion scheint nicht wie erwartet zu funktionieren
+    // Stattdessen verwenden wir direktere Transaktionsbefehle
+    console.log("Beginne mit dem Speichern von Fragen und Optionen...");
     
     try {
       // Speichere zuerst alle Fragen ohne Abhängigkeiten
@@ -354,6 +375,11 @@ const BillingFormEditor = () => {
       
       for (let i = 0; i < questions.length; i++) {
         const question = questions[i];
+        
+        console.log(`Speichere Frage ${i}:`, {
+          text: question.question_text,
+          type: question.question_type
+        });
         
         // Erstelle die Frage (ohne Abhängigkeiten)
         const { data: newQuestion, error: questionError } = await supabase
@@ -364,14 +390,17 @@ const BillingFormEditor = () => {
             question_type: question.question_type,
             required: question.required,
             order_index: i,
-            // Setze die Abhängigkeiten erstmal auf null
+            // WICHTIG: Setze BEIDE Abhängigkeitsfelder auf NULL
             depends_on_question_id: null,
             depends_on_option_id: null
           })
           .select()
           .single();
         
-        if (questionError) throw questionError;
+        if (questionError) {
+          console.error(`Fehler beim Speichern der Frage ${i}:`, questionError);
+          throw questionError;
+        }
         
         // Speichere die erstellte Frage für spätere Referenzen
         createdQuestions[i] = { 
@@ -382,6 +411,10 @@ const BillingFormEditor = () => {
         // Erstelle die Optionen für diese Frage
         for (let j = 0; j < question.options.length; j++) {
           const option = question.options[j];
+          
+          console.log(`  Speichere Option ${j} für Frage ${i}:`, {
+            text: option.option_text
+          });
           
           const { data: newOption, error: optionError } = await supabase
             .from('billing_form_options')
@@ -395,19 +428,32 @@ const BillingFormEditor = () => {
             .select()
             .single();
           
-          if (optionError) throw optionError;
+          if (optionError) {
+            console.error(`Fehler beim Speichern der Option ${j} für Frage ${i}:`, optionError);
+            throw optionError;
+          }
           
           // Speichere die erstellte Option für spätere Referenzen
           createdQuestions[i].options[j] = newOption.id;
         }
       }
       
-      // Jetzt aktualisiere die Abhängigkeiten
+      console.log("Alle Fragen und Optionen gespeichert, aktualisiere nun Abhängigkeiten...");
+      console.log("Erstellte Fragen und Optionen:", createdQuestions);
+      
+      // Jetzt in einem SEPARATEN SCHRITT aktualisiere die Abhängigkeiten
       for (let i = 0; i < questions.length; i++) {
         const question = questions[i];
+        
+        // Wenn keine Abhängigkeiten gesetzt sind, überspringe diese Frage
         if (!question.depends_on_question_id && !question.depends_on_option_id) {
-          continue; // Keine Abhängigkeiten für diese Frage
+          continue;
         }
+        
+        console.log(`Verarbeite Abhängigkeiten für Frage ${i}:`, {
+          original_depends_on_question_id: question.depends_on_question_id,
+          original_depends_on_option_id: question.depends_on_option_id
+        });
         
         // Finde die referenzierten IDs aus unseren neu erstellten Fragen und Optionen
         let dependsOnQuestionId = null;
@@ -437,8 +483,35 @@ const BillingFormEditor = () => {
           dependsOnOptionId = question.depends_on_option_id;
         }
         
-        // Aktualisiere die Frage mit den Abhängigkeiten
-        if (dependsOnQuestionId || dependsOnOptionId) {
+        // WICHTIG: WENN eine der beiden Abhängigkeiten fehlt, DANN setze beide auf null!
+        if (!dependsOnQuestionId || !dependsOnOptionId) {
+          console.warn(`⚠️ Inkonsistente Abhängigkeiten gefunden für Frage ${i} - setze beide auf null:`, {
+            resolved_depends_on_question_id: dependsOnQuestionId,
+            resolved_depends_on_option_id: dependsOnOptionId
+          });
+          
+          // Setze beide Felder auf null
+          dependsOnQuestionId = null;
+          dependsOnOptionId = null;
+        } else {
+          console.log(`✅ Valide Abhängigkeiten für Frage ${i}:`, {
+            resolved_depends_on_question_id: dependsOnQuestionId,
+            resolved_depends_on_option_id: dependsOnOptionId
+          });
+        }
+        
+        // ERST HIER aktualisieren wir die Frage mit den validierten Abhängigkeiten
+        console.log(`Aktualisiere Frage ${i} mit Abhängigkeiten:`, {
+          question_id: createdQuestions[i].id,
+          depends_on_question_id: dependsOnQuestionId,
+          depends_on_option_id: dependsOnOptionId
+        });
+        
+        // KRITISCH: Prüfe explizit, ob beide Felder null oder beide nicht-null sind
+        if ((dependsOnQuestionId === null && dependsOnOptionId === null) || 
+            (dependsOnQuestionId !== null && dependsOnOptionId !== null)) {
+          
+          // Update durchführen
           const { error: updateError } = await supabase
             .from('billing_form_questions')
             .update({
@@ -448,26 +521,23 @@ const BillingFormEditor = () => {
             .eq('id', createdQuestions[i].id);
           
           if (updateError) {
-            console.error('Fehler beim Aktualisieren der Abhängigkeiten:', updateError);
+            console.error(`❌ Fehler beim Aktualisieren der Abhängigkeiten für Frage ${i}:`, updateError);
             throw updateError;
           }
-          
-          // Zusätzliches logging für die Abhängigkeiten
-          console.log(`Abhängigkeit aktualisiert für Frage ${i}:`, {
+        } else {
+          console.error(`❌ KRITISCHER FEHLER: Inkonsistente Abhängigkeiten bei Frage ${i} - Update abgebrochen:`, {
             question_id: createdQuestions[i].id,
             depends_on_question_id: dependsOnQuestionId,
             depends_on_option_id: dependsOnOptionId
           });
+          throw new Error('Inkonsistente Abhängigkeiten: Option-ID und Frage-ID müssen entweder beide gesetzt oder beide null sein.');
         }
       }
       
-      // Commit der Transaktion
-      const { error: commitError } = await supabase.rpc('commit_transaction');
-      if (commitError) throw commitError;
+      console.log("✅ Alle Abhängigkeiten erfolgreich aktualisiert");
       
     } catch (error) {
-      // Bei Fehler: Rollback der Transaktion
-      await supabase.rpc('rollback_transaction');
+      console.error("❌ Fehler bei createQuestionsAndOptions:", error);
       throw error;
     }
   };
@@ -713,29 +783,26 @@ const BillingFormEditor = () => {
                                 <div className="mb-4 pb-4 border-b border-gray-200">
                                   <h4 className="text-sm font-medium text-gray-700 mb-2">Abhängigkeiten</h4>
                                   <div className="space-y-2">
-                                    <div>
-                                      <label className="block text-sm text-gray-600 mb-1">
-                                        Diese Frage ist abhängig von:
-                                      </label>
-                                      <select
-                                        value={watch(`questions.${questionIndex}.depends_on_question_id`) || ''}
-                                        onChange={(e) => {
-                                          // Wenn wir die Frage wechseln, müssen wir auch die Option zurücksetzen
-                                          setValue(`questions.${questionIndex}.depends_on_question_id`, e.target.value || null);
-                                          setValue(`questions.${questionIndex}.depends_on_option_id`, null);
-                                        }}
-                                        className="w-full block border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 text-sm"
-                                      >
-                                        <option value="">Keine Abhängigkeit</option>
-                                        {/* Zeige nur Fragen an, die vor dieser Frage kommen */}
-                                        {questions.slice(0, questionIndex).map((q, qIndex) => (
-                                          <option key={q.id || `question-${qIndex}`} value={q.id || `new-${qIndex}`}>
-                                            {q.question_text}
-                                          </option>
-                                        ))}
-                                      </select>
-                                    </div>
-
+                                    {/* Abhängigkeiten wieder aktiv */}
+                                    <label className="block text-sm text-gray-600 mb-1">
+                                      Diese Frage ist abhängig von:
+                                    </label>
+                                    <select
+                                      value={watch(`questions.${questionIndex}.depends_on_question_id`) || ''}
+                                      onChange={(e) => {
+                                        setValue(`questions.${questionIndex}.depends_on_question_id`, e.target.value || null);
+                                        setValue(`questions.${questionIndex}.depends_on_option_id`, null);
+                                      }}
+                                      className="w-full block border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 text-sm"
+                                    >
+                                      <option value="">Keine Abhängigkeit</option>
+                                      {questions.slice(0, questionIndex).map((q, qIndex) => (
+                                        <option key={q.id || `question-${qIndex}`} value={q.id || `new-${qIndex}`}>
+                                          {q.question_text}
+                                        </option>
+                                      ))}
+                                    </select>
+                                    
                                     {watch(`questions.${questionIndex}.depends_on_question_id`) && (
                                       <div>
                                         <label className="block text-sm text-gray-600 mb-1">
@@ -749,7 +816,6 @@ const BillingFormEditor = () => {
                                           className="w-full block border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 text-sm"
                                         >
                                           <option value="">Bitte Option auswählen</option>
-                                          {/* Finde die abhängige Frage und zeige deren Optionen an */}
                                           {questions.find((q, qIndex) => 
                                             (q.id || `new-${qIndex}`) === watch(`questions.${questionIndex}.depends_on_question_id`)
                                           )?.options.map((opt, optIndex) => (

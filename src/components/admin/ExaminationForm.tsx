@@ -36,7 +36,7 @@ interface ExaminationFormData {
   id: string;
   name: string;
   description: string;
-  category: string;
+  category_id: string;
   report_title: string;
   report_title_template: string;
   requires_body_side: boolean;
@@ -249,7 +249,7 @@ const ExaminationForm = () => {
           .update({
             name: data.name,
             description: data.description,
-            category: data.category,
+            category_id: data.category_id,
             report_title: data.report_title,
             report_title_template: data.report_title_template,
             requires_body_side: data.requires_body_side,
@@ -357,7 +357,7 @@ const ExaminationForm = () => {
           .insert({
             name: data.name,
             description: data.description,
-            category: data.category,
+            category_id: data.category_id,
             report_title: data.report_title,
             report_title_template: data.report_title_template,
             requires_body_side: data.requires_body_side,
@@ -419,6 +419,8 @@ const ExaminationForm = () => {
             })));
         }
       }
+
+      console.log("Speicher-Objekt:", data);
 
       navigate('/admin');
     } catch (error: any) {
@@ -536,18 +538,18 @@ const ExaminationForm = () => {
                 Kategorie *
               </label>
               <select
-                {...register('category', { required: 'Kategorie ist erforderlich' })}
+                {...register('category_id', { required: 'Kategorie ist erforderlich' })}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
               >
                 <option value="">Bitte wählen</option>
                 {categories.map((category) => (
-                  <option key={category.id} value={category.name}>
+                  <option key={category.id} value={category.id}>
                     {category.name}
                   </option>
                 ))}
               </select>
-              {errors.category && (
-                <p className="mt-1 text-sm text-red-600">{errors.category.message}</p>
+              {errors.category_id && (
+                <p className="mt-1 text-sm text-red-600">{errors.category_id.message}</p>
               )}
             </div>
 
