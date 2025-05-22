@@ -27,12 +27,15 @@ import SettingsLayout from "./components/admin/settings/SettingsLayout";
 import InsuranceSettings from "./components/admin/settings/InsuranceSettings";
 import AppointmentStatusSettings from "./components/admin/settings/AppointmentStatusSettings";
 import SpecialtySettings from "./components/admin/settings/SpecialtySettings";
+import ExaminationCategorySettings from "./components/admin/settings/ExaminationCategorySettings";
 import BillingCategories from "./components/admin/settings/BillingCategories";
 import StatisticsOverview from "./components/admin/statistics/StatisticsOverview";
 import TodoDashboard from "./components/admin/todos/TodoDashboard";
 import BillingList from "./components/admin/BillingList";
 import BillingForm from "./components/admin/BillingForm";
 import { SignaturePage } from "./components/admin/signatures";
+import BillingFormList from "./components/admin/billing/BillingFormList";
+import BillingFormEditor from "./components/admin/billing/BillingFormEditor";
 
 function App() {
 	return (
@@ -108,6 +111,9 @@ function App() {
 					<Route path="billing" element={<BillingList />} />
 					<Route path="billing/new" element={<BillingForm />} />
 					<Route path="billing/:id" element={<BillingForm />} />
+					<Route path="billing/forms" element={<BillingFormList />} />
+					<Route path="billing/forms/new" element={<BillingFormEditor />} />
+					<Route path="billing/forms/:id" element={<BillingFormEditor />} />
 					<Route path="appointments" element={<AppointmentScheduler />} />
 					<Route path="statistics" element={<StatisticsOverview />} />
 					<Route path="emails" element={<EmailTemplateList />} />
@@ -122,6 +128,10 @@ function App() {
 							element={<AppointmentStatusSettings />}
 						/>
 						<Route path="specialties" element={<SpecialtySettings />} />
+						<Route
+							path="examination-categories"
+							element={<ExaminationCategorySettings />}
+						/>
 						<Route path="billing-categories" element={<BillingCategories />} />
 					</Route>
 				</Route>

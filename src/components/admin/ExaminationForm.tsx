@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { supabase } from '../../lib/supabase';
-import { AlertCircle, GripVertical, Info, Plus, Trash2 } from 'lucide-react';
+import { AlertCircle, GripVertical, Info, Plus, Trash2, X } from 'lucide-react';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 import { cn } from '../../lib/utils';
+import { useFieldArray } from 'react-hook-form';
 
 interface Device {
   id: string;
@@ -17,10 +18,25 @@ interface Form {
   description: string;
 }
 
-interface ExaminationFormData {
+interface Category {
+  id: string;
   name: string;
   description: string;
-  category: string;
+}
+
+interface BillingCode {
+  id: string;
+  code: string;
+  description: string;
+  price: number;
+  category_id: string;
+}
+
+interface ExaminationFormData {
+  id: string;
+  name: string;
+  description: string;
+  category_id: string;
   report_title: string;
   report_title_template: string;
   requires_body_side: boolean;
@@ -46,23 +62,10 @@ interface ExaminationFormData {
     is_standard: boolean;
   }[];
   prompt: string;
+  billing_codes: (string | { id: string })[];
 }
 
 const DURATION_OPTIONS = [15, 30, 45, 60, 75, 90];
-
-const CATEGORIES = [
-  'MRT',
-  'CT',
-  'Biopsie',
-  'TULSA-PRO',
-  'DaVinci-OP',
-  'HoLEP',
-  'TURP',
-  'Urologie',
-  'Kardiologie',
-  'Checkup-Frau',
-  'Checkup-Mann'
-];
 
 const BILLING_TYPES = [
   { value: 'self_payer', label: 'Selbstzahler' },
@@ -80,6 +83,8 @@ const ExaminationForm = () => {
   const [formBillingTypes, setFormBillingTypes] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [billingCodes, setBillingCodes] = useState<BillingCode[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
 
   const {
     register,
@@ -87,38 +92,52 @@ const ExaminationForm = () => {
     watch,
     reset,
     setValue,
-    formState: { errors }
+    formState: { errors },
+    control
   } = useForm<ExaminationFormData>({
     defaultValues: {
       devices: [],
       forms: [],
       duration: 30,
       sequences_without_contrast: [],
-      sequences_with_contrast: []
+      sequences_with_contrast: [],
+      billing_codes: []
     }
   });
+
+  const { fields: billingCodeFields, append: appendBillingCode, remove: removeBillingCode } = 
+    useFieldArray({ 
+      control, 
+      name: 'billing_codes' as any
+    });
 
   const watchedForms = watch('forms') || [];
   const sequencesWithoutContrast = watch('sequences_without_contrast') || [];
   const sequencesWithContrast = watch('sequences_with_contrast') || [];
   const requiresBodySide = watch('requires_body_side');
 
-  // Update selectedForms when watchedForms changes
   useEffect(() => {
-    const newSelectedForms = watchedForms
-      .map(form => allForms.find(f => f.id === form.id))
-      .filter((form): form is Form => form !== undefined);
-    setSelectedForms(newSelectedForms);
+    // Aktualisiere selectedForms basierend auf watchedForms
+    const selected = watchedForms.map(form => 
+      allForms.find(f => f.id === form.id)
+    ).filter(Boolean) as Form[];
+    setSelectedForms(selected);
   }, [watchedForms, allForms]);
 
-  // Fetch initial data
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        // Fetch devices
+        const { data: categoriesData, error: categoriesError } = await supabase
+          .from('examination_categories')
+          .select('id, name, description')
+          .order('name');
+
+        if (categoriesError) throw categoriesError;
+        setCategories(categoriesData || []);
+
         const { data: devicesData, error: devicesError } = await supabase
           .from('devices')
           .select('id, name')
@@ -127,7 +146,6 @@ const ExaminationForm = () => {
         if (devicesError) throw devicesError;
         setDevices(devicesData || []);
 
-        // Fetch forms
         const { data: formsData, error: formsError } = await supabase
           .from('forms')
           .select('id, name, description')
@@ -136,7 +154,14 @@ const ExaminationForm = () => {
         if (formsError) throw formsError;
         setAllForms(formsData || []);
 
-        // If editing, fetch examination data
+        const { data: billingCodesData, error: billingCodesError } = await supabase
+          .from('billing_codes')
+          .select('id, code, description, price, category_id')
+          .order('code');
+
+        if (billingCodesError) throw billingCodesError;
+        setBillingCodes(billingCodesData || []);
+
         if (id) {
           const { data: examination, error: examinationError } = await supabase
             .from('examinations')
@@ -153,7 +178,8 @@ const ExaminationForm = () => {
                 name,
                 with_contrast,
                 is_standard
-              )
+              ),
+              examination_billing_codes(billing_code_id)
             `)
             .eq('id', id)
             .maybeSingle();
@@ -168,14 +194,12 @@ const ExaminationForm = () => {
                 billing_types: ef.billing_type || BILLING_TYPES.map(bt => bt.value)
               }));
 
-            // Create billing types mapping
             const billingTypesMap: Record<string, string[]> = {};
             examination.examination_forms.forEach((ef: any) => {
               billingTypesMap[ef.form_id] = ef.billing_type || BILLING_TYPES.map(bt => bt.value);
             });
             setFormBillingTypes(billingTypesMap);
 
-            // Split sequences by contrast medium
             const sequencesWithout = examination.examination_sequences
               .filter((seq: any) => !seq.with_contrast)
               .map((seq: any) => ({
@@ -190,12 +214,17 @@ const ExaminationForm = () => {
                 is_standard: seq.is_standard
               }));
 
+            const billingCodeIds = examination.examination_billing_codes
+              ? examination.examination_billing_codes.map((ebc: any) => ebc.billing_code_id)
+              : [];
+
             reset({
               ...examination,
               devices: examination.examination_devices.map((ed: any) => ed.device_id),
               forms: formattedForms,
               sequences_without_contrast: sequencesWithout,
-              sequences_with_contrast: sequencesWith
+              sequences_with_contrast: sequencesWith,
+              billing_codes: billingCodeIds
             });
           }
         }
@@ -215,13 +244,12 @@ const ExaminationForm = () => {
     setLoading(true);
     try {
       if (id) {
-        // Update existing examination
         const { error: examError } = await supabase
           .from('examinations')
           .update({
             name: data.name,
             description: data.description,
-            category: data.category,
+            category_id: data.category_id,
             report_title: data.report_title,
             report_title_template: data.report_title_template,
             requires_body_side: data.requires_body_side,
@@ -239,7 +267,6 @@ const ExaminationForm = () => {
 
         if (examError) throw examError;
 
-        // Update device associations
         await supabase
           .from('examination_devices')
           .delete()
@@ -258,7 +285,6 @@ const ExaminationForm = () => {
           if (devicesError) throw devicesError;
         }
 
-        // Update form associations
         await supabase
           .from('examination_forms')
           .delete()
@@ -279,7 +305,6 @@ const ExaminationForm = () => {
           if (formsError) throw formsError;
         }
 
-        // Update sequences
         await supabase
           .from('examination_sequences')
           .delete()
@@ -308,14 +333,31 @@ const ExaminationForm = () => {
           if (sequencesError) throw sequencesError;
         }
 
+        await supabase
+          .from('examination_billing_codes')
+          .delete()
+          .eq('examination_id', id);
+
+        if (data.billing_codes && data.billing_codes.length > 0) {
+          const billingCodeAssociations = data.billing_codes.map(billingCode => ({
+            examination_id: id,
+            billing_code_id: typeof billingCode === 'string' ? billingCode : billingCode.id
+          }));
+
+          const { error: billingCodesError } = await supabase
+            .from('examination_billing_codes')
+            .insert(billingCodeAssociations);
+
+          if (billingCodesError) throw billingCodesError;
+        }
+
       } else {
-        // Create new examination
         const { data: examination, error: examError } = await supabase
           .from('examinations')
           .insert({
             name: data.name,
             description: data.description,
-            category: data.category,
+            category_id: data.category_id,
             report_title: data.report_title,
             report_title_template: data.report_title_template,
             requires_body_side: data.requires_body_side,
@@ -335,61 +377,50 @@ const ExaminationForm = () => {
         if (examError) throw examError;
 
         if (examination) {
-          // Create device associations
-          if (data.devices && data.devices.length > 0) {
-            const deviceAssociations = data.devices.map(deviceId => ({
+          await supabase
+            .from('examination_devices')
+            .insert(data.devices.map(deviceId => ({
               examination_id: examination.id,
               device_id: deviceId
-            }));
+            })));
 
-            const { error: devicesError } = await supabase
-              .from('examination_devices')
-              .insert(deviceAssociations);
-
-            if (devicesError) throw devicesError;
-          }
-
-          // Create form associations
-          if (data.forms && data.forms.length > 0) {
-            const formAssociations = data.forms.map((form, index) => ({
+          await supabase
+            .from('examination_forms')
+            .insert(data.forms.map((form, index) => ({
               examination_id: examination.id,
               form_id: form.id,
               order: index + 1,
               billing_type: formBillingTypes[form.id] || BILLING_TYPES.map(bt => bt.value)
-            }));
+            })));
 
-            const { error: formsError } = await supabase
-              .from('examination_forms')
-              .insert(formAssociations);
-
-            if (formsError) throw formsError;
-          }
-
-          // Create sequences
-          const sequences = [
-            ...data.sequences_without_contrast.map(seq => ({
+          await supabase
+            .from('examination_sequences')
+            .insert(data.sequences_without_contrast.map(seq => ({
               examination_id: examination.id,
               name: seq.name,
               with_contrast: false,
               is_standard: seq.is_standard
-            })),
-            ...data.sequences_with_contrast.map(seq => ({
+            })));
+
+          await supabase
+            .from('examination_sequences')
+            .insert(data.sequences_with_contrast.map(seq => ({
               examination_id: examination.id,
               name: seq.name,
               with_contrast: true,
               is_standard: seq.is_standard
-            }))
-          ];
+            })));
 
-          if (sequences.length > 0) {
-            const { error: sequencesError } = await supabase
-              .from('examination_sequences')
-              .insert(sequences);
-
-            if (sequencesError) throw sequencesError;
-          }
+          await supabase
+            .from('examination_billing_codes')
+            .insert(data.billing_codes.map(billingCode => ({
+              examination_id: examination.id,
+              billing_code_id: typeof billingCode === 'string' ? billingCode : billingCode.id
+            })));
         }
       }
+
+      console.log("Speicher-Objekt:", data);
 
       navigate('/admin');
     } catch (error: any) {
@@ -417,7 +448,6 @@ const ExaminationForm = () => {
     let newTypes: string[];
 
     if (currentTypes.includes(billingType)) {
-      // Don't allow removing the last billing type
       if (currentTypes.length === 1) return;
       newTypes = currentTypes.filter(t => t !== billingType);
     } else {
@@ -429,7 +459,6 @@ const ExaminationForm = () => {
       [formId]: newTypes
     }));
 
-    // Update the forms array in react-hook-form
     const currentForms = watchedForms;
     const updatedForms = currentForms.map(form => {
       if (form.id === formId) {
@@ -441,6 +470,14 @@ const ExaminationForm = () => {
       return form;
     });
     setValue('forms', updatedForms);
+  };
+
+  const addBillingCode = () => {
+    appendBillingCode({ id: '' } as any);
+  };
+
+  const removeBillingCodeAt = (index: number) => {
+    removeBillingCode(index);
   };
 
   if (loading && id) {
@@ -501,18 +538,18 @@ const ExaminationForm = () => {
                 Kategorie *
               </label>
               <select
-                {...register('category', { required: 'Kategorie ist erforderlich' })}
+                {...register('category_id', { required: 'Kategorie ist erforderlich' })}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
               >
                 <option value="">Bitte wählen</option>
-                {CATEGORIES.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
                   </option>
                 ))}
               </select>
-              {errors.category && (
-                <p className="mt-1 text-sm text-red-600">{errors.category.message}</p>
+              {errors.category_id && (
+                <p className="mt-1 text-sm text-red-600">{errors.category_id.message}</p>
               )}
             </div>
 
@@ -549,6 +586,51 @@ const ExaminationForm = () => {
               </p>
             </div>
 
+            <div className="bg-white shadow-sm rounded-lg p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-medium text-gray-900">Abrechnungsziffern</h2>
+                <button
+                  type="button"
+                  onClick={addBillingCode}
+                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                >
+                  <Plus className="h-4 w-4 mr-1" />
+                  Weitere Ziffer hinzufügen
+                </button>
+              </div>
+              
+              <div className="space-y-3">
+                {billingCodeFields.map((field, index) => (
+                  <div key={field.id} className="flex items-center space-x-3">
+                    <select
+                      {...register(`billing_codes.${index}.id` as const, { required: 'Abrechnungsziffer ist erforderlich' })}
+                      className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+                    >
+                      <option value="">Bitte wählen</option>
+                      {billingCodes.map(code => (
+                        <option key={code.id} value={code.id}>
+                          {code.code} - {code.description} ({code.price.toFixed(2)} €)
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      type="button"
+                      onClick={() => removeBillingCodeAt(index)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+                  </div>
+                ))}
+                
+                {billingCodeFields.length === 0 && (
+                  <div className="text-sm text-gray-500 italic py-2">
+                    Noch keine Abrechnungsziffern hinzugefügt. Klicken Sie auf "Weitere Ziffer hinzufügen" um Abrechnungsziffern zu dieser Untersuchung hinzuzufügen.
+                  </div>
+                )}
+              </div>
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700">
                 Verfügbare Geräte *
@@ -571,12 +653,10 @@ const ExaminationForm = () => {
               )}
             </div>
 
-            {/* Examination Sequences */}
             <div className="space-y-6">
               <h3 className="text-lg font-medium text-gray-900">Untersuchungssequenzen</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Sequences without contrast */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <h4 className="text-sm font-medium text-gray-700">Ohne Kontrastmittel</h4>
@@ -619,7 +699,6 @@ const ExaminationForm = () => {
                   </div>
                 </div>
 
-                {/* Sequences with contrast */}
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <h4 className="text-sm font-medium text-gray-700">Mit Kontrastmittel</h4>

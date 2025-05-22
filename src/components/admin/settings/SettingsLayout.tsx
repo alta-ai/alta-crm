@@ -9,6 +9,7 @@ const SettingsLayout = () => {
     { name: 'Versicherungen', href: '/admin/settings/insurance' },
     { name: 'Terminstatus', href: '/admin/settings/appointment-status' },
     { name: 'Fachrichtungen', href: '/admin/settings/specialties' },
+    { name: 'Untersuchungskategorien', href: '/admin/settings/examination-categories' },
     { name: 'Abrechnungskategorien', href: '/admin/settings/billing-categories' },
     { name: 'Allgemein', href: '/admin/settings/general' },
   ];

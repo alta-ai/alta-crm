@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ExternalLink } from "lucide-react";
 
 import { supabase } from "../../../../lib/supabase";
+import { ExternalLink, ArrowLeft } from "lucide-react";
 import PatientPhotoCapture from "../PatientPhotoCapture";
 import FormList from "./FormList";
 import FormViewer from "./FormViewer";
 import { generateFormToken, getFormsUrl } from "../../../../lib/forms";
 import PDFFormPreviewModal from "../PDFFormPreviewModal";
+import { cn } from "../../../../lib/utils";
+import BillingFormFilledView from "../../billing/BillingFormFilledView";
 import { Appointment, Patient, PatientSchema } from "../../../types";
 import { FormContextProvider } from "../../../forms/formContext";
 import { FormMap } from "./formMap";
@@ -15,18 +17,24 @@ import { FormType } from "../../../types/constants";
 
 interface FormSectionProps {
 	appointment: Appointment;
+	examinationId: string;
 	onPhotoUpdated?: () => void;
 }
 
 const FormSection: React.FC<FormSectionProps> = ({
 	appointment,
+	examinationId,
 	onPhotoUpdated,
 }) => {
+	const [activeTab, setActiveTab] = useState<"forms" | "billing">("forms");
 	const [activeFormPage, setActiveFormPage] = useState<string | null>(null);
 	const [selectedFormTypeForEdit, setSelectedFormTypeForEdit] =
 		useState<FormType | null>(null);
 	const [selectedFormTypeForPreview, setSelectedFormTypeForPreview] =
 		useState<FormType | null>(null);
+	const [selectedBillingFormId, setSelectedBillingFormId] = useState<
+		string | null
+	>(null);
 
 	const [formUrl, setFormUrl] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
@@ -76,6 +84,81 @@ const FormSection: React.FC<FormSectionProps> = ({
 			}
 		},
 	});
+
+	// // Lade Untersuchungsdetails, um die Kategorie-ID zu erhalten
+	// const { data: examination, isLoading: isLoadingExamination } = useQuery({
+	// 	queryKey: ["examination-details", examinationId],
+	// 	queryFn: async () => {
+	// 		const { data, error } = await supabase
+	// 			.from("examinations")
+	// 			.select(
+	// 				`
+	// 				id,
+	// 				name,
+	// 				category_id
+	// 			`
+	// 			)
+	// 			.eq("id", examinationId)
+	// 			.single();
+
+	// 		if (error) {
+	// 			console.error(error);
+	// 			throw error;
+	// 		}
+	// 	},
+	// });
+
+	// Lade Abrechnungsbögen, die zur Kategorie der Untersuchung passen
+	// const {
+	// 	data: categoryBillingForms,
+	// 	isLoading: isLoadingCategoryBillingForms,
+	// } = useQuery({
+	// 	queryKey: ["category-billing-forms", examination?.category_id],
+	// 	queryFn: async () => {
+	// 		if (!examination?.category_id) return [];
+
+	// 		const { data, error } = await supabase
+	// 			.from("billing_forms")
+	// 			.select(
+	// 				`
+	// 				id,
+	// 				name,
+	// 				description
+	// 			`
+	// 			)
+	// 			.eq("category_id", examination.category_id);
+
+	// 		if (error) throw error;
+	// 		return data;
+	// 	},
+	// 	enabled: !!examination?.category_id,
+	// });
+
+	// // Lade bereits ausgefüllte Abrechnungsbögen für diese Untersuchung
+	// const { data: filledBillingForms, isLoading: isLoadingFilledBillingForms } =
+	// 	useQuery({
+	// 		queryKey: ["filled-billing-forms", examinationId],
+	// 		queryFn: async () => {
+	// 			const { data, error } = await supabase
+	// 				.from("examination_billing_forms")
+	// 				.select(
+	// 					`
+	// 				id,
+	// 				form_id,
+	// 				created_at,
+	// 				billing_form:billing_forms(
+	// 					id,
+	// 					name,
+	// 					description
+	// 				)
+	// 			`
+	// 				)
+	// 				.eq("examination_id", examinationId);
+
+	// 			if (error) throw error;
+	// 			return data;
+	// 		},
+	// 	});
 
 	// Generate form URL
 	const handleGenerateUrl = async () => {
@@ -146,8 +229,35 @@ const FormSection: React.FC<FormSectionProps> = ({
 
 	return (
 		<>
-			<div className="flex justify-between items-center mb-4">
-				<h3 className="text-lg font-medium">Verfügbare Formulare</h3>
+			{/* Tabs für Formulare und Abrechnungsbögen */}
+			<div className="border-b border-gray-200 mb-6">
+				<nav className="-mb-px flex space-x-8" aria-label="Tabs">
+					<button
+						onClick={() => {
+							setActiveTab("forms");
+							setSelectedBillingFormId(null);
+						}}
+						className={cn(
+							"whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm",
+							activeTab === "forms"
+								? "border-blue-500 text-blue-600"
+								: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+						)}
+					>
+						Verfügbare Formulare
+					</button>
+					<button
+						onClick={() => setActiveTab("billing")}
+						className={cn(
+							"whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm",
+							activeTab === "billing"
+								? "border-blue-500 text-blue-600"
+								: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+						)}
+					>
+						Abrechnungsbögen
+					</button>
+				</nav>
 			</div>
 
 			<FormList
