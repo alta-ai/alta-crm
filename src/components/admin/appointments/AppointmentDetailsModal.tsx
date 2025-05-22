@@ -10,8 +10,8 @@ import AppointmentComments from "./details/AppointmentComments";
 import DocumentUpload from "./DocumentUpload";
 import ReferringDoctorSection from "./ReferringDoctorSection";
 import ReportSection from "./ReportSection";
-import FormSection from "./details/FormSection";
-import PatientPhotoModal from "./details/PatientPhotoModal";
+import FormSection from "./details/formSection/FormSection";
+import PatientPhotoModal from "./details/formSection/PatientPhotoModal";
 import { Appointment } from "../../types";
 
 export interface AppointmentDetailsProps {
@@ -291,14 +291,7 @@ const AppointmentDetailsModal: React.FC<
 							setShowPhotoModal={setShowPhotoModal}
 						/>
 					) : activeTab === "forms" ? (
-						<FormSection
-							appointment={appointment}
-							onPhotoUpdated={() => {
-								queryClient.invalidateQueries({
-									queryKey: ["patient-photo", appointment.patient.id],
-								});
-							}}
-						/>
+						<FormSection appointment={appointment} />
 					) : activeTab === "documents" ? (
 						<DocumentUpload appointmentId={appointment.id} />
 					) : activeTab === "comments" ? (

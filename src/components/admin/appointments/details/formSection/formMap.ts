@@ -1,38 +1,38 @@
-import { CTForm, CTFormData } from "../../../forms/ct";
-import { CTTherapyForm, CTTherapyFormData } from "../../../forms/ct_therapy";
-import { PrivacyForm, PrivacyFormData } from "../../../forms/privacy";
+import { CTForm, CTFormData } from "@components/forms/ct";
+import { CTTherapyForm, CTTherapyFormData } from "@components/forms/ct_therapy";
+import { PrivacyForm, PrivacyFormData } from "@components/forms/privacy";
 
 import {
 	RegistrationFormData,
 	RegistrationForm,
-} from "../../../forms/registration";
+} from "@components/forms/registration";
 
 import {
 	RegistrationBGForm,
 	RegistrationBGFormData,
-} from "../../../forms/registration_bg";
+} from "@components/forms/registration_bg";
 
 import {
 	ProstateNewPatientForm,
 	ProstateNewPatientFormData,
-} from "../../../forms/prostate_new_patient";
+} from "@components/forms/prostate_new_patient";
 import {
 	ProstateFollowUpForm,
 	ProstateFollowUpFormData,
-} from "../../../forms/prostate_follow_up";
+} from "@components/forms/prostate_follow_up";
 import {
 	ProstateTULSAForm,
 	ProstateTULSAFormData,
-} from "../../../forms/prostate_tulsa";
+} from "@components/forms/prostate_tulsa";
 import {
 	ProstateHoLEPForm,
 	ProstateHoLEPFormData,
-} from "../../../forms/prostate_holep";
-import { IPSSForm, IPSSFormData } from "../../../forms/ipss";
-import { MRIForm, MRIFormData } from "../../../forms/mri";
-import { MRICTForm, MRICTFormData } from "../../../forms/mri_ct";
-import { FormType } from "../../../types/constants";
-import { BiopsyForm, BiopsyFormData } from "../../../forms/biopsy";
+} from "@components/forms/prostate_holep";
+import { IPSSForm, IPSSFormData } from "@components/forms/ipss";
+import { MRIForm, MRIFormData } from "@components/forms/mri";
+import { MRICTForm, MRICTFormData } from "@components/forms/mri_ct";
+import { FormType } from "@components/types/constants";
+import { BiopsyForm, BiopsyFormData } from "@components/forms/biopsy";
 
 import {
 	MRIForm as MRIFormPDF,
@@ -48,12 +48,12 @@ import {
 	ProstateFollowUpForm as ProstateFollowUpFormPDF,
 	ProstateHoLEPForm as ProstateHoLEPFormPDF,
 	IPSSForm as IPSSFormPDF,
-} from "../../../pdf";
+} from "@components/pdf";
 
 import {
 	PSADiagramContextProvider,
 	SignatureContextProvider,
-} from "../../../pdf/contexts";
+} from "@components/pdf/contexts";
 import React from "react";
 
 type FormMapEntry = {
@@ -184,4 +184,9 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		customContexts: [SignatureContextProvider as any],
 		tableName: "ipss_form_submissions",
 	},
+	// [FormType.COST_ESTIMATION]: {
+	// 	data: null,
+	// 	editForm: null,
+	// 	label: "Kostenvoranschlag",
+	// },
 };

@@ -13,7 +13,7 @@ import {
 
 import { supabase } from "../../../lib/supabase";
 import { FormType } from "../../types/constants";
-import { FormMap } from "../appointments/details/formMap";
+import { FormMap } from "../appointments/details/formSection/formMap";
 import {
 	Appointment,
 	AppointmentSchema,

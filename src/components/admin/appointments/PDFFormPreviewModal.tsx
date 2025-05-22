@@ -7,7 +7,7 @@ import { Patient, Appointment } from "../../types";
 import { useFormContext } from "../../forms/formContext";
 import { useForceUpdate } from "../../pdf/contexts";
 import { FormType } from "../../types/constants";
-import { FormMap } from "./details/formMap";
+import { FormMap } from "./details/formSection/formMap";
 
 interface PDFFormPreviewModalProps {
 	onClose: () => void;

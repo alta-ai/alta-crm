@@ -8,7 +8,7 @@ import { SignaturePad } from "./SignaturePad";
 import { CustomPDFViewer } from "../../../pdf/customPDFViewer";
 import { Document, Text, Page } from "@react-pdf/renderer";
 import { FormDataProvider } from "../../../pdf/contexts";
-import { FormMap } from "../../appointments/details/formMap";
+import { FormMap } from "../../appointments/details/formSection/formMap";
 import { FormType } from "../../../types/constants";
 
 export const SignatureDialog: React.FC = () => {

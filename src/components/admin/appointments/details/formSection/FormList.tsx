@@ -3,11 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Camera, Eye, Pencil } from "lucide-react";
 import { z } from "zod";
 
-import { supabase } from "../../../../lib/supabase";
-import { cn } from "../../../../lib/utils";
-import { FormType } from "../../../types/constants";
-import { FormSchema } from "../../../types";
-import type { Form } from "../../../types";
+import { supabase } from "@/lib/supabase";
+import { cn } from "@/lib/utils";
+import { FormType } from "@components/types/constants";
+import { FormSchema } from "@components/types";
+import type { Form } from "@components/types";
 import { FormMap } from "./formMap";
 
 interface FormListProps {

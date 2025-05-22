@@ -27,6 +27,7 @@ export enum FormType {
 	PROSTATE_HOLEP = "prostate_holep",
 	IPSS = "ipss",
 	BIOPSY = "biopsy",
+	// COST_ESTIMATION = "cost_estimation",
 }
 
 export enum ExaminationCategory {
