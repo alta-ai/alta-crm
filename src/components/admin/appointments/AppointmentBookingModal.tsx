@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { de } from "date-fns/locale";
 import { X, Info, Calendar, MapPin, Monitor, Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Appointment } from "@components/types";
 import PatientForm from "./PatientForm";
 
 interface AppointmentBookingModalProps {
@@ -14,7 +15,7 @@ interface AppointmentBookingModalProps {
 	deviceId: string;
 	onConfirm: () => void;
 	isRescheduling?: boolean;
-	appointmentToReschedule?: any;
+	appointmentToReschedule?: Appointment;
 	referringDoctorId?: string;
 }
 
@@ -105,21 +106,13 @@ const AppointmentBookingModal = ({
 	// Initialize form with existing appointment data if rescheduling
 	useEffect(() => {
 		if (isRescheduling && appointmentToReschedule) {
-			setSelectedExamination(appointmentToReschedule.examination.id);
+			setSelectedExamination(appointmentToReschedule.examination?.id as string);
 			setWithContrastMedium(
-				appointmentToReschedule.patient_data?.with_contrast_medium || false
+				appointmentToReschedule?.with_contrast_medium || false
 			);
 			setBillingType(appointmentToReschedule.billing_type as BillingType);
-			setInsuranceProviderId(
-				appointmentToReschedule.insurance_provider_id || ""
-			);
-			setHasBeihilfe(
-				appointmentToReschedule.patient_data?.has_beihilfe || null
-			);
-			setHasTransfer(
-				appointmentToReschedule.patient_data?.has_transfer || null
-			);
-			setPatientId(appointmentToReschedule.patient.id);
+			setHasTransfer(appointmentToReschedule?.has_transfer || null);
+			setPatientId(appointmentToReschedule.patient?.id as string);
 			setStep("confirm");
 
 			// Überweiser-ID holen, falls vorhanden
@@ -198,7 +191,7 @@ const AppointmentBookingModal = ({
           examination_devices!inner(device_id)
         `);
 
-			if (isRescheduling) {
+			if (isRescheduling && appointmentToReschedule) {
 				// Bei Umplanung: check sowohl die examination ID als auch device compatibility
 				query = query
 					.eq("id", appointmentToReschedule.examination.id)
@@ -213,7 +206,7 @@ const AppointmentBookingModal = ({
 			const { data, error } = await query;
 			if (error) throw error;
 
-			if (data.length === 0 && isRescheduling) {
+			if (data.length === 0 && isRescheduling && appointmentToReschedule) {
 				// Fallback: Wenn die Untersuchung nicht für das neue Gerät verfügbar ist,
 				// zeige zumindest die aktuelle Untersuchung an
 				const { data: fallbackData, error: fallbackError } = await supabase
@@ -341,7 +334,21 @@ const AppointmentBookingModal = ({
 
 			let appointmentId;
 
-			if (isRescheduling) {
+			// update insurance information on patient
+			const { error: patientError } = await supabase
+				.from("patients")
+				.update({
+					insurance_provider_id:
+						billingType === "private_patient" ? insuranceProviderId : null,
+					has_beihilfe: hasBeihilfe,
+				})
+				.eq("id", patientId);
+
+			if (patientError) {
+				throw patientError;
+			}
+
+			if (isRescheduling && appointmentToReschedule) {
 				// Update existing appointment
 				const { error: updateError } = await supabase
 					.from("appointments")
@@ -352,14 +359,8 @@ const AppointmentBookingModal = ({
 						start_time: startTimeISO,
 						end_time: endTimeISO,
 						billing_type: billingType,
-						insurance_provider_id:
-							billingType === "private_patient" ? insuranceProviderId : null,
-						patient_data: {
-							with_contrast_medium: withContrastMedium,
-							has_beihilfe: hasBeihilfe,
-							has_transfer: hasTransfer,
-						},
-						previous_appointment_date: appointmentToReschedule.start_time,
+						with_contrast_medium: withContrastMedium,
+						has_transfer: hasTransfer,
 					})
 					.eq("id", appointmentToReschedule.id);
 
@@ -379,13 +380,8 @@ const AppointmentBookingModal = ({
 						status_id: defaultStatus.id,
 						patient_id: patientId,
 						billing_type: billingType,
-						insurance_provider_id:
-							billingType === "private_patient" ? insuranceProviderId : null,
-						patient_data: {
-							with_contrast_medium: withContrastMedium,
-							has_beihilfe: hasBeihilfe,
-							has_transfer: hasTransfer,
-						},
+						with_contrast_medium: withContrastMedium,
+						has_transfer: hasTransfer,
 					})
 					.select("id")
 					.single();
@@ -500,16 +496,20 @@ const AppointmentBookingModal = ({
 								<div className="space-y-2">
 									<p className="text-sm text-gray-600">
 										<span className="font-medium">Patient:</span>{" "}
-										{appointmentToReschedule.patient.first_name}{" "}
-										{appointmentToReschedule.patient.last_name}
+										{appointmentToReschedule?.patient?.first_name}{" "}
+										{appointmentToReschedule?.patient?.last_name}
 									</p>
 									<p className="text-sm text-gray-600">
 										<span className="font-medium">Untersuchung:</span>{" "}
-										{appointmentToReschedule.examination.name}
+										{appointmentToReschedule?.examination?.name}
 									</p>
 									<p className="text-sm text-gray-600">
 										<span className="font-medium">Abrechnungsart:</span>{" "}
-										{BILLING_TYPE_LABELS[appointmentToReschedule.billing_type]}
+										{
+											BILLING_TYPE_LABELS[
+												appointmentToReschedule?.billing_type as BillingType
+											]
+										}
 									</p>
 									{selectedDoctor && (
 										<p className="text-sm text-gray-600">
@@ -531,7 +531,9 @@ const AppointmentBookingModal = ({
 								</button>
 								<button
 									onClick={() =>
-										handlePatientComplete(appointmentToReschedule.patient.id)
+										handlePatientComplete(
+											appointmentToReschedule?.patient?.id as string
+										)
 									}
 									className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
 								>

@@ -6,8 +6,8 @@ import { de } from 'date-fns/locale';
 import { supabase } from '../../../lib/supabase';
 import { ArrowLeft, Send, FileUp, Download, Trash2, MessageSquare, FileText, Check, Filter, Eye, X, Maximize, Info, Phone, Flag } from 'lucide-react';
 import { cn } from '../../../lib/utils';
+import { Appointment } from '@components/types/appointment';
 import DocumentPreviewModal from '../appointments/DocumentPreviewModal';
-import { toast } from 'react-hot-toast';
 
 interface Document {
   id: string;
@@ -19,8 +19,8 @@ interface Document {
   comment: string | null;
   category: {
     id: string;
-    name: string;
-  };
+    name: any;
+  }[];
   appointment_id: string;
 }
 
@@ -164,7 +164,6 @@ const PatientHistory = () => {
             end_time,
             status,
             billing_type,
-            patient_data,
             examination:examinations(
               id,
               name,
@@ -214,7 +213,8 @@ const PatientHistory = () => {
             return {
               ...appointment,
               comments: comments || []
-            };
+            } as Appointment
+
           })
         );
 
@@ -291,7 +291,7 @@ const PatientHistory = () => {
       if (error) throw error;
 
       // Daten aktualisieren
-      queryClient.invalidateQueries(['patient-appointments', id]);
+      queryClient.invalidateQueries({queryKey: ["patient-appointments", id]})
     } catch (err: any) {
       console.error('Error marking comment as completed:', err);
       setError(err.message || 'Fehler beim Markieren des Kommentars als erledigt');
@@ -467,7 +467,7 @@ const PatientHistory = () => {
       if (commentError) throw commentError;
       
       // Daten aktualisieren
-      queryClient.invalidateQueries(['patient-appointments', id]);
+      queryClient.invalidateQueries({queryKey: ["patient-appointments", id]});
     } catch (err: any) {
       console.error('Error adding comment:', err);
       setError(err.message || 'Fehler beim Speichern des Kommentars');
@@ -610,7 +610,7 @@ const PatientHistory = () => {
                     </h3>
                     <div className="mt-1 text-sm text-gray-500 space-y-1">
                       <p>
-                        {format(parseISO(appointment.start_time), "EEEE, d. MMMM yyyy 'um' HH:mm 'Uhr'", { locale: de })}
+                        {format(appointment.start_time, "EEEE, d. MMMM yyyy 'um' HH:mm 'Uhr'", { locale: de })}
                       </p>
                       <p>
                         {appointment.device?.name || "Kein Gerät"} • {appointment.location?.name || "Kein Standort"}
@@ -625,7 +625,7 @@ const PatientHistory = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="ml-4">
+                  {/* <div className="ml-4">
                     <span className={cn(
                       'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium',
                       appointment.status === 'completed' ? 'bg-green-100 text-green-800' :
@@ -638,38 +638,30 @@ const PatientHistory = () => {
                         'Geplant'
                       }
                     </span>
-                  </div>
+                  </div> */}
                 </div>
 
-                {appointment.patient_data && Object.keys(appointment.patient_data).length > 0 && (
-                  <div className="mt-4 bg-gray-50 rounded-md p-4">
-                    <h4 className="text-sm font-medium text-gray-900 mb-2">
-                      Details
-                    </h4>
-                    <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
-                      {appointment.patient_data.with_contrast_medium && (
-                        <div>
-                          <dt className="text-sm text-gray-500">Kontrastmittel</dt>
-                          <dd className="text-sm text-gray-900">Ja</dd>
-                        </div>
-                      )}
-                      {appointment.patient_data.has_transfer && (
-                        <div>
-                          <dt className="text-sm text-gray-500">Überweisung von</dt>
-                          <dd className="text-sm text-gray-900">
-                            {appointment.patient_data.referring_doctor}
-                          </dd>
-                        </div>
-                      )}
-                      {appointment.patient_data.has_beihilfe && (
-                        <div>
-                          <dt className="text-sm text-gray-500">Beihilfe</dt>
-                          <dd className="text-sm text-gray-900">Ja</dd>
-                        </div>
-                      )}
-                    </dl>
-                  </div>
-                )}
+                <div className="mt-4 bg-gray-50 rounded-md p-4">
+                  <h4 className="text-sm font-medium text-gray-900 mb-2">
+                    Details
+                  </h4>
+                  <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+                    {appointment.with_contrast_medium && (
+                      <div>
+                        <dt className="text-sm text-gray-500">Kontrastmittel</dt>
+                        <dd className="text-sm text-gray-900">Ja</dd>
+                      </div>
+                    )}
+                    {appointment.has_transfer && (
+                      <div>
+                        <dt className="text-sm text-gray-500">Überweisung von</dt>
+                        <dd className="text-sm text-gray-900">
+                          {appointment.referring_doctor}
+                        </dd>
+                      </div>
+                    )}
+                  </dl>
+                </div>
 
                 <div className="mt-6 space-y-4">
                   <div className="flex items-center justify-between">

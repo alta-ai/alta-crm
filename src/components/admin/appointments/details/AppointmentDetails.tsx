@@ -135,13 +135,12 @@ const AppointmentDetails: React.FC<AppointmentDetailsComponentProps> = ({
 								{(currentReferringDoctor as any)?.last_name || ""}
 							</p>
 						)}
-						{appointment.patient_data.has_transfer &&
-							!currentReferringDoctor && (
-								<p className="text-sm">
-									<span className="font-medium">Überweisender Arzt: </span>
-									{appointment.patient_data.referring_doctor}
-								</p>
-							)}
+						{appointment.has_transfer && !currentReferringDoctor && (
+							<p className="text-sm">
+								<span className="font-medium">Überweisender Arzt: </span>
+								{appointment.referring_doctor}
+							</p>
+						)}
 					</div>
 
 					{/* Patientenfoto rechts */}

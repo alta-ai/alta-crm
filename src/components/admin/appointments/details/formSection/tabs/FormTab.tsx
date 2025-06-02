@@ -68,7 +68,7 @@ export const FormTabContent = ({
 			.insert({
 				device_id: 0,
 				appointment_id: appointment.id,
-				patient_id: appointment.patient.id,
+				patient_id: appointment?.patient?.id,
 			})
 			.select("id")
 			.single();
@@ -81,14 +81,14 @@ export const FormTabContent = ({
 
 	const onPhotoUpdated = async () => {
 		queryClient.invalidateQueries({
-			queryKey: ["patient-photo", appointment.patient.id],
+			queryKey: ["patient-photo", appointment?.patient?.id],
 		});
 	};
 
 	if (activeFormPage === "photo-capture") {
 		return (
 			<PatientPhotoCapture
-				patientId={appointment.patient.id as string}
+				patientId={appointment?.patient?.id as string}
 				onPhotoUpdated={() => {
 					onPhotoUpdated;
 					setActiveFormPage(null);

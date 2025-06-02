@@ -289,7 +289,6 @@ const CalendarView = ({
           id,
           start_time,
           end_time,
-          patient_data,
           billing_type,
 					body_side,
           status:appointment_statuses(
