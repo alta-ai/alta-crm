@@ -5,8 +5,6 @@ export {
 	type RegistrationBGForm,
 } from "./registration_bg";
 
-export { FormSchema, type Form } from "./form";
-
 export { CTFormSchema, type CTForm } from "./ct";
 
 export {

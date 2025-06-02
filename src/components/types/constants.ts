@@ -27,7 +27,7 @@ export enum FormType {
 	PROSTATE_HOLEP = "prostate_holep",
 	IPSS = "ipss",
 	BIOPSY = "biopsy",
-	// COST_ESTIMATION = "cost_estimation",
+	COST_ESTIMATION = "cost_estimation",
 }
 
 export enum ExaminationCategory {
@@ -42,4 +42,11 @@ export enum ExaminationCategory {
 	CARDIOLOGY = "Kardiologie",
 	CHECKUP_WOMEN = "Checkup-Frau",
 	CHECKUP_MEN = "Checkup-Mann",
+}
+
+export enum BillingType {
+	SELF_PAYER = "self_payer",
+	PRIVATE_PATIENT = "private_patient",
+	FOREIGN_PATIENT = "foreign_patient",
+	WORK_ACCIDENT = "work_accident",
 }

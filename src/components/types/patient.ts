@@ -18,6 +18,7 @@ export const PatientSchema = z.object({
 	postal_code: z.string(),
 	city: z.string(),
 	country: z.string().nullable(),
+	has_beihilfe: z.boolean().optional().nullable(),
 	insurance: InsuranceSchema.partial().nullable(),
 });
 
