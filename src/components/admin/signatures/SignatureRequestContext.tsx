@@ -12,11 +12,11 @@ import {
 } from "./customSignatureContent";
 
 import { supabase } from "../../../lib/supabase";
-import { FormType } from "../../types/constants";
 import { FormMap } from "../appointments/details/formSection/formMap";
 import {
 	Appointment,
 	AppointmentSchema,
+	Form,
 	Patient,
 	PatientSchema,
 } from "../../types";
@@ -29,16 +29,11 @@ export interface SignatureDetails {
 
 interface ExaminationForm {
 	order: number;
-	form: FormInfo;
+	form: Form;
 	data?: any;
 	completed: boolean;
 	signed: boolean;
-}
-
-interface FormInfo {
-	id: string;
-	name: string;
-	form_type: FormType;
+	needsSignature: boolean;
 }
 
 export enum SignatureStages {
@@ -81,7 +76,11 @@ const inferNextUnsignedIndex = ({
 	currentIndex?: number;
 }): number => {
 	const index = forms.findIndex(
-		(form, index) => !form.signed && form.completed && index > currentIndex
+		(form, index) =>
+			form.needsSignature &&
+			!form.signed &&
+			form.completed &&
+			index > currentIndex
 	);
 	return index;
 };
@@ -103,7 +102,7 @@ export const SignatureRequestProvider: React.FC<
 		SignatureStages.BEFORE
 	);
 
-	const fetchFormData = async (formInfo: FormInfo, appointmentID: string) => {
+	const fetchFormData = async (formInfo: Form, appointmentID: string) => {
 		try {
 			let { data, error } = await supabase
 				.from(FormMap[formInfo.form_type].tableName)
@@ -116,7 +115,7 @@ export const SignatureRequestProvider: React.FC<
 				return null;
 			}
 
-			return data;
+			return FormMap[formInfo.form_type].schema.parse(data);
 		} catch (err) {
 			console.error(err);
 			return null;
@@ -161,7 +160,9 @@ export const SignatureRequestProvider: React.FC<
 					form:forms(
 						id,
 						name,
-						form_type
+						form_type,
+						editable,
+						needs_signature
 					)
 					`
 				)
@@ -172,7 +173,11 @@ export const SignatureRequestProvider: React.FC<
 			if (data) {
 				data = await Promise.all(
 					data.map(async (f) => {
-						const formData = await fetchFormData(f.form, appointmentID);
+						let formData = null;
+						if (f.form.editable) {
+							formData = await fetchFormData(f.form, appointmentID);
+						}
+
 						const signature = await populateSignatures(
 							f.form.id,
 							appointmentID
@@ -181,8 +186,9 @@ export const SignatureRequestProvider: React.FC<
 						return {
 							...f,
 							data: { ...formData, ...signature },
-							completed: formData !== null,
+							completed: !f.form.editable || formData !== null,
 							signed: signature !== null,
+							needsSignature: f.form.needs_signature as boolean,
 						};
 					})
 				);
@@ -221,6 +227,7 @@ export const SignatureRequestProvider: React.FC<
 					)
 					`
 				)
+				.gte("created_at", new Date(Date.now() - 10 * 60 * 1000).toISOString())
 				.order("created_at", { ascending: false })
 				.limit(1)
 				.single();
@@ -229,8 +236,6 @@ export const SignatureRequestProvider: React.FC<
 				console.error("Error fetching signature request", error);
 				throw error;
 			}
-
-			console.log(data);
 
 			fetchRelevantForms(
 				data?.appointment?.examination?.id,
@@ -361,7 +366,17 @@ export const SignatureRequestProvider: React.FC<
 	/**
 	 * Close the signature request
 	 */
-	const closeSignatureRequest = () => {
+	const closeSignatureRequest = async () => {
+		const { error } = await supabase
+			.from("signature_requests")
+			.delete()
+			.eq("appointment_id", signatureDetails?.appointment.id);
+
+		if (error) {
+			console.error(error);
+			throw error;
+		}
+
 		setSignatureDetails(null);
 		setActivePolling(true);
 		setSignatureStage(SignatureStages.BEFORE);

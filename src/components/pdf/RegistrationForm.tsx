@@ -165,8 +165,7 @@ export const RegistrationForm: React.FC<FormProps> = (props) => {
 									<BoxSelection
 										options={["Ja", "Nein"]}
 										selected={booleanToYesNo(
-											formData.has_beihilfe ||
-												appointmentData.patient_data?.has_beihilfe
+											formData.has_beihilfe || patientData?.has_beihilfe
 										)}
 										style={styling.FormTypeLines.BoxSelection}
 									/>

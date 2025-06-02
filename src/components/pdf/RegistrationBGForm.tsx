@@ -97,8 +97,9 @@ export const RegistrationBGForm: React.FC<FormProps> = (props) => {
 							},
 							{
 								label: "Geburtsdatum",
-								value: formatDate(
-									formData?.birth_date || patientData.birth_date
+								value: format(
+									formData.birth_date || patientData.birth_date,
+									"dd.MM.yyyy"
 								),
 								start: 50,
 								type: "text",
@@ -150,7 +151,7 @@ export const RegistrationBGForm: React.FC<FormProps> = (props) => {
 						items={[
 							{
 								label: "Unfalltag",
-								value: formatDate(formData?.datetime_of_accident),
+								value: format(formData?.datetime_of_accident, "dd.MM.yyyy"),
 								start: 40,
 								type: "text",
 							},

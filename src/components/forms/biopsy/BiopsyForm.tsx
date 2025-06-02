@@ -356,8 +356,6 @@ export const BiopsyForm = ({ onComplete, readOnly }: BiopsyFormProps) => {
 
 	// Render different form sections based on current step
 	const renderFormStep = () => {
-		console.log(getValues());
-
 		switch (currentStep) {
 			case 1:
 				return (

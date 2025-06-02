@@ -57,7 +57,7 @@ export const PatientInfoHeaderSmall: React.FC<PatientInfoHeaderSmallProps> = ({
 	data,
 }) => {
 	return (
-		<View style={{ position: "absolute", right: 0, top: "-8px", fontSize: 9 }}>
+		<View style={{ position: "absolute", right: 0, top: "-12px", fontSize: 9 }}>
 			<Text>
 				{deriveDisplayedFullName({
 					title: data?.title || undefined,

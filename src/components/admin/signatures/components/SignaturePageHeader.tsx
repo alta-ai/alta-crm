@@ -22,6 +22,7 @@ const SignatureProgressBar: React.FC<SignatureProgressBarProps> = () => {
 						className={classNames("mr-10", {
 							"text-green-500": _f.signed,
 							"text-red-500": !_f.completed,
+							"text-white/30": !_f.needsSignature,
 							"font-extrabold border-b-[3px] border-white":
 								activeSignatureIndex === index,
 						})}

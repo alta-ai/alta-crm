@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ComponentArrayRenderer } from "./CustomSignatureContent";
 import {
 	SignatureStages,
@@ -6,12 +6,16 @@ import {
 } from "../SignatureRequestContext";
 import { SignaturePad } from "./SignaturePad";
 import { CustomPDFViewer } from "../../../pdf/customPDFViewer";
-import { Document, Text, Page } from "@react-pdf/renderer";
-import { FormDataProvider } from "../../../pdf/contexts";
-import { FormMap } from "../../appointments/details/formSection/formMap";
+import { FormDataProvider, useForceUpdate } from "../../../pdf/contexts";
+import {
+	FormMap,
+	nestContexts,
+} from "../../appointments/details/formSection/formMap";
 import { FormType } from "../../../types/constants";
 
 export const SignatureDialog: React.FC = () => {
+	const forceUpdate = useForceUpdate();
+
 	const {
 		signatureDetails,
 		activeSignatureIndex,
@@ -23,6 +27,13 @@ export const SignatureDialog: React.FC = () => {
 	} = useSignatureRequest();
 
 	const CustomComponents = getCustomComponents();
+
+	useEffect(() => {
+		document.addEventListener("renderPSADiagramFinished", forceUpdate);
+		return () => {
+			document.removeEventListener("renderPSADiagramFinished", forceUpdate);
+		};
+	}, []);
 
 	if (activeSignatureIndex === -1) {
 		return (
@@ -56,7 +67,8 @@ export const SignatureDialog: React.FC = () => {
 	if (signatureStage === SignatureStages.SIGNATURE) {
 		const formType = signatureDetails?.forms[activeSignatureIndex].form
 			.form_type as FormType;
-		const Form = FormMap[formType].pdfForm as any;
+
+		const { pdfForm: Form, customContexts: CustomContexts } = FormMap[formType];
 
 		const PDFDocument = (
 			<FormDataProvider
@@ -64,7 +76,7 @@ export const SignatureDialog: React.FC = () => {
 				initialPatientData={signatureDetails?.patient}
 				initialAppointmentData={signatureDetails?.appointment}
 			>
-				<Form />
+				{nestContexts(CustomContexts, formType, <Form />)}
 			</FormDataProvider>
 		);
 
@@ -72,6 +84,11 @@ export const SignatureDialog: React.FC = () => {
 			<>
 				<CustomPDFViewer value={PDFDocument} />
 				<SignaturePad />
+
+				<canvas
+					style={{ display: "none", maxWidth: "400px", maxHeight: "200px" }}
+					id="render-canvas-chart"
+				/>
 			</>
 		);
 	}

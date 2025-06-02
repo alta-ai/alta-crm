@@ -22,7 +22,7 @@ const styles = {
 	},
 	PatientID: {
 		position: "absolute" as const,
-		top: -5,
+		top: -8,
 		right: 0,
 		fontSize: 9,
 	},

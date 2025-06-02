@@ -58,7 +58,7 @@ export const SignatureString = () => {
 };
 
 interface SignatureProps {
-	heading?: string;
+	heading?: string | React.ReactNode;
 }
 
 const Signature: React.FC<SignatureProps> = ({ heading }) => {
