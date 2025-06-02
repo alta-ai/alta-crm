@@ -7,7 +7,7 @@ import { Patient, Appointment } from "../../types";
 import { useFormContext } from "../../forms/formContext";
 import { useForceUpdate } from "../../pdf/contexts";
 import { FormType } from "../../types/constants";
-import { FormMap } from "./details/formSection/formMap";
+import { FormMap, nestContexts } from "./details/formSection/formMap";
 
 interface PDFFormPreviewModalProps {
 	onClose: () => void;
@@ -130,18 +130,6 @@ const PDFFormPreviewModal: React.FC<PDFFormPreviewModalProps> = ({
 		}
 	};
 
-	// Helper function to nest multiple context providers
-	const nestContexts = (
-		contexts: React.FC<{ children?: React.ReactNode }>[] | undefined,
-		children: React.ReactNode
-	): React.ReactNode => {
-		return contexts
-			? contexts.reduceRight((acc, Context) => {
-					return <Context {...{ formType }}>{acc}</Context>;
-			  }, children)
-			: children;
-	};
-
 	if (isLoading) {
 		return (
 			<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -195,7 +183,7 @@ const PDFFormPreviewModal: React.FC<PDFFormPreviewModalProps> = ({
 							initialPatientData={patientData}
 							initialAppointmentData={appointmentData}
 						>
-							{nestContexts(CustomContexts, <Form />)}
+							{nestContexts(CustomContexts, formType, <Form />)}
 						</FormDataProvider>
 					</PDFViewer>
 				</div>

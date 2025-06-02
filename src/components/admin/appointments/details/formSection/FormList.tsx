@@ -6,8 +6,7 @@ import { z } from "zod";
 import { supabase } from "@/lib/supabase";
 import { cn } from "@/lib/utils";
 import { FormType } from "@components/types/constants";
-import { FormSchema } from "@components/types";
-import type { Form } from "@components/types";
+import { FormSchema, type Form } from "@components/types";
 import { FormMap } from "./formMap";
 
 interface FormListProps {
@@ -43,7 +42,8 @@ const FormList: React.FC<FormListProps> = ({
             id,
             name,
             description,
-            form_type
+            form_type,
+						editable
           ),
           billing_type
         `
@@ -51,7 +51,10 @@ const FormList: React.FC<FormListProps> = ({
 				.eq("examination_id", examinationId)
 				.order("order");
 
-			if (error) throw error;
+			if (error) {
+				console.error(error);
+				throw error;
+			}
 
 			// Filter forms by billing type
 			const formData = data
@@ -59,7 +62,7 @@ const FormList: React.FC<FormListProps> = ({
 				.map((ef) => ef.form);
 
 			try {
-				const p = z.array(FormSchema).parse(formData) as Form[];
+				const p = z.array(FormSchema.partial()).parse(formData) as Form[];
 				return p;
 			} catch (valError) {
 				console.error(valError);
@@ -74,18 +77,20 @@ const FormList: React.FC<FormListProps> = ({
 			queryKey: ["form-submissions", appointmentId],
 			queryFn: async () => {
 				// Load all form submissions for this appointment
-				const promises = Object.values(FormType).map((f) =>
-					supabase
-						.from(FormMap[f].tableName)
-						.select("*")
-						.eq("appointment_id", appointmentId)
-						.maybeSingle()
+				const promises = Object.values(FormType).map((formType) =>
+					FormMap[formType]?.tableName
+						? supabase
+								.from(FormMap[formType]?.tableName)
+								.select("*")
+								.eq("appointment_id", appointmentId)
+								.maybeSingle()
+						: null
 				);
 
 				const resolved = await Promise.all(promises);
 				const dataMap = Object.values(FormType).reduce<Record<FormType, any>>(
 					(acc, key, index) => {
-						acc[key] = resolved[index].data;
+						acc[key] = resolved[index]?.data;
 						return acc;
 					},
 					{} as Record<FormType, any>
@@ -147,7 +152,7 @@ const FormList: React.FC<FormListProps> = ({
 						key={form.id}
 						className={cn(
 							"w-full flex items-center justify-between p-3 text-left border rounded-lg transition-colors",
-							isSubmitted
+							isSubmitted || !form.editable
 								? "border-green-200 bg-green-50 hover:bg-green-100"
 								: "border-gray-200 hover:bg-gray-50"
 						)}
@@ -181,16 +186,19 @@ const FormList: React.FC<FormListProps> = ({
 							>
 								<Eye className="h-4 w-4" />
 							</button>
-							<button
-								onClick={(e) => {
-									e.stopPropagation();
-									onViewForm(form.form_type);
-								}}
-								title="Formular bearbeiten"
-								className="text-gray-400 hover:text-gray-600"
-							>
-								<Pencil className="h-4 w-4" />
-							</button>
+
+							{form.editable && (
+								<button
+									onClick={(e) => {
+										e.stopPropagation();
+										onViewForm(form.form_type);
+									}}
+									title="Formular bearbeiten"
+									className="text-gray-400 hover:text-gray-600"
+								>
+									<Pencil className="h-4 w-4" />
+								</button>
+							)}
 						</div>
 					</div>
 				);

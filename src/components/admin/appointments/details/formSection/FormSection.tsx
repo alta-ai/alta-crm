@@ -15,7 +15,11 @@ interface FormSectionProps {
 
 const FormSection: React.FC<FormSectionProps> = ({ appointment }) => {
 	// Load patient data for PDF
-	const { data: patient } = useQuery({
+	const {
+		data: patient,
+		isLoading: isLoadingPatientData,
+		error,
+	} = useQuery({
 		queryKey: ["patient", appointment.patient?.id],
 		queryFn: async () => {
 			const { data, error } = await supabase
@@ -35,12 +39,7 @@ const FormSection: React.FC<FormSectionProps> = ({ appointment }) => {
 					house_number,
 					postal_code,
 					city,
-					country,
-					insurance:insurance_providers(
-						id,
-						name,
-						type
-					)
+					country
 					`
 				)
 				.eq("id", appointment.patient?.id)
@@ -59,6 +58,28 @@ const FormSection: React.FC<FormSectionProps> = ({ appointment }) => {
 			}
 		},
 	});
+
+	if (error) {
+		return (
+			<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+				<div className="bg-white rounded-lg shadow-xl w-full max-w-5xl h-[85vh] flex items-center justify-center">
+					<p className="text-red-500">
+						Fehler beim Laden der Patientendaten: {error.message}
+					</p>
+				</div>
+			</div>
+		);
+	}
+
+	if (isLoadingPatientData) {
+		return (
+			<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+				<div className="bg-white rounded-lg shadow-xl w-full max-w-5xl h-[85vh] flex items-center justify-center">
+					<p className="text-gray-500">Lade Patientendaten ...</p>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<>

@@ -55,16 +55,34 @@ import {
 	SignatureContextProvider,
 } from "@components/pdf/contexts";
 import React from "react";
+import { ProstateMRICEForm } from "@components/pdf/CostEstimateForms";
+import NoFormData from "@components/forms/NoFormData";
+import {
+	RegistrationFormSchema,
+	RegistrationBGFormSchema,
+	PrivacyFormSchema,
+	CTFormSchema,
+	CTTherapyFormSchema,
+	MRIFormSchema,
+	MRICTFormSchema,
+	ProstateNewPatientFormSchema,
+	ProstateFollowUpFormSchema,
+	ProstateTULSAFormSchema,
+	ProstateHoLEPFormSchema,
+	IPSSFormSchema,
+	BiopsyFormSchema,
+} from "@components/types";
 
 type FormMapEntry = {
 	data: unknown;
-	editForm: React.FC;
+	editForm: React.FC | null;
 	pdfForm: React.ComponentType<any>;
 	customContexts?: React.FC<{
 		children?: React.ReactNode;
 	}>[];
 	label: string;
-	tableName: string;
+	tableName: string | null;
+	schema?: any;
 };
 
 export const FormMap: Record<FormType, FormMapEntry> = {
@@ -75,6 +93,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		customContexts: [SignatureContextProvider as any],
 		label: "Anmeldeformular",
 		tableName: "registration_form_submissions",
+		schema: RegistrationFormSchema,
 	},
 	[FormType.REGISTRATION_BG]: {
 		data: RegistrationBGFormData,
@@ -83,6 +102,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		customContexts: [SignatureContextProvider as any],
 		label: "Anmeldeformular (Berufsgenossenschaft)",
 		tableName: "registration_bg_form_submissions",
+		schema: RegistrationBGFormSchema,
 	},
 	[FormType.PRIVACY]: {
 		data: PrivacyFormData,
@@ -91,6 +111,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		customContexts: [SignatureContextProvider as any],
 		label: "Datenschutzformular",
 		tableName: "privacy_form_submissions",
+		schema: PrivacyFormSchema,
 	},
 	[FormType.CT_CONSENT]: {
 		data: CTFormData,
@@ -99,6 +120,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		pdfForm: CTFormPDF,
 		customContexts: [SignatureContextProvider as any],
 		tableName: "ct_form_submissions",
+		schema: CTFormSchema,
 	},
 	[FormType.CT_THERAPY]: {
 		data: CTTherapyFormData,
@@ -107,6 +129,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		pdfForm: CTTherapyFormPDF,
 		customContexts: [SignatureContextProvider as any],
 		tableName: "ct_therapy_form_submissions",
+		schema: CTTherapyFormSchema,
 	},
 	[FormType.PROSTATE_NEW_PATIENT]: {
 		data: ProstateNewPatientFormData,
@@ -118,6 +141,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 			PSADiagramContextProvider as any,
 		],
 		tableName: "prostate_new_patient_form_submissions",
+		schema: ProstateNewPatientFormSchema,
 	},
 	[FormType.PROSTATE_FOLLOWUP]: {
 		data: ProstateFollowUpFormData,
@@ -129,6 +153,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 			PSADiagramContextProvider as any,
 		],
 		tableName: "prostate_followup_form_submissions",
+		schema: ProstateFollowUpFormSchema,
 	},
 	[FormType.PROSTATE_TULSA]: {
 		data: ProstateTULSAFormData,
@@ -140,6 +165,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 			PSADiagramContextProvider as any,
 		],
 		tableName: "prostate_tulsa_form_submissions",
+		schema: ProstateTULSAFormSchema,
 	},
 	[FormType.PROSTATE_HOLEP]: {
 		data: ProstateHoLEPFormData,
@@ -151,6 +177,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 			PSADiagramContextProvider as any,
 		],
 		tableName: "prostate_holep_form_submissions",
+		schema: ProstateHoLEPFormSchema,
 	},
 	[FormType.MRI_CONSENT]: {
 		data: MRIFormData,
@@ -159,6 +186,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		customContexts: [SignatureContextProvider as any],
 		label: "MRT Aufklärungsbogen",
 		tableName: "mri_form_submissions",
+		schema: MRIFormSchema,
 	},
 	[FormType.MRI_CT_CONSENT]: {
 		data: MRICTFormData,
@@ -167,6 +195,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		pdfForm: CTMRIFormPDF,
 		customContexts: [SignatureContextProvider as any],
 		tableName: "mri_ct_form_submissions",
+		schema: MRICTFormSchema,
 	},
 	[FormType.BIOPSY]: {
 		data: BiopsyFormData,
@@ -175,6 +204,7 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		pdfForm: BiopsyFormPDF,
 		customContexts: [SignatureContextProvider as any],
 		tableName: "biopsy_form_submissions",
+		schema: BiopsyFormSchema,
 	},
 	[FormType.IPSS]: {
 		data: IPSSFormData,
@@ -183,10 +213,27 @@ export const FormMap: Record<FormType, FormMapEntry> = {
 		pdfForm: IPSSFormPDF,
 		customContexts: [SignatureContextProvider as any],
 		tableName: "ipss_form_submissions",
+		schema: IPSSFormSchema,
 	},
-	// [FormType.COST_ESTIMATION]: {
-	// 	data: null,
-	// 	editForm: null,
-	// 	label: "Kostenvoranschlag",
-	// },
+	[FormType.COST_ESTIMATION]: {
+		data: NoFormData,
+		editForm: null,
+		pdfForm: ProstateMRICEForm,
+		label: "Kostenvoranschlag",
+		customContexts: [SignatureContextProvider as any],
+		tableName: null,
+		schema: null,
+	},
+};
+
+export const nestContexts = (
+	contexts: React.FC<{ children?: React.ReactNode }>[] | undefined,
+	formType: FormType,
+	children: React.ReactNode
+): React.ReactNode => {
+	return contexts
+		? contexts.reduceRight((acc, Context) => {
+				return <Context {...{ formType }}>{acc}</Context>;
+		  }, children)
+		: children;
 };
