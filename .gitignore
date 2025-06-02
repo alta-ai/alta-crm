@@ -24,4 +24,7 @@ dist-ssr
 *.sw?
 .env
 
-supabase/
+supabase/config.toml
+supabase/functions
+supabase/.branches
+supabase/.temp

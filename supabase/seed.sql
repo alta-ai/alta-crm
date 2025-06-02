@@ -1,0 +1,4907 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.8
+-- Dumped by pg_dump version 17.4
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: tenants; Type: TABLE DATA; Schema: _realtime; Owner: -
+--
+
+INSERT INTO _realtime.tenants VALUES ('2f519c3e-6554-4e23-8a19-d01f91cc2cc2', 'realtime-dev', 'realtime-dev', 'iNjicxc4+llvc9wovDvqymwfnj9teWMlyOIbJ8Fh6j2WNU8CIJ2ZgjR6MUIKqSmeDmvpsKLsZ9jgXJmQPpwL8w==', 200, '2025-05-09 08:31:43', '2025-05-09 08:31:43', 100, 'postgres_cdc_rls', 100000, 100, 100, false, '{"keys": [{"k": "c3VwZXItc2VjcmV0LWp3dC10b2tlbi13aXRoLWF0LWxlYXN0LTMyLWNoYXJhY3RlcnMtbG9uZw", "kty": "oct"}]}', false, false);
+
+
+--
+-- Data for Name: extensions; Type: TABLE DATA; Schema: _realtime; Owner: -
+--
+
+INSERT INTO _realtime.extensions VALUES ('d6a56cc1-2424-4ee8-9985-3ef7705edff9', 'postgres_cdc_rls', '{"region": "us-east-1", "db_host": "/aoilSGD2E9CeARoTsJEOasIqPr/gA8PfS4MD1J1dxU=", "db_name": "sWBpZNdjggEPTQVlI52Zfw==", "db_port": "+enMDFi1J/3IrrquHHwUmA==", "db_user": "uxbEq/zz8DXVD53TOI1zmw==", "slot_name": "supabase_realtime_replication_slot", "db_password": "sWBpZNdjggEPTQVlI52Zfw==", "publication": "supabase_realtime", "ssl_enforced": false, "poll_interval_ms": 100, "poll_max_changes": 100, "poll_max_record_bytes": 1048576}', 'realtime-dev', '2025-05-09 08:31:43', '2025-05-09 08:31:43');
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: _realtime; Owner: -
+--
+
+INSERT INTO _realtime.schema_migrations VALUES (20210706140551, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20220329161857, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20220410212326, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20220506102948, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20220527210857, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20220815211129, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20220815215024, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20220818141501, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20221018173709, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20221102172703, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20221223010058, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20230110180046, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20230810220907, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20230810220924, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20231024094642, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20240306114423, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20240418082835, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20240625211759, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20240704172020, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20240902173232, '2025-03-18 11:12:35');
+INSERT INTO _realtime.schema_migrations VALUES (20241106103258, '2025-03-18 11:12:35');
+
+
+--
+-- Data for Name: audit_log_entries; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: flow_state; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+INSERT INTO auth.users VALUES ('00000000-0000-0000-0000-000000000000', '3d8c2b80-2408-4b90-8142-6589442489c6', 'authenticated', 'authenticated', 'admin@alta-klinik.local', '$2a$06$DLyye0laJpgrd5Tcwffou.iTFmu3vYW4.6b/xsHJ.o1aNq/.4/dWu', '2025-03-18 12:47:49.962117+01', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-03-18 12:47:49.962117+01', '{"provider": "email", "providers": ["email"]}', '{}', false, '2025-03-18 12:47:49.962117+01', '2025-03-18 12:47:49.962117+01', NULL, NULL, NULL, NULL, NULL, DEFAULT, NULL, 0, NULL, NULL, NULL, false, NULL, false);
+
+
+--
+-- Data for Name: identities; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: instances; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: sessions; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: mfa_amr_claims; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: mfa_factors; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: mfa_challenges; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: one_time_tokens; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: refresh_tokens; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: sso_providers; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: saml_providers; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: saml_relay_states; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+INSERT INTO auth.schema_migrations VALUES ('20171026211738');
+INSERT INTO auth.schema_migrations VALUES ('20171026211808');
+INSERT INTO auth.schema_migrations VALUES ('20171026211834');
+INSERT INTO auth.schema_migrations VALUES ('20180103212743');
+INSERT INTO auth.schema_migrations VALUES ('20180108183307');
+INSERT INTO auth.schema_migrations VALUES ('20180119214651');
+INSERT INTO auth.schema_migrations VALUES ('20180125194653');
+INSERT INTO auth.schema_migrations VALUES ('00');
+INSERT INTO auth.schema_migrations VALUES ('20210710035447');
+INSERT INTO auth.schema_migrations VALUES ('20210722035447');
+INSERT INTO auth.schema_migrations VALUES ('20210730183235');
+INSERT INTO auth.schema_migrations VALUES ('20210909172000');
+INSERT INTO auth.schema_migrations VALUES ('20210927181326');
+INSERT INTO auth.schema_migrations VALUES ('20211122151130');
+INSERT INTO auth.schema_migrations VALUES ('20211124214934');
+INSERT INTO auth.schema_migrations VALUES ('20211202183645');
+INSERT INTO auth.schema_migrations VALUES ('20220114185221');
+INSERT INTO auth.schema_migrations VALUES ('20220114185340');
+INSERT INTO auth.schema_migrations VALUES ('20220224000811');
+INSERT INTO auth.schema_migrations VALUES ('20220323170000');
+INSERT INTO auth.schema_migrations VALUES ('20220429102000');
+INSERT INTO auth.schema_migrations VALUES ('20220531120530');
+INSERT INTO auth.schema_migrations VALUES ('20220614074223');
+INSERT INTO auth.schema_migrations VALUES ('20220811173540');
+INSERT INTO auth.schema_migrations VALUES ('20221003041349');
+INSERT INTO auth.schema_migrations VALUES ('20221003041400');
+INSERT INTO auth.schema_migrations VALUES ('20221011041400');
+INSERT INTO auth.schema_migrations VALUES ('20221020193600');
+INSERT INTO auth.schema_migrations VALUES ('20221021073300');
+INSERT INTO auth.schema_migrations VALUES ('20221021082433');
+INSERT INTO auth.schema_migrations VALUES ('20221027105023');
+INSERT INTO auth.schema_migrations VALUES ('20221114143122');
+INSERT INTO auth.schema_migrations VALUES ('20221114143410');
+INSERT INTO auth.schema_migrations VALUES ('20221125140132');
+INSERT INTO auth.schema_migrations VALUES ('20221208132122');
+INSERT INTO auth.schema_migrations VALUES ('20221215195500');
+INSERT INTO auth.schema_migrations VALUES ('20221215195800');
+INSERT INTO auth.schema_migrations VALUES ('20221215195900');
+INSERT INTO auth.schema_migrations VALUES ('20230116124310');
+INSERT INTO auth.schema_migrations VALUES ('20230116124412');
+INSERT INTO auth.schema_migrations VALUES ('20230131181311');
+INSERT INTO auth.schema_migrations VALUES ('20230322519590');
+INSERT INTO auth.schema_migrations VALUES ('20230402418590');
+INSERT INTO auth.schema_migrations VALUES ('20230411005111');
+INSERT INTO auth.schema_migrations VALUES ('20230508135423');
+INSERT INTO auth.schema_migrations VALUES ('20230523124323');
+INSERT INTO auth.schema_migrations VALUES ('20230818113222');
+INSERT INTO auth.schema_migrations VALUES ('20230914180801');
+INSERT INTO auth.schema_migrations VALUES ('20231027141322');
+INSERT INTO auth.schema_migrations VALUES ('20231114161723');
+INSERT INTO auth.schema_migrations VALUES ('20231117164230');
+INSERT INTO auth.schema_migrations VALUES ('20240115144230');
+INSERT INTO auth.schema_migrations VALUES ('20240214120130');
+INSERT INTO auth.schema_migrations VALUES ('20240306115329');
+INSERT INTO auth.schema_migrations VALUES ('20240314092811');
+INSERT INTO auth.schema_migrations VALUES ('20240427152123');
+INSERT INTO auth.schema_migrations VALUES ('20240612123726');
+INSERT INTO auth.schema_migrations VALUES ('20240729123726');
+INSERT INTO auth.schema_migrations VALUES ('20240802193726');
+INSERT INTO auth.schema_migrations VALUES ('20240806073726');
+INSERT INTO auth.schema_migrations VALUES ('20241009103726');
+
+
+--
+-- Data for Name: sso_domains; Type: TABLE DATA; Schema: auth; Owner: -
+--
+
+
+
+--
+-- Data for Name: key; Type: TABLE DATA; Schema: pgsodium; Owner: -
+--
+
+
+
+--
+-- Data for Name: appointment_statuses; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.appointment_statuses VALUES ('9ab259db-6574-4631-89b0-84dfe6cd51fd', 'Geplant', '#3b82f6', '2025-03-17 14:10:27.977825+01', '2025-03-17 14:10:27.977825+01');
+INSERT INTO public.appointment_statuses VALUES ('41a4bf67-a5db-457a-ace4-b545914b99a2', 'Verschoben', '#dc2626', '2025-03-17 14:10:27.977825+01', '2025-03-17 14:50:04.059793+01');
+INSERT INTO public.appointment_statuses VALUES ('2880a02c-988b-43e7-97c4-9f37c9c1fe3a', 'technische Untersuchung fertig', '#7c3aed', '2025-03-17 14:10:27.977825+01', '2025-03-17 14:54:29.023391+01');
+INSERT INTO public.appointment_statuses VALUES ('58b355af-4d75-4a06-8c4a-365faf70cb07', 'Patient liegt im Gerät', '#ea580c', '2025-03-17 14:23:44.630499+01', '2025-03-17 14:54:44.161679+01');
+INSERT INTO public.appointment_statuses VALUES ('f904600a-a1d3-493b-8821-c8277d5726f4', 'Patient ist eingetroffen', '#ca8a04', '2025-03-17 14:10:27.977825+01', '2025-03-17 14:55:13.95745+01');
+INSERT INTO public.appointment_statuses VALUES ('d4a4f027-72eb-426a-8a97-ed5150dee258', 'Nicht erschienen/abgesagt', '#06b6d4', '2025-03-17 14:10:27.977825+01', '2025-03-17 14:56:03.09191+01');
+INSERT INTO public.appointment_statuses VALUES ('3399f55e-db13-4108-9d22-76a12ebac0a9', 'Abgeschlossen', '#4b5563', '2025-03-17 14:10:27.977825+01', '2025-04-08 12:58:20.202934+02');
+
+
+--
+-- Data for Name: devices; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.devices VALUES ('014cb4a1-c3fe-43e3-b22a-9da312c891d2', 'Avanto', 'MRT', '2025-03-13 15:21:39.431559+01', '2025-04-07 10:08:16.649004+02');
+INSERT INTO public.devices VALUES ('2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', 'Siemens CT', 'CT', '2025-03-13 15:58:24.568767+01', '2025-04-07 10:08:22.182643+02');
+INSERT INTO public.devices VALUES ('d6abd78e-80ef-4e20-833b-3d98a90a30dd', 'Skyra', 'MRT', '2025-03-13 12:51:56.349355+01', '2025-04-07 10:08:26.616364+02');
+INSERT INTO public.devices VALUES ('d9be335f-b53e-4436-8477-ebf010ff3d6c', 'Skyra Berlin', 'MRT', '2025-03-14 14:11:46.695739+01', '2025-04-07 10:08:31.512987+02');
+
+
+--
+-- Data for Name: examinations; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.examinations VALUES ('b710e432-71ae-4b82-8043-8194ce9587cd', 'CT Lunge', 'CT der Lunge', 15, NULL, '2025-03-13 15:58:02.024228+01', '2025-03-13 15:58:36.349399+01', 200, 300, 400, 500, 600, 700, NULL, false, NULL,NULL,NULL,NULL);
+INSERT INTO public.examinations VALUES ('bbb5c08e-eeda-4cfd-ab3d-20dead3276cb', 'Prostatabiopsie', 'MRT-gesteuerte Prostatabiopsie', 60, NULL, '2025-03-17 15:11:29.956425+01', '2025-03-17 15:11:50.172854+01', 2300, 2300, 2300, 2300, 2300, 2300, NULL, false, NULL,NULL,NULL,NULL);
+INSERT INTO public.examinations VALUES ('584f58aa-ce05-4998-b598-aa6cfe9163d4', 'MRT Knie', '', 30, NULL, '2025-04-06 14:27:17.078829+02', '2025-04-06 14:27:17.078829+02', 200, 250, 300, 350, 400, 450, NULL, false, NULL,NULL,NULL,NULL);
+INSERT INTO public.examinations VALUES ('7f181834-cc5e-457c-a16a-547e8116d1c6', 'Biopsie Test', '', 30, NULL, '2025-05-15 11:13:57.261168+02', '2025-05-15 11:13:57.261168+02', 10, 10, 10, 10, 10, 10, NULL, false, NULL,NULL,NULL,NULL);
+INSERT INTO public.examinations VALUES ('069cf1ee-47ed-4f62-817a-08d14ebf9953', 'Test Untersuchung', '', 30, NULL, '2025-05-05 09:25:32.178564+02', '2025-05-15 15:02:30.503818+02', 100, 100, 100, 100, 100, 100, NULL, false, NULL,NULL,NULL,NULL);
+INSERT INTO public.examinations VALUES ('fcc9b0e0-df31-47f5-8738-619f70792901', 'Prostata Neupatient Test', '', 30, NULL, '2025-05-15 16:44:32.013535+02', '2025-05-15 16:51:54.593369+02', 0, 0, 0, 0, 0, 0, NULL, false, NULL,NULL,NULL,NULL);
+INSERT INTO public.examinations VALUES ('7595716b-7a50-4466-ba50-6f81ae3ca3f9', 'MRT Kopf', '', 30, NULL, '2025-03-13 13:47:51.236332+01', '2025-05-16 12:59:42.23236+02', 200, 300, 400, 500, 600, 700, NULL, false, NULL,NULL,NULL,NULL);
+
+
+--
+-- Data for Name: insurance_providers; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.insurance_providers VALUES ('2c3dda73-961c-4ab5-836c-ac61d1bea292', 'Alte Oldenburger', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('2eba8f54-5de3-4bbd-9276-388990a3e916', 'ARAG', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('e564cfd9-ce13-4fd0-9275-a202b1e6f83d', 'ASSTEL', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('890e86a5-2f05-4b4f-9bc7-f1cff7e95a7a', 'AXA', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('21dcda61-280c-471f-8475-1f1c08e460bf', 'Barmenia', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('34d987b7-5bea-438c-a3ce-a00c1ef69a01', 'Bayrische', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('017d1991-cbf8-4016-b2f5-25a4823f7055', 'BBKK', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('cffaf8b2-dba0-47e3-87f7-051312750ae0', 'Berlin-Kölnische', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('fb4d628e-5887-4de5-bcef-7fc9d9d89033', 'Concordia', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('ebe3d211-4c5e-40d1-ad2b-a5a54608b56f', 'Continentale', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('1ab5040e-17b2-4293-91b3-156655fd6365', 'DBV', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('70c56996-0072-4245-aaba-cd9473177fce', 'Debeka', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('edd75436-8019-4b62-abc7-70fb9f014910', 'Deutscher', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('0a90179c-e250-41dc-9fab-fd1149ffb54a', 'DEVK', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('bcbe13aa-a61d-4636-8622-be9b4fa6ee27', 'DKV', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('3dd2f60d-d1d9-40e1-b6d6-8d221a802146', 'DÜSSELDORFER', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('da1ea909-878f-47d5-9264-ebd4c955601c', 'Envivas', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('bc5422a1-e7a8-46ed-9b7e-06d4eaa4109f', 'ERGO', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('c25c957c-10fd-4e54-837f-26a66b4b17ed', 'EUROPA', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('f77ad4c9-32dd-4fd3-8992-3d49064b57d1', 'Evang. Pfarrverein Württemberg', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('6be38ad4-3494-4298-b985-05b062d09a05', 'FREIE ARZT- UND MEDIZINKASSE (FAMK)', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('c368ca1d-81cb-483a-a70b-9d12b37f6a8c', 'Generali', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('c97215ca-ce48-4af3-b1e2-5802cd61cf81', 'Globale', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('f66de091-ec0f-492f-9970-08c1cc933d1d', 'Gothaer', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('c0725201-e8cf-4c80-9a01-440e024df926', 'HALLESCHE', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('0e78f149-614a-4c45-b032-9d18cd361de9', 'HanseMerkur', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('de428e1a-975d-4bcb-ae22-1d64bd242e0f', 'HUK-Coburg', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('0fc85b95-c827-46d5-bc96-b10f4d4dacee', 'Inter', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('9d9632ce-5bff-4f2d-ba4d-0cb2cab94d35', 'KarstadtQuelle', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('9c2e3589-e22f-4fcc-af03-1b66f7074fe7', 'Kranken- und Sterbekasse', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('e3e11e45-0488-4e43-ab09-3b5974c975a0', 'Krankenunterstützungskasse Berufsfeuerwehr Hannover (KUK)', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('70c7c89c-93ad-401f-b5e1-c0d39640c76c', 'Krankenversorgung der Bundesbeamten (KVB I - III)', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('08c2fca3-3918-48dd-a278-ccceca023d1e', 'Krankenversorgung der Bundesbeamten (KVB IV)', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('378c6490-8a48-4afe-b0bd-37def5855342', 'Krankenversorgung der Bundesbeamten (KVB)', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('aff3d48b-831c-44f8-b030-0b902b358b5b', 'LIGA Krankenversicherung katholischer Priester', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('0b706888-27c4-49f7-a801-e305e172b227', 'LKH', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('e6d7e3e9-6190-40c1-88dc-b967faa61e54', 'LVM', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('47a0266f-1a09-4197-a37b-ce3676aca4cc', 'Mannheimer', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('f86ed726-4787-42dd-8808-9900ed8d69df', 'Mecklenburgische', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('8c35c803-12a8-4fef-ab3d-14ac4c349172', 'Münchener Verein', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('708dac12-37c2-4061-ab81-bd48f05c44e2', 'Nürnberger', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('aea792bf-13eb-4150-8a1b-5e53cdc0d766', 'ottonova', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('a6328795-a80d-49c8-bfd2-304b5eb133c9', 'PAX-Familienfürsorge', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('e0b732d9-a91e-4c49-8d5d-8cab36e3a8dc', 'Postbeamtenkrankenkasse (PBeaKK)', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('26b39b84-3751-40bf-b365-0e520ac6274d', 'Provinzial', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('6ae6d9f6-6a39-405a-ac37-110e9892fdeb', 'R+V', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('49fc356b-7f12-4f6c-a4cd-a94d5190150d', 'Signal Iduna', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('01037e1f-2acd-4896-b029-ad8ac274bdbe', 'SONO', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('6843ff21-f417-42bb-af84-8f8efc7318c1', 'ST. MARTINUS Priesterverein der Diözese Rottenburg-Stuttgart', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('06dc9f3c-8231-4e50-97bc-e999370d3209', 'Süddeutsche', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('d4649655-d105-46be-bd6d-3f62508dea9d', 'UKV', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('a93a40d2-41da-4443-9d11-667315eaa676', 'Universa', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('33708f09-751b-4d2d-85e1-41c0c6c11e68', 'Verein Pfälzischer Pfarrerinnen und Pfarrer', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('44677303-1be9-4e6e-ba36-907aed3b547f', 'Versicherungskammer Bayern (BK / VKB)', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('721cdec0-f634-4804-b630-2534d2132ba0', 'VGH', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('781d1748-3d77-47fc-9d4b-53b553949f7e', 'VICTORIA', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('07d60072-0d9c-444d-a10d-eef868ef2038', 'vigo', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('e3485c4f-2659-4ea1-974a-ffb2cebc8d5f', 'Volksfürsorge', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('23637d58-0401-41c0-9fce-452bdb082c9b', 'Württembergische', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('ef75b6cd-19f7-482f-87c2-d863a9743479', 'Zürich Agrippina', '2025-03-13 16:29:59.609976+01', '2025-03-13 16:29:59.609976+01', 'private');
+INSERT INTO public.insurance_providers VALUES ('6f0b732c-a309-4b35-8ed2-4b8ae02f90c7', 'Allianz', '2025-03-13 16:29:59.609976+01', '2025-04-07 15:43:10.082728+02', 'private');
+INSERT INTO public.insurance_providers VALUES ('cf6b20e4-2fa3-4ab6-9e3e-3c72bdc85c0d', 'AOK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('4245602d-1ed6-4a6d-98a0-6132d68d69c9', 'Audi BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('7d37be57-9a8f-4507-b145-5031d58a663b', 'Bahn-BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('0c6a2060-e747-4977-8508-4b24bad4edb8', 'Barmer Ersatzkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('556a5e12-a929-4e1e-8854-4b512117965b', 'Bertelsmann BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('2b31247b-bfcf-4ea5-856a-24343e98554c', 'Betriebskrankenkasse BPW Bergische Achsen KG', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('0461c16e-19b4-42de-b1f3-2392f5d5f70d', 'Betriebskrankenkasse der BMW AG', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('e6050089-cdb0-40b6-8ee7-17f352d3b22d', 'Betriebskrankenkasse der G. M. Pfaff AG', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('6fc5b047-a876-49c0-b2c6-a3daed58e7ab', 'Betriebskrankenkasse Firmus', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('e950667a-de83-43be-84f6-577a96bcb0f2', 'Betriebskrankenkasse Groz-Beckert', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('bf597c10-e27f-434e-910b-3e7acbbd9f74', 'Betriebskrankenkasse Mahle', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('7aad8686-414c-4cb6-bde4-ab85baf6f032', 'Betriebskrankenkasse Miele', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('1061fdde-57bc-4459-873a-3e1608fc5a74', 'Betriebskrankenkasse Mobil', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('b92327e1-c25c-452b-98fe-469c9c5ce678', 'Betriebskrankenkasse Schwarzwald-Baar-Heuberg', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('bd7d6fc9-bd30-48c2-8ffc-9cf037776b4f', 'Betriebskrankenkasse Vereinigte Deutsche Nickel-Werke', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('b36cb493-9f53-4c4a-a8c8-301435b2ff6f', 'Betriebskrankenkasse WMF Württembergische Metallwarenfabrik AG', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('f65a2d63-f25f-499d-8577-15f5fa4e3430', 'BKK Akzo Nobel Bayern', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('3a88ccca-00d2-40cb-ad05-aeec66d4bfe4', 'BKK B. Braun Aesculap', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('6337b4f7-a6fd-4c1c-a3de-a2b9cfbc2f80', 'BKK Deutsche Bank AG', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('67e8d214-e695-481f-ba72-00dfde327f92', 'BKK Diakonie', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('a3dc269f-ef32-41e1-8654-271c4ead5b22', 'BKK Dürkopp Adler', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('31667af2-f077-4a5d-8393-99c94a07df4a', 'BKK Euregio', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('969271cb-e021-4d3a-abab-9a2a9703e316', 'BKK evm', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('d6e10026-aef0-489f-9594-bef5ead2ff00', 'BKK EWE', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('eac90bba-f486-4c0e-9578-e06c2243b703', 'BKK exklusiv', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('8c1a782b-c315-436c-ae6c-54813de3eaf1', 'BKK Faber-Castell & Partner', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('4f5e948b-e82e-4f24-93ec-7fb3bcc73447', 'BKK Freudenberg', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('9f1975f5-c179-4290-a34a-ecc48fca6379', 'BKK Gildemeister Seidensticker', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('5125167e-1448-4a65-bc86-79b1a6869072', 'BKK Herkules', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('ea10b09b-7415-4a4b-a3ed-ff7890251b78', 'BKK Linde', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('4a914a12-e655-4c23-aecd-da66d81242ce', 'BKK Melitta HMR', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('2ecc7d53-df27-4f76-bcdf-0ab2deb2d216', 'BKK MTU', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('c47057eb-1421-4eb1-b046-0106b71230fa', 'BKK Pfalz', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('9088eac8-e781-45a5-9fac-bca62b6ab296', 'BKK Provita', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('b25c9951-ade6-4afa-8385-f6f9ce14e1af', 'BKK Public', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('ecfc4339-b5cd-4895-aa4c-3c7a27f2d7cf', 'BKK PwC', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('024381d3-bffe-4c0d-ae77-5a11a4e2eb32', 'BKK Rieker Ricosta Weisser', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('ce2320c8-0644-44d8-9cc6-4eb807a30ecd', 'BKK Salzgitter', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('21633e4d-bfdb-44ee-9132-fa5a0be10651', 'BKK Scheufelen', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('ce0b38c2-d308-41b3-9d11-8b7d7a150fa9', 'BKK Technoform', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('a0d9fcd8-d428-4e96-bf17-f99c9bcf443b', 'BKK VBU', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('c0691660-d7d2-484e-a765-44f93fb71063', 'BKK Verbundplus', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('8e1c173b-fa8d-40b8-a14b-384ee3851cc1', 'BKK Voralb Heller Index Leuze', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('f470eaeb-d09a-4dc1-8ec2-4e3c420a86ae', 'BKK Werra-Meissner', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('07a7ee97-c731-4632-b2cf-ced063a47845', 'BKK Wirtschaft & Finanzen', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('1f711861-754e-4d50-be18-a4580505ecb6', 'BKK Würth', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('d813f4a0-ca62-431f-b6c4-130f742934db', 'BKK ZF & Partner', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('d42f10e3-6075-4c26-aee4-2d5d645906c5', 'BKK24', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('88346f1d-f5b3-4eb5-a0ca-ea62864298ca', 'Bosch BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('757e1521-4b29-4eaf-8727-c2ff6280b265', 'Bundesinnungskrankenkasse Gesundheit', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('4bf4ad79-44be-4379-991c-82523a7b344d', 'Continentale Betriebskrankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('fa512782-1497-4ee8-86ed-2691fc97b56a', 'DAK-Gesundheit', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('52241dc3-e018-455b-afdf-3f830fd5a521', 'Debeka BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('d002d67b-95b6-4815-b2bd-46d675abf0a7', 'Die Bergische Krankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('147f8582-4d5b-4891-9a67-520747eb3a23', 'Energie-Betriebskrankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('de07fc34-ce9a-4a40-9913-b91baea4308e', 'Ernst & Young BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('19955c8d-b3e3-4574-a01f-9eedd41dfab1', 'Gemeinsame Betriebskrankenkasse der Gesellschaften der Textilgruppe Hof', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('f990d043-76ee-4e2f-8767-6d6593e2b7d2', 'Handelskrankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('08c735ce-5540-40b7-a2b7-9ea9798784fa', 'Heimat Krankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('22009b46-e6b2-40ec-8b85-37ead3afffa6', 'HEK – Hanseatische Krankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('0c68d7b3-2893-42bd-8f8d-61eb2da2bb6a', 'IKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('dd574b70-9d32-4024-8475-3d580dd41c83', 'Innungskrankenkasse Brandenburg und Berlin', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('323b91d5-78d5-4b70-aff8-45aba23770d6', 'Karl Mayer Betriebskrankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('c48d2580-5864-43a3-92c4-b32867f18ecd', 'Kaufmännische Krankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('a651df45-c135-4d55-9799-8c4237417597', 'Knappschaft', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('b021e386-feca-4b8d-8b33-873cd9598cdd', 'Koenig & Bauer BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('e3034969-496b-4c5c-9092-e5639cd21fb5', 'Krones Betriebskrankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('d3acad42-de2a-4c0c-b24b-55479e23ea4f', 'Landwirtschaftliche Krankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('b0f442b3-5bb1-42a9-9d30-38d472029e98', 'Mercedes-Benz Betriebskrankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('9ef8aadb-1ac9-4a71-b90d-1a822f103983', 'Merck BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('be4d8e70-dc72-41f5-abc1-6963941ce8c9', 'Mhplus Betriebskrankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('24ccf236-fd93-4381-a5ef-97f6efeac1de', 'Novitas BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('ee91029f-d1f5-4648-93e4-617084dc9824', 'Pronova BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('241ada47-94c2-4b71-8c5b-71b6b9753199', 'R+V Betriebskrankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('5825097c-5cef-46e1-b4c7-465cdee5e9d3', 'Salus BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('764565cc-f337-4e7e-b9b4-cc72a740086d', 'Securvita BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('6d4830c3-5355-4fe6-9c0f-4edb97e878f3', 'Siemens-Betriebskrankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('26338b42-fa2e-47b0-ba3a-879a5dca697f', 'SKD BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('b212a6bf-9338-489b-9407-593af4945fdc', 'Südzucker BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('889ebf62-b7f3-4c3d-a136-56fcde809a83', 'Techniker Krankenkasse', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('b908348b-410d-4ec1-b4fa-5e44756f3f1b', 'TUI BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('93620b91-ac00-475f-8c27-3f44abb59783', 'Viactiv BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('70e1e1cd-3477-49c9-a5a2-501c16482d6b', 'Vivida BKK', '2025-03-17 12:11:36.527026+01', '2025-03-17 12:11:36.527026+01', 'statutory');
+INSERT INTO public.insurance_providers VALUES ('3cae4df7-1560-4d37-95b3-332f75db5224', 'Berufsgenossenschaft', '2025-04-07 16:27:05.549912+02', '2025-04-07 16:27:58.256734+02', 'Berufsgenossenschft');
+INSERT INTO public.insurance_providers VALUES ('add53f26-2308-49f3-b3f1-138c388ee40e', 'Ausländer', '2025-04-07 16:27:05.549912+02', '2025-04-07 16:28:24.825063+02', 'Foreigners');
+
+
+--
+-- Data for Name: locations; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.locations VALUES ('7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'ALTA Klinik Bielefeld', 'Alfred-Bozi Str. 3
+33602 Bielefeld', '05215464651', 'info@alta-klinik.de', 'Sie erreichen uns....', '2025-03-13 13:14:44.012804+01', '2025-03-21 19:59:30.187261+01', 'https://iilcqtmkkmvjnwwqekjv.supabase.co/storage/v1/object/public/letterheads/letterhead_1742583565179_2180.png', false);
+INSERT INTO public.locations VALUES ('49852a4a-c299-43bb-a6f8-d4e3dcd2220d', 'ALTA Klinik Berlin', 'im medneo-Zentrum
+Marburger Str. 12
+10789 Berlin', '030 311 938 19', 'berlin@alta-klinik.de', '', '2025-03-14 14:11:31.503393+01', '2025-03-21 20:12:55.747476+01', 'https://iilcqtmkkmvjnwwqekjv.supabase.co/storage/v1/object/public/letterheads/letterhead_1742584370978_4923.png', false);
+
+
+--
+-- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.patients VALUES ('634687ce-1296-4770-9170-19d11b87cee2', '48000', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-13 16:38:41.108699+01', '2025-03-13 16:38:41.108699+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('144d322c-32b9-481b-b6e7-dabcb21b6f0d', '48001', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-13 16:55:21.680706+01', '2025-03-13 16:55:21.680706+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('4c1b3554-4fca-4c52-b505-12a586d7bbfb', '48002', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-13 16:55:21.823097+01', '2025-03-13 16:55:21.823097+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('d2d4e09a-ce4f-478d-9776-5d11120135c3', '48003', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-13 17:01:39.705501+01', '2025-03-13 17:01:39.705501+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('ffb56bd2-086b-4448-9d77-7d21323ddc6f', '48004', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-13 17:07:53.66267+01', '2025-03-13 17:07:53.66267+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('9f5ad24d-f869-4e17-b345-2e43ca97ceb0', '48005', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-14 09:52:41.042249+01', '2025-03-14 09:52:41.042249+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('4d19d98d-d849-4a22-b7a5-0a90a8f6ace1', '48007', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-14 11:23:42.644483+01', '2025-03-14 11:23:42.644483+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('7f5e242e-4734-4e33-9be1-8d67d67419e4', '48008', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-14 11:35:26.648049+01', '2025-03-14 11:35:26.648049+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('130b3c83-0302-4155-a402-180652d8cf75', '48010', 'M', 'Dr. med.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-14 12:30:45.281551+01', '2025-03-14 12:30:45.281551+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('fafc0a35-b3af-4752-9ae8-e9ec7922fb3c', '48011', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-02-29', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-14 13:00:11.258582+01', '2025-03-14 13:00:11.258582+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('fda74f90-1256-4448-8b66-8e85b553195f', '48013', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-14 16:34:12.776089+01', '2025-03-14 16:34:12.776089+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('f731f387-4f5c-4ed3-bad4-2dde13f354b5', '48014', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinikkk.de', '2025-03-14 16:43:13.228257+01', '2025-03-14 16:43:13.228257+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('d01e15e0-2ac9-4e61-aa54-8260ae9b91c3', '48015', 'M', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-14 19:16:41.744811+01', '2025-03-14 19:16:41.744811+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('b8b01602-20fe-48e9-a76e-85ebfbf6c5dc', '48016', 'F', 'Dr.', 'Adelina', 'Lumiani', '1990-01-21', '015745484561', 'lucas.engelage@altaklinik.de', '2025-03-14 23:53:41.322097+01', '2025-03-14 23:53:41.322097+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('3ddb6d1b-904e-4002-8415-af02d8d56b76', '48017', 'F', 'Dr.', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-15 00:25:33.882692+01', '2025-03-15 00:25:33.882692+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('15d3afbf-3a2c-4057-8fd2-bc5a633e7aa8', '48012', 'F', 'Dr. med.', 'Adelina', 'Engelagehh', '1990-01-21', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-14 13:09:32.513583+01', '2025-03-17 09:40:44.632011+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('bf7b442c-471a-4236-b683-06470996dcc3', '48018', 'M', '', 'Lucasss', 'Engelageee', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-17 09:54:03.014867+01', '2025-03-17 09:54:03.014867+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('88b53f24-150d-4b5b-8a62-fdd8295de85c', '48019', 'M', '', 'Luki', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-17 09:59:12.923135+01', '2025-03-17 09:59:12.923135+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('d46abb6c-5f4f-4f86-b07b-269e9675e3c5', '48020', 'M', '', 'Lucas', 'Engelage', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-17 10:01:21.167048+01', '2025-03-17 10:01:21.167048+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('4e3fc65a-179f-4208-92b9-6d88e3b28594', '48021', 'M', 'Dr.', 'Hennes', 'Engelage', '1952-05-05', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-17 10:10:00.801558+01', '2025-03-17 10:10:00.801558+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('d3ea5117-d9c4-42d9-b220-dbae93236bdc', '48023', 'M', '', 'Karl-Heinz', 'Engelage', '1988-02-01', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-17 10:18:08.675743+01', '2025-03-17 10:21:26.871886+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('a79b3411-aca5-489e-b715-b859ffdce2e6', '48022', 'M', '', 'Henning', 'Test', '1984-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-17 10:10:46.577032+01', '2025-03-17 10:40:28.021019+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('1f7a6c42-5d09-4163-93b1-2d4d90e6d3a1', '48025', 'M', '', 'Karl-Heinz', 'Simon', '1952-05-05', '0577458088', 'hennes@engelage.de', '2025-03-18 18:57:12.451265+01', '2025-03-18 18:57:12.451265+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('8ee4ab88-88e2-405c-940d-3d08732245db', '48006', 'F', '', 'Adelina', 'Engelagee', '1990-01-21', '015146270301', 'lucas.engelage@altaklinik.de', '2025-03-14 10:58:34.901441+01', '2025-03-25 21:35:38.78503+01', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('5bbad366-efbd-4796-8ca6-b77c4a2f4234', '48027', 'M', 'Dr.', 'Paul', 'Muster', '1995-01-01', '015323424444', 'paulmuster@muster.de', '2025-03-31 11:50:08.28957+02', '2025-03-31 11:51:35.534172+02', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('5370a5b1-d5a4-4fa2-9862-e2aca11a6192', '48028', 'M', '', 'Henning', 'Simon', '1984-02-01', '015146270300', 'lucas.engelage@altaklinik.de', '2025-04-06 14:28:45.131401+02', '2025-04-06 14:28:45.131401+02', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('072ce426-1470-4704-bd3a-cc7556c16592', '48009', 'M', '', 'Lucas', 'Angel', '1988-01-31', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-14 11:48:17.411593+01', '2025-04-08 14:40:55.945553+02', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('cb83e896-a24c-4677-a8bc-614e87394a00', '48026', 'F', 'Dr.', 'Gottschalk', 'Thomas ', '2010-10-10', '017102399339', 'tg@gmail.com', '2025-03-20 21:08:44.350185+01', '2025-05-05 15:14:02.079902+02', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+INSERT INTO public.patients VALUES ('7a87fef1-aee3-40b1-b9f0-391f2a9f6db5', '48024', 'F', '', 'Hanni', 'Engelage', '1989-04-19', '015146270300', 'lucas.engelage@altaklinik.de', '2025-03-17 21:49:59.737543+01', '2025-05-05 16:06:31.6737+02', 'Stendal', 'Deutschland', '42', NULL ,   '12345',  'Bahnhosstraße');
+
+
+--
+-- Data for Name: appointments; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.appointments VALUES ('14d6ee8d-8821-432b-bf56-6c7981ecfe6f', NULL, '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-10 10:00:00+01', '2025-03-10 10:30:00+01',  '2025-03-13 16:38:41.297722+01', '2025-03-17 14:10:27.977825+01', '634687ce-1296-4770-9170-19d11b87cee2', 'private_patient', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('d0cdc604-2a17-4276-ab89-30eb3484dd00', NULL, 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-10 10:00:00+01', '2025-03-10 10:30:00+01',  '2025-03-13 16:55:22.465207+01', '2025-03-17 14:10:27.977825+01', '144d322c-32b9-481b-b6e7-dabcb21b6f0d', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('3ded6a5c-7bad-40e3-ae03-b11d973912fd', NULL, 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-10 10:00:00+01', '2025-03-10 10:30:00+01',  '2025-03-13 16:55:22.749587+01', '2025-03-17 14:10:27.977825+01', '4c1b3554-4fca-4c52-b505-12a586d7bbfb', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('279b3369-68d5-4566-b7fe-afd4396ad548', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-10 09:00:00+01', '2025-03-10 09:30:00+01',  '2025-03-13 17:01:39.871661+01', '2025-03-17 14:10:27.977825+01', 'd2d4e09a-ce4f-478d-9776-5d11120135c3', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('a42c1132-e48a-4f6e-ba55-1001a3b27626', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-15 11:00:00+01', '2025-03-15 11:30:00+01',  '2025-03-14 10:34:07.848901+01', '2025-03-17 14:10:27.977825+01', 'd2d4e09a-ce4f-478d-9776-5d11120135c3', 'self_payer', '279b3369-68d5-4566-b7fe-afd4396ad548', '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('2bd0fc32-4d0b-4777-b904-33a33475ec5f', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-15 12:00:00+01', '2025-03-15 12:30:00+01',  '2025-03-14 10:46:11.976513+01', '2025-03-17 14:10:27.977825+01', 'd2d4e09a-ce4f-478d-9776-5d11120135c3', 'self_payer', 'a42c1132-e48a-4f6e-ba55-1001a3b27626', '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('e0dbc9e7-fe36-48c8-a11d-404602ceb070', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-14 05:00:53.168+01', '2025-03-14 05:30:53.168+01',  '2025-03-14 11:23:42.72853+01', '2025-03-17 14:10:27.977825+01', '4d19d98d-d849-4a22-b7a5-0a90a8f6ace1', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('05bc612a-0c77-4512-a5c4-5ffb56655dd6', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-14 06:00:07.856+01', '2025-03-14 06:30:07.856+01', '2025-03-14 11:35:26.722376+01', '2025-03-17 14:10:27.977825+01', '7f5e242e-4734-4e33-9be1-8d67d67419e4', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('3c923f08-c9c8-4104-b1a3-9f709bc03b49', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-22 12:00:00+01', '2025-03-22 12:30:00+01',  '2025-03-14 23:54:03.028184+01', '2025-03-17 14:10:27.977825+01', 'b8b01602-20fe-48e9-a76e-85ebfbf6c5dc', 'self_payer', '87a4a8f2-2cef-4878-9139-551c5ecd59f9', '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('ec20dc29-c0d8-4455-a650-59f258c2b08f', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-16 11:00:00+01', '2025-03-16 11:30:00+01',  '2025-03-14 12:18:55.852867+01', '2025-03-17 14:10:27.977825+01', '7f5e242e-4734-4e33-9be1-8d67d67419e4', 'self_payer', '05bc612a-0c77-4512-a5c4-5ffb56655dd6', '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('4fdf6f15-fde7-4ff9-b47c-44c4bf11a386', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-14 15:00:22.174+01', '2025-03-14 15:30:22.174+01',  '2025-03-14 11:48:17.474185+01', '2025-03-17 14:10:27.977825+01', '072ce426-1470-4704-bd3a-cc7556c16592', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('c1a20198-039e-4676-baa0-e817971e3ec0', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-25 05:15:00+01', '2025-03-25 05:45:00+01',  '2025-03-15 00:25:33.958137+01', '2025-03-17 14:10:27.977825+01', '3ddb6d1b-904e-4002-8415-af02d8d56b76', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('1b6ff553-7471-4092-aaad-d731b353ae4a', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-15 09:15:00+01', '2025-03-15 09:45:00+01',  '2025-03-14 12:30:45.402052+01', '2025-03-17 14:10:27.977825+01', '130b3c83-0302-4155-a402-180652d8cf75', 'private_patient', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('665928f7-32a9-4512-b78e-4f716072e029', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-04-25 09:00:00+02', '2025-04-25 09:30:00+02',  '2025-03-14 13:00:11.323201+01', '2025-03-17 14:10:27.977825+01', 'fafc0a35-b3af-4752-9ae8-e9ec7922fb3c', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('d4e50520-dc0d-467b-b066-a951a4159534', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-04-24 16:00:00+02', '2025-04-24 16:30:00+02',  '2025-03-14 13:09:32.580543+01', '2025-03-17 14:10:27.977825+01', '15d3afbf-3a2c-4057-8fd2-bc5a633e7aa8', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('243e7da1-b5c9-4cbe-b212-d576a08c3fe1', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-16 14:00:00+01', '2025-03-16 14:30:00+01',  '2025-03-14 11:03:53.897553+01', '2025-03-17 14:10:27.977825+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', 'bcf3e0fc-0d5e-4812-b35b-ad39d7290789', '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('bfea7067-4ab9-4e60-9a26-4af091d127b6', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-21 18:00:00+01', '2025-03-21 18:30:00+01',  '2025-03-14 19:16:41.853047+01', '2025-03-17 14:10:27.977825+01', 'd01e15e0-2ac9-4e61-aa54-8260ae9b91c3', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('18c1d7cc-b2b5-4f92-a31e-5b193ee2eeff', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 10:00:00+01', '2025-03-18 10:30:00+01',  '2025-03-17 09:54:03.117383+01', '2025-03-17 14:10:27.977825+01', 'bf7b442c-471a-4236-b683-06470996dcc3', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('87a4a8f2-2cef-4878-9139-551c5ecd59f9', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 12:00:00+01', '2025-03-18 12:30:00+01',  '2025-03-14 23:53:41.442149+01', '2025-03-17 14:57:14.234404+01', 'b8b01602-20fe-48e9-a76e-85ebfbf6c5dc', 'self_payer', NULL, '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('0538239d-528f-4bc6-a6ab-391a1216ccab', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-21 10:30:00+01', '2025-03-21 11:00:00+01',  '2025-03-17 10:01:21.218686+01', '2025-03-17 14:56:39.940649+01', 'd46abb6c-5f4f-4f86-b07b-269e9675e3c5', 'self_payer', NULL, 'f904600a-a1d3-493b-8821-c8277d5726f4', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('9913646c-572b-43d9-a0fb-85b53621a384', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-21 10:00:00+01', '2025-03-21 10:30:00+01',  '2025-03-17 09:59:12.974045+01', '2025-03-17 18:06:46.075857+01', '88b53f24-150d-4b5b-8a62-fdd8295de85c', 'self_payer', NULL, '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('14ab0c6a-c7fd-41b7-a105-c90ceae3a280', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 11:00:00+01', '2025-03-18 11:30:00+01',  '2025-03-14 16:34:12.876247+01', '2025-03-17 15:17:58.305423+01', 'fda74f90-1256-4448-8b66-8e85b553195f', 'self_payer', NULL, 'd4a4f027-72eb-426a-8a97-ed5150dee258', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('bcf3e0fc-0d5e-4812-b35b-ad39d7290789', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-21 12:00:00+01', '2025-03-21 12:30:00+01',  '2025-03-14 10:58:34.984426+01', '2025-03-17 15:18:05.321739+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', NULL, '58b355af-4d75-4a06-8c4a-365faf70cb07', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('5010bc08-f47a-4604-8058-8cf03f172eb8', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-21 09:00:00+01', '2025-03-21 09:30:00+01',  '2025-03-14 09:52:41.151124+01', '2025-03-17 16:20:05.828816+01', '9f5ad24d-f869-4e17-b345-2e43ca97ceb0', 'self_payer', NULL, '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('c677badc-3c16-49ea-81d5-fcfe46047a6d', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-10 08:00:00+01', '2025-03-10 08:30:00+01',  '2025-03-13 17:07:53.822669+01', '2025-03-17 21:50:40.421865+01', 'ffb56bd2-086b-4448-9d77-7d21323ddc6f', 'private_patient', NULL, 'd4a4f027-72eb-426a-8a97-ed5150dee258', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('722c7686-e736-4f3c-b42f-2ad8649f65a0', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-20 13:00:22.307+01', '2025-03-20 13:30:22.307+01', '2025-03-14 10:55:43.902322+01', '2025-03-19 21:20:20.281609+01', 'd2d4e09a-ce4f-478d-9776-5d11120135c3', 'self_payer', '2bd0fc32-4d0b-4777-b904-33a33475ec5f', '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('00a2d30a-af19-458b-86a6-9bbff83cf998', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-22 14:00:00+01', '2025-03-22 14:30:00+01', '2025-03-14 16:35:10.733366+01', '2025-03-19 21:20:07.820077+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', '243e7da1-b5c9-4cbe-b212-d576a08c3fe1', '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('765ca907-465d-4ba0-9c79-06e593f2a878', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-04-04 12:00:00+02', '2025-04-04 12:30:00+02',  '2025-03-14 16:43:13.356724+01', '2025-04-08 13:12:56.82271+02', 'f731f387-4f5c-4ed3-bad4-2dde13f354b5', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('b9fe84b7-f012-470b-b2f2-70d426e98706', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 11:30:00+01', '2025-03-18 12:00:00+01', '2025-03-16 12:01:47.003111+01', '2025-03-17 14:28:47.820274+01', 'fda74f90-1256-4448-8b66-8e85b553195f', 'self_payer', '14ab0c6a-c7fd-41b7-a105-c90ceae3a280', '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('539b0bcc-6968-48a4-911f-714ef176c1ce', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-17 10:00:26.128+01', '2025-03-17 10:30:26.128+01', '2025-03-17 21:49:59.836369+01', '2025-03-20 20:28:19.030429+01', '7a87fef1-aee3-40b1-b9f0-391f2a9f6db5', 'self_payer', NULL, '2880a02c-988b-43e7-97c4-9f37c9c1fe3a', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('153eb73a-4855-4343-92ce-978567c76960', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 12:30:00.077+01', '2025-03-18 13:00:00.077+01', '2025-03-18 10:57:44.942725+01', '2025-03-18 10:58:25.282886+01', '7f5e242e-4734-4e33-9be1-8d67d67419e4', 'self_payer', NULL, '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('eb538fce-1f6d-47bd-a5d2-acfc7d490e2f', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-22 09:15:00+01', '2025-03-22 09:45:00+01', '2025-03-17 16:20:05.887374+01', '2025-03-17 16:20:26.679324+01', '9f5ad24d-f869-4e17-b345-2e43ca97ceb0', 'self_payer', '5010bc08-f47a-4604-8058-8cf03f172eb8', 'd4a4f027-72eb-426a-8a97-ed5150dee258', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('4f3d352e-f852-418a-9931-00694194a6a2', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-20 10:00:00+01', '2025-03-20 10:30:00+01', '2025-03-17 10:18:08.727775+01', '2025-03-17 15:07:33.238907+01', 'd3ea5117-d9c4-42d9-b220-dbae93236bdc', 'self_payer', NULL, '58b355af-4d75-4a06-8c4a-365faf70cb07', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('2ef0d4a2-4e87-448f-af05-2e9c9082884b', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-22 10:15:00+01', '2025-03-22 10:45:00+01', '2025-03-17 16:25:14.378302+01', '2025-03-17 16:25:14.378302+01', 'd2d4e09a-ce4f-478d-9776-5d11120135c3', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('a634e102-4fc8-4891-b5aa-6d911c5ff503', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', 'bbb5c08e-eeda-4cfd-ab3d-20dead3276cb', '2025-03-20 09:00:00+01', '2025-03-20 10:00:00+01', '2025-03-17 15:17:02.72+01', '2025-03-17 15:17:02.72+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('d2ed293e-e786-433b-9924-cec64f0048ec', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-20 09:00:00+01', '2025-03-20 09:30:00+01', '2025-03-17 16:37:17.311515+01', '2025-03-17 16:37:17.311515+01', 'fafc0a35-b3af-4752-9ae8-e9ec7922fb3c', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('01b84fa4-9b13-4c15-924a-357d9b501292', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 16:00:00.077+01', '2025-03-18 16:30:00.077+01', '2025-03-18 10:58:25.337565+01', '2025-03-18 10:58:43.126943+01', '7f5e242e-4734-4e33-9be1-8d67d67419e4', 'self_payer', '153eb73a-4855-4343-92ce-978567c76960', '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('bd3ecb4f-a2b7-42df-a702-9e05a5427487', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-22 11:00:00+01', '2025-03-22 11:30:00+01',  '2025-03-17 10:10:46.629193+01', '2025-03-17 15:20:16.655165+01', 'a79b3411-aca5-489e-b715-b859ffdce2e6', 'self_payer', NULL, '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('0c6cd239-a562-4f6e-a740-e045cbb9f97d', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-20 11:00:00+01', '2025-03-20 11:30:00+01',  '2025-03-17 15:20:16.698826+01', '2025-03-17 15:20:19.678801+01', 'a79b3411-aca5-489e-b715-b859ffdce2e6', 'self_payer', 'bd3ecb4f-a2b7-42df-a702-9e05a5427487', 'd4a4f027-72eb-426a-8a97-ed5150dee258', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('b4c0fe6c-e1e1-4cfd-8ed6-bddbba4bd3e1', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 09:00:00+01', '2025-03-18 09:30:00+01',  '2025-03-17 15:31:11.380684+01', '2025-03-17 15:31:36.617648+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', NULL, '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('723a4da1-3deb-41ec-9049-8d59cc3cb892', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-22 10:00:00+01', '2025-03-22 10:30:00+01',  '2025-03-17 15:31:36.679892+01', '2025-03-17 15:31:36.679892+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', 'b4c0fe6c-e1e1-4cfd-8ed6-bddbba4bd3e1', '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('1a5cc5b1-d2b3-4d04-9998-939a1015451f', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 11:00:00+01', '2025-03-18 11:30:00+01',  '2025-03-17 16:18:39.883772+01', '2025-03-17 16:18:39.883772+01', '7f5e242e-4734-4e33-9be1-8d67d67419e4', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('aaba85f3-5fcc-4394-89a0-8f2974d88a07', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 11:30:00+01', '2025-03-18 12:00:00+01',  '2025-03-17 16:19:01.441174+01', '2025-03-17 16:19:01.441174+01', 'd2d4e09a-ce4f-478d-9776-5d11120135c3', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('a8928710-58d4-407c-bf7c-eb6da3a94869', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-21 10:30:00+01', '2025-03-21 11:00:00+01',  '2025-03-17 18:06:46.159345+01', '2025-03-17 18:07:14.880773+01', '88b53f24-150d-4b5b-8a62-fdd8295de85c', 'self_payer', '9913646c-572b-43d9-a0fb-85b53621a384', '2880a02c-988b-43e7-97c4-9f37c9c1fe3a', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('d374aa93-6c8d-4497-a1ce-00d0acf78f05', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '584f58aa-ce05-4998-b598-aa6cfe9163d4', '2025-04-10 14:00:00+02', '2025-04-10 14:30:00+02',  '2025-04-06 20:57:40.664761+02', '2025-04-08 13:13:16.80928+02', '5370a5b1-d5a4-4fa2-9862-e2aca11a6192', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('3f71f924-9968-461e-93b5-a169aeb7a4db', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', 'bbb5c08e-eeda-4cfd-ab3d-20dead3276cb', '2025-03-20 12:00:00+01', '2025-03-20 13:00:00+01',  '2025-03-19 11:30:17.62118+01', '2025-03-19 11:30:28.949122+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', NULL, '41a4bf67-a5db-457a-ace4-b545914b99a2', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('2154a68a-8659-4dba-992b-376f317660bb', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', 'bbb5c08e-eeda-4cfd-ab3d-20dead3276cb', '2025-03-21 12:15:00+01', '2025-03-21 13:15:00+01',  '2025-03-19 11:30:29.00687+01', '2025-03-19 11:30:29.00687+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', '3f71f924-9968-461e-93b5-a169aeb7a4db', '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-23 09:00:00+01', '2025-03-23 09:30:00+01',  '2025-03-18 18:57:12.584133+01', '2025-03-19 21:16:18.375801+01', '1f7a6c42-5d09-4163-93b1-2d4d90e6d3a1', 'self_payer', NULL, '58b355af-4d75-4a06-8c4a-365faf70cb07', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('b8fff124-a143-4df5-8a7a-91e8c55d419f', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-22 09:00:00+01', '2025-03-22 09:30:00+01',  '2025-03-21 11:24:25.688851+01', '2025-03-21 11:24:25.688851+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('e23dcfac-4b67-4c50-a5d4-de4b5f619f2a', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-04-03 10:00:00+02', '2025-04-03 10:30:00+02',  '2025-03-31 11:50:08.414464+02', '2025-03-31 11:50:08.414464+02', '5bbad366-efbd-4796-8ca6-b77c4a2f4234', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('7a495466-f0e7-4c46-b56f-f68b43769b8c', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-18 11:00:00+01', '2025-03-18 11:30:00+01',  '2025-03-17 15:57:56.453889+01', '2025-03-19 21:52:09.411519+01', '8ee4ab88-88e2-405c-940d-3d08732245db', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('90f79dfe-beb5-4f54-b3a8-7b18a5531607', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '584f58aa-ce05-4998-b598-aa6cfe9163d4', '2025-04-06 14:00:00+02', '2025-04-06 14:30:00+02',  '2025-04-06 14:28:45.249874+02', '2025-04-06 14:32:38.011966+02', '5370a5b1-d5a4-4fa2-9862-e2aca11a6192', 'self_payer', NULL, '58b355af-4d75-4a06-8c4a-365faf70cb07', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('ebe54c49-ab94-4a64-9d78-d48aa95da1ae', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '584f58aa-ce05-4998-b598-aa6cfe9163d4', '2025-04-08 09:00:00+02', '2025-04-08 09:30:00+02',  '2025-04-07 11:43:36.24479+02', '2025-04-07 11:43:36.24479+02', '5370a5b1-d5a4-4fa2-9862-e2aca11a6192', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('499fde48-6ad3-4379-8fba-5f21ba5e277a', '49852a4a-c299-43bb-a6f8-d4e3dcd2220d', 'd9be335f-b53e-4436-8477-ebf010ff3d6c', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-04-09 09:00:00+02', '2025-04-09 09:30:00+02',  '2025-04-07 13:01:02.68282+02', '2025-04-07 13:01:02.68282+02', '5370a5b1-d5a4-4fa2-9862-e2aca11a6192', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('b0445f36-3c9f-407f-8bef-ae0202e1912d', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-03-21 13:30:00+01', '2025-03-21 14:00:00+01',  '2025-03-17 15:07:08.033213+01', '2025-04-08 13:12:44.28963+02', 'fda74f90-1256-4448-8b66-8e85b553195f', 'self_payer', '14ab0c6a-c7fd-41b7-a105-c90ceae3a280', '2880a02c-988b-43e7-97c4-9f37c9c1fe3a', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('f6933fad-c247-44ce-9182-70715d5898d0', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '2025-05-05 11:00:00+02', '2025-05-05 11:30:00+02',  '2025-05-05 09:26:33.895441+02', '2025-05-05 09:26:33.895441+02', 'cb83e896-a24c-4677-a8bc-614e87394a00', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('4d73e406-cad3-4bb8-a514-ba11511b9b1a', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '584f58aa-ce05-4998-b598-aa6cfe9163d4', '2025-05-05 12:45:00+02', '2025-05-05 13:15:00+02',  '2025-05-05 16:04:40.919715+02', '2025-05-05 16:04:40.919715+02', '7a87fef1-aee3-40b1-b9f0-391f2a9f6db5', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('89c4e10a-c888-40a2-8e88-a4e72b8e3559', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '2025-05-14 10:00:00+02', '2025-05-14 10:30:00+02',  '2025-03-20 21:08:44.443521+01', '2025-05-14 09:12:41.768831+02', 'cb83e896-a24c-4677-a8bc-614e87394a00', 'private_patient', NULL, 'f904600a-a1d3-493b-8821-c8277d5726f4', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('b5df099e-834b-4d61-b6ee-4904fc1f0bca', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '2025-05-14 10:30:00+02', '2025-05-14 11:00:00+02',  '2025-05-14 09:18:11.666778+02', '2025-05-14 09:18:11.666778+02', '072ce426-1470-4704-bd3a-cc7556c16592', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('282ce6d4-7e14-4820-8b9d-8275c60247d9', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '2025-05-14 11:00:00+02', '2025-05-14 11:30:00+02',  '2025-05-14 09:19:15.495829+02', '2025-05-14 09:19:15.495829+02', '072ce426-1470-4704-bd3a-cc7556c16592', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('c8f624c1-24cb-454e-af61-6afecb63e12a', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '7f181834-cc5e-457c-a16a-547e8116d1c6', '2025-05-15 10:00:00+02', '2025-05-15 10:30:00+02',  '2025-05-15 11:14:14.760273+02', '2025-05-15 11:14:14.760273+02', 'b8b01602-20fe-48e9-a76e-85ebfbf6c5dc', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+INSERT INTO public.appointments VALUES ('5a503793-1a3a-48b4-9f0f-e64fc2546618', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', 'fcc9b0e0-df31-47f5-8738-619f70792901', '2025-05-15 10:30:00+02', '2025-05-15 11:00:00+02',  '2025-05-15 16:44:51.826023+02', '2025-05-15 16:44:51.826023+02', '9f5ad24d-f869-4e17-b345-2e43ca97ceb0', 'self_payer', NULL, '9ab259db-6574-4631-89b0-84dfe6cd51fd', NULL, NULL, NULL, NULL);
+
+
+--
+-- Data for Name: appointment_comments; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.appointment_comments VALUES ('425f654a-e6f2-4153-b2d4-18397599cc72', '3c923f08-c9c8-4104-b1a3-9f709bc03b49', NULL, 'Testkome', '2025-03-19 10:11:22.155766+01', '2025-03-19 12:53:09.816023+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('c2d168ae-b32c-4830-b253-046c43642283', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'Ich kann doch hier Kommentare schreiben', '2025-03-19 10:37:22.752643+01', '2025-03-19 12:54:43.023266+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('885b155a-0f18-4153-8179-ba00e4ec5e63', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'Test', '2025-03-19 10:37:02.853972+01', '2025-03-19 20:04:01.118372+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('403d91e7-eb32-4736-b46b-063d28f0ccaf', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'Hier wieder eine neue Info!!', '2025-03-19 19:57:07.327308+01', '2025-03-19 20:54:03.637535+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('20bf5ca9-5b41-4f11-9ed2-24fb6b2810c2', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'Hallo', '2025-03-19 20:53:43.957557+01', '2025-03-19 20:54:10.953912+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('7786f6af-8401-4811-9a98-58bf9eacff41', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'test', '2025-03-19 20:08:28.696949+01', '2025-03-19 20:54:12.194484+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('3e675e2a-87bb-4fcc-92a5-bffcb552f160', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'Was kann ich hier alles schreiben?', '2025-03-19 10:59:35.094231+01', '2025-03-19 20:55:54.159011+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('bdd6b9a6-d317-4c7e-8c96-4f33d3b8f8e8', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'Patient ist zu spät.', '2025-03-19 10:18:37.444221+01', '2025-03-19 21:14:21.604008+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('3ae29064-967e-40dc-9c0a-cca36736cee6', '7a495466-f0e7-4c46-b56f-f68b43769b8c', NULL, 'Hier ein Test ööö', '2025-03-19 21:52:40.367408+01', '2025-03-19 21:53:13.472643+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('e5ae49b2-0431-4b9e-b56d-e6314c2614c4', '7a495466-f0e7-4c46-b56f-f68b43769b8c', NULL, 'Jetzt schreibe ich hier was!!!', '2025-03-19 21:53:25.860268+01', '2025-03-19 21:53:25.860268+01', false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('bb35615e-ad77-417b-aeb0-364b8fa466b9', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'Hallo Lucas', '2025-03-19 22:05:27.81384+01', '2025-03-19 22:05:27.81384+01', false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('aead7c0b-d166-4e96-bd4b-976ad08182fa', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'Hier kommt ein neuer Kommentar aus Termin Details.', '2025-03-19 21:14:15.532941+01', '2025-03-19 22:05:33.567899+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('d34a2369-a187-4986-88f4-4b544775f0cd', '539b0bcc-6968-48a4-911f-714ef176c1ce', NULL, 'Patient hat die Rechnung angefragt', '2025-03-18 18:39:06.014124+01', '2025-03-20 10:39:24.856751+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('02727778-5411-43e5-afb8-9ac7aadb3d4e', '539b0bcc-6968-48a4-911f-714ef176c1ce', NULL, 'Test mal', '2025-03-20 13:54:47.111358+01', '2025-03-20 13:54:53.305635+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('bf781e4e-e3a5-4c9d-82ce-ef38ba84c37d', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', NULL, 'Bitte anrufen', '2025-03-20 13:56:45.919228+01', '2025-03-20 13:57:07.530061+01',false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('265a8442-d169-45c8-80c9-eee5d7b4f89e', '00a2d30a-af19-458b-86a6-9bbff83cf998', NULL, 'lmldmsmdlwe', '2025-03-20 14:41:27.502666+01', '2025-03-20 14:41:27.502666+01', false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('09aa0203-2dcc-4609-87d1-acff2ee26561', '00a2d30a-af19-458b-86a6-9bbff83cf998', NULL, 'Test', '2025-03-20 14:48:32.095871+01', '2025-03-20 14:48:32.095871+01', false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('eba89ab9-9b86-4101-a7c1-b7481d237a5b', '539b0bcc-6968-48a4-911f-714ef176c1ce', NULL, 'Hier mal einen Test', '2025-03-20 14:49:11.548908+01', '2025-03-20 14:54:41.455451+01',false ,'anruf', true, true);
+INSERT INTO public.appointment_comments VALUES ('9ccfaf24-e18b-48e8-b943-38e1f06433a8', '539b0bcc-6968-48a4-911f-714ef176c1ce', NULL, 'Arzt soll bitte zurückrufen', '2025-03-20 14:51:45.649278+01', '2025-03-20 14:54:46.203962+01',false ,'info', true, false);
+INSERT INTO public.appointment_comments VALUES ('860d6720-c445-4419-8c96-e9a8688c0298', '539b0bcc-6968-48a4-911f-714ef176c1ce', NULL, 'Bitte den Patienten anrufen.', '2025-03-20 14:54:34.160511+01', '2025-03-20 15:29:08.818745+01',false ,'anruf', true, true);
+INSERT INTO public.appointment_comments VALUES ('5fdb3c53-0642-453e-ad89-8d10d651384f', '3c923f08-c9c8-4104-b1a3-9f709bc03b49', NULL, 'Alle JSX-Elemente für die Kommentareingabe wurden aktualisiert, um die terminspezifschen Daten zu verwenden', '2025-03-20 15:42:20.54008+01', '2025-03-20 15:42:20.54008+01', false ,'info', false, false);
+INSERT INTO public.appointment_comments VALUES ('8ed5e4bb-0835-41f9-96df-97562389c7b3', 'd2ed293e-e786-433b-9924-cec64f0048ec', NULL, 'Hier nochmal anrufen', '2025-03-20 15:49:23.680528+01', '2025-03-20 15:49:37.072102+01',false ,'anruf', true, true);
+INSERT INTO public.appointment_comments VALUES ('cce53988-5e07-470c-8e54-c01edd525948', '539b0bcc-6968-48a4-911f-714ef176c1ce', NULL, 'Mitteilung an Steinmeister @Steinmeister', '2025-03-20 15:31:36.177092+01', '2025-03-20 15:49:45.233307+01',false ,'anruf', true, true);
+INSERT INTO public.appointment_comments VALUES ('cde83cdf-7a46-4711-97fb-45dc9a7d145e', '539b0bcc-6968-48a4-911f-714ef176c1ce', NULL, 'Der muss noch angerufen werden', '2025-03-24 09:13:14.16233+01', '2025-03-24 09:14:14.345334+01',false ,'anruf', true, true);
+INSERT INTO public.appointment_comments VALUES ('a6ef7028-d0c8-4a24-aed2-4880e77c5b91', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', NULL, 'Hier einen Test!', '2025-03-25 16:24:54.236317+01', '2025-03-25 16:24:54.236317+01', false ,'info', true, true);
+INSERT INTO public.appointment_comments VALUES ('43b9cda5-7058-4104-ac22-e2a4abee1525', '665928f7-32a9-4512-b78e-4f716072e029', NULL, 'Patient benötigt Unterlagen an seinen Hausarzt', '2025-03-20 15:30:25.21308+01', '2025-03-28 12:23:59.382398+01',false ,'anruf', true, true);
+INSERT INTO public.appointment_comments VALUES ('fc8c00fc-24a5-449e-847b-8265bdde4b9f', 'e23dcfac-4b67-4c50-a5d4-de4b5f619f2a', NULL, 'Steinmeister soll den anrufen.', '2025-03-31 11:59:59.921233+02', '2025-03-31 11:59:59.921233+02', false ,'anruf', true, true);
+INSERT INTO public.appointment_comments VALUES ('1c418baa-f242-4f54-bccc-005db453eb12', 'ebe54c49-ab94-4a64-9d78-d48aa95da1ae', NULL, 'Patient bittet um Rückruf', '2025-04-07 13:54:34.224725+02', '2025-04-07 13:54:34.224725+02', false ,'anruf', true, true);
+INSERT INTO public.appointment_comments VALUES ('237ed6a9-e41b-4746-b840-76fd93b7c63b', 'd374aa93-6c8d-4497-a1ce-00d0acf78f05', NULL, 'Patient hat keine Blutwerte', '2025-04-07 14:10:24.877006+02', '2025-04-07 14:10:24.877006+02', false ,'info', true, false);
+INSERT INTO public.appointment_comments VALUES ('8e72820b-d21b-4198-b64b-5c778151e497', 'ebe54c49-ab94-4a64-9d78-d48aa95da1ae', NULL, 'Steinmeister soll den anrufen', '2025-04-07 14:14:55.977686+02', '2025-04-07 14:14:55.977686+02', false ,'anruf', true, true);
+INSERT INTO public.appointment_comments VALUES ('e43798cf-1aa6-4b2f-9a71-b627b4990ea0', 'ebe54c49-ab94-4a64-9d78-d48aa95da1ae', NULL, 'Patient wartet auf Befund', '2025-04-07 13:54:11.804694+02', '2025-04-07 14:39:02.726684+02',false ,'info', true, true);
+INSERT INTO public.appointment_comments VALUES ('267dc2ed-be5a-4783-99a9-3a33f6b07427', 'ebe54c49-ab94-4a64-9d78-d48aa95da1ae', NULL, 'Zimmer anrufen', '2025-04-07 14:14:14.436707+02', '2025-04-07 20:23:07.321692+02',false ,'anruf', true, false);
+INSERT INTO public.appointment_comments VALUES ('52edfbc7-ff1b-4416-a8aa-cb6404e56e3d', 'ebe54c49-ab94-4a64-9d78-d48aa95da1ae', NULL, 'Hier muss nicht gemacht werden.', '2025-04-07 20:23:34.760453+02', '2025-04-07 20:23:34.760453+02', false ,'info', false, false);
+
+
+--
+-- Data for Name: document_categories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.document_categories VALUES ('bc16ffcd-af2e-48cc-a7d3-331f062f3adf', 'Fremdbefunde', '2025-03-18 12:14:56.814865+01', '2025-03-18 12:14:56.814865+01');
+INSERT INTO public.document_categories VALUES ('861634a7-5a87-4cd5-ab42-795c0863a059', 'Vorbefund', '2025-03-18 12:14:56.814865+01', '2025-03-18 12:14:56.814865+01');
+INSERT INTO public.document_categories VALUES ('c8968868-4b9c-4cf9-9fbd-7f7556f974f9', 'Befund', '2025-03-18 12:14:56.814865+01', '2025-03-18 12:14:56.814865+01');
+INSERT INTO public.document_categories VALUES ('f424acf0-987d-4f36-9a79-bf7797082d81', 'Überweisung', '2025-03-18 12:14:56.814865+01', '2025-03-18 12:14:56.814865+01');
+
+
+--
+-- Data for Name: appointment_documents; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.appointment_documents VALUES ('569a0ff2-8962-44fe-812e-aa7036b5c815', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', '861634a7-5a87-4cd5-ab42-795c0863a059', 'BER_Bielefeld_tickets.pdf', 'application/pdf', 199927, 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc/xehi0owbnra.pdf', '2025-03-18 18:58:17.529118+01', '2025-03-18 19:29:58.275994+01', 'Der Patient wurde von Dr. Müller geschickt.');
+INSERT INTO public.appointment_documents VALUES ('fc436574-89a1-421e-9e47-47d1bd9f674e', '3c923f08-c9c8-4104-b1a3-9f709bc03b49', 'c8968868-4b9c-4cf9-9fbd-7f7556f974f9', 'Invoice-2A4AB6DC-0002.pdf', 'application/pdf', 91975, '3c923f08-c9c8-4104-b1a3-9f709bc03b49/4ws7ryffpuw.pdf', '2025-03-19 10:10:36.932826+01', '2025-03-19 10:10:36.932826+01', 'Testbefund');
+INSERT INTO public.appointment_documents VALUES ('278c52eb-ad16-49d8-aa3a-ab00ac1a49c3', '3c923f08-c9c8-4104-b1a3-9f709bc03b49', 'f424acf0-987d-4f36-9a79-bf7797082d81', 'ALTA_HealthCheck_logo (1).png', 'image/png', 33929, '3c923f08-c9c8-4104-b1a3-9f709bc03b49/yp9f44m3tej.png', '2025-03-19 10:12:25.759156+01', '2025-03-19 10:13:03.725956+01', 'Logo der Klinik');
+INSERT INTO public.appointment_documents VALUES ('719f26a9-d530-46a8-9e14-5db766cad8ee', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', 'f424acf0-987d-4f36-9a79-bf7797082d81', 'Unterschrifts-Screen.png', 'image/png', 115449, 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc/xjs8x1eivy.png', '2025-03-19 10:24:57.980468+01', '2025-03-19 10:24:57.980468+01', NULL);
+INSERT INTO public.appointment_documents VALUES ('db067175-6697-4f6a-814a-5ba9f80fbde0', '7a495466-f0e7-4c46-b56f-f68b43769b8c', 'f424acf0-987d-4f36-9a79-bf7797082d81', 'Invoice-2A4AB6DC-0002.pdf', 'application/pdf', 91975, '7a495466-f0e7-4c46-b56f-f68b43769b8c/lsnrjni735n.pdf', '2025-03-18 18:41:12.925117+01', '2025-03-19 21:09:55.217981+01', 'Kein Plan');
+INSERT INTO public.appointment_documents VALUES ('181dc60b-58bb-4b5c-8c45-9e25ef5ac26d', '723a4da1-3deb-41ec-9049-8d59cc3cb892', 'c8968868-4b9c-4cf9-9fbd-7f7556f974f9', 'Invoice-2A4AB6DC-0002.pdf', 'application/pdf', 91975, '723a4da1-3deb-41ec-9049-8d59cc3cb892/gx9ha8rtu2b.pdf', '2025-03-19 22:06:35.600647+01', '2025-03-19 22:06:35.600647+01', NULL);
+INSERT INTO public.appointment_documents VALUES ('9e0f4097-10f3-40e5-84d5-ff70a1d7d2bf', '539b0bcc-6968-48a4-911f-714ef176c1ce', 'c8968868-4b9c-4cf9-9fbd-7f7556f974f9', 'Invoice-2A4AB6DC-0002.pdf', 'application/pdf', 91975, '539b0bcc-6968-48a4-911f-714ef176c1ce/f54ymfupd0f.pdf', '2025-03-18 18:39:16.062633+01', '2025-03-19 22:17:05.069306+01', 'Test');
+INSERT INTO public.appointment_documents VALUES ('067c4193-cd23-4ff9-ac0c-104c4e4d8237', '539b0bcc-6968-48a4-911f-714ef176c1ce', 'c8968868-4b9c-4cf9-9fbd-7f7556f974f9', 'BER_Bielefeld_tickets.pdf', 'application/pdf', 199927, '539b0bcc-6968-48a4-911f-714ef176c1ce/yscrwvcdkr.pdf', '2025-03-20 09:06:47.389422+01', '2025-03-20 13:54:26.68892+01', 'Test oder so?');
+INSERT INTO public.appointment_documents VALUES ('c0019324-3ec0-4e80-a3ab-f9c799253a98', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', 'c8968868-4b9c-4cf9-9fbd-7f7556f974f9', 'Liebig_63342_anmeldeformular.pdf', 'application/pdf', 44154, '89c4e10a-c888-40a2-8e88-a4e72b8e3559/pytvd7i1hm8.pdf', '2025-03-25 16:24:27.676538+01', '2025-03-25 16:24:27.676538+01', 'Test');
+INSERT INTO public.appointment_documents VALUES ('2f864eed-2fe7-4ffb-8abe-30d8f9311dcc', '765ca907-465d-4ba0-9c79-06e593f2a878', 'c8968868-4b9c-4cf9-9fbd-7f7556f974f9', 'mrt_gk_metastasen_032668_310325_0001.pdf', 'application/pdf', 6043, '765ca907-465d-4ba0-9c79-06e593f2a878/6kyx253n5py.pdf', '2025-04-06 14:23:36.82374+02', '2025-04-06 14:23:36.82374+02', NULL);
+INSERT INTO public.appointment_documents VALUES ('d967af1e-09eb-4807-abf0-5848b42d79ad', 'd374aa93-6c8d-4497-a1ce-00d0acf78f05', 'bc16ffcd-af2e-48cc-a7d3-331f062f3adf', 'mrpro4_028466_120325_0002.pdf', 'application/pdf', 5501, 'd374aa93-6c8d-4497-a1ce-00d0acf78f05/e0vjeti2pf7.pdf', '2025-04-06 20:58:23.166414+02', '2025-04-07 11:01:08.193905+02', 'MRT Prostata');
+INSERT INTO public.appointment_documents VALUES ('03386606-086e-45d7-b2fd-7da4b662260f', '90f79dfe-beb5-4f54-b3a8-7b18a5531607', 'c8968868-4b9c-4cf9-9fbd-7f7556f974f9', 'mrt_knie1_047736_250325_0001.pdf', 'application/pdf', 3903, '90f79dfe-beb5-4f54-b3a8-7b18a5531607/w13togi4q1j.pdf', '2025-04-07 11:01:44.189527+02', '2025-04-07 11:01:44.189527+02', 'MRT Knie');
+
+
+--
+-- Data for Name: forms; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.forms VALUES ('bccf249a-9adb-450b-80bd-326733dabd13', 'Datenschutz', '', '2025-03-13 12:57:27.474112+01', '2025-03-13 12:57:27.474112+01', 'privacy', true, false );
+INSERT INTO public.forms VALUES ('c13b9bf4-0ec2-482d-806d-0290c0241262', 'CT Fragebogen', '', '2025-03-17 12:28:59.652563+01', '2025-03-17 12:29:18.455093+01', 'ct_consent', true, true );
+INSERT INTO public.forms VALUES ('e899e2d5-6206-4f63-b4b3-01107ef1c725', 'MRT Fragebogen', '', '2025-03-13 12:57:41.952122+01', '2025-03-17 12:29:33.733705+01', 'mri_consent', true, true );
+INSERT INTO public.forms VALUES ('ef0a2b17-895b-4c25-bae0-7c4032a1907b', 'CT und MRT Fragebogen', 'Für Biopsie Patienten', '2025-03-17 12:58:44.045166+01', '2025-03-17 12:58:44.045166+01', 'mri_ct_consent', true, true );
+INSERT INTO public.forms VALUES ('2b2b8d5f-333b-4b3a-81f5-caef9da166ba', 'CT Therapie Fragebogen', 'Für EDT Patienten', '2025-03-17 12:59:18.229134+01', '2025-03-17 12:59:18.229134+01', 'ct_therapy', true, true );
+INSERT INTO public.forms VALUES ('129cc0ff-74d7-45d3-95ec-41ae7f2eb5ab', 'Anmeldeformular', '', '2025-03-13 12:57:03.297899+01', '2025-03-27 15:18:50.750368+01', 'registration', true, true );
+INSERT INTO public.forms VALUES ('b246f245-f16d-41d4-8e62-118b6199164d', 'Prostata Fragebogen Neupatienten', '', '2025-03-17 12:59:53.44731+01', '2025-05-01 10:25:37.682897+02', 'prostate_new_patient', true, true );
+INSERT INTO public.forms VALUES ('f0200a63-2574-4a35-9524-feb0768556b4', 'Prostate Fragebogen HoLEP', NULL, '2025-05-05 09:21:57.04185+02', '2025-05-05 09:21:57.04185+02',  'prostate_holep', true, true );
+INSERT INTO public.forms VALUES ('6bb2e30d-8b0e-462e-831d-b897a09df8d9', 'Prostata Fragebogen TULSA', NULL, '2025-05-05 09:22:17.493904+02', '2025-05-05 09:22:17.493904+02',  'prostate_tulsa', true, true );
+INSERT INTO public.forms VALUES ('9ee4fea8-d82e-4605-a023-d37a822ffc6b', 'Prostata Fragebogen Verlauf', NULL, '2025-05-05 09:22:46.624427+02', '2025-05-05 09:22:46.624427+02',  'prostate_followup', true, true );
+INSERT INTO public.forms VALUES ('b1971e1e-d726-426a-9a4c-e47a858d03cb', 'Biopsie Fragebogen', NULL, '2025-05-05 09:23:04.072043+02', '2025-05-05 09:23:04.072043+02',  'biopsy', true, true );
+INSERT INTO public.forms VALUES ('9c4d4b69-2856-4a97-87ab-2beb7c1a417c', 'Anmeldeformular BG', NULL, '2025-05-05 09:23:29.391595+02', '2025-05-05 09:23:29.391595+02',  'registration_bg', true, true );
+INSERT INTO public.forms VALUES ('0190d254-86fd-4b55-8021-2237a7d72018', 'IPSS Formular', NULL, '2025-05-15 15:01:29.76289+02', '2025-05-15 15:01:29.76289+02',  'ipss', true, false );
+INSERT INTO public.forms VALUES ('8a10d254-86fd-4b55-8021-2237c7d72018', 'Kostenvoranschlag', NULL, '2025-05-15 15:01:29.76289+02', '2025-05-15 15:01:29.76289+02',  'cost_estimation', false, true );
+
+
+-- Data for examination categories
+COPY public.examination_categories (id, name, description, created_at) FROM stdin;
+25c4494e-7a65-4ced-ac99-157fcbc55def	HoLEP	Holmium Laser Therapie	2025-04-10 06:06:55.726133+00
+c7faaca3-070e-47ba-bedd-17f4e49dcd7b	Check-Up	Check-Up Programme	2025-04-10 06:07:21.178216+00
+6f552ec6-5263-4dbb-838b-c8660431e759	TULSA	TULSA PRO Therapie	2025-04-10 06:07:55.071104+00
+78109796-e618-4c4d-a59f-db193327834f	DaVinci	DaVinci Prostata OP	2025-04-10 06:08:43.940424+00
+bb393993-a376-4230-a1cc-b2aabe8a398f	Biopsie	MRT-gesteuerte Prostatabiopsie	2025-04-09 09:41:11.896028+00
+9c01bcfb-934d-49e6-98a4-b19f8ffe80dd	EDT	EDT Wirbelsäulentherapie	2025-04-10 06:11:15.716899+00
+039fd8d1-4d7c-42fc-8151-8d85a0d200b0	CT	CT Untersuchung	2025-04-09 09:41:11.896028+00
+7243daac-e970-44c5-b67b-f458ab007992	MRT-Untersuchung	MRT Untersuchung	2025-04-09 09:41:11.896028+00
+\.
+
+--
+-- Data for Name: appointment_forms; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: medical_specialties; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.medical_specialties VALUES ('dc5af6bf-cf81-4554-8a6c-78d0f8eec377', 'Anästhesiologie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('cb647cfd-9f8d-496c-a16d-b7a6286d49be', 'Augenheilkunde', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('fdfdd1a5-6e08-448f-a274-db97116d1c7b', 'Chirurgie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('1f3c7f7d-8884-4239-8e0a-ea0369573546', 'Dermatologie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('c655bf19-ce3b-44cf-aae6-645db8ee47be', 'Frauenheilkunde und Geburtshilfe', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('562d9950-4b3b-4e46-b97e-f52a0245c590', 'Hals-Nasen-Ohrenheilkunde', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('965c7822-df0a-4b66-8561-268c8e3dc55f', 'Innere Medizin', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('c269c4a1-d6be-472a-83d0-b64466a5dd4e', 'Kardiologie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('4d0060cb-4cfa-47b2-8ed2-de4a0b2685fb', 'Kinderchirurgie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('7a7fbfd2-dfdd-4c7a-b979-b23dbd6f59eb', 'Kinder- und Jugendmedizin', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('b3e489cd-711d-4dac-b4a8-a71032e64cdd', 'Neurochirurgie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('075c7072-c2ba-46c0-bd0d-772b80849b67', 'Neurologie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('7b7e0652-6cde-4768-bfdb-777f89f5376e', 'Orthopädie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('ced58fde-b701-48ba-bb5e-9bd3f96c357a', 'Psychiatrie und Psychotherapie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('2d970ee9-3064-41a8-93dd-8ad70e8412dd', 'Radiologie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('a1cfcd7e-abb6-465f-a54a-f41a57ec3dba', 'Urologie', '2025-03-21 10:09:36.481679+01', '2025-03-21 10:09:36.481679+01');
+INSERT INTO public.medical_specialties VALUES ('026fad71-ac2f-47d5-bf79-f6250a1b5f7e', 'Allgemeinmedizin', '2025-03-21 10:09:36.481679+01', '2025-03-25 15:20:42.568591+01');
+
+
+--
+-- Data for Name: referring_doctors; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.referring_doctors VALUES ('df5f9361-8ae9-40ea-872b-aee16259d4ee', '', 'M', 'Ralf', 'Berg', 'Vorbruchstr.', '16', '33775', 'Versmold', '054239323390', '054239323391', '', '7b7e0652-6cde-4768-bfdb-777f89f5376e', 'fax', '2025-03-21 11:30:54.336379+01', '2025-03-21 11:30:54.336379+01');
+INSERT INTO public.referring_doctors VALUES ('3554e118-e61e-4dfa-82f4-3f8d9b28955e', '', 'M', 'Ralf', 'Berg', 'Hauptstr.', '92', '33647', 'Bielefeld', '0521417330', '05214173311', '', '7b7e0652-6cde-4768-bfdb-777f89f5376e', 'fax', '2025-03-21 10:15:37.04898+01', '2025-03-23 17:30:45.053275+01');
+
+
+--
+-- Data for Name: appointment_referring_doctors; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.appointment_referring_doctors VALUES ('2124511b-f967-4a66-8838-bd30fb67d4ae', '539b0bcc-6968-48a4-911f-714ef176c1ce', '3554e118-e61e-4dfa-82f4-3f8d9b28955e', '2025-03-21 11:22:25.819827+01');
+INSERT INTO public.appointment_referring_doctors VALUES ('d016dcc9-041e-48b4-a087-2205d95ab80b', 'b8fff124-a143-4df5-8a7a-91e8c55d419f', '3554e118-e61e-4dfa-82f4-3f8d9b28955e', '2025-03-21 11:24:25.757297+01');
+INSERT INTO public.appointment_referring_doctors VALUES ('db911c47-823f-4e3e-8ef3-df44640c7148', '7a495466-f0e7-4c46-b56f-f68b43769b8c', '3554e118-e61e-4dfa-82f4-3f8d9b28955e', '2025-03-21 11:25:14.543144+01');
+INSERT INTO public.appointment_referring_doctors VALUES ('6cacb256-1ca4-436f-99dc-c40ed3cf2587', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', 'df5f9361-8ae9-40ea-872b-aee16259d4ee', '2025-03-25 16:25:01.633417+01');
+INSERT INTO public.appointment_referring_doctors VALUES ('e26ddbec-0b5c-4a29-88af-d9253012f346', '90f79dfe-beb5-4f54-b3a8-7b18a5531607', 'df5f9361-8ae9-40ea-872b-aee16259d4ee', '2025-04-06 14:33:25.046404+02');
+
+
+--
+-- Data for Name: billing_categories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.billing_categories VALUES ('415ddf64-231d-4b16-a90e-97906dab0b31', 'Standardleistungen', '2025-04-07 15:28:00.804699+02', '2025-04-07 15:28:00.804699+02');
+INSERT INTO public.billing_categories VALUES ('d053f014-27a4-4ae9-95a7-a78fcaa41f43', 'Zusatzleistungen', '2025-04-07 15:28:00.804699+02', '2025-04-07 15:28:00.804699+02');
+INSERT INTO public.billing_categories VALUES ('60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 'Sachkosten', '2025-04-07 15:32:24.786265+02', '2025-04-07 15:32:24.786265+02');
+INSERT INTO public.billing_categories VALUES ('0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 'Untersuchung', '2025-04-07 15:55:08.902157+02', '2025-04-07 15:55:08.902157+02');
+
+
+--
+-- Data for Name: billing_codes; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.billing_codes VALUES ('bfa4f3a3-92d3-48cf-9b4e-47f98c5dc60e', '1', 'Beratung auch telefonisch', 4.66, '415ddf64-231d-4b16-a90e-97906dab0b31', '2025-04-07 15:33:00.942272+02', '2025-04-07 15:37:32.641694+02');
+INSERT INTO public.billing_codes VALUES ('c74fe0af-a918-4573-b1e5-5b237bacbd42', '344', 'Handinjektion', 5.83, '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', '2025-04-07 20:12:20.304118+02', '2025-04-07 20:12:20.304118+02');
+INSERT INTO public.billing_codes VALUES ('e988c0be-0ad5-4349-9eb1-c6b8a64292a2', '346', 'Hochdruckinjektion', 17.49, '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', '2025-04-07 20:13:14.910985+02', '2025-04-07 20:13:14.910985+02');
+INSERT INTO public.billing_codes VALUES ('b242efd8-971f-499f-900a-4c0c54a0a6a5', '261', 'Injektion', 1.75, '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', '2025-04-07 20:14:54.422432+02', '2025-04-07 20:14:54.422432+02');
+INSERT INTO public.billing_codes VALUES ('5f3179c1-7ff6-4f47-b8d6-153bcc88b0ed', '250', 'Blutentnahme', 2.33, '415ddf64-231d-4b16-a90e-97906dab0b31', '2025-04-07 20:15:37.252655+02', '2025-04-07 20:15:37.252655+02');
+INSERT INTO public.billing_codes VALUES ('46a7cbaa-6283-4bdc-8627-0f143e703824', '602', 'Oxymetrie', 8.86, '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', '2025-04-07 20:17:01.882965+02', '2025-04-07 20:17:01.882965+02');
+INSERT INTO public.billing_codes VALUES ('97f779c6-c801-4811-a1d4-e790f154f80c', '271', 'Infusion', 6.99, '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', '2025-04-07 20:17:49.558076+02', '2025-04-07 20:17:49.558076+02');
+INSERT INTO public.billing_codes VALUES ('1e87bce5-9bdf-41b0-8e9c-7302393b481d', '5732', 'Positionswechsel und/oder Spulenwechsel', 58.29, 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', '2025-04-07 20:18:52.409303+02', '2025-04-07 20:18:52.409303+02');
+INSERT INTO public.billing_codes VALUES ('5d28ab9a-96a3-48a7-9fc8-4930c4fa2669', '857', 'Anwendung und Auswertung orientierender Testuntersuchungen', 6.76, 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', '2025-04-07 20:20:25.89214+02', '2025-04-07 20:20:25.89214+02');
+
+
+--
+-- Data for Name: biopsy_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.biopsy_form_submissions VALUES ('93ec0363-13c6-4650-ac4f-4b03443e680a', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-05 14:34:44.512397+02', '2025-05-05 14:34:44.512397+02', false, true, 'Diabetes mellitus', '{nein}', '', false, '', false, '', true, 'ASS', 'gestern', 'Ja, abgesetzt', 3, NULL, '', true, 'Kokain', true, 4, true, true, true, 'Blase, gestern', true, true);
+INSERT INTO public.biopsy_form_submissions VALUES ('b1d73ff5-34f1-4649-81da-bc4b350f19cd', 'c8f624c1-24cb-454e-af61-6afecb63e12a', 'b8b01602-20fe-48e9-a76e-85ebfbf6c5dc', '2025-05-15 11:14:39.994756+02', '2025-05-15 16:32:08.283325+02', true, false, '', '{Rauchen}', '', false, '', false, '', false, '', '', NULL, NULL, NULL, '', false, '', false, NULL, false, false, false, '', false, false);
+
+
+--
+-- Data for Name: cost_reimbursement_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: ct_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.ct_form_submissions VALUES ('5e22067e-d9ba-4d05-9b15-60a3497b005f', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-04-23 09:52:31.565+02', '2025-04-23 10:04:25.268544+02', 178, 82, false, NULL, false, NULL, false, false, NULL, NULL, false, false, NULL, false, false, false, false, true, 'Aspirin', 'Seit 2 Jahren', false, NULL, NULL, NULL, NULL);
+INSERT INTO public.ct_form_submissions VALUES ('f550bbd0-7b62-4c2e-bc3a-48e0b5f697ba', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-05 15:13:20.699+02', '2025-05-05 15:44:19.321371+02', 172, 68, true, true, true, 'Heu', false, true, 'Darmspiegelung', 'gestern', true, true, 'Metformin', true, false, true, true, true, 'Aspirin', 'Seit 2 Jahren', true, 'HIV', true, 'Vor 25 Jahren', false);
+
+
+--
+-- Data for Name: ct_therapy_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.ct_therapy_form_submissions VALUES ('c4cf8cb7-93a2-43b2-b16e-32ac113c4083', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-05 15:47:50.13+02', '2025-05-05 15:48:51.817436+02', true, true, true, 'Histamin', true, false, false, false, false, false, true, true, true, 'HSS', 160, 49, true, 'Vor zwei Jahren', true);
+
+
+--
+-- Data for Name: device_blockers; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.device_blockers VALUES ('11cb5fb7-1a0b-4c78-b4e2-2e25a48229ad', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '2025-04-05', '09:00:00', '15:00:00', 'Wartung Skyra', '2025-04-03 13:22:43.234461+02', '2025-04-03 13:22:43.234461+02');
+INSERT INTO public.device_blockers VALUES ('f17906f8-6350-4831-a11d-d48851f7758d', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '2025-04-03', '09:00:00', '17:00:00', 'Team Meeting', '2025-04-03 13:22:43.234461+02', '2025-04-03 13:22:43.234461+02');
+
+
+--
+-- Data for Name: device_working_hours; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.device_working_hours VALUES ('765af696-5177-41fc-b6c2-b1923d128707', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', 1, '08:00:00', '17:59:00', '2025-04-06 21:30:09.658603+02', '2025-04-06 21:30:09.658603+02');
+INSERT INTO public.device_working_hours VALUES ('f631afbe-fe4a-4390-983d-6a1713e8447e', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', 2, '08:00:00', '17:59:00', NULL, NULL);
+INSERT INTO public.device_working_hours VALUES ('ed063187-b87c-45fc-a977-989f632952d8', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', 3, '08:00:00', '16:59:00', NULL, NULL);
+INSERT INTO public.device_working_hours VALUES ('7f5e094d-b664-46d6-bdf4-20339280d67d', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', 4, '08:00:00', '17:59:00', NULL, NULL);
+INSERT INTO public.device_working_hours VALUES ('cea9ba44-8dad-40e8-ae9a-26693d406108', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', 5, '08:00:00', '13:59:00', NULL, NULL);
+INSERT INTO public.device_working_hours VALUES ('1b88d518-1485-4c5b-bff9-4ce4ff4d656b', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', 1, '08:00:00', '17:59:00', '2025-04-06 21:36:48.654176+02', '2025-04-06 21:36:48.654176+02');
+INSERT INTO public.device_working_hours VALUES ('7c3b5d4d-ad7b-4372-9e6d-feed332624e4', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', 2, '08:00:00', '17:59:00', '2025-04-06 21:36:48.654176+02', '2025-04-06 21:36:48.654176+02');
+INSERT INTO public.device_working_hours VALUES ('bf58a5a2-fcdc-440e-9ee9-1db8ab6f83ce', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', 3, '08:00:00', '16:59:00', NULL, NULL);
+INSERT INTO public.device_working_hours VALUES ('0d670463-4a2f-4b6c-876b-520f060ee63e', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', 4, '08:00:00', '17:59:00', NULL, NULL);
+INSERT INTO public.device_working_hours VALUES ('c8f801bf-2dee-4438-964f-cacc5e942bcb', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', 5, '08:00:00', '13:59:00', NULL, NULL);
+INSERT INTO public.device_working_hours VALUES ('8767e9cc-fe79-4ab8-b0a4-ab9e24971421', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', 1, '08:00:00', '17:59:00', '2025-03-17 22:23:13.304434+01', '2025-03-17 22:23:13.304434+01');
+INSERT INTO public.device_working_hours VALUES ('ab5441cc-846a-45c8-8e9c-a324387f743c', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', 2, '08:00:00', '17:59:00', '2025-03-17 22:23:13.304434+01', '2025-03-17 22:23:13.304434+01');
+INSERT INTO public.device_working_hours VALUES ('43e4903f-32de-499c-9bb6-9ea2c27d06d0', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', 3, '08:00:00', '16:59:00', '2025-03-17 22:23:13.304434+01', '2025-03-17 22:23:13.304434+01');
+INSERT INTO public.device_working_hours VALUES ('f5de997d-1015-4a17-96e1-11a8dce6276c', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', 4, '08:00:00', '17:59:00', '2025-03-17 22:23:13.304434+01', '2025-03-17 22:23:13.304434+01');
+INSERT INTO public.device_working_hours VALUES ('5fb8cbbc-28dd-489e-b134-16812e949d33', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', 5, '08:00:00', '13:59:00', '2025-03-17 22:23:13.304434+01', '2025-03-17 22:23:13.304434+01');
+INSERT INTO public.device_working_hours VALUES ('2926a033-cc69-4c72-8a12-4f92b2011595', 'd9be335f-b53e-4436-8477-ebf010ff3d6c', 1, '00:00:00', '00:01:00', '2025-04-06 22:03:03.853402+02', '2025-04-06 22:03:03.853402+02');
+
+
+--
+-- Data for Name: device_working_hours_exceptions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.device_working_hours_exceptions VALUES ('8c891f94-3ddb-45a4-8193-753d92bf352e', 'd9be335f-b53e-4436-8477-ebf010ff3d6c', '2025-04-19', '2025-04-19', '08:00:00', '15:59:00', 'Heute Berlin', '2025-04-06 21:09:42.209645+02', '2025-04-06 21:09:42.209645+02');
+
+
+--
+-- Data for Name: email_logs; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: examination_devices; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.examination_devices VALUES ('1e96695b-082a-4cdb-937d-e0d0bae435ca', 'b710e432-71ae-4b82-8043-8194ce9587cd', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', '2025-03-13 15:58:36.734222+01');
+INSERT INTO public.examination_devices VALUES ('8f59302d-5e8f-4e4e-8dce-7825baefc94d', 'bbb5c08e-eeda-4cfd-ab3d-20dead3276cb', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '2025-03-17 15:11:50.332746+01');
+INSERT INTO public.examination_devices VALUES ('bda60748-6505-46d2-a6be-1aa3a056a2ab', '584f58aa-ce05-4998-b598-aa6cfe9163d4', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '2025-04-06 14:27:17.19853+02');
+INSERT INTO public.examination_devices VALUES ('8974703b-97e4-4b81-a194-9c14484b566e', '584f58aa-ce05-4998-b598-aa6cfe9163d4', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '2025-04-06 14:27:17.19853+02');
+INSERT INTO public.examination_devices VALUES ('06abb0ed-2f23-482d-a087-725c516dbccd', '7f181834-cc5e-457c-a16a-547e8116d1c6', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '2025-05-15 11:13:57.297746+02');
+INSERT INTO public.examination_devices VALUES ('90005d89-bbc4-429a-9541-a1f166baf198', '7f181834-cc5e-457c-a16a-547e8116d1c6', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', '2025-05-15 11:13:57.297746+02');
+INSERT INTO public.examination_devices VALUES ('ff1e8f69-4863-4f5a-9aa3-be9f9e68b964', '7f181834-cc5e-457c-a16a-547e8116d1c6', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '2025-05-15 11:13:57.297746+02');
+INSERT INTO public.examination_devices VALUES ('7884eb00-4f85-4545-a4f4-c1629e8f1185', '7f181834-cc5e-457c-a16a-547e8116d1c6', 'd9be335f-b53e-4436-8477-ebf010ff3d6c', '2025-05-15 11:13:57.297746+02');
+INSERT INTO public.examination_devices VALUES ('e4de22af-a8ab-4a2c-96fe-4e2d1d66996a', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '2025-05-15 15:02:30.544057+02');
+INSERT INTO public.examination_devices VALUES ('f8dcbddf-db87-41c7-a92e-e6d861021aa0', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', '2025-05-15 15:02:30.544057+02');
+INSERT INTO public.examination_devices VALUES ('325deec7-d2a2-4b8f-8ab2-2f4b4d725f0e', '069cf1ee-47ed-4f62-817a-08d14ebf9953', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '2025-05-15 15:02:30.544057+02');
+INSERT INTO public.examination_devices VALUES ('771710ba-9574-4c01-b33a-ec6073c87de5', '069cf1ee-47ed-4f62-817a-08d14ebf9953', 'd9be335f-b53e-4436-8477-ebf010ff3d6c', '2025-05-15 15:02:30.544057+02');
+INSERT INTO public.examination_devices VALUES ('28eac2fa-f849-4925-bdbc-14130455aecb', 'fcc9b0e0-df31-47f5-8738-619f70792901', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '2025-05-15 16:51:54.644914+02');
+INSERT INTO public.examination_devices VALUES ('ab54c5f3-d29b-4493-8525-0ad1e4ab10e8', 'fcc9b0e0-df31-47f5-8738-619f70792901', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', '2025-05-15 16:51:54.644914+02');
+INSERT INTO public.examination_devices VALUES ('d2d63417-3378-48c4-9044-46d92b468148', 'fcc9b0e0-df31-47f5-8738-619f70792901', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '2025-05-15 16:51:54.644914+02');
+INSERT INTO public.examination_devices VALUES ('c712eec4-567a-4f18-b05f-0d43dc174268', 'fcc9b0e0-df31-47f5-8738-619f70792901', 'd9be335f-b53e-4436-8477-ebf010ff3d6c', '2025-05-15 16:51:54.644914+02');
+INSERT INTO public.examination_devices VALUES ('22a72a34-0420-453a-bf29-e3790a853eb5', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '2025-05-16 12:59:42.260147+02');
+INSERT INTO public.examination_devices VALUES ('1f71c21b-3635-40d4-b179-89233f870b61', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '2025-05-16 12:59:42.260147+02');
+INSERT INTO public.examination_devices VALUES ('3a34e3fa-5026-4f33-8de9-8cb9693e47e8', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', 'd9be335f-b53e-4436-8477-ebf010ff3d6c', '2025-05-16 12:59:42.260147+02');
+
+
+--
+-- Data for Name: examination_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: examination_forms; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.examination_forms VALUES ('03482099-593d-46bd-bf7b-9371a7523d9c', 'b710e432-71ae-4b82-8043-8194ce9587cd', '129cc0ff-74d7-45d3-95ec-41ae7f2eb5ab', 1, '2025-03-13 15:58:37.215339+01', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('508efe9a-390b-44cc-8cee-db357f049888', 'b710e432-71ae-4b82-8043-8194ce9587cd', 'bccf249a-9adb-450b-80bd-326733dabd13', 2, '2025-03-13 15:58:37.215339+01', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('01cc3bf1-19d8-4d74-b956-7a0132e4977c', 'bbb5c08e-eeda-4cfd-ab3d-20dead3276cb', '129cc0ff-74d7-45d3-95ec-41ae7f2eb5ab', 1, '2025-03-17 15:11:50.484513+01', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('19c47359-8c98-4461-830d-499ddbbb04ca', 'bbb5c08e-eeda-4cfd-ab3d-20dead3276cb', 'bccf249a-9adb-450b-80bd-326733dabd13', 3, '2025-03-17 15:11:50.484513+01', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('93a66a4b-4323-409b-ac84-52a904f37fb6', 'bbb5c08e-eeda-4cfd-ab3d-20dead3276cb', 'ef0a2b17-895b-4c25-bae0-7c4032a1907b', 4, '2025-03-17 15:11:50.484513+01', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('6b83e95d-5f8e-4fbf-a331-275e728f0a14', '584f58aa-ce05-4998-b598-aa6cfe9163d4', '129cc0ff-74d7-45d3-95ec-41ae7f2eb5ab', 1, '2025-04-06 14:27:17.311824+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('527105b3-8d7f-4922-b419-3e9fbe427730', '584f58aa-ce05-4998-b598-aa6cfe9163d4', 'bccf249a-9adb-450b-80bd-326733dabd13', 3, '2025-04-06 14:27:17.311824+02', '{self_payer,private_patient,foreign_patient}');
+INSERT INTO public.examination_forms VALUES ('42cfdf14-f1e0-411f-8215-4a1023f280e3', '584f58aa-ce05-4998-b598-aa6cfe9163d4', 'e899e2d5-6206-4f63-b4b3-01107ef1c725', 4, '2025-04-06 14:27:17.311824+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('06fff663-35b8-4a98-9770-a7f9600e3392', '7f181834-cc5e-457c-a16a-547e8116d1c6', 'b1971e1e-d726-426a-9a4c-e47a858d03cb', 1, '2025-05-15 11:13:57.32523+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('600fb36c-4c5c-456a-9f3d-2226dae3c479', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '129cc0ff-74d7-45d3-95ec-41ae7f2eb5ab', 1, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('56fb667a-e808-4d73-8f8d-8ffad291db9e', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '9c4d4b69-2856-4a97-87ab-2beb7c1a417c', 2, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('b07216a3-08d5-4e56-b3a8-3563f2ce598a', '069cf1ee-47ed-4f62-817a-08d14ebf9953', 'b1971e1e-d726-426a-9a4c-e47a858d03cb', 3, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('b7bdefd3-0d57-4b30-8c82-7f3d049e9537', '069cf1ee-47ed-4f62-817a-08d14ebf9953', 'c13b9bf4-0ec2-482d-806d-0290c0241262', 4, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('80800283-6fd6-4b58-8fd3-c6b8d3dce36a', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '2b2b8d5f-333b-4b3a-81f5-caef9da166ba', 5, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('0db35b26-249a-40ab-aa47-c8b0182d2268', '069cf1ee-47ed-4f62-817a-08d14ebf9953', 'ef0a2b17-895b-4c25-bae0-7c4032a1907b', 6, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('39dcf13e-3839-41af-b9c5-0839a42fe038', '069cf1ee-47ed-4f62-817a-08d14ebf9953', 'bccf249a-9adb-450b-80bd-326733dabd13', 7, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('efe13ec6-4e2a-4384-ab95-61a9f3cc554f', '069cf1ee-47ed-4f62-817a-08d14ebf9953', 'e899e2d5-6206-4f63-b4b3-01107ef1c725', 8, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('5ac9a45e-bff2-458f-9810-cff746de8076', '069cf1ee-47ed-4f62-817a-08d14ebf9953', 'b246f245-f16d-41d4-8e62-118b6199164d', 9, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('966f9196-d527-426e-a026-d231507ae250', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '6bb2e30d-8b0e-462e-831d-b897a09df8d9', 10, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('c3896d30-63b2-4382-8719-89542ea4c595', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '9ee4fea8-d82e-4605-a023-d37a822ffc6b', 11, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('3114f297-cd63-467e-afe1-11254e524c9f', '069cf1ee-47ed-4f62-817a-08d14ebf9953', 'f0200a63-2574-4a35-9524-feb0768556b4', 12, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('96baa73c-b348-4dae-87a2-61739b0f763d', '069cf1ee-47ed-4f62-817a-08d14ebf9953', '0190d254-86fd-4b55-8021-2237a7d72018', 13, '2025-05-15 15:02:30.56504+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('3fdcd5b1-2192-4dfa-afd9-338c6ec9bc63', 'fcc9b0e0-df31-47f5-8738-619f70792901', 'b246f245-f16d-41d4-8e62-118b6199164d', 1, '2025-05-15 16:51:54.668404+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('d938aff7-2e64-4d53-9e6b-8096e5e8e06a', 'fcc9b0e0-df31-47f5-8738-619f70792901', 'bccf249a-9adb-450b-80bd-326733dabd13', 2, '2025-05-15 16:51:54.668404+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('f981b22a-fe2a-443f-8611-78306d18a153', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', '129cc0ff-74d7-45d3-95ec-41ae7f2eb5ab', 1, '2025-05-16 12:59:42.297951+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+INSERT INTO public.examination_forms VALUES ('efeec5f6-76bd-4f85-9ccb-b9bddbbb9af5', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', 'bccf249a-9adb-450b-80bd-326733dabd13', 2, '2025-05-16 12:59:42.297951+02', '{self_payer,private_patient,foreign_patient}');
+INSERT INTO public.examination_forms VALUES ('6825baa1-2616-4a3b-b078-339d0553109b', '7595716b-7a50-4466-ba50-6f81ae3ca3f9', 'e899e2d5-6206-4f63-b4b3-01107ef1c725', 3, '2025-05-16 12:59:42.297951+02', '{self_payer,private_patient,foreign_patient,work_accident}');
+
+
+--
+-- Data for Name: examination_sequences; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: form_links; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: form_tokens; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.form_tokens VALUES ('080c7271-5ad2-4c64-af65-ebb6869304c8', '722c7686-e736-4f3c-b42f-2ad8649f65a0', '', '2025-04-13 17:32:13.318+02', '2025-03-14 16:32:13.439433+01', '2025-03-14 16:32:13.439433+01');
+
+
+--
+-- Data for Name: insurance_billing_factors; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.insurance_billing_factors VALUES ('9debe5b1-32bd-455a-8fc5-2aef282cd0e9', '2c3dda73-961c-4ab5-836c-ac61d1bea292', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b0ca261a-71c5-4811-92ca-62cf5c65a0c7', '2eba8f54-5de3-4bbd-9276-388990a3e916', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('638d7ec8-d42a-46fb-85b9-42987392a21b', 'e564cfd9-ce13-4fd0-9275-a202b1e6f83d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4420f75e-c220-44b1-89ae-169588688367', '890e86a5-2f05-4b4f-9bc7-f1cff7e95a7a', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a7209b6c-a2a3-4552-8d89-7f20d1f43f98', '21dcda61-280c-471f-8475-1f1c08e460bf', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b290d11e-3cc6-42e3-82ab-414e425e70db', '34d987b7-5bea-438c-a3ce-a00c1ef69a01', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c0ea05e0-4d7f-49e4-bb9d-e1b899ffdabc', '017d1991-cbf8-4016-b2f5-25a4823f7055', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d668ed95-f2aa-4486-ae91-041b8dab1221', 'cffaf8b2-dba0-47e3-87f7-051312750ae0', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c38c4da2-625c-4622-8510-dfcad7824766', 'fb4d628e-5887-4de5-bcef-7fc9d9d89033', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6cdaca2b-e476-4527-9895-ab6d6554ba05', 'ebe3d211-4c5e-40d1-ad2b-a5a54608b56f', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('dfc32e07-7197-4792-8db9-38bcea096f1f', '1ab5040e-17b2-4293-91b3-156655fd6365', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('575e782f-74a5-4c92-8852-2e9b50e132d8', '70c56996-0072-4245-aaba-cd9473177fce', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('75d7a42a-ab24-4a30-9c1c-65bf3e67be9c', 'edd75436-8019-4b62-abc7-70fb9f014910', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('676eeb15-c843-4a7e-b352-ae8c366c5cab', '0a90179c-e250-41dc-9fab-fd1149ffb54a', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('aed5f520-3fe0-4f55-8d3a-bd2c3446b361', 'bcbe13aa-a61d-4636-8622-be9b4fa6ee27', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('171c7ec5-51c8-46e6-ad5f-5ec431295943', '3dd2f60d-d1d9-40e1-b6d6-8d221a802146', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b292c863-06ff-46d5-843f-a4d21466d27e', 'da1ea909-878f-47d5-9264-ebd4c955601c', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('16babd26-66fb-4916-ac48-2edccfe2c0c9', 'bc5422a1-e7a8-46ed-9b7e-06d4eaa4109f', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('17709e40-9517-4f88-9164-229bda4183cd', 'c25c957c-10fd-4e54-837f-26a66b4b17ed', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('09482001-d332-4d9a-9d04-dbb82e25023c', 'f77ad4c9-32dd-4fd3-8992-3d49064b57d1', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ddd3ac34-f90e-4b86-af1a-7b37d6ce6e1f', '6be38ad4-3494-4298-b985-05b062d09a05', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9e92e6f1-4ced-4ebe-ab04-36dfbd5331f5', 'c368ca1d-81cb-483a-a70b-9d12b37f6a8c', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('33720e54-72f9-4711-b0b4-69172e54801d', 'c97215ca-ce48-4af3-b1e2-5802cd61cf81', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e48301f1-18b0-4da3-b20a-4188286595c4', 'f66de091-ec0f-492f-9970-08c1cc933d1d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('8ff348d7-b855-4f3f-8121-e78acab722a7', 'c0725201-e8cf-4c80-9a01-440e024df926', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('97eda75a-8172-4e0b-9461-b2e49f5630dd', '0e78f149-614a-4c45-b032-9d18cd361de9', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5d6ccc4a-3d98-45b5-912d-1712a44afbfa', 'de428e1a-975d-4bcb-ae22-1d64bd242e0f', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b481fe02-2056-48b2-8fb0-7cfa9abbfdb1', '0fc85b95-c827-46d5-bc96-b10f4d4dacee', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f46e1c2d-b145-42f7-af69-e72a68f03512', '9d9632ce-5bff-4f2d-ba4d-0cb2cab94d35', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('748a4299-d9ac-411c-8544-c5b4ad8e21ad', '9c2e3589-e22f-4fcc-af03-1b66f7074fe7', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d8f7a950-b67b-4d14-9567-d6a1c6d5c405', 'e3e11e45-0488-4e43-ab09-3b5974c975a0', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a3f766af-aebb-4e18-a2ce-5bcc644e449a', '70c7c89c-93ad-401f-b5e1-c0d39640c76c', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('daeeeb58-62f1-4ed1-bb58-4b11dc627598', '08c2fca3-3918-48dd-a278-ccceca023d1e', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('560c211f-87ee-4906-a2e0-dd34e9366fe0', '378c6490-8a48-4afe-b0bd-37def5855342', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2fa822f6-213f-4300-b676-031623a5def4', 'aff3d48b-831c-44f8-b030-0b902b358b5b', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7ae33e9f-e765-4e0d-b3db-dcc1af82d547', '0b706888-27c4-49f7-a801-e305e172b227', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c815c4e3-0fb7-4298-ba63-f8996d999406', 'e6d7e3e9-6190-40c1-88dc-b967faa61e54', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('3bb89f33-8ae1-478e-a487-fb8dbe9dcdce', '47a0266f-1a09-4197-a37b-ce3676aca4cc', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('8dd4543f-f911-4836-9a79-7c54ef2485e4', 'f86ed726-4787-42dd-8808-9900ed8d69df', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e859b992-34ea-4511-b189-a63318b9efd3', '8c35c803-12a8-4fef-ab3d-14ac4c349172', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('cf7fa06b-2397-4643-a524-d77ebb69ccec', '708dac12-37c2-4061-ab81-bd48f05c44e2', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4a1adcae-49bc-4254-b224-85c3e5011bbf', 'aea792bf-13eb-4150-8a1b-5e53cdc0d766', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c333d91a-fc3b-48a1-be2f-4e4f10d140bd', 'a6328795-a80d-49c8-bfd2-304b5eb133c9', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0b0bdb69-be0f-41c1-b785-6c27fb4e4995', 'e0b732d9-a91e-4c49-8d5d-8cab36e3a8dc', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d6d00764-a6bc-452c-9cc2-1dcd411d1780', '26b39b84-3751-40bf-b365-0e520ac6274d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('73bdd40f-513a-45e8-92e5-b5e5f8758d22', '6ae6d9f6-6a39-405a-ac37-110e9892fdeb', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1cd0ac96-1209-4ac7-be96-856b1ae67e56', '49fc356b-7f12-4f6c-a4cd-a94d5190150d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('412262e8-f624-4270-85da-185b8488f349', '01037e1f-2acd-4896-b029-ad8ac274bdbe', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7d38c9af-10cc-497a-97b1-e9747fbd3e44', '6843ff21-f417-42bb-af84-8f8efc7318c1', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2a21f3da-6b41-42ea-8322-66aae7ebe3e6', '06dc9f3c-8231-4e50-97bc-e999370d3209', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1b5aad1d-9ff1-4e1d-abc3-6196955d2e2b', 'd4649655-d105-46be-bd6d-3f62508dea9d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e5b31494-dd2c-4497-a847-c8e9cdaac2fa', 'a93a40d2-41da-4443-9d11-667315eaa676', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('507648d9-cd96-4d04-9909-576d16646eda', '33708f09-751b-4d2d-85e1-41c0c6c11e68', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6eac425c-cc69-4cf0-af5a-2693209e41ee', '44677303-1be9-4e6e-ba36-907aed3b547f', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('17b58f4c-089d-4278-8407-309d22a9d041', '721cdec0-f634-4804-b630-2534d2132ba0', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d0bef2bb-1665-486c-b83c-a43d60b40da0', '781d1748-3d77-47fc-9d4b-53b553949f7e', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4b5cbe93-4e9d-42c0-b5a0-4ec0613ae68f', '07d60072-0d9c-444d-a10d-eef868ef2038', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('fe9fefef-f778-4ef9-9fbd-0dbea94a8fa1', 'e3485c4f-2659-4ea1-974a-ffb2cebc8d5f', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9731fbc9-4f05-4d62-ab63-6b82c3f7eec3', '23637d58-0401-41c0-9fce-452bdb082c9b', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1f6b1f60-8b07-4643-aa02-f457be91443e', 'ef75b6cd-19f7-482f-87c2-d863a9743479', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('531cc8a9-4ef1-469d-bc35-349eaabc6d16', '6f0b732c-a309-4b35-8ed2-4b8ae02f90c7', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ebc9fbed-ce65-428a-b7a5-1808dced5921', '2c3dda73-961c-4ab5-836c-ac61d1bea292', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e446f819-d1ce-4587-8742-e6ef5038291b', '2eba8f54-5de3-4bbd-9276-388990a3e916', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4d007cd2-296f-4a0c-9c6f-06de402c8ee2', 'e564cfd9-ce13-4fd0-9275-a202b1e6f83d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('98de1ef7-eb65-4896-b787-4c2244f025dd', '890e86a5-2f05-4b4f-9bc7-f1cff7e95a7a', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b9e5e4a6-97c3-43ba-99a1-ca69f5fd4172', '21dcda61-280c-471f-8475-1f1c08e460bf', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1896e07e-3cd4-4dd6-ba00-c78ead53bc56', '34d987b7-5bea-438c-a3ce-a00c1ef69a01', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('63301143-f75d-4c29-b347-813180ec40aa', '017d1991-cbf8-4016-b2f5-25a4823f7055', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('132daa73-59bc-4a29-abfb-4bb97aa6e669', 'cffaf8b2-dba0-47e3-87f7-051312750ae0', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('711ab9ea-a8fc-45b3-bcf3-63b9cb597dee', 'fb4d628e-5887-4de5-bcef-7fc9d9d89033', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6f1cf853-3343-4ad9-91ee-32f4baf8793f', 'ebe3d211-4c5e-40d1-ad2b-a5a54608b56f', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('441ef260-edac-45c7-9af8-da18e1139a78', '1ab5040e-17b2-4293-91b3-156655fd6365', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('8649f42f-903d-4bef-b729-3ff746e920a8', '70c56996-0072-4245-aaba-cd9473177fce', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a2f4d667-8a04-45f2-994b-6a0ba8581d0b', 'edd75436-8019-4b62-abc7-70fb9f014910', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f795c0dc-68ea-4c35-815d-61a559064df2', '0a90179c-e250-41dc-9fab-fd1149ffb54a', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('da383d10-ed9c-47bc-a5ff-5a60c8dc7aed', 'bcbe13aa-a61d-4636-8622-be9b4fa6ee27', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('63ab6aee-e91b-4380-9a09-1eef1ba65bc3', '3dd2f60d-d1d9-40e1-b6d6-8d221a802146', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4a1a1d75-df37-4f09-991e-d052d96bef53', 'da1ea909-878f-47d5-9264-ebd4c955601c', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('87e41c83-1931-401a-bf0c-95a0a8280660', 'bc5422a1-e7a8-46ed-9b7e-06d4eaa4109f', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('418efa81-be85-46d3-9113-2cbb20b128aa', 'c25c957c-10fd-4e54-837f-26a66b4b17ed', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0a1e84d7-4511-4490-ab8e-118c25e13ebe', 'f77ad4c9-32dd-4fd3-8992-3d49064b57d1', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('967d7bc0-a998-49a6-abdd-b08b75730bd7', '6be38ad4-3494-4298-b985-05b062d09a05', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f5334512-862e-483c-b047-bc3fbd0523b7', 'c368ca1d-81cb-483a-a70b-9d12b37f6a8c', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('50e2fe9b-0c81-4b80-871e-569ccf5dacbe', 'c97215ca-ce48-4af3-b1e2-5802cd61cf81', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('199be3d1-d202-4d8a-9c76-23d6d748a701', 'f66de091-ec0f-492f-9970-08c1cc933d1d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e99a9e8e-80cd-4248-b13d-610c89c13996', 'c0725201-e8cf-4c80-9a01-440e024df926', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('fa619015-f5a8-483c-b26a-3d92feb5c926', '0e78f149-614a-4c45-b032-9d18cd361de9', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f21aac0c-4fc1-401d-b37d-1ae366997f51', 'de428e1a-975d-4bcb-ae22-1d64bd242e0f', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b92267d5-efdc-418d-90b1-3cc264414d64', '0fc85b95-c827-46d5-bc96-b10f4d4dacee', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('915e2348-a6f7-4489-9ade-fc0c50fb43e3', '9d9632ce-5bff-4f2d-ba4d-0cb2cab94d35', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a46632ea-1120-4d46-91c7-b81854a41244', '9c2e3589-e22f-4fcc-af03-1b66f7074fe7', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('85341ea5-200c-4751-a992-db37ed3655e0', 'e3e11e45-0488-4e43-ab09-3b5974c975a0', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b1f7418d-a1f7-4e32-ba27-efb6c0359418', '70c7c89c-93ad-401f-b5e1-c0d39640c76c', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a413c1dd-5189-4cc8-9968-bcb32854b5f3', '08c2fca3-3918-48dd-a278-ccceca023d1e', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c6699994-2671-42bc-aeb4-0fcdcc9d7552', '378c6490-8a48-4afe-b0bd-37def5855342', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ce30fdd0-22a9-49ef-9f68-0d06539b5a61', 'aff3d48b-831c-44f8-b030-0b902b358b5b', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c6b8adb3-4f22-4e12-95a3-7db66f2453c3', '0b706888-27c4-49f7-a801-e305e172b227', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('01b900ff-5ee9-4899-aad1-46e730f87b98', 'e6d7e3e9-6190-40c1-88dc-b967faa61e54', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5763f027-e035-4789-a94a-1a0d9458a10b', '47a0266f-1a09-4197-a37b-ce3676aca4cc', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('66711c7d-217b-4d49-945c-20a127941487', 'f86ed726-4787-42dd-8808-9900ed8d69df', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('936aaea1-ea08-4243-aaa7-3cff4bff1954', '8c35c803-12a8-4fef-ab3d-14ac4c349172', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('91c9e20d-c0c1-4f62-a697-3674afc4e646', '708dac12-37c2-4061-ab81-bd48f05c44e2', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1a8edd2c-d2b9-4271-9808-11c9606e9f9c', 'aea792bf-13eb-4150-8a1b-5e53cdc0d766', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('3b1599a1-9b6a-4257-8a39-a76377482ac1', 'a6328795-a80d-49c8-bfd2-304b5eb133c9', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('52a3ed41-797b-4fcc-a2bd-789f8d9c5895', '26b39b84-3751-40bf-b365-0e520ac6274d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9585ff06-4cdc-49e4-89ba-1cb1bc77ea68', '6ae6d9f6-6a39-405a-ac37-110e9892fdeb', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9c75eb50-fceb-4bbc-b3ba-995d99b25a63', '49fc356b-7f12-4f6c-a4cd-a94d5190150d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('86fea28b-95c6-4555-9f8d-fa8f2323d862', '01037e1f-2acd-4896-b029-ad8ac274bdbe', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('bb5bd0d1-851f-4e97-a88e-23048f19c064', '6843ff21-f417-42bb-af84-8f8efc7318c1', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('abe0b2bc-fc35-4ab1-954b-a78c171f3c9b', '06dc9f3c-8231-4e50-97bc-e999370d3209', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d95052ae-b04d-43e6-a419-d2493ea8fef1', 'd4649655-d105-46be-bd6d-3f62508dea9d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('021a9cc7-75ee-4e5d-86ad-9a7fc5036093', 'a93a40d2-41da-4443-9d11-667315eaa676', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5994ec5b-409a-4b53-b52f-ac01006a6c62', '33708f09-751b-4d2d-85e1-41c0c6c11e68', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2c5069bf-63b0-43bf-a021-2672430e38e8', '44677303-1be9-4e6e-ba36-907aed3b547f', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a1479cca-9598-40ec-b391-5dc589a4ed97', '721cdec0-f634-4804-b630-2534d2132ba0', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f567708d-0b8a-4ccc-8518-027ed0176d60', '781d1748-3d77-47fc-9d4b-53b553949f7e', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ee828878-d4a0-4735-8973-68b64b924fc7', '07d60072-0d9c-444d-a10d-eef868ef2038', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('dfff9b8c-e00d-4c70-b49c-39e6180a4ebe', 'e3485c4f-2659-4ea1-974a-ffb2cebc8d5f', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7a72248e-5b52-4574-8365-c50fcc43536c', '23637d58-0401-41c0-9fce-452bdb082c9b', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('39cdbce8-57e2-46aa-a77b-344b592fa6ba', 'ef75b6cd-19f7-482f-87c2-d863a9743479', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('74a87860-f4e1-4a4e-a69a-ffc2a17e7ad6', '6f0b732c-a309-4b35-8ed2-4b8ae02f90c7', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('47501507-94b7-4efc-bf2f-33cb9fbcae2a', 'e0b732d9-a91e-4c49-8d5d-8cab36e3a8dc', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.90, '2025-04-07 15:52:23.687+02', '2025-04-07 15:56:08.31314+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f3435748-7db9-488e-ab7b-d4cc0231471b', '2c3dda73-961c-4ab5-836c-ac61d1bea292', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ac40a10a-2e50-4862-8405-f560993cdd87', '2eba8f54-5de3-4bbd-9276-388990a3e916', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('39964e93-3519-4913-899b-f9f1804e044c', 'e564cfd9-ce13-4fd0-9275-a202b1e6f83d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('304f1a33-5967-474e-bab6-3940d40eb565', '890e86a5-2f05-4b4f-9bc7-f1cff7e95a7a', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('dc473ccd-f55d-42f3-a166-98d021396354', '21dcda61-280c-471f-8475-1f1c08e460bf', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('688caf0b-7705-47b9-ae44-81832acc8d45', '34d987b7-5bea-438c-a3ce-a00c1ef69a01', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('8f4083cd-0c3f-477e-85b9-aabb8c87486a', '017d1991-cbf8-4016-b2f5-25a4823f7055', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b0f5d30f-1f2f-4f84-8193-c2063e35b4fc', 'cffaf8b2-dba0-47e3-87f7-051312750ae0', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('30df5eb3-0104-4390-869b-db9976094e8e', 'fb4d628e-5887-4de5-bcef-7fc9d9d89033', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ee1bf57f-7430-43ce-985b-ab00be1d6666', 'ebe3d211-4c5e-40d1-ad2b-a5a54608b56f', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('035e13d3-fde2-4d09-9e29-e34fab5f125f', '1ab5040e-17b2-4293-91b3-156655fd6365', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('eb42fc12-7c81-4b1d-9bb1-74f46b3b7a32', '70c56996-0072-4245-aaba-cd9473177fce', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('357a7418-ba50-468f-a593-03bba50bcba0', 'edd75436-8019-4b62-abc7-70fb9f014910', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0e103a5d-2ff9-4339-8607-5f4eec6d715e', '0a90179c-e250-41dc-9fab-fd1149ffb54a', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7875ae16-31f1-4874-a0fe-62b75fed8872', 'bcbe13aa-a61d-4636-8622-be9b4fa6ee27', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7112b407-6ef8-457a-952c-d25b6970a580', '3dd2f60d-d1d9-40e1-b6d6-8d221a802146', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('943d7ede-da19-4b08-9d6c-a45a11fb97ca', 'da1ea909-878f-47d5-9264-ebd4c955601c', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('80adcb80-234a-43c1-bfbe-f9c1184811e8', 'bc5422a1-e7a8-46ed-9b7e-06d4eaa4109f', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a9dee6e6-54e6-48f5-aede-bc40904cfae0', 'c25c957c-10fd-4e54-837f-26a66b4b17ed', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('bdf833d3-9e6f-4d32-b30a-2ca06d8326e3', 'f77ad4c9-32dd-4fd3-8992-3d49064b57d1', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f5d7da6c-9840-4133-9253-3bb2329ab808', '6be38ad4-3494-4298-b985-05b062d09a05', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b6354024-2e65-4db5-b347-17a9b29c455f', 'c368ca1d-81cb-483a-a70b-9d12b37f6a8c', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4572c1f8-5505-49e8-ba3c-fbd20a2581cb', 'c97215ca-ce48-4af3-b1e2-5802cd61cf81', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('8f8ff345-46bc-4a3c-85bd-4505d77f345b', 'f66de091-ec0f-492f-9970-08c1cc933d1d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f58d4eb0-5a91-415f-a4f8-6297efa919dd', 'c0725201-e8cf-4c80-9a01-440e024df926', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e5dde962-c89a-4205-8847-717f50017e14', '0e78f149-614a-4c45-b032-9d18cd361de9', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('db02da18-9d79-42cd-8a7f-3d7aa7880de7', 'de428e1a-975d-4bcb-ae22-1d64bd242e0f', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('98b445da-4eb8-4a04-9233-1f681f83114d', '0fc85b95-c827-46d5-bc96-b10f4d4dacee', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2a1c7611-83cc-40b2-8ca0-0558d521bb53', '9d9632ce-5bff-4f2d-ba4d-0cb2cab94d35', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a72cf083-33bc-4493-82da-9b82f2f2e81b', '9c2e3589-e22f-4fcc-af03-1b66f7074fe7', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6eca39af-d2d4-4cdd-b576-afe899f992f8', 'e3e11e45-0488-4e43-ab09-3b5974c975a0', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('458f5a60-80eb-43bc-b019-e913171e7c45', '70c7c89c-93ad-401f-b5e1-c0d39640c76c', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e4e621fb-997f-44fe-8919-24d434393dec', '08c2fca3-3918-48dd-a278-ccceca023d1e', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('580b54b6-c910-4c3e-a8cb-a1fbcda10fd8', '378c6490-8a48-4afe-b0bd-37def5855342', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('675fe1fd-1ad0-412b-9387-e9479a747624', 'aff3d48b-831c-44f8-b030-0b902b358b5b', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('38c7794e-1f37-429a-bb75-a2960c34767b', '0b706888-27c4-49f7-a801-e305e172b227', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0473d456-dd31-4d29-ba97-98c0b747e16f', 'e6d7e3e9-6190-40c1-88dc-b967faa61e54', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1354f487-1d74-410c-b6da-b8e813bdc858', '47a0266f-1a09-4197-a37b-ce3676aca4cc', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('053d4669-7ce5-4f53-9c3b-580a7f5f2198', 'f86ed726-4787-42dd-8808-9900ed8d69df', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('29464cf1-27a8-4f9a-aca5-948f2e4cbbe1', '8c35c803-12a8-4fef-ab3d-14ac4c349172', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2f8a7689-a069-4213-a098-3bd9283c7fcc', '708dac12-37c2-4061-ab81-bd48f05c44e2', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('765b142a-675d-49cb-b967-b2f171a1c2d1', 'aea792bf-13eb-4150-8a1b-5e53cdc0d766', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('313511d1-8a24-4b00-9fe8-e58161f59be8', 'a6328795-a80d-49c8-bfd2-304b5eb133c9', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c96f918a-e51c-4183-980e-709af9fc6578', '26b39b84-3751-40bf-b365-0e520ac6274d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7f74624b-1a98-459a-ae90-f3f4c6d5ad9e', '6ae6d9f6-6a39-405a-ac37-110e9892fdeb', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('47b0a84b-e579-4e46-875b-949dce9a5b63', '49fc356b-7f12-4f6c-a4cd-a94d5190150d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1ba545c7-9aa0-4cf1-8b5a-e1280824ddc7', '01037e1f-2acd-4896-b029-ad8ac274bdbe', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f14af945-f97f-4160-ab71-22cb7a435d19', '6843ff21-f417-42bb-af84-8f8efc7318c1', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7bb7f010-74de-4684-badf-aa82fa3bb8f2', '06dc9f3c-8231-4e50-97bc-e999370d3209', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('15a3436a-c262-4d9d-850b-8c0c2bab94e6', 'd4649655-d105-46be-bd6d-3f62508dea9d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('122c10e3-7d2a-4277-bc6f-699f1d22156a', 'a93a40d2-41da-4443-9d11-667315eaa676', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d79263d4-143e-4ef6-a795-189cbaa87b5a', 'e0b732d9-a91e-4c49-8d5d-8cab36e3a8dc', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.50, '2025-04-07 15:52:23.687+02', '2025-04-07 15:56:08.126217+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4ea02ce8-0390-49a6-828c-ba425dbf27f7', '33708f09-751b-4d2d-85e1-41c0c6c11e68', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6dac5c3c-0645-4eb6-ac55-8a7d917d0a44', '44677303-1be9-4e6e-ba36-907aed3b547f', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('711440e5-ca98-4c26-b138-8755b7ae9f6b', '721cdec0-f634-4804-b630-2534d2132ba0', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e70ac9b5-6f55-4737-a81e-4c83a63d29ca', '781d1748-3d77-47fc-9d4b-53b553949f7e', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a6475b36-7b6d-458a-a543-f6ce8ed859ff', '07d60072-0d9c-444d-a10d-eef868ef2038', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('97c0b00b-36e7-471d-8698-17423bae77a5', 'e3485c4f-2659-4ea1-974a-ffb2cebc8d5f', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0757fb7b-3635-4209-9d98-e39d7faa0b04', '23637d58-0401-41c0-9fce-452bdb082c9b', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('953384c9-7668-4aac-b1d0-0fc716a3b311', 'ef75b6cd-19f7-482f-87c2-d863a9743479', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('592fb845-b5e7-428b-bcf6-c3fff1183745', '6f0b732c-a309-4b35-8ed2-4b8ae02f90c7', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 2.30, '2025-04-07 15:52:23.687+02', '2025-04-07 15:52:23.687+02');
+INSERT INTO public.insurance_billing_factors VALUES ('cef5b5b7-1427-4f8f-b39b-6bc6a7cc0e0b', 'e0b732d9-a91e-4c49-8d5d-8cab36e3a8dc', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 15:56:08.216609+02', '2025-04-07 15:56:08.216609+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6f281602-31d3-4f3a-8c9d-4675c892722d', 'cf6b20e4-2fa3-4ab6-9e3e-3c72bdc85c0d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:08:27.443562+02', '2025-04-07 16:08:27.443562+02');
+INSERT INTO public.insurance_billing_factors VALUES ('66d7dbf2-1cb0-4077-80b7-0cff7e09f7e4', 'cf6b20e4-2fa3-4ab6-9e3e-3c72bdc85c0d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:08:27.512079+02', '2025-04-07 16:08:27.512079+02');
+INSERT INTO public.insurance_billing_factors VALUES ('eff73cc8-90c4-4302-a9ff-61f495ff8abc', 'cf6b20e4-2fa3-4ab6-9e3e-3c72bdc85c0d', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:08:27.573296+02', '2025-04-07 16:08:27.573296+02');
+INSERT INTO public.insurance_billing_factors VALUES ('74109662-9fbd-4cba-9ec1-4b351db962d4', 'cf6b20e4-2fa3-4ab6-9e3e-3c72bdc85c0d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:08:27.627+02', '2025-04-07 16:08:27.627+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b66becf4-6b58-43b9-b5fb-5be6ace3ce04', '4245602d-1ed6-4a6d-98a0-6132d68d69c9', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:08:28.666812+02', '2025-04-07 16:08:28.666812+02');
+INSERT INTO public.insurance_billing_factors VALUES ('20364b61-568b-4778-ae87-83bae87bd5c4', '4245602d-1ed6-4a6d-98a0-6132d68d69c9', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:08:28.725413+02', '2025-04-07 16:08:28.725413+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1f8b721f-7e6e-4678-8d97-aedff7e35d2b', '4245602d-1ed6-4a6d-98a0-6132d68d69c9', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:08:28.784525+02', '2025-04-07 16:08:28.784525+02');
+INSERT INTO public.insurance_billing_factors VALUES ('49b6a585-f1b2-4704-93ad-bf4a5d3bf69e', '4245602d-1ed6-4a6d-98a0-6132d68d69c9', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:08:28.83827+02', '2025-04-07 16:08:28.83827+02');
+INSERT INTO public.insurance_billing_factors VALUES ('522780b1-deec-4e7f-b382-efd42d010ec4', '7d37be57-9a8f-4507-b145-5031d58a663b', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:11:46.415407+02', '2025-04-07 16:11:46.415407+02');
+INSERT INTO public.insurance_billing_factors VALUES ('96245168-ae52-410f-9078-abe8f8e77b3b', '7d37be57-9a8f-4507-b145-5031d58a663b', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:11:46.488241+02', '2025-04-07 16:11:46.488241+02');
+INSERT INTO public.insurance_billing_factors VALUES ('210f12e4-0727-48f7-8364-29b3f8909d01', '7d37be57-9a8f-4507-b145-5031d58a663b', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:11:46.562629+02', '2025-04-07 16:11:46.562629+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2155b159-bb77-4db0-9c04-519a1ad76c3c', '7d37be57-9a8f-4507-b145-5031d58a663b', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:11:46.623207+02', '2025-04-07 16:11:46.623207+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f822a8aa-0040-422b-972c-98bb61285ce3', '0c6a2060-e747-4977-8508-4b24bad4edb8', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:11:53.018227+02', '2025-04-07 16:11:53.018227+02');
+INSERT INTO public.insurance_billing_factors VALUES ('35a9288e-44a8-4032-b6a8-3c6011267fd9', '0c6a2060-e747-4977-8508-4b24bad4edb8', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:11:53.078907+02', '2025-04-07 16:11:53.078907+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a715f178-2e64-4daf-9d1d-31e18ee12351', '0c6a2060-e747-4977-8508-4b24bad4edb8', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:11:53.137013+02', '2025-04-07 16:11:53.137013+02');
+INSERT INTO public.insurance_billing_factors VALUES ('01ab7bb1-b7d6-4553-84bb-6e229b83555e', '0c6a2060-e747-4977-8508-4b24bad4edb8', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:11:53.196735+02', '2025-04-07 16:11:53.196735+02');
+INSERT INTO public.insurance_billing_factors VALUES ('152d6b5f-3a59-415b-b938-f6db32c4369b', '556a5e12-a929-4e1e-8854-4b512117965b', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:13:03.267942+02', '2025-04-07 16:13:03.267942+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5fb3838d-ede8-4bdf-a701-3002531601af', '556a5e12-a929-4e1e-8854-4b512117965b', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:13:03.342564+02', '2025-04-07 16:13:03.342564+02');
+INSERT INTO public.insurance_billing_factors VALUES ('582b64e5-d5e9-45ef-9983-cfc3214e6952', '556a5e12-a929-4e1e-8854-4b512117965b', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:13:03.417754+02', '2025-04-07 16:13:03.417754+02');
+INSERT INTO public.insurance_billing_factors VALUES ('84fa083b-4418-45e8-a41c-80faf164597b', '556a5e12-a929-4e1e-8854-4b512117965b', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:13:03.475728+02', '2025-04-07 16:13:03.475728+02');
+INSERT INTO public.insurance_billing_factors VALUES ('05d1aa35-a95e-4641-a0ed-1e711b60648d', 'e6050089-cdb0-40b6-8ee7-17f352d3b22d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:13:25.409416+02', '2025-04-07 16:13:25.409416+02');
+INSERT INTO public.insurance_billing_factors VALUES ('84f5e3ca-893e-4efb-8c44-807f5f38e7b8', 'e6050089-cdb0-40b6-8ee7-17f352d3b22d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:13:25.464555+02', '2025-04-07 16:13:25.464555+02');
+INSERT INTO public.insurance_billing_factors VALUES ('dcc422ad-ca99-4a17-bdae-1bc8880cf50a', 'e6050089-cdb0-40b6-8ee7-17f352d3b22d', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:13:25.516358+02', '2025-04-07 16:13:25.516358+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5eee4d98-2c06-469b-99be-d670d8746dfc', 'e6050089-cdb0-40b6-8ee7-17f352d3b22d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:13:25.571868+02', '2025-04-07 16:13:25.571868+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4f141317-52f2-443e-8a18-d62798d98470', '0461c16e-19b4-42de-b1f3-2392f5d5f70d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:13:26.687374+02', '2025-04-07 16:13:26.687374+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e0904816-7cbb-454e-8929-92735a2d7096', '0461c16e-19b4-42de-b1f3-2392f5d5f70d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:13:26.739768+02', '2025-04-07 16:13:26.739768+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d107614e-4412-485a-913a-adcc9c76e94a', '0461c16e-19b4-42de-b1f3-2392f5d5f70d', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:13:26.792254+02', '2025-04-07 16:13:26.792254+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0ce19ae1-0ca2-45c2-8823-3f0b189c0c77', '0461c16e-19b4-42de-b1f3-2392f5d5f70d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:13:26.845892+02', '2025-04-07 16:13:26.845892+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7dbf7775-3472-4bc3-bcc0-af9cfbd389ea', '2b31247b-bfcf-4ea5-856a-24343e98554c', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:13:28.190788+02', '2025-04-07 16:13:28.190788+02');
+INSERT INTO public.insurance_billing_factors VALUES ('697e8d3b-38d2-40f8-90f9-67ee8eb4bdcc', '2b31247b-bfcf-4ea5-856a-24343e98554c', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:13:28.248841+02', '2025-04-07 16:13:28.248841+02');
+INSERT INTO public.insurance_billing_factors VALUES ('611ff1d1-d92b-4382-9f17-02d81dcd26ca', '2b31247b-bfcf-4ea5-856a-24343e98554c', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:13:28.300767+02', '2025-04-07 16:13:28.300767+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a63e9dcc-c60c-486d-9502-6a5a079e38f2', '2b31247b-bfcf-4ea5-856a-24343e98554c', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:13:28.356377+02', '2025-04-07 16:13:28.356377+02');
+INSERT INTO public.insurance_billing_factors VALUES ('09df33a8-deca-419c-a921-87b4a578958e', '6fc5b047-a876-49c0-b2c6-a3daed58e7ab', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:13:34.032116+02', '2025-04-07 16:13:34.032116+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d23e86be-b5b5-481f-9f4c-8be562a65c81', '6fc5b047-a876-49c0-b2c6-a3daed58e7ab', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:13:34.088217+02', '2025-04-07 16:13:34.088217+02');
+INSERT INTO public.insurance_billing_factors VALUES ('8ecd8a88-f690-4b82-864a-570f98a60eff', '6fc5b047-a876-49c0-b2c6-a3daed58e7ab', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:13:34.14334+02', '2025-04-07 16:13:34.14334+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6512db8d-df94-47dd-bd60-edddec5a2a0a', '6fc5b047-a876-49c0-b2c6-a3daed58e7ab', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:13:34.202942+02', '2025-04-07 16:13:34.202942+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c21969f8-a0a5-4ff6-b7f7-8cb11d90236f', 'e950667a-de83-43be-84f6-577a96bcb0f2', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7d30d518-836f-45b2-a415-de39b31bf191', 'bf597c10-e27f-434e-910b-3e7acbbd9f74', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('338dd7a5-de90-4b42-9fc0-7f46b164f13b', '7aad8686-414c-4cb6-bde4-ab85baf6f032', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c31b33e7-526c-49b4-acc7-0a2e891c9c91', '1061fdde-57bc-4459-873a-3e1608fc5a74', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('008ce8fd-4fe5-4f7b-817f-f0eadcbf726c', 'b92327e1-c25c-452b-98fe-469c9c5ce678', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('02140968-d6f4-4c7b-b195-21c1bdd70e34', 'bd7d6fc9-bd30-48c2-8ffc-9cf037776b4f', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('59d32717-09e7-4090-9cd3-d3d5b4a872b5', 'b36cb493-9f53-4c4a-a8c8-301435b2ff6f', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('071182be-edf5-452b-a07d-c5c6eee298ca', 'f65a2d63-f25f-499d-8577-15f5fa4e3430', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2116de35-1203-4260-adfc-71c6c27b9d6a', '3a88ccca-00d2-40cb-ad05-aeec66d4bfe4', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('03c1206d-923c-4cb4-87bf-e7b5f17c36f1', '6337b4f7-a6fd-4c1c-a3de-a2b9cfbc2f80', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ce851ecb-b6d5-4e23-acec-b55833d5f0c1', '67e8d214-e695-481f-ba72-00dfde327f92', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9ac6fd0d-ad1b-494d-8203-144024b28e29', 'a3dc269f-ef32-41e1-8654-271c4ead5b22', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('030c956d-850a-4e18-96af-7e2ae113c27e', '31667af2-f077-4a5d-8393-99c94a07df4a', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0d332c00-3dae-4867-8184-1f23d19259d4', '969271cb-e021-4d3a-abab-9a2a9703e316', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('8de7aa6b-c23f-4938-bde8-8654928beec6', 'd6e10026-aef0-489f-9594-bef5ead2ff00', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('634bb057-2fc2-4698-b90f-e819651f09c0', 'eac90bba-f486-4c0e-9578-e06c2243b703', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('eb583e02-9b06-4013-bf0e-ffe23fef811b', '8c1a782b-c315-436c-ae6c-54813de3eaf1', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b40f6b3d-559a-4297-8d5c-6385cf41c349', '4f5e948b-e82e-4f24-93ec-7fb3bcc73447', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b520675a-9c5f-43e5-a20e-13a00fb30e85', '9f1975f5-c179-4290-a34a-ecc48fca6379', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e232b377-72e4-4c40-94fe-2466246bccf6', '5125167e-1448-4a65-bc86-79b1a6869072', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('96d0119c-4c19-4b29-9201-c3e160f6a2e5', 'ea10b09b-7415-4a4b-a3ed-ff7890251b78', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('49141150-2ca7-42ab-985f-5e7ad341d62a', '4a914a12-e655-4c23-aecd-da66d81242ce', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d978dc27-8390-486e-a841-50aa9ceeaa9e', '2ecc7d53-df27-4f76-bcdf-0ab2deb2d216', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('17fba7de-2f2a-4ff1-9edc-9d326aa6028d', 'c47057eb-1421-4eb1-b046-0106b71230fa', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('dc7e2a64-69c2-4257-98b8-f51ee3ec7b6a', '9088eac8-e781-45a5-9fac-bca62b6ab296', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b2d75158-8b29-47e3-9d50-562917ac0074', 'b25c9951-ade6-4afa-8385-f6f9ce14e1af', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('53e763f9-5c30-40e3-a14b-4dc7f5590486', 'ecfc4339-b5cd-4895-aa4c-3c7a27f2d7cf', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('72bd8920-7049-47c3-a709-ec4e11dcfd3a', '024381d3-bffe-4c0d-ae77-5a11a4e2eb32', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7db45faf-5cac-46b3-8beb-9f8591d7aca9', 'ce2320c8-0644-44d8-9cc6-4eb807a30ecd', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c1955561-d344-455e-bb6c-b6e74c2a2e95', '21633e4d-bfdb-44ee-9132-fa5a0be10651', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d32f61fd-a2d3-4c56-93c2-57d62cf467cd', 'ce0b38c2-d308-41b3-9d11-8b7d7a150fa9', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6d980494-850f-4e7f-bf24-88821a60d019', 'a0d9fcd8-d428-4e96-bf17-f99c9bcf443b', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b787e56b-b0d4-4f87-bbd1-6b7a6f6cc344', 'c0691660-d7d2-484e-a765-44f93fb71063', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('af0a5805-7ba4-4436-b27f-5a2b8ab7380e', '8e1c173b-fa8d-40b8-a14b-384ee3851cc1', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6890fea6-7fc4-441f-8112-421f9d8e78dc', 'f470eaeb-d09a-4dc1-8ec2-4e3c420a86ae', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0bc70bd5-469c-4b32-8e85-c3ef92fb4e77', '07a7ee97-c731-4632-b2cf-ced063a47845', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f3128ee4-a580-43f3-ac72-42ed324b5b49', '1f711861-754e-4d50-be18-a4580505ecb6', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('548fa8f2-331f-41ac-b308-de307bc6c0bc', 'd813f4a0-ca62-431f-b6c4-130f742934db', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('fcd5b0ce-32b6-4cbb-b25b-4150d1e21d62', 'd42f10e3-6075-4c26-aee4-2d5d645906c5', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('868cccd4-cf61-4d3d-9ce1-9e50e9be4756', '88346f1d-f5b3-4eb5-a0ca-ea62864298ca', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('035843da-b4b0-4fe1-a0b0-33eccf7f8c75', '757e1521-4b29-4eaf-8727-c2ff6280b265', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('59535562-a36d-40ad-8462-9f88e259cff4', '4bf4ad79-44be-4379-991c-82523a7b344d', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('751eedbc-af62-4b7e-8f7f-b70f0e036b15', 'fa512782-1497-4ee8-86ed-2691fc97b56a', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5b46d3ca-8b86-4501-90f8-97d2de464472', '52241dc3-e018-455b-afdf-3f830fd5a521', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a44fb16e-4408-409b-be58-394edaf93083', 'd002d67b-95b6-4815-b2bd-46d675abf0a7', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ea7d44e1-a38d-43a7-898b-1c15d09ecc29', '147f8582-4d5b-4891-9a67-520747eb3a23', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('47b78f11-515b-49b1-bef9-35733a50ac5f', 'de07fc34-ce9a-4a40-9913-b91baea4308e', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f8024ab0-bca5-48cf-839a-df9697934465', '19955c8d-b3e3-4574-a01f-9eedd41dfab1', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ab575639-de64-4700-8345-ec7358a336eb', 'f990d043-76ee-4e2f-8767-6d6593e2b7d2', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('62233545-5ba6-4b04-91a8-c1c9fc1f37d5', '08c735ce-5540-40b7-a2b7-9ea9798784fa', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f026b6f8-b88a-4e6b-8b60-b4c4273face9', '22009b46-e6b2-40ec-8b85-37ead3afffa6', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0f0a61c4-9be3-49ec-b396-98550684e7eb', '0c68d7b3-2893-42bd-8f8d-61eb2da2bb6a', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('974d0086-5d00-4740-bba8-d493de398484', 'dd574b70-9d32-4024-8475-3d580dd41c83', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d51d3e40-a185-45ec-9391-b65435edcf36', '323b91d5-78d5-4b70-aff8-45aba23770d6', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e2ecbcad-fcaa-4a24-a538-768fe322cd15', 'c48d2580-5864-43a3-92c4-b32867f18ecd', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ec288e27-ccfa-4af4-b6ea-b2e38fc6fd00', 'a651df45-c135-4d55-9799-8c4237417597', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('dc5c7ce3-6ac3-4d24-9319-790180d7ccb3', 'b021e386-feca-4b8d-8b33-873cd9598cdd', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2b4e6d52-0c82-4706-b484-04f15aebd464', 'e3034969-496b-4c5c-9092-e5639cd21fb5', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ac291ac4-5a65-4485-a19b-0bf8eeea7223', 'd3acad42-de2a-4c0c-b24b-55479e23ea4f', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('eeb5f6f9-7f07-4632-a51b-79f16ce00ef9', 'b0f442b3-5bb1-42a9-9d30-38d472029e98', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('51b87d11-fa85-4c6e-9406-95e22af565f0', '9ef8aadb-1ac9-4a71-b90d-1a822f103983', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('10292b11-2b13-411f-95b5-baa4e4121458', 'be4d8e70-dc72-41f5-abc1-6963941ce8c9', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7a17ffd2-2446-46ac-bb7c-1bd16054d87a', '24ccf236-fd93-4381-a5ef-97f6efeac1de', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('28d19958-b8a7-4b55-820a-3a4d559f55a7', 'ee91029f-d1f5-4648-93e4-617084dc9824', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4c5b646f-faa0-4f51-8831-d6488c34be44', '241ada47-94c2-4b71-8c5b-71b6b9753199', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e9d9d384-27d5-4dd0-9f15-3b9c5c975d85', '5825097c-5cef-46e1-b4c7-465cdee5e9d3', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('acf5d0d2-6d46-4b5c-8019-71e9c6c153d2', '764565cc-f337-4e7e-b9b4-cc72a740086d', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4e86e189-28ad-4eda-937f-f159543a9853', '6d4830c3-5355-4fe6-9c0f-4edb97e878f3', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c59ade52-7832-412e-88af-a0582157a81a', '26338b42-fa2e-47b0-ba3a-879a5dca697f', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('efaf9f53-6523-4795-86ff-9e976c10bc89', 'b212a6bf-9338-489b-9407-593af4945fdc', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c39f4a63-88df-4828-89d6-7f68031e4c45', '889ebf62-b7f3-4c3d-a136-56fcde809a83', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f02b0c25-9ebb-4e86-95f2-0822737083e9', 'b908348b-410d-4ec1-b4fa-5e44756f3f1b', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('90cccee5-f49e-4419-b1de-123249ba1ccc', '93620b91-ac00-475f-8c27-3f44abb59783', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4fe5ffc7-2a39-42e1-8032-6adcf4f0f73d', '70e1e1cd-3477-49c9-a5a2-501c16482d6b', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d55c62ab-e362-4871-a3ae-5b538c41b387', 'e950667a-de83-43be-84f6-577a96bcb0f2', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5bd22236-cfa9-4d46-a56a-0d69f15eb373', 'bf597c10-e27f-434e-910b-3e7acbbd9f74', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('04bec573-6488-468f-a2a2-1a659ee7087d', '7aad8686-414c-4cb6-bde4-ab85baf6f032', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('474abe15-2a9c-420e-8076-78a1a44ed55e', '1061fdde-57bc-4459-873a-3e1608fc5a74', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('124d6aef-db5e-4cbb-8311-27e771bf2b33', 'b92327e1-c25c-452b-98fe-469c9c5ce678', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7db6d0fd-d35e-4f9b-bea8-24d556c5f4b3', 'bd7d6fc9-bd30-48c2-8ffc-9cf037776b4f', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2a561e9a-a827-4f53-8fd8-87b3f1c8fcc0', 'b36cb493-9f53-4c4a-a8c8-301435b2ff6f', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0ede55e3-910c-4bb8-a170-6583cd715b0f', 'f65a2d63-f25f-499d-8577-15f5fa4e3430', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('fa80eb88-0922-40b0-b273-a35cf0d38e4a', '3a88ccca-00d2-40cb-ad05-aeec66d4bfe4', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('66b6fbc2-ba91-4c00-bb03-841db9a26330', '6337b4f7-a6fd-4c1c-a3de-a2b9cfbc2f80', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('8e7a5976-40df-4212-9c14-16685f4a5daa', '67e8d214-e695-481f-ba72-00dfde327f92', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4855b289-89cf-4a9b-9569-27241c4afd74', 'a3dc269f-ef32-41e1-8654-271c4ead5b22', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a3321d50-42e1-48f5-a38d-501f4f9b7951', '31667af2-f077-4a5d-8393-99c94a07df4a', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('277e3618-22a7-40bf-ac4a-2059cee77e33', '969271cb-e021-4d3a-abab-9a2a9703e316', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c8496d1e-6faf-44c2-849b-56d98af8a437', 'd6e10026-aef0-489f-9594-bef5ead2ff00', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2bcfed4d-7b61-40d1-943d-860ad06773d7', 'eac90bba-f486-4c0e-9578-e06c2243b703', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4a925186-88bf-4963-858b-11816c3378e7', '8c1a782b-c315-436c-ae6c-54813de3eaf1', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a92ffc3f-1c60-4dbe-b87c-c6fe67ac077c', '4f5e948b-e82e-4f24-93ec-7fb3bcc73447', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f686affd-25fa-4aba-bced-0dc22a520509', '9f1975f5-c179-4290-a34a-ecc48fca6379', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d568a3c5-2400-4621-9caf-a527a20612de', '5125167e-1448-4a65-bc86-79b1a6869072', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('001dae90-0579-4fe5-ad0a-3b581151322e', 'ea10b09b-7415-4a4b-a3ed-ff7890251b78', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('202968a0-779b-4b13-bfbc-62e8c7d202fa', '4a914a12-e655-4c23-aecd-da66d81242ce', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('08edf416-cff8-4d9a-b54d-994f9c27d22e', '2ecc7d53-df27-4f76-bcdf-0ab2deb2d216', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c3ac9da2-09b6-4c88-b6c7-3928f45fdfc3', 'c47057eb-1421-4eb1-b046-0106b71230fa', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('cd9d3274-73f8-4bd8-8971-6db820517990', '9088eac8-e781-45a5-9fac-bca62b6ab296', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('169aed22-f98d-4ef6-8650-cf0b0bd1edaa', 'b25c9951-ade6-4afa-8385-f6f9ce14e1af', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('349f7568-eb02-4334-8763-5ec33d675c3d', 'ecfc4339-b5cd-4895-aa4c-3c7a27f2d7cf', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6034621c-f09e-453e-960f-ed0865684d6c', '024381d3-bffe-4c0d-ae77-5a11a4e2eb32', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('05467907-6d29-4695-a0d1-f473ef18879c', 'ce2320c8-0644-44d8-9cc6-4eb807a30ecd', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d8f29e1e-fa4e-4090-85ab-e0e6e70b6e17', '21633e4d-bfdb-44ee-9132-fa5a0be10651', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('23f789c5-a1bd-4208-b0ff-d8f50af84396', 'ce0b38c2-d308-41b3-9d11-8b7d7a150fa9', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ae88e0c8-e2ad-474d-a556-cc5139f5e6d0', 'a0d9fcd8-d428-4e96-bf17-f99c9bcf443b', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('dfdf197b-3517-4d73-88d0-54e008c7b95f', 'c0691660-d7d2-484e-a765-44f93fb71063', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d2efd3bd-cb23-4536-97ca-6bf7a03e1309', '8e1c173b-fa8d-40b8-a14b-384ee3851cc1', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a4903551-1673-4a54-ba54-745c26a09cbf', 'f470eaeb-d09a-4dc1-8ec2-4e3c420a86ae', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('989aa137-7bab-4ba0-86de-b2d3f8877edb', '07a7ee97-c731-4632-b2cf-ced063a47845', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d4761f26-74d6-4336-9c8d-ed57f25f7611', '1f711861-754e-4d50-be18-a4580505ecb6', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7b2eae93-382a-43b6-8559-4b588bc9501b', 'd813f4a0-ca62-431f-b6c4-130f742934db', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('baf2a9da-57c3-46dd-a17b-f65d70e4f24e', 'd42f10e3-6075-4c26-aee4-2d5d645906c5', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b3a6bd8f-60aa-4a82-a5ea-759f6fb55f19', '88346f1d-f5b3-4eb5-a0ca-ea62864298ca', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9f22a928-adb3-4bf9-ae54-f4bfd58ccf6b', '757e1521-4b29-4eaf-8727-c2ff6280b265', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('99a48101-5f3f-4fa2-be14-709a2e658a5c', '4bf4ad79-44be-4379-991c-82523a7b344d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6226ddaa-925d-4498-bba6-15bd11eaf9b0', 'fa512782-1497-4ee8-86ed-2691fc97b56a', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f1b57b2a-2b81-49c1-b862-bb9090d7c3d1', '52241dc3-e018-455b-afdf-3f830fd5a521', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9a769de7-68e1-4566-bf49-c83fcfcf73e9', 'd002d67b-95b6-4815-b2bd-46d675abf0a7', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f11134a0-6dc3-443e-837a-17144b98bd6d', '147f8582-4d5b-4891-9a67-520747eb3a23', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('92cdd1f8-8ba9-4620-975e-ca2368ba3589', 'de07fc34-ce9a-4a40-9913-b91baea4308e', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('71f3cd23-f595-4b0c-9f48-5688682cb39f', '19955c8d-b3e3-4574-a01f-9eedd41dfab1', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('3977bf9f-4cba-4890-9e86-6ab0e70ae012', 'f990d043-76ee-4e2f-8767-6d6593e2b7d2', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('94b99916-4cee-4877-9c49-0096b2003fd8', '08c735ce-5540-40b7-a2b7-9ea9798784fa', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('948469df-8a75-4835-b60a-e2592b704785', '22009b46-e6b2-40ec-8b85-37ead3afffa6', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4681b9b5-73ef-441b-81de-eed5b5a75397', '0c68d7b3-2893-42bd-8f8d-61eb2da2bb6a', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b876dab5-d299-40f9-95c2-a6e9bf69a976', 'dd574b70-9d32-4024-8475-3d580dd41c83', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('3723e1fa-9bed-4555-9d2b-98b9a017f8f8', '323b91d5-78d5-4b70-aff8-45aba23770d6', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5c9ca120-3252-476b-9f22-94c474ca3f7f', 'c48d2580-5864-43a3-92c4-b32867f18ecd', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('fa59d7e1-917a-4a24-a5de-d91f8719c048', 'a651df45-c135-4d55-9799-8c4237417597', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('833c5dba-4079-4c70-83e4-d41086021fc1', 'b021e386-feca-4b8d-8b33-873cd9598cdd', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4ec82e98-1233-42cb-9afa-4cae0c89f027', 'e3034969-496b-4c5c-9092-e5639cd21fb5', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6c64f41e-aded-4527-9d6a-84f51c28299a', 'd3acad42-de2a-4c0c-b24b-55479e23ea4f', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ce647eb0-e3ba-4241-a597-2658d32e5514', 'b0f442b3-5bb1-42a9-9d30-38d472029e98', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2e53636e-aa76-41cb-8d5c-51548ffe82e2', '9ef8aadb-1ac9-4a71-b90d-1a822f103983', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('3998384f-9993-437d-a422-70ab943a8cb0', 'be4d8e70-dc72-41f5-abc1-6963941ce8c9', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9edb482a-9298-4c1d-a4ef-6c8ec117d1cc', '24ccf236-fd93-4381-a5ef-97f6efeac1de', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('271d789c-b119-4620-bb7b-55a2ae0e33bb', 'ee91029f-d1f5-4648-93e4-617084dc9824', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('525963ce-fd3c-4090-9181-bb109cbbe6b6', '241ada47-94c2-4b71-8c5b-71b6b9753199', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6bfd994c-6464-4c82-9b6a-702221494609', '5825097c-5cef-46e1-b4c7-465cdee5e9d3', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('15d0a000-6038-455b-b83b-8a1c218cb893', '764565cc-f337-4e7e-b9b4-cc72a740086d', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('300583e4-cdb0-4348-856c-c8179121be97', '6d4830c3-5355-4fe6-9c0f-4edb97e878f3', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('31333c01-9bfd-41d6-8be3-95c259499dec', '26338b42-fa2e-47b0-ba3a-879a5dca697f', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('afc8d908-c439-4c57-9de9-172e5ff39542', 'b212a6bf-9338-489b-9407-593af4945fdc', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0af840e9-5ca3-4b00-8f0a-fe37c9154cd2', '889ebf62-b7f3-4c3d-a136-56fcde809a83', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1c52ee17-b679-4e6e-9f1e-ecc93749aa5f', 'b908348b-410d-4ec1-b4fa-5e44756f3f1b', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('830e9e4b-4b5c-413b-9d99-f1a4a2fe4975', '93620b91-ac00-475f-8c27-3f44abb59783', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('06ce33d5-ba9d-43e6-be14-90a1a3e265c0', '70e1e1cd-3477-49c9-a5a2-501c16482d6b', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('cc74f795-d2a8-4770-a65b-dcb23b44193e', 'e950667a-de83-43be-84f6-577a96bcb0f2', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('553abc66-a492-4082-b5d9-e6a02d5e2bf4', 'bf597c10-e27f-434e-910b-3e7acbbd9f74', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('69b4f8e3-07a9-41aa-99fe-efb8f5028d79', '7aad8686-414c-4cb6-bde4-ab85baf6f032', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('582d6154-d2f3-4433-8b5f-340c5a765e4a', '1061fdde-57bc-4459-873a-3e1608fc5a74', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0dfd152f-22e6-4bf6-945c-16a3ba851930', 'b92327e1-c25c-452b-98fe-469c9c5ce678', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9aac553a-1772-4a3a-bf94-e3f5cdf13be5', 'bd7d6fc9-bd30-48c2-8ffc-9cf037776b4f', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0b6b3007-1b20-4be2-86fd-f88c2d953e7e', 'b36cb493-9f53-4c4a-a8c8-301435b2ff6f', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('007032dd-4e2b-4561-bcc4-14565b42358a', 'f65a2d63-f25f-499d-8577-15f5fa4e3430', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7ca517c8-8ea8-4b82-97d8-c6e7d5a53ef5', '3a88ccca-00d2-40cb-ad05-aeec66d4bfe4', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('cf83c62d-cf7c-4e09-a209-45a33bf697d6', '6337b4f7-a6fd-4c1c-a3de-a2b9cfbc2f80', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5c9c3e90-2ba8-46a4-abb7-5ac81c221ae4', '67e8d214-e695-481f-ba72-00dfde327f92', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('fbe21696-f1bb-4cc3-b3fc-e8be6a12737e', 'a3dc269f-ef32-41e1-8654-271c4ead5b22', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a16d9969-df34-49fc-9695-0866ac3dda38', '31667af2-f077-4a5d-8393-99c94a07df4a', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('25fe9d23-e978-4daa-87aa-1d3cc48d882b', '969271cb-e021-4d3a-abab-9a2a9703e316', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c0369ac2-d871-43aa-bbb5-31b95f2d3756', 'd6e10026-aef0-489f-9594-bef5ead2ff00', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e96fd305-13a6-4d61-8e69-b9fd326350dc', 'eac90bba-f486-4c0e-9578-e06c2243b703', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e743294d-1a24-4f42-b6a7-fccfd4e12097', '8c1a782b-c315-436c-ae6c-54813de3eaf1', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('20dcc9eb-d70d-40b8-97e4-2b652362be31', '4f5e948b-e82e-4f24-93ec-7fb3bcc73447', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('99502046-2483-43a7-a552-520a5a8ab1fd', '9f1975f5-c179-4290-a34a-ecc48fca6379', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('cda4c0a3-5876-4d91-b36c-b198d1ab2aa3', '5125167e-1448-4a65-bc86-79b1a6869072', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('20ba035b-7bbc-47ad-8aa1-969fbe5aeb76', 'ea10b09b-7415-4a4b-a3ed-ff7890251b78', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('001f06c6-30f8-452b-b0cc-30a4c64f1959', '4a914a12-e655-4c23-aecd-da66d81242ce', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b0922436-5fda-44b1-b048-38ab07260a33', '2ecc7d53-df27-4f76-bcdf-0ab2deb2d216', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('486f206a-3da4-4864-8ef2-eb80732e2c9f', 'c47057eb-1421-4eb1-b046-0106b71230fa', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b5db9bbd-0fb2-40e0-8354-74b5f997df3d', '9088eac8-e781-45a5-9fac-bca62b6ab296', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c81b0b0f-e5c1-4b3c-97b1-5061c0620c9a', 'b25c9951-ade6-4afa-8385-f6f9ce14e1af', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f7aa3d27-3e82-4735-b165-3d77426f5192', 'ecfc4339-b5cd-4895-aa4c-3c7a27f2d7cf', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('8bc9a7df-2513-4909-bc94-51e154653bf3', '024381d3-bffe-4c0d-ae77-5a11a4e2eb32', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0e3c1f87-fa7c-402d-9b7c-0b69218141af', 'ce2320c8-0644-44d8-9cc6-4eb807a30ecd', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('cc252219-5035-4047-8f54-9a89b7de1a8b', '21633e4d-bfdb-44ee-9132-fa5a0be10651', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f12854c5-b228-4c2a-91c6-bb3f2779fe34', 'ce0b38c2-d308-41b3-9d11-8b7d7a150fa9', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2aa723a5-342e-48fc-aed5-cb529600d870', 'a0d9fcd8-d428-4e96-bf17-f99c9bcf443b', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f0cac868-65f9-49d2-a347-11f52157ddb5', 'c0691660-d7d2-484e-a765-44f93fb71063', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0bf4a94b-73ba-425f-8703-439791da237c', '8e1c173b-fa8d-40b8-a14b-384ee3851cc1', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6287a128-66ef-4e24-b580-2e327fb4b37e', 'f470eaeb-d09a-4dc1-8ec2-4e3c420a86ae', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('65f53205-7e15-46f1-87b2-00bb7d0c1ddb', '07a7ee97-c731-4632-b2cf-ced063a47845', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('11e57560-0c20-4a92-9ff7-8a21168552b0', '1f711861-754e-4d50-be18-a4580505ecb6', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('93971570-56ca-480e-b9a3-6e6791e04456', 'd813f4a0-ca62-431f-b6c4-130f742934db', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('433b6e7c-c71a-4dbd-a128-f53de47e6bc2', 'd42f10e3-6075-4c26-aee4-2d5d645906c5', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('456336c1-236e-4f83-840f-730b07933e98', '88346f1d-f5b3-4eb5-a0ca-ea62864298ca', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('b640fe6e-f79a-43c5-a806-168f29337a6f', '757e1521-4b29-4eaf-8727-c2ff6280b265', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('14b92880-f95b-4fe1-8e04-ebbae8e82fd7', '4bf4ad79-44be-4379-991c-82523a7b344d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('24ca1552-7dc7-443e-a6cb-b3d9067cb52d', 'fa512782-1497-4ee8-86ed-2691fc97b56a', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7eac8095-50db-4957-94b8-ec464bc9edce', '52241dc3-e018-455b-afdf-3f830fd5a521', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('bb92cb05-156c-4560-b97c-f906f3c65f03', 'd002d67b-95b6-4815-b2bd-46d675abf0a7', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('07fceb51-3dd9-4e85-84c3-44c1b42b32b7', '147f8582-4d5b-4891-9a67-520747eb3a23', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4ec183c3-521e-4fb0-9b59-f2a1026a02f7', 'de07fc34-ce9a-4a40-9913-b91baea4308e', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2490b5c5-02e0-491b-b75a-30351484f57f', '19955c8d-b3e3-4574-a01f-9eedd41dfab1', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e4b02193-ed6a-411c-81b9-641e49eb44c2', 'f990d043-76ee-4e2f-8767-6d6593e2b7d2', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f6badd55-fc82-45b2-ad01-9d6303cdd6a6', '08c735ce-5540-40b7-a2b7-9ea9798784fa', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('018efe42-24d3-4150-9b89-54d04a076002', '22009b46-e6b2-40ec-8b85-37ead3afffa6', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4b10a8af-a714-41ce-b356-f6258bbaba51', '0c68d7b3-2893-42bd-8f8d-61eb2da2bb6a', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0720354b-67f9-43dc-9a4a-e109e054b686', 'dd574b70-9d32-4024-8475-3d580dd41c83', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('710ab61c-ed54-4c7d-a67d-84ef863b0626', '323b91d5-78d5-4b70-aff8-45aba23770d6', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('22d3532f-6ab0-4976-9313-526f2c3137d7', 'c48d2580-5864-43a3-92c4-b32867f18ecd', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('93062561-ffc6-4f29-9c90-d9425cc88be8', 'a651df45-c135-4d55-9799-8c4237417597', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('3d528427-66df-47fb-8a08-c2687c6a1df6', 'b021e386-feca-4b8d-8b33-873cd9598cdd', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c25c6e69-3300-40c9-bbf1-c0c5b4250c29', 'e3034969-496b-4c5c-9092-e5639cd21fb5', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a7f8aad5-8744-407b-b1a4-c19aaa1cdf80', 'd3acad42-de2a-4c0c-b24b-55479e23ea4f', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('106aaa9b-803c-4f5e-8efa-9354364d6b5a', 'b0f442b3-5bb1-42a9-9d30-38d472029e98', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('793395e2-da8f-4289-a2fb-49a4555ce024', '9ef8aadb-1ac9-4a71-b90d-1a822f103983', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2e02f91c-39cc-4bf9-99d4-de9914dc79f8', 'be4d8e70-dc72-41f5-abc1-6963941ce8c9', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('82976a4e-0ff2-42c3-8c8b-29c29020388d', '24ccf236-fd93-4381-a5ef-97f6efeac1de', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('851d7cb1-34c0-422b-abc2-5566607648dd', 'ee91029f-d1f5-4648-93e4-617084dc9824', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f5377ae6-6354-4941-8eea-71ebde44b6ea', '241ada47-94c2-4b71-8c5b-71b6b9753199', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('58a7d1a8-b71b-4145-9c50-3804a6909b80', '5825097c-5cef-46e1-b4c7-465cdee5e9d3', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6bd2036a-d3dc-4a66-a6f7-97cb6e36d4e1', '764565cc-f337-4e7e-b9b4-cc72a740086d', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2df4fe15-9f75-486d-af8d-e7137b9305a3', '6d4830c3-5355-4fe6-9c0f-4edb97e878f3', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e009dac8-c926-4497-9954-81a8aa8aa7f6', '26338b42-fa2e-47b0-ba3a-879a5dca697f', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6586d561-6dcc-420e-938d-90634b2469c8', 'b212a6bf-9338-489b-9407-593af4945fdc', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c669f3b3-3c89-4fab-ae1b-cbbe75652772', '889ebf62-b7f3-4c3d-a136-56fcde809a83', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7c470c7d-4010-4c63-9865-b73ff80645c5', 'b908348b-410d-4ec1-b4fa-5e44756f3f1b', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4fda71cc-bc88-49e0-9f87-cd0ecead9e95', '93620b91-ac00-475f-8c27-3f44abb59783', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ca0ae25f-6f5f-4ebd-847f-bed1e1f77af6', '70e1e1cd-3477-49c9-a5a2-501c16482d6b', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('dccb8079-b323-46db-9099-a3380c699652', 'e950667a-de83-43be-84f6-577a96bcb0f2', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2894237a-c666-4efd-b347-05323b1d8611', 'bf597c10-e27f-434e-910b-3e7acbbd9f74', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f0ba1bdf-91cb-4ef6-9fbe-78e626be25b8', '7aad8686-414c-4cb6-bde4-ab85baf6f032', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d8eac822-0ea6-4f23-a43a-16df295b5fff', '1061fdde-57bc-4459-873a-3e1608fc5a74', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('77d1c374-a0a9-4d5c-8538-84304aebca35', 'b92327e1-c25c-452b-98fe-469c9c5ce678', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('74a08f97-1c7c-42b6-98e5-453525d538f1', 'bd7d6fc9-bd30-48c2-8ffc-9cf037776b4f', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('784d365d-9d67-468d-8f3a-edcb2abd66d1', 'b36cb493-9f53-4c4a-a8c8-301435b2ff6f', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a462bcd0-0d7d-463a-91e7-053cdd5a5bb8', 'f65a2d63-f25f-499d-8577-15f5fa4e3430', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7ce08100-9bed-4108-b930-79d886cf22b6', '3a88ccca-00d2-40cb-ad05-aeec66d4bfe4', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('988d2f9e-0298-4839-a50b-fbf338ffe398', '6337b4f7-a6fd-4c1c-a3de-a2b9cfbc2f80', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6704e292-6490-455a-8284-71407ced1d00', '67e8d214-e695-481f-ba72-00dfde327f92', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('a6128061-8dfd-4689-b355-986cf4083db5', 'a3dc269f-ef32-41e1-8654-271c4ead5b22', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e0c10e09-3447-4d3a-9e25-fad73d80e12f', '31667af2-f077-4a5d-8393-99c94a07df4a', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('ff2c4450-c7f6-4f30-b22d-ba8018527982', '969271cb-e021-4d3a-abab-9a2a9703e316', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0be0b7f3-af37-4fda-9ea9-fb5213cd00d8', 'd6e10026-aef0-489f-9594-bef5ead2ff00', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4029b2aa-1cc0-4f6d-9bb9-250349c80666', 'eac90bba-f486-4c0e-9578-e06c2243b703', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('81fcde18-2e8d-46df-868a-bdf4b39a6e5e', '8c1a782b-c315-436c-ae6c-54813de3eaf1', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('2d4d86bf-5334-46d7-9f00-186e23902df7', '4f5e948b-e82e-4f24-93ec-7fb3bcc73447', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('aaec05a7-4ded-4123-bd2c-749f2f93fb8a', '9f1975f5-c179-4290-a34a-ecc48fca6379', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('60823d39-c5e1-484c-994f-1cf6ebc67262', '5125167e-1448-4a65-bc86-79b1a6869072', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c1462534-7988-4b6b-b53d-500fd273cf3f', 'ea10b09b-7415-4a4b-a3ed-ff7890251b78', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d952f6f7-03ab-45f0-993c-f8b47cd752a5', '4a914a12-e655-4c23-aecd-da66d81242ce', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('955227f7-4abc-4f20-aa8e-f7ba49534e31', '2ecc7d53-df27-4f76-bcdf-0ab2deb2d216', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f1aeb1ed-08bc-416c-98e8-ed65e09068d5', 'c47057eb-1421-4eb1-b046-0106b71230fa', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('06ebeaa2-6da7-41ac-a7e6-06699b6275fa', '9088eac8-e781-45a5-9fac-bca62b6ab296', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('13b58970-de67-4e2a-95a7-455a1b0685a6', 'b25c9951-ade6-4afa-8385-f6f9ce14e1af', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6842b3bb-bbd0-4f79-81b3-f98bb9071dea', 'ecfc4339-b5cd-4895-aa4c-3c7a27f2d7cf', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c4c68ec3-799c-4278-a8dc-6aedd84e6e57', '024381d3-bffe-4c0d-ae77-5a11a4e2eb32', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('152de061-fdfe-4560-b722-c089e5aeea37', 'ce2320c8-0644-44d8-9cc6-4eb807a30ecd', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f8a2e2c8-cb25-416d-b81f-22f6caa35188', '21633e4d-bfdb-44ee-9132-fa5a0be10651', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('1a7ef672-65f5-4ad6-9368-ff1e11ae70f4', 'ce0b38c2-d308-41b3-9d11-8b7d7a150fa9', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('fbcf8abf-6e3d-4b9a-b4de-b072fb4a6c09', 'a0d9fcd8-d428-4e96-bf17-f99c9bcf443b', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0b2c24c4-7180-43e6-b3c3-253cbe294048', 'c0691660-d7d2-484e-a765-44f93fb71063', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7a2546f5-0e3d-4432-924c-ebf94e52a1b4', '8e1c173b-fa8d-40b8-a14b-384ee3851cc1', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e531f8b3-0470-46b4-8427-15c84c569f5f', 'f470eaeb-d09a-4dc1-8ec2-4e3c420a86ae', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e1e200f1-8f95-4bfb-bdf9-f151c227fc85', '07a7ee97-c731-4632-b2cf-ced063a47845', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('e25da27c-ed52-4bd8-91ec-2d4bd396028c', '1f711861-754e-4d50-be18-a4580505ecb6', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('307e8ad6-bd44-4269-a2dc-96873de6c545', 'd813f4a0-ca62-431f-b6c4-130f742934db', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4124bf2f-3dde-4ce2-a957-16ba14e8dd1f', 'd42f10e3-6075-4c26-aee4-2d5d645906c5', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('04f04134-672f-498e-a2df-72dad906c168', '88346f1d-f5b3-4eb5-a0ca-ea62864298ca', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7b6bc432-d008-454a-89cf-118ed67a29d2', '757e1521-4b29-4eaf-8727-c2ff6280b265', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('cadf2214-7b55-4745-8a33-c2aa098273bd', '4bf4ad79-44be-4379-991c-82523a7b344d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('aad6f212-8a5f-49fb-9181-d5b17fe5f32e', 'fa512782-1497-4ee8-86ed-2691fc97b56a', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('cf1ae05f-2f19-4e00-8eb2-bd0be3b25ba3', '52241dc3-e018-455b-afdf-3f830fd5a521', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6248d786-8434-40dd-9f0d-11bf4eadd8f2', 'd002d67b-95b6-4815-b2bd-46d675abf0a7', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('833e1421-4a42-408b-973c-69e85a5475c8', '147f8582-4d5b-4891-9a67-520747eb3a23', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('7bb9a559-9dd7-4b68-84f6-93cfbd476092', 'de07fc34-ce9a-4a40-9913-b91baea4308e', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f37b5370-b333-43bf-9514-eb90b79ea70f', '19955c8d-b3e3-4574-a01f-9eedd41dfab1', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('99cee0f1-59ad-409c-87e5-6d7881515eca', 'f990d043-76ee-4e2f-8767-6d6593e2b7d2', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f0ac4d4c-ae9d-433e-8c3e-44f20c1488d8', '08c735ce-5540-40b7-a2b7-9ea9798784fa', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('49bc1db1-af58-45a4-97cf-65a905be2613', '22009b46-e6b2-40ec-8b85-37ead3afffa6', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('9bbfe12b-225a-4bbb-9a14-81baf9feecb0', '0c68d7b3-2893-42bd-8f8d-61eb2da2bb6a', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('29c2dc07-8eac-4f85-a61c-5d935bf66497', 'dd574b70-9d32-4024-8475-3d580dd41c83', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('55e162e7-fd26-4340-beb2-aa7cd754eb4c', '323b91d5-78d5-4b70-aff8-45aba23770d6', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f83e0df1-24d3-4870-b311-ec515b231b1f', 'c48d2580-5864-43a3-92c4-b32867f18ecd', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('93016e93-ea49-4bcb-b330-95e0a2d65c05', 'a651df45-c135-4d55-9799-8c4237417597', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('f6655e6a-7091-41e1-bb51-c603d0b1b1a9', 'b021e386-feca-4b8d-8b33-873cd9598cdd', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0caef3c9-23e4-4faf-80d5-fa2b71a1fc8d', 'e3034969-496b-4c5c-9092-e5639cd21fb5', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c9142483-09db-40f6-97c9-79fb54ce9abc', 'd3acad42-de2a-4c0c-b24b-55479e23ea4f', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d8f602c9-7f69-424f-9e01-36175c6dfd79', 'b0f442b3-5bb1-42a9-9d30-38d472029e98', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('c2a2d765-5d2c-4b1a-86f7-f5227e762ac2', '9ef8aadb-1ac9-4a71-b90d-1a822f103983', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5370c5ac-cae4-4514-91e5-ef0a99233dc7', 'be4d8e70-dc72-41f5-abc1-6963941ce8c9', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('076f18dd-cc07-4a0e-9794-479d7c28bc2c', '24ccf236-fd93-4381-a5ef-97f6efeac1de', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('4442756b-606c-4d4b-b698-7f3cda6d9a48', 'ee91029f-d1f5-4648-93e4-617084dc9824', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('df1484b9-ada6-4451-bca4-4d2e28cc2fbc', '241ada47-94c2-4b71-8c5b-71b6b9753199', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5bc5d1ad-832c-4a28-b434-78d78dfdfb2f', '5825097c-5cef-46e1-b4c7-465cdee5e9d3', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('3512aa26-dc9d-442a-aa5e-5705a656f226', '764565cc-f337-4e7e-b9b4-cc72a740086d', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('eeb659fc-d97e-4005-95b0-f32f48658118', '6d4830c3-5355-4fe6-9c0f-4edb97e878f3', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('acdd175e-2dcf-4195-b87c-3fc3baebfca8', '26338b42-fa2e-47b0-ba3a-879a5dca697f', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('dbfdb93d-0be6-4a9c-8495-8af3215a1e04', 'b212a6bf-9338-489b-9407-593af4945fdc', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('97015275-7361-4541-918a-507da2f35b80', '889ebf62-b7f3-4c3d-a136-56fcde809a83', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('874359ba-4feb-426d-b5d3-df17a5e8ed73', 'b908348b-410d-4ec1-b4fa-5e44756f3f1b', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('50e2d89c-48b1-4023-a1fb-3095d4dbc6e9', '93620b91-ac00-475f-8c27-3f44abb59783', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0099d28e-b9f6-4275-9b49-ed43a7d95f07', '70e1e1cd-3477-49c9-a5a2-501c16482d6b', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:15:17.321625+02', '2025-04-07 16:15:17.321625+02');
+INSERT INTO public.insurance_billing_factors VALUES ('d6ea6736-46ed-4bd4-9cfa-6c5d7949f77f', '3cae4df7-1560-4d37-95b3-332f75db5224', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:27:05.549912+02', '2025-04-07 16:28:53.38711+02');
+INSERT INTO public.insurance_billing_factors VALUES ('6cee41a0-77ff-4d35-81e1-64399fb584c3', '3cae4df7-1560-4d37-95b3-332f75db5224', '415ddf64-231d-4b16-a90e-97906dab0b31', 1.00, '2025-04-07 16:27:05.549912+02', '2025-04-07 16:28:53.486654+02');
+INSERT INTO public.insurance_billing_factors VALUES ('249764c2-5359-4e00-96dc-98ea852c56dd', '3cae4df7-1560-4d37-95b3-332f75db5224', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 1.00, '2025-04-07 16:27:05.549912+02', '2025-04-07 16:28:53.583478+02');
+INSERT INTO public.insurance_billing_factors VALUES ('0fe8b752-a4e9-4ffe-b670-db2fe1734333', '3cae4df7-1560-4d37-95b3-332f75db5224', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:27:05.549912+02', '2025-04-07 16:28:53.677173+02');
+INSERT INTO public.insurance_billing_factors VALUES ('60cfc47f-d2cf-4764-9b29-51650de10e09', 'add53f26-2308-49f3-b3f1-138c388ee40e', '60fa72bc-53d2-4ffe-92ef-4f29d264a2f3', 1.00, '2025-04-07 16:27:05.549912+02', '2025-04-07 16:29:44.796158+02');
+INSERT INTO public.insurance_billing_factors VALUES ('bc924c7a-91a5-4237-be61-a6a9df475078', 'add53f26-2308-49f3-b3f1-138c388ee40e', '415ddf64-231d-4b16-a90e-97906dab0b31', 2.30, '2025-04-07 16:27:05.549912+02', '2025-04-07 16:29:44.900191+02');
+INSERT INTO public.insurance_billing_factors VALUES ('afb57053-214e-4b55-af92-5d2252b391e5', 'add53f26-2308-49f3-b3f1-138c388ee40e', '0dd2ca9f-d3c1-4c0e-b691-52c7580b0cc3', 2.30, '2025-04-07 16:27:05.549912+02', '2025-04-07 16:29:44.99795+02');
+INSERT INTO public.insurance_billing_factors VALUES ('5dd95061-373e-4dba-878a-6e70140e795f', 'add53f26-2308-49f3-b3f1-138c388ee40e', 'd053f014-27a4-4ae9-95a7-a78fcaa41f43', 1.00, '2025-04-07 16:27:05.549912+02', '2025-04-07 16:29:45.099894+02');
+
+
+--
+-- Data for Name: ipss_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.ipss_form_submissions VALUES ('072ce426-1470-4704-bd3a-cc7556c16592', 'b5df099e-834b-4d61-b6ee-4904fc1f0bca', '072ce426-1470-4704-bd3a-cc7556c16592', '2025-05-15 15:23:47.485+02', '2025-05-15 15:50:11.192971+02', 15, 1, 2, 0, 1, 1, 1, 2, 'zufrieden');
+
+
+--
+-- Data for Name: location_devices; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.location_devices VALUES ('562b6452-76dd-4fc3-b911-908e93a6972b', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '014cb4a1-c3fe-43e3-b22a-9da312c891d2', '2025-03-21 19:59:30.353298+01');
+INSERT INTO public.location_devices VALUES ('f72b0191-8732-48a6-8b5a-da80405f9d54', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', '2362f63e-cf6e-45ed-b39a-91a82cb6ecd8', '2025-03-21 19:59:30.353298+01');
+INSERT INTO public.location_devices VALUES ('e070ca90-24c3-42a7-8f6c-6b89f1863a9b', '7b3ce097-cf42-4302-ad5b-4b3377d8e6b5', 'd6abd78e-80ef-4e20-833b-3d98a90a30dd', '2025-03-21 19:59:30.353298+01');
+INSERT INTO public.location_devices VALUES ('e1180d5c-89c1-4eac-9042-5090508279d6', '49852a4a-c299-43bb-a6f8-d4e3dcd2220d', 'd9be335f-b53e-4436-8477-ebf010ff3d6c', '2025-03-21 20:12:55.886618+01');
+
+
+--
+-- Data for Name: mri_ct_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.mri_ct_form_submissions VALUES ('9c74378a-1203-4920-9381-635098856184', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-05 16:21:06.811319+02', '2025-05-05 16:21:06.811319+02', false, NULL, false, NULL, NULL, false, NULL, NULL, false, NULL, false, NULL, NULL, false, NULL, false, NULL, false, false, false, false, false, NULL, false, false, false, false, false, false, NULL, NULL, false, NULL, false, NULL, NULL, false, NULL, false, 162, 58, true);
+
+
+--
+-- Data for Name: mri_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.mri_form_submissions VALUES ('46dc27d8-3b2d-4805-bea0-a5eb44f258b9', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-04-28 16:37:23.196+02', '2025-04-28 16:39:36.077141+02', true, 'Hezrschrittmacher', true, 'Hirn', 'gestern', true, 'Alle', 'gestern', true, 'Alle', true, 'Thermostat', 'Seit Jahren', true, 'Granatsplitter', true, 'Alle Allergien', true, true, 'Viele Untersuchunge', 'vor kurzem', true, 'Hepatitis', true, 'Aspirin', 'Seit 3 Jahren', true, 'Alle', true, 178, 83, NULL, NULL, NULL, true);
+INSERT INTO public.mri_form_submissions VALUES ('ea2c5861-70dd-4560-ae9e-c43feb24145a', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-06 10:05:35.464029+02', '2025-05-06 10:05:35.464029+02', false, NULL, false, NULL, NULL, false, NULL, NULL, false, NULL, false, NULL, NULL, false, NULL, false, NULL, false, false, NULL, NULL, false, NULL, false, NULL, NULL, true, 'Test', false, 162, 58, NULL, NULL, NULL, true);
+
+
+--
+-- Data for Name: patient_photos; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.patient_photos VALUES ('225ce7e3-eb08-4f40-9015-ee7087b1afec', '7a87fef1-aee3-40b1-b9f0-391f2a9f6db5', 'https://iilcqtmkkmvjnwwqekjv.supabase.co/storage/v1/object/public/patient_photos/7a87fef1-aee3-40b1-b9f0-391f2a9f6db5_1742468092816.jpg', false, '2025-03-20 11:54:53.338853+01');
+INSERT INTO public.patient_photos VALUES ('5b114355-f41b-4ae5-bdce-0b05368a6aa7', 'cb83e896-a24c-4677-a8bc-614e87394a00', 'data:image/jpeg;base64,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', true, '2025-03-25 20:54:41.225116+01');
+INSERT INTO public.patient_photos VALUES ('0fef8e56-671e-4c70-82bb-d1f12369ee2b', '5bbad366-efbd-4796-8ca6-b77c4a2f4234', 'data:image/jpeg;base64,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', true, '2025-03-31 11:53:24.920871+02');
+INSERT INTO public.patient_photos VALUES ('86b0e30e-4080-42b4-8615-13bfd41d6033', '5370a5b1-d5a4-4fa2-9862-e2aca11a6192', 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAJvAz8DASIAAhEBAxEB/8QAHQAAAgIDAQEBAAAAAAAAAAAAAgMBBAAFBgcICf/EAD0QAAICAgECBQQCAQQABQMCBwECABEDIRIEMQUTIkFRBjJhcQeBkRQjQqEIFTNSsXLB0eElQxYkRGLw8f/EABsBAAMBAQEBAQAAAAAAAAAAAAABAgMEBQYH/8QAKREAAgICAgIDAQADAAIDAAAAAAECERIhAzEEQRMiUWEFMnEUFSNCgf/aAAwDAQACEQMRAD8AQmTIhoGxIdi5rlACMLo6ggBTdzhUqKSbJGjs1AzOFGtmPcqUJ4i5VxrTFsg7xuVg012wctugvUBV9O7odozNyauI1Md/KQKPeNSa6CxWT1JxEUpZTYja1ysmEox8TfeO2hN5CeJJoC/eE7muO6kK/qO+8LLkIUAAxWLRX8sBrF7heYUsCQMmzZ3BLA3YuPJhFqO0LyZt2ASZKsXHqFTEVuQJAoyMhprAhkxTylsDKWI4k6iDhUHkDuPfIRRZNSQQ/YSFYRlJdFf1+xi6bkTUssTyA4xee02ANyvkaLTm3YBYlac6EWFWj5Zq4SvemEigDai48gcW+2QFfGLCizEZEJbldNLCPzJrREXkyEkg6IiMnBewQ7EeWe0r5CVNCWSUIIaJdEHY7/cE6LgqWiAQy0RuA7kHjM2IDpkdgxYVNLUjCvt0SzE/8oLWRxuC4YNrtGEhUv3lxbSNIypULCqrCzGNkBFcoGM48h9Q3BzUrDUVmeLTtC3xKWJDXfeCfSaLa9oVgbXVxZSxfvE3ZouR9MNyOOzYMXRbtqoSqFW2BMVkyFt8Tr4ma7HJ2qY5V4aI0YrqUFekyQ7caJoQeRYdwY20tmMY0yoqlm4n5mcM68qMeCL+NyWDXYbXxH8jaJfHfYrH53H1GIOEjLyI3LbN6fUsUOpJNMkcW10V8MKIynKAL7QMZF2FNyxzGRbEArjHqAqvzJnDLbHHgS6Yq8rPsVUl0Ask2ZBDu3pOovIcqt6l1HFNKrFKFC8YKZOVajsxVqgMwGzQmIyPe7lt17M+ObTxZmQULB7iLTMFqmowjkT/ANMiwIjJhdm9I9McZN6bNpaWmPz58xZeLbgvmd/S3cTOL1v2icmZQNL6o5QT9kRlNDlyX3IFQWHI2RdSulsbIlgniuz/AIk4qIZO9iXYklVX3jUV1SoiszParYjRkZUPIUYnJfpeCi7RiMyPY9+86z6f+rB0ajD1C+hSNziXyOft94zGclVRMV1sznOMpHtPhvjHSeI8X6bMpvutzYZwCLWeKdB4r1PhmQPjcg37Tt/B/rrpsgTF1ujoXOzjlaOfkjNv6nXK7LowCtvezF/+YdC+MZ/9QvEixc5L6i+v+n6R2w9GRa65Ca5qjFOTdNHWdZ4h0PhmFsvW5lH4Heee/Uv151XVc8HSADCBQnM9f9SZ/EXLZXclj8zXZMruv2zi5eW3SPQ4vHcldiMuV+oyl37kyNqCsMJz9qjPLTGLu5kuShvjxeysKTVd5DBv+Iu5ZJQbZZOEKW5EVG5orFLYgK3E0NycZyVxOpYfHxNyVQizV3MnT6KTFY3JJW9+0LHjvJbtqSFpvtqGzKCFIqVExfekSWYZP9trHapZRyF4gyu3Ss1Mh1MReBtzv9zW0PBlmubC2hBWTaC4KYw/qEeocClmb/h18CUVsjzLPbcAucbaYj8THpMgatRxOLIvaTbNHGPYzAzsOQPtCzM7rTSMLY1WgDcJSzHiY3/8mmC5GtIDGOK1GY3y3xA0IPE8uPxGI3AAHvF8MI9EzVLZnJr3Gq4QWJAxg+u5PAMRZFQVPsxwa9jObZBai4Q5f8pIAxL6dCSB5hBE0UIl4p6bAChX5COB5C+UkIoB5/8AxAr9xtWsbCKw/wBWHhYLk77hZmDMDZmY678Y02fX5epkuKMejSM2tsAZ2A41o6ljFkUDXvEMzOKGMa947CjEWQI6ot8il2GqhmJYGGVK9u0zIhAF3/Ug42UBi3eVnJEzqqD4gLZ9o7GysutRKoWGtCOXGiigTfzHnJrZhHjQWPAytzBj99mmIvpAJupIBkptM6FyOKoaCEXTd45ByAZW1EqApHMd5ZQCgPY/EmVF/K32MO171JVVReUlcVe13+YXEA8SdSoya6M5xhyKpC0yo+Snu5dV1NKLr5ik8rloAGPGJOPbf7mny62RDhUP9RqNWgY/zmVQBKOJaf1E6l1QxGhqL5AcpIh8eTGQq9jIdAF0RHdQuTyx6qI73KoJ77nPURJv2gMhYDQicmR8npIqpZDcgbHaQmIM/KUqiOstISq0nHlZgHFkY23aMzYmV7X/AKgnI5BXYiysTiorbMKsFJIFRHAk8lPaWACcZUmzK7JkTsZSZLS9CmsGNZxw0b/EW7sBbCQrodHvB7JTxBYK3cd4soymlF/uNI3fsJjEkjiNxUPO/QDBuIBABEWqg/cTcZkJUb2YoBrJOoIqtAsp5cjuvaORf+QXjEo15LJjcjsp9G9QYQ0xOTMQxUCDkIZd94Ro+pl3JY4+PaoqLciuURRYmDsSBqSeN1MJHYROQnLQohce1UC4kgZclnREflBNACCmDh6iZSdnPO+kjGxqAOxiHRSb5AH2jTmAtWFSu4RT6WsGOhwckhioQfVREFsa7+TJTfZr1FuzE0dRGyZD41qidxHludE6jG5A1cBMZFs7H9R5NEtEjGq7GoTKjim1+5AVTsEn8SHAfQUios2CT6oFsQGlF/mIyIUPLepYdjjAqonM5Zf3KzZLgLOYtqhUG6JOpgBNWCB+pjoAeIJNyW7IcGSVLCzVRLgr9g1GEFRu6/cgkVdwaslNx7QGNA3qbvCyfb6WFxT5LNJcJDQth6pVJIu1YhsmSqcSVy4v+YEZkGVzYAr4iG6Y/cSP8xWS4P0OPlFbRqJ9ogkluO6/cgWCAB2mMCDyAuFgrXZNvYRdXMclRxcA3DB5AEDcW6u12Y1OuxwavYjNh5C1aJRXU6NGWArA7NyADy5VqLJMU+NSdxFujD1d4a5PRte0M6Hav6iW9QNPUMkZOEkif9SF9LARORfMIZU1HL068OeRrMYApGvaWpKhwc06ATArKLAFSMiqmlWKd8oJUEiHi5N6GMpUbNWtgh3ukII/EHKhPc7MMp5b60JGRkaquRJol8eQhMfA20fiyekqSBBY8U+2x8ysWAN2RKi1REuG/Q7LXPvcFX4EMNn2ivMEglrsX3izZSgktl3rPGvEE6fyly0p/M0XUO+Y8naye5lnrxkdVINVKYJBpo8/0n4rdoZjcpVAGo7zAFsmzKyE3sw2ezuhFabNYpwG82+O8zy2ayT2g3yIK9o9BY32g430W1fZX3fquOV1QDityC3qrj/mMReQ2AJFNBiqJOa9MN/iFjB3XaAwKjlX/UNModauqgoX0ClGHY5MaH7mqCyrdAA/mIfJkc8E1+Y/EKWmFmCg0U+WFaQa0ooNBGMsSTJBAauMMa9QWPEhcimEiZB2NCGvIC0azElnyGlJhoQmgbMEJyoIOHYjLQAljGuOrWqiHwbDH+43GEU0Lg42aRla2NHD4A/qMS7vUWbqgLhYg3/KRTRplF9DWUNVdxJ8hnINgGEEI7CMQkA2NwbYSbfaJ8jjjFgGoCgKw1Grl5KRXaYvluabt+o72Q6/CHDMR8QgWT7RMtFPFTYkir2DUtSSBRj3QQPPv3hHYoLX5k+WOPJYHNgaIuLKxWgsbHlUtWpAQmVhgZjdEQ0xnlsxPY1ypaoaERTd6jbFApEBqchhYmU5YcdCJJifNH8LAbK2jGWBQf2g4yUAuyY0BXFtqpoWpZK6CVVcgAxreWq1qz2i8ZVFP5mKOY7XFYRxHY9AAH9w7oQMXJfTUcEvXYxZJA99GIvmEcrl3FgThfKIxqE97P6lvGwqiuoaYKwMYaz6qEaFAb2J/MB0XfEzExud2YtBX8HtjTup3DxMwFM1mYqnjYURoxmwSBBNJ7DYRI7VHJkyqvpWAVVQDu5ZQkoKFS7iwWXsjqHOUAe8S6hUobMflG7CgX8RDA4zyIuYNo0+TIHGhsE6jdI1Be8hFOT1fbGUydxcHK1sUpJbFZkJFoIgpv1S4DiyEqGqojMFU0BJWmZzeeyoQ/OhoSMpYmlo1HtTIdWZXTFlD2JsmRG0DlS0utymqOclkS44pvWTFOp7oKitIbjkqYO+VVMHK/gSA9GtXCLHj2ibi9Ex48ReTiT33AzqCLgNtxupGcEr3MEi262BjCq/KNZw3YVEBG/4ioQwZT3MdUZ5oJ0cgFYu1Ww240lsYChwYl0dzZAEewbQDUTYkCGEoVIIUdgZLBfwEitXIEkNyP8A+YrKzYuwuMqVxVsHJh2WJi2xKFBGzLPNcibFROQqg1AUZRkrELfO+0nIBy3JV7PLjZgMeT+rtErsHXolgi9xZgcbH4hmvYGCeVdpQJNMkIO11AKkMQTIGVQ1EbhcS5u4i5KT9g5EVl0LMrPjyHQXtLbY8gqoGZ8iKLEN+gwkkVeLKuzBc0vazCcvk7SHxtxA7wTaJpsUTkIGv8zGVgv2SAhaw3zMbzVIUDRjuyXaIC6sipBAP2ncY9oncE94jGAzcr3FRL2Mph3aVMpblu5by3x1KxxuxsyUt7G39dAB1sWDUZxQ/wDKLfHdaqKVgGpiZeK9GClMt+jGveV2cboxrFWSkFxK5MeKxkFkwcV7N1FNbBLaBi8rsi2uowut2e0hzjcdhEqErh0xQzMVs1F8wSKh5cfIf7Va7xWLEossdj2j0Zuc/Y1uoQLQEheoLkKooxWVgTQWoC0p5WI1FMFySRdZfdu/zEVskPMGdStNv2kHFy9QYVHg0U+VT0ycmUBRdk+8gFWql/8A0gMAreo7hpmUehQNf9wki4SUSMmby14sAZUYjkW7itCNy8bN1FhVDXYkjlyL0J7kmyAISZjyGvSJJVgTbDj8QceX1+WEBEpNGUmiOtzXjHFZTUlt+8veIBFxLQqa71J67uNOP4XGEkrTGqoG73GPhd1sJEqwIBI7yycnFaU7mc2vRSb/APsKKZEIUqb/ABLOMHGvJrilzHsRsSwKdOTf4l8fJiqYKKbuwXK5FtVowsWNibNwELEnQ4/Bh+ayuOIoSc0y6GOAQQR2iFCLo2Llwkul8e3vAOIODQFzRS0RLjyd2SiqFBCgyDd+mN6VCmmownGPkeQoyXL8M8X0IUNythcerJdNY/EBn4isQhI3EU6gkyJOxxjQTqoBKCpODHdGrMxgW2FEb0yvdFZNG8cX0HVrTQQpLAjQjnUg0QIIq6MpJm1aoIKxNDvGY0dTbAzFYKLC2Y7Hm8waXcDLBIJSCd6hkogvlZiVKnJTalk40IFbMGh2xSOS1BaEIKoJNRwCoPUklcmKjSgxqvYbl7EFRy5SWLn7RcYpR7BFSaPZEEegk2lQP+4AL2IaIHN9qhceCfmDiIY12hQR477CTLkviO0sLhBFljuDiVVN2IxzyX0aiZS40mB5KqRRMxEKtYPvDUNVFZgFb940Nwi+0WMbiwGWE49wO8RjYE2R2lsAZFuJqh1S0DgxlzuWDiOMcai8WYIeJTY9485S2yO/zFtmfGkntgdO9OCw7Sy3q9SiLxqCwNCN0jb7fEei5cf4wRkY5B6dy7jycRTLcrjy8jaABj8S+wHYxE017GeYpNhBCUFu+hEgENdR/qI7S4xTE5uIzGGRiGOo/G/I0PaVgMjGj2lnEhUVG4IallsspiD7PtHjQ40NRaFFUEbuEMoB2ZLjZpFgEumQgbEVl8xmsiWsoLHkgqotldjdVMLftGMlXRXUODtqjHc0PV3/ABMyY2JO5GJcgG9iNUyMqeyAPLblV3MzlWGpmTzX1US6uPaDiaKcWQaA0Ys43Lhg9CSB73DAYihJtoHJCcyDiTe4hGFkXLWVBwIMp+W4PbUatik7EshGQsTJZnPuKh5brSQELHRE0xslSxBPayRFMwbVwmwZWfkGJExSi6I2I6L+RMGiO4hebxQ0RMCsTdgiScaUfmAUvwroFdiW1MfibAMI4Sx9JqCcYxA8mEDPHfQqyDowvMNG6isj8diYGagx0IDTin0EMlja1IYKwOjJ/FXMJo9tRGrnGtlfKHRfTsQcQGQWwMfkYdzVQPT3IIEaOfFSf1FNhANg9oA23aG7gH0WYoPvY7x0J67GsSzUKI+ZB4ILsmL4sGsGG3IbIsGS0C5BLKSb42JKHfYxgagVW4PJr4qpNxO0bQd7IdnBBB1ByNjK2zbhtjyAW4MrZlFXVS0W7fRKV3A/UTlY8xY1LWADy+0R1P4IhRk5+mKpjvGsWxN0YePIynULIwf/AIbkXTCKyFHAuRbDG5i41T0k7kqMl+kQjjYbO4ObXQ3wpbFZkaqB1Kyk4yRdyw701HdzP9PdsRGnfYYoS5H3dzUpZF5sdkTZPjCpqpUdAboy8omUqirMxjgmiYs8SSSISmhxOxJrGR7yW0zFT3sruVY0BcHi261UdkxIoDq1e8AklfSpJMWKCck+gRx4ni1fMSSqNy3LAw+WNg7imCC+X+JSjRpFZoBDjyMQB/cDqMARdNdyyUVkvGOJij05YFneCdMv42lRWQECPxstUxELy0K0oswD03EHISZtnFqjFce9gZ0Vm7kRfBk2DcI3cIkVsTNu+jfX4Ay8lNncWSiGmuGxrYOoDoMqj3jIeKGf7RWLXAnmg4zuSEKCu8BzkDhlUj2lYpqyNBeJoPKX5muCeZ6e1TZ9WjN04e5rRyDnci0b8fJapk0FpD3EJWA7gGT5XmHlcw42GveS6CUUzDxOwaPxGYvNJ0dfEXiwOzFmBj0RsTWIUZ/DLsNqHfRhIiNvlcG1Y8mNQ8L4bII/xHjQKVOmxvMhaBgYXYZST2hs6j7V1BQ2bKmJmzp/6jvNPOwaH4jlVcmz3iV4EgBZaQVXpqoiVaexOTCwb0//ABM8vHx5ObaHlLPkoNqoSdPjK2RZgKUn6QrRoAywnILY0ZCY1uuNRzKvGxB9CTk2CNbYXJAUsKNCDr4jMeO9kCRZsot+x/8AtKvEsLMJFGJeUV/pkJDDvGEEjiNgRWFMwHG2SyP0ZaVQQKO5VROR+2qjx6SCZaYql7JZmvgx1GpiStmv6iyS10u5mLkWpj+4GihS0SEPOtwvViYce0ZaCMVUYVxiE4sTk5k8zsfEHjqxLBUMONUBJxYuO40yKkAqvr0941Rx1MB9Z9UPiGOu8qxJSswVWjuYqFu8JcTG/UBGY8KqLLXCjQnHgUjvuPXCAKBig3A2i3cbjLMbIIhTFZLdL2IJjseIBacmSmNz3aNCuwIgrKST2xdKPeYrW1X/AJkjHwPyTHJiU7YRWxtJBYsdm13LWIcQQfeKQhDo1CGTkft7RijQSqxb8CGA7txU1CwqLNe8auHi3JT3iuhvFDMeIgVyjUwGjbUYsJkJtQKjC2VaBiyC0OwKynixsS0On1yYaiseNWUWalnEvp487AlZDx/Csx4tVwh6tzMqhrY95CFuPaQ0l7MI1+mZUUqbGwJXxrlF0dR77UkzF7ADuYLRphGQh3ZfuqA2cFar2hZloEMTZiWX01X9xtWJcVAAg7BkAkEwsaKooCE2OwSKiXGkU4qiswLPRbRkOip2MbW9zGRSNyujJlPIGY6igmQMfUP1LBNNxBoRZUq3fv7wsccfZAJrjcDJg5LQPfvCDAHtMbKzHtQgXcWITH5ZALEiDnJB9PaGzA9pga/Sa/uBMkmBjBYd4nKhUk718x1hG7/9xOZmdtG4E0/Qk8WNEQnTGygWbEMIOAsVFtQOoJoKszH2u+0E8i2zqTRv09pDq6kERMHG+yMgXiSZGP8A3V41Mcgp64GJ+P4klQqIzyceM7O4GTp1K2CIOViTYNwsbrwtmlqQ6T9FU4yppYfFx90hzze1MnzWXTCS/wDpOEfSAbkPcQgWVQwFySwYHQEEt6QDWoJWUuNVZOVmZQb1Ekr9phdwQT3iwqqd7P5jqiXS6YVGqWJyYGPcx6FrsmhF5ib0+oXQqYgYhjo3Ib77KahKrs3eZlZxqtR9k79GFsZ+0RT79zCCKByDf1IOYduG4aG8umJOMWDuE6uBcjK2RKKiQgZtkm/iFktMwAEU1xHUoFW1lh2KizF5CpSwtkycb2J09CcTY/L2ttFNk4AnhqOxggW60f1FZG5EjvGkQ4r8ADpmPFgVEZwCEKu4sruq7QwSE95ROFMF2x4z6nBuLdMeTYmeQCeTe/zDx8UO6Iibo2SaWgK4JQi8hIXce7KbI7SrlY5ft0BMs3YYyMXGzC1apGVnReOQGPwgqogdQ3JaMFNor4isieYSe0xlI1qhIIdGmMl6JmyakwqiucTMx3qM4njV1UZ5fBdVZgZFJrc1dVSJlT3QsjIOxhIxLBXqMCWLBg8Q2QXQmb+qM52lod1uumAUXNK9k2wNHvU3vVqE6UC9TVXjFgbmeSZfHG1bFo6AauYTZ5KJKYvMewAB+4+1Ppof4jopL8FLlZT6NxjK2Rbvd/MbhxIvtfvGNiF8uNS00huUl0AmNCoDACQyLhBZVuYyUbBjFA40RcHJejNptdAYsvNuJFSwcJA5FhUQeIfdgfqPLoyhdx0mKNp9mYgWbipjPNYHhZuDi9GT0i48oW9VC5B0QV9gpjJazGXwfjczG+uLCjBdTzFbuRKynBLaHFQRptmQeQ0DITGQQ1yzxx8bWrjV+xOxA5dmIjgrr7iovMoP4MZgViBbCodErLsenlgeomHyxj7TIVUoSTiUtBUJub6DV79hMdTffXzMRGJIEJuaV6TQlXZUMq+xisqb7mGjcz2owFO/UKjVovYqo8UyraJAAOzLGPjx0IsomUgqaI/EMOykIVr8wcRWwcn4mY+XvdQ2s7J1MJOq7SaoKl2Elf8AGH6lO5GPkNqoMaWscWG4zP2Dix42JsmHzRTxKmvmFjxEbjioK0QB/UNA3IjCFOxoRlEbFQcPEDirCWF4KNkXBP8ABxk36AQnlsmOOUdu1yMYVrb3ksl7MW7NU/Q0IpUEUYdFRQFwMQFASyiCruMppsWmPl7V7xyKE2tGNB5JVCLxYyrFRu9x2JJRG4uDCwKaOW+xFCKxkIe25Y4jKBvtEO0lsIumMUu5iP5pAI0IBTfGxH4cajvATlFosYzYr2j8TLj2yxWOjQEtJiQ/+p/UGjPr2VBjyrpnBkMXRePc/iPfC69hcAYnJoyKYniLCMVtjJBC9hMYMoI9hCxgOt1/mNJjil6K/VZERaIiQ6uugwj8vTB35d6mNi8tb46j2Judlc4gEJ5d4hi67G5Z/wDUBAof3I8mgRy7/MpNkt29lUsW7iYXUCjHvjVV+4RGTGrd4Uyc4pld1vYaKpmPuY/NjCpyEHG6BTYhRpmhJIU7EB2DH03HOFbdRXDgTY/xExqf8FcaNbjFx4+7XCsVZqYGUaMSDJexDYV58gdSAh5EKsc3E+8WwCdrjpkpqT7E5lcd+0H0BbqE6s2y0W4paBhsJfUgAE6BElip70JgyFV41uKa3OxGiXN+gczY/tr+4HBSti400dV2hdkqhE/4OLk+yMKJ/wAluRnwqV1QkpbDViBlak33kSTfRom0UuJDMQdCMOUcO25nkt3kMUWgV3JjGX/2Htghwe8BlF6OpYVEKWB/mDxVV7AmW0/RnT9sQDyJEjkisATuSdNZmcOZ5V2grJa/B3LCFtvbtK7DFmbWoVqQQRYmCl+0Q2aZtLYtUKvVWBIzAk6lkYy6kiVcjFWIvtKq+iG09gqALsbmDGGtv/iBTEE3uHhLj7hqNRaIsRlFtRkjGSNLLDNjN2N/qATWtbidjsqvja/UTDRcYWjGZMbUCa/qIPLlr2gsmGuwnqtrqU8uFieWOWnLggVFOxPp7QxZRTGN+RtowOopTcN8QUWWq4k18w2JMZlIIAqJcqBuxG8C4BDxWUcWAMHCxuUV2LCtsm4DP5Q9NEky1kQhK1Kzopq9VF/r2Uppr6gY87tYJAkZCznjWxCxYULXY1uHk4k+nvFkhVN+yux5ab2g8T7RpU2T7xbLk0ajyiT8cjOJI2CYtgfcUJZ9Zx1oV+YkA5G4H/MdiarTFIGNkdoSIzZAQYw/7VqBcWpbzAe0d/onBtaLHXAnpQCJqgidi25u+qZf9JZI1NMCrMSAL/cnEqMXHQIq6UH9xvEBLvcwOBorJJAP4jWit/gWDLX3D3lxGXIDYH4qU8TAtx1LOEoGo6iasE8OyG6ckbaoIxMrUGuNzVdq1wcWTiwsWY0jTNMEqVO1B/canByAVoxrLZD0N+0MYxXIDYj6BNEoiiyO8EYyxvn/AFJxlu5EJcRU8hclsptVoILegu5JWvuhKaNmYCpe22JLdkC/WzUo1+Y3GCO4mHGpf0nv7Rq4NWNmKvwrFMzLhPGRjAQeogRvFl2Tcnyw49SCUoN9g9LsLGgK8g1/qNUA7JMXj4KOCmqjeIIFHcdJEqdBY2qwO8ws5PqHaQikP2ENzkAr2hdFqa9jFTmpoSERkayNe8Xj5NYPaWFHEe9x2PJeggQdqP8AqGDyFlTcHGHY3/8AaWBgJFlo7YWn0B5alQb/AKiytPYllMBT1e3xCATIwXiAYhUIUNXeo/p0U7Y3+4w48R9PGzCXGi6AiZDgYCSfTMaiOLXf4hhVA9Mlce+VRPYYyAx4q9qEshFK1UhQDoCNxitKLhFlKLRKeWoArtGL6z2kDZpgLjONdtSuxp72CQEaPxLyGzUWicmo7lrghAFfuCsNEKtmlMfjwhNk2TAXGifIjcVE7aG2HXZhVAb3JUMAaHeY3fQ7TFdjSwE6YSYHY3RqWsWMJo7kY3I9J7QuJchhVR0PCLG4hybiLEv4ShHB91K+BaxlgBYh8wvqJomHQUkC7uRTaiW5YyG5Xce7k8i47xOR0YAKvaY5KxOMWhV5H1cx8bKuoeIaLdoY4MNd5opIy+OtoSjtVUQIOR27KY0PxYiojqixUlRqFpj6VgDGpxksKMQQSdnQ7QkyEoUY3JAFbNSqYRnB9iTj8xu+hMdeOgYVFG5Dcl8lmwIWJwgyrlDEVVxXlp2YUZZZgGAb5ispp6Bg5MPjihWXggqolmJ1HthLG2bUU+L1VRh2PJRRDAKuhdxC425We0fkDUAIJsKTXtD2LK/QBOMMLG4GZgv2wgt7I37QWXWwb+YkrE5L8K/mAG2HeSAH7Ri4gReTddpJKKNGrlUzNtiTjqCqcj8SyQyiwP7lZyC0hxfZpFk5QiHUQzkmgNQ3r/3XIvQBGpLX9NE2ZsDRgMgYWxjAR2WYaghZlfmLqoLrZBCw87KBa95AcFAbgnQnIV/uDRWhFENyu6lvkzjvFeSbJJlZEtNiWHI7hUotVbvCOLfcwBjQPbWZN2Ci0Z5ZXZNwaIN1qTxYnXaES6jXtHYlFsJXNWPaV8nqJ9Ek5snEgd5C5HItxKQnGiuMbWIZV8equWaUrAIYiPInEquwbV0YWPCzVZk2gbtuSuRWYkGGSGlsJkCkAwGwqSSDBzM3flIxAtq+8cZerNk60KdTcrtkRXphNhkxsvbcq5cfI2Y20D2VcjLlNAdoPkAj7bjjjo77CNxhANCTaIr8KIxHE2zUlgW2VsSxm5cxQ1BbGfuQ694ZBLiTWxJYVTCohsasSQxqWGHctFMyD8RSkjNcaiJVMYvZi8uRBpbjOShtE7kNjN8iCZGi069ikdiuhuZzauLLHKcV+pdyWVSOQH6haNlJ1oqsGALCxchLBuPTIHBUiKyMQaUdo7RhL/a5EnGW9RkKpDClsQUJawbjQuQD7tRpUa5qqQ3rMQfpTr2mnweWpKstmb3MtdLc03lqzse35lZMqHHltgG+V1QhugoVJbGij3MnbipNhLjfoZjxKByBAJkqCW3FY8eRbBbUfjJRbLWY9GeMvYZOM6qFiVCbKyQMTDmw3GDgwFaibBf0Yji6Ca+YbHWgT8xQxNYPPQh43a6u4lbNPrQSFDpjRjFxsTrtEeWC/MmOTMi+lQf3CmLNRCGM8vUNSCo5Wg7QvOYGm2KjE4OnpFRmco5bQONTkOxuHjGQNXtGJaDtCCUeQ946KipGODVwRk1Xv8Rl6qv7g+WbDExouS0ThDHZxywEY+rjQgq7GhdDtG434ngCTAmMf0kBQPzCUWDqYwtSD3u4asONAbENDcL6BTDRsx9KF7bkK5C7HeSwsX7Q0JcbMU0tDvG8shFVUUnK9do8IzLt4BpMWrujbNjtCVW5X8wh07nudRoUYxVw0VlZKkf3CoXIZwoswgFK2O5k1YZB4qXZWErn7SKuQr0PUP1DTJv4lKIfIEEKi77xuEEE3Fc0sUYxQRsQxoWTYZSm5DvDHI7MxDYF95IGUmgNR0h3QxXUdh/UauTlrjELjZjte8anmJ6VMrH8BTJynQLNLODiFtTZlZkLacx+AqDQMjoHJS0WlTkhJYfqL9YcDX9Rlpj3WjGIyHZiToEqZKKhHEncfi4IK7wOKg2YVgMAO0dmyxoagyPZS6jMWMMT50np3RfTccB6iT7woHG+heQKwo6iDhINo1wWL3u9TPMbuDVyMTJfhDEgcDr8SASi0BUg4mJ5sST+5DZqHFlMGhuLqjFsAk94LlnFVqFyDexEl2UKKMER8dlR1RAbG4tsy0ABLL40q2i6xCxQMpA+OKQrnY3oRbmtg6jwFa7FCJz8U7DUZhJbBAVxvR9pLYgByO4nkAOW4XmMykHt+oil+ChlHOqmPkX76g+gEk9/1IZlbRUwstRTAduQuoB2ITMaqtRXJr1BDdx6GBAa5CD1NYwAvYyVdqIIgOCxphca0yXcgFZjVqCBIIR2ogA+0aq8BvcxlBHIKARKcvwqCl7AyH08QIlkU94W+R5WJHBvuqxE22qBumIyKn/GCAO9QsrG6CVMCCtmZ4oLa2DVnlFsxLVUfaDUBioNDvDSJSt7EZQAe13M5IABx7TMl3feYMSspLHvHkkJ8dvQxWR/YQMi+wPfUHEuyoOhCdf/AGkyck+ivjkgDYXhEN6THksp1syHTmvIijKVMMZLoWv/AKZMXZqvmGGCrRMBb+4e0dIPkl0yPKC2xPeATz9KiNLM/tCTG1cgAJLVMSi5LYHlkLZ9oLZPT6V7Q3ZivcRBLqaABgqJcaAU+aacAGR5RRiwOoxChaytSXIIKg95TiqHBsHKivj+K3FIyfaO/aMdaTizVAx41U2piUTRq9hu3EeoytmZm+0aljMquB6qMWy1jNEGoNIlWmV13ojYgMWV4ZbuFq5gB/5VcDQhihW2H/cqvmVTxB7+0fmT3uVwqJRrkYJOyZNtBXyQkCjEOP8A3LHNzYaWoLK520GjKmLAQ7odpABB7wwigEnQEjGVez2iUTWCjjsQ45OSR2jOIr+oTAHsRMBFd4y1FLorNjHLWjCGAjZOo7gp3YuDyBNEyZDq+ysMJLfiMKOoAEMuit813MDLm5UMYuCtIzlGPotdQjf6PY33uaZEpj6t/E3RZj0nJvjtNLyJyEVUsmHI26IKENokw+3/ABqYFcG/7jEWz6jFRr8i6I0QKH9zApbsbjCijYb+piuFJsRNDclQKKRWu0c550FFGYnJxyC1G4xRJYC46szuycYIWnPtMUlSQo7yGyOWACUITs6+oCoIeiVAU257xw4BQRVmKXIHHrEbjYAcWGpQkoyGlkqiB2kJj91Yj+4DoCbDD9Q8SOx4lqEQ3roeildO3K4wX3gIhH3G45CoBPeFsLVEGwO3eFgx3ZMluTe3pmAHH6mENjx9jPLPtUNKQ0QLkYyp/BjCze2PfzFtmqqgQRke/j2jtD7ai0xEEu3/AFDpRvULFpEhh2McmMMO9yutFj2lvFkxqhA7/mNMV+wVRToE3DGNzWtSMYLdtRjF0I3/AIgS2Go1xJo/uYqBTZN/3B5ht0QRCQNdm4Euuxx6dcgEg46PFR2mIzBr3UacgOwATAlU+wRj4kcjHAK4NCzUEAuLNGYg4nkTxEFZX1IGAA2Ru49VA/Uk5V1VGYrX3AEtSotUYXVaoRiZ+Ou5MnyyU5AAiZiA9wAfiGSH/wAHI9LZME5bOoSpyNVYhJhXlsR2LYlmZ2+zt+ZaxIKBC7kcMYJIWzG41YCyKA9pLZDhsaMZYVd/iMCBdETFBAsGv6kswIsybNlFUMXGp7tHjGvsRElrTXtCV6AoWTLirMpRfos4ymP7ljeYbamLwlcnpdR+I7gF+KjcWCcvwrdQ/BVQ7vvIdVfGGU0YeQhj9oMWWBNEUPiQZSby+pmFMhI3cfnx40XkVFxC5Tja1OpGTI2RgWMlqy3NwjbFkcwdVBOFaskxz4+A/crsy1RYkyKaZcZKSyIUgEknQi84XLRxtRmZLA7GpGMiia7SkKVMBVZRZPaC/FhdxwCsDYici8LqO/RncSuVYml7d+0YPbfaCchCUF3BV2vcGrGkvQGfidix/UUpayLMsZ1BFiKGEk6BgtFuq0AMdC2MFMfJjx3D8o9iZNJjHpO4OxRT9kFDfbtBYUdioxWyZNoQKi2Vi22iVlVFEEIaBuBlQ16LjmThVG5mThVkm5VhlSKao2/M/wC5BegVEe5vVaiGxnuIGTabFZDX3AQPRYIhZiRoiBiUg3diAm70T5fJrEW6EvQlviO/apWa+diKkLQp14KeX/czGOS6EPMDkHqkIvlilicRqk9GBVAqtwT37GoXPkTrcgEk0VkbRpk1oWcZ5chAzAqCTe47g6m1IIPzFZmZWphctWTViUAANnvJxooumu4xlVlsakLg4gNyjTIWhBxty5AkVGgtxIksCx49vzMdSo9JjKsT5bg2QSP1AIINd7llGYrTHcA8N9rgQyr5LE37QtDsouMYGqBEQmHJztmjbsEkiMy5H2BIQEKbB1GtyTQqJzu1Uuoi0Cd6imLAkE6+I5ceVltagnCw29SWkwehNJojRgut65VDdBdg9pBOu0YrK+RCB6TZgeUwAatyz5fPYMzjw2TL0NWxJIC/BicgZiDeo7KUurgFMfuxg4qgeiBQNEWILqCSVFR+OlWiNReZSdrqRSC0V2oGiDFtxArcM3ezICDluFUTeyOA9mIkBGOlINxoAI2O0xTwPKomrNVHJCH6Y9+QA95C4Au1aPyBXOrA95JXiNbEFor40MIA6U+r2mkKHJkPFveb1cQbpWF1NMUCMVGtyHyJGai0wTY/r2kq16PeEQoNmSvBj2iU7KfG2YqkmqO4QwsrUympjMw7CT5z9iJSkwrEsEWKT/qK4OH2SLhYyzC1EIpk+5pSdlR2MGPXfYmeojiRf5gL99ljcaWHajcUkDjYtUYPR3LIx1RMhGavtBjmYFAONSU5BBKOiHx41Fg/9zERnFrYqSiclomPxYyglrI0VMFVdtEkVDSwKO4Lc2Pp1JGLIvdo7JxRZGQcPUNSAC1EElZGMLxKsIY0pA7QT9DqNbGAKKqHzJ0IlMZb/lLC9OwGmlIht+geRrjclVrv/wBw/Krd2ZBJBoi4nspP9CQbBCxows5tTUjECW/EdTD7O8VUS4tk41fGeJPeMK0bPvEEZuQ1/wBy0F5JRO4wTogYh9wk0SaBmAOgoCMAscuO4IezMYJ94/8A22HEpUUjCtd4SHfImJqxjQiooppJxlgb2Kkaq7v8Q1fktqRHSROICYSR8SWDABfgyfWNkw1HI3cBf66CTIwHHiZgDcvtjEUKL1+JIsna3CkNIIEiqhLYPIkwSCdKtXJXEyn1N3gVTHhgaqNVWf8A5GhK6Y7Ng9o+2FAGAkn7HLajjZJmEMRVSMex6mk+WbvkYNDboLArKSG2Jdx4fMF1QlTBjYA7JjwXT3qCGnY5MVPrlctKgP3NcrYWZm9UsqAp7GNSY7orZkyLsAD9RflFxZUgy2wAYNuhCBVh6Zm5GDg2V1wKEojcW2Ipv+5ZO2q6kscfYm5OZag0qNfm8zJW5JwpxAPtLGdUCehRcr+pfSRBTDFIWdeihUrZhTHi2hLDA7YtEtkxuaoSk2zOSSMxKeO4eXFactRlYwBerisjaKpLsUeOJWNdhAYoDRqFTe+7gsmj8wNFrSFZNLdn9RAd+XepYJ0ARcDy0LWVMVA4S9ELk16lmZDjyekAqZh4dt6glkN79tRiir0RjbyiRJLpyvW4Kpe+X7mFDZoaiHh/SWNtSkSGRhsm5iABqJ3GOVKd6PxDYnFFRwxPxDFAbqQDZonUDKN0phkxY0JylcjELqokE4zan+pY8hgbHvMOAKl3Z/UFJE4X0L83ktt3ie50I18ZBthMxhQdx9k4NAkUuxIYa1DzMhFCLB9PvcF/R4sVThiYW+9wyoIsk6g6P4gS072C7ar3iTR+8VGO3E9r/MngMgF94lY066FNdEKNQVGQjYjGASgTCUg6Jl4itexZxMByJEHJ6hqoxwwPfUG7U0KqS9djTRC4wF7i4h8W7A3Grk+e8lyhBAOzE5FdlVseTjatuQvPuT/UMBlJg23I+nUMkDhaAy5CCARVe8ggOO1yCoduLEk3CI8sCpN70RGIlWyY3rgamZcvLTAiOQtdmLzE3pYlJN7NPjZXrk1LDKgDjxB/ME6Nj/EM+rd/uapCx/RZ4qPSRcSvMseYFRuTGpNA1cFEIsE6g0X0qQDY1c6HaDmx4+H5jzrUruhZrJEEwxbWyMIUfdCPrJUCAMLM1sfT+IYx0aA7/mKxY0VsmLi1QVxGyxOhGdQj+wqAiPxpjIlbBYENe6EAmt949cXIEXQkeULoEmF12WmmqRWTKL2Kjjks0o1C8lRowWA5Uo1KyRm3JaLKcB0raskTQnl5x5mhc6DGnHpiQD2miyhWykk+8lqJKyJcIQCCIKgg+n2kigtyP1EsS1L9Y0ZbIBUXIfJxbSiBaCjRuNCYnokn/EdGikmN6eytnULLlpq4yQE4hUmcR+YNMtQTDxFWA12hsyEaUCKIpbupilm2SRJDF+hqkVsiYQG3eoJxo9WZi3y4LKTozcadsfismuWhLQyV6BEBXRbXZrcnEz8rYSrsaVD9ru7j0rIKIEQGxk01kQgGH2GhFTottDzjN8rH6kqpbvr9RN2Ks/uMxMFHcmCyRNr2WlRUGhuSDfyICgk3ZGof5EE37BNMIEL33M5Kw7SFAY7NRyrjHbZhkKS/AcbkGu3xLAsix7Ra4S1m6hgjEKO4rFciaLe+4xSVqxAUoxte8YO9SkFt9jK5D7qkqhXtuAeIElXcLox2NWMUKdaBmMp7CqigGLXGMCBYJMVhsYq67iMxLXtEYNksRLmP1D4hY1fsXwe+Pt8xuJQDUIsK4iL2DfKVY2iw1aAI1DVK9QYGBibGV225gU3V6hRKoMuRuhqSHZvaR5YBo9vmSiANo3FQ6MGRiaqWB9o+Ys0p2NQlKkagA1W1ZljFbL8ypoDvHYH/AOIMehWXQwQXVXCbINAVE5GNa3JRbFk7i7KUi3hZK2ux2jhlA7mUl5WAbq5c4Yyo3IWhOVDchAUgARPTEKSXGiZmZCWsPBVuHpO7mTuyKkuywTiN0wlVlZn/ANsWITYVX12B+LijnN0gA/MtRTVisx8b49sx/VxeS3NgxmTzXAtruR5SgcWajLxQqfooMMwYgixAdSCCEFy26sulF1Fea+w+PY7Qr8JxfsxEORbfREU6MrEA3cYuTIdBaiOT8iL3FTYm10gkVl9v3cXkIY/bDbLkXR3K7uwyA/MKYtoMYhY4wsuNuPtCviAWi2YsY0nZqpyoV5LVdiviAVxhr43UaS9+kzODEesSrJd9i1VMm10fiC58vXvGtg2OLVE5sTA3y1CwSYAWiXbUHGpdib7SXNLxuQhIFjcC6F5VPKqiSKccmqWXWzZET1GMVerioUkjPNPaYXPEkblUs2M3H4cgb7hBmXQs5ix2naCAG9XGNyqqntFlgaVYrDKhTBfaSgsEkQ8mED7dmKN1Ud2Up2Zcn0saEEaHa5INEGoMdpmZMYoEntALqo76hZQXB3/cSMYrd/uCFoPy0bY3CAQ3UgcQuj2iyQG2auUZt76BYUx9ViQ+gSW0Y1lAX8GLf0rR3Jsq0JVRVgXMxgs/2w1Nd10ZjqqetbEZScUKdXR+RXRkAWTGB/MWmiyL0BRk4o0ytbICNZPGQb3qoYLDSsJJB7mtxqKJuivyUdwYp+oW6CmWuoChdSmV1sRPGw+TH0EjYyLrvF5GCesCxCxqF7wGPqoixBUJcjfoAuMlMRULkCK4mCFU9zUImlq5Vpdi+VgEMT7QCg9yIziGO2IgNjQfabiuIs2ArsW4KupLEc6Y1BZyHAVagnGcj8iYrSLisuw8/wBvp3EKCw9S9pYGKh90Wy5A3pNiFoJQ/BTGhQFQcbNdKxhvhYnlfeLUsjaG4myVGS6GsSB6hcU2iCIbHI1E6Ez0k0QIlVjt+y7iJfpCPxOdzpxysD8zoManyDx7ATS9Sp5k17wkmZyi5dCcba41cxwxbgo3IALGhozPWHqjcVexKMkYMLg+qW0xjjUSS1WQLjMbZa0BKpnRCPsaqFTJJPKqkhmI9eqmcgewj2i20QwDGrMYEHYGBxZjQEfj6c92JETbCLmKKG6Ebi4A9/VCYBCYSYQfVqS2Om+xqA1+4R4r3PeCBTCjcJlL1ftEDVBYaJrjuMGM/MADy6I7mOxspFsahdCoLEidmTcLIirRVf6mKV5WDMYEuG0RGr7HVjcbFgPTDJ3RWLxh20tCM4sD6gDNFROKGDgO6xqYwRdACV+1WI5TyHvKtFMaQAKDTAgsWbgEFR6RIQMdmInJDSigWuoSaO29oSgcaIMFMZ59qgJuxoBrvqHixh7sRfHdEj/MYjBRQMOycqDYLj7ESNdvaA6k7Jjsa0ASYqHFtvZAQr2Eep9OjI8xa0IAPqoGFGuSG8go+YStyWiszyyRsATBa6EYjPLUG7jlOtHtF8m9hIJY6IMdiosqGaq3IYFTY7wMYyAGiQIaVkawaqKxXQ5CXFFTUIKp0NCAA1aqpO+wO4VZOkPRMQFdzGYEAayKlUKR3P8A3HgMgsGFCyX4W+QY8QISgg+8SmQqvJhuTjzMWoxUirTRdWuOx2jsPlE8eW/1Kyl2FfMbjxMW5D2EEqHGNljiCdwziUr6RZmAomTjkhZWT/8Ahd/mLJExtdldkCg81uVDixs/+2SJYzZn2pO5XxA+ZdRp2EnaJK5KPqNCJZmPqBsj2lrM7VxC1f4ldxrQMYlaQKZcg2V7yGcGyKuYWNVRMXjxE7JO5O0VGaXZiszkgiojOvHIJYyDyVLA/wCYm1c8u8aV9Cm4yWjMhKgemLTGztZEJ8u6kLlKt8gwpmGumRntdCLxOxG6jcyK68lbZihi43cDZSVA5GcL6amYnY/dHJiBB5XAIAsQtBGmRkIbsKMrtyQ2xsSWYqxW+8hlLLfxFplO10LykMt8aqDjoCy2viSz2KkcE4Fj3j0ZubZmRgTaCpXfHzN8tx4ZeNPd/iKcDupghWl2C2G19rESquG49oa5HB9UNQGsq24y1TQp/T9+xFs6DeJdxuVC1gkwMeBuPzFZMo0EgfKpMQ/LakyxjDISAYDhCabvC6IaKqpkD6Oo48O/uIRVQfSf1MdbGquAIS5BPp7yFJI4vCKMDtakuigAnvULKi0YEAHbRgviU/8AGEgY9vaYAS3quoWVoUdauC9EUY1kBimv/wBphYmr9AZMeQAEQlIdSGELzAVr3gk8N13ichYiMmMq1ruL9bncaQ7Nd+mYqoTZJlIFoBkKb7wRyO9x5Ab0jcny1CmzUKNFK9Ffhy3K2VWBIBll9fb7SvkxM27iqxPQtWHGmEkrjABcd4IwsGrlr8whgfuzWIVRGwX4GuA/zBXGD3BMN8XIasQUL4zR3F2P0Aysd+0WFYHRlkuo+4DcW6ir7RUOLSFNQF8ZCAVYmbLUToRw+z0gfuS0vRbpiaO+RuSQoFjVQX1dGCMgqmXcW29BVbMIZgaqViOLbOxH8+I1oRXDm3I3+alu0PMgkhhdkGE4UsAohqinVXGDim6sgSbbE9od06EYGH4mmzEjIwr3nQdHWTCwOtTSdViK5iBvftKi2+yVl6KvBA1sCLmYyrPsTMxPLZqSiodqa/cGjVRvsY2NDsGSMb3amCUAFcoeNwo4iTbRTVDUs6aoXlhG/wD0izs37wlBcWzaEtN9ktDgxAoASQ7k1zqQvEmlMlFCksTuG2Tv0RkRnPc3Cx+Yg41qEOTtd1+oxN6LCS1YfYWMjlrK9pZw+ocv+pBVK0RDx8FX07MQK/ZLgECxuYiUbJ1MK2LY1JVWOgdR2vZaQ5Re6EYaUbgnGatYR+3tGpL0BKMePxHBV42zROFOQ3CPK+JGo6sl6GZFsAgzEVjVGSBa8SNQwgUauOkRk/YShxq9RioRte3vBxj8w+aqavUHoWVhnkKk7+IfmKydoIPH2EnJ/hojApIsCQoN/n9RvNeHp7xYJB5GUnkOkwieKgNMDsx7akNkVqBGxCA479onFk0gvMYaAhoRYMFEL9gY1goADA3+IRVBoaGB3epjHeu8XjVm7QsiH/j3lFR3phDNQFn+pPnFhXH+4GPFX3D/ADDJRRRuNLYmHjZgw3+46jdiJwhWoky1asAojpISADZEJ3cZjZm2wqCfQT2jcdlboxNIfYwHkQAuxDYhdEi5GLR7VDONSeTXETj+GLkLCr/6ljGFVRYv+osYjXoGpIdsf3CMFFllcla7CWMBPZSf7lTGRkFiW8ThDwPaJFKI7Mhy5LqoKIy3yMsZXWvR3mKFZCGG5KSOf5H0UTjORrDWI3D04Wye8kcEsDRMwOyfcdGDjY70KzWcgAMHLxUboycyh2FXuA2AhqZu0FaKypCbUn4/qTvtYEl8OQGxsRbhm7EgyXfsa/WKzllajuQMePjZIElceUkh2sScicV3KiybX4V8rYiAFFwVx2STQhhEu4xSGUgTRMlxvorsjdwbjkx0Az9pDAgqBqPY0tMIaBRTEZGWiQYhFx3Zej8Sww4AkDvEBFY2R/1IxTHiiXwodrR/JiWpVIJEZlJQaPaVb/5NuLBWDeKICryom77Rr4rx0gAgNj9XNRQrUJHIW7/ceKREZIrPiZNGoDKQKvvHPkLv21FZCL2DHRdpiXUAXdycSjvof3ByKqp3NmAhydlXUaQmyxp9MokKEUkKv+ZCNWm0ZLfNxNDi5SK+ViGs9omuW1MtMoYRfllTYXUmv0KYtA2MFiP8wkdHN+8LJj5KdxePC1ivYygaYTBm0SBFspv1b/Ua6UdxZVxtRYisEn+A8gPtuEzFQPe4JIOjoyCR+4ZJdjpkswKxbD2kO3xqTRPvFdlxbAOMqLsSPv0RqMZSVieRUcVG4NX6G3/AWGO+A1BJVdE7gMTzuxcYMb5ATrUFrom/4EzKqhge8AAP6iTAZWAoxmNSFpjHbC/4AwVTo/5lfKw3TR+cDtEqqdiRcYWIDUbZo0uDjr/7zHxL35VBVQGq7EOycmBjI2DYEwEE2NkScyL7Mf1FpQPIHtFihZEZBumH/cUzE+kjUa9M3HcF0UaAMMUNOxRU1QOoS+kQKKdwTLOJBmXQqNJA2VnrsxAgcPagR+47PiBPErVQK4ikUahpD2+iPJDCtCZjxcdEw8ZVzRO4OZArabvB9aBNoElUajMCKDyN7mDGoILd4z7hqSnReVljpeK42PtU1XUcfNJv3m16bHyB5X2mp6vyxmK8feDkkXGWIh8Yc2BcRkxcTs1LKO3LiF1AzBvdZHyX6NFJMHEy1vcbfq9K/wCYpWOPRX+421+7luJ7IYxQrC2IBkoqM1cgIJOhdSVwq45DUcWwsdwVSCrA/qHQrvuKTijfMaRvkgv5jbZSWjMZ9gRuEMVPyB3CUKRfGpNi6A3FYmhqAEVx3CUgHSwMRb4hiy1dpNi2MOM5B3qZj5K3FdwGVl72RGpRIIBEtO/QbGAtdGMAFeo1ADn3WYS1XVS6RNhgV2aSuZg1ai+QIpTZk4sZ5ciYwyHNnYUNQ25sAdb/ADMHFqBUahlWJsDUVJACisvdqj8a/K3+YCqf/b2jQfYxUhpEg1JJJEwX8XJWr3qNbCkTiSzs9vzGcULUNwPLocg1zLoekbjoVBnEvsJhDIePtBQZCbj3JC0RuAY2QgPuNQgMbn7e0EPyFVMRCN/MVjxGDKqaAMm7Nk6gsoI0JAXdMdRrYVQxHJYWdRpIZqCColVxoLBhB7NLAmhuPHZrtHLgZTYaIxjIDylrkGqjsQEnszyyps/9w1zkDiQJBbJ2f7ZjFeNhYFKFjUstccMn/DRlYMOPeMxrzgJqi1jyGuAYQirP9xErDEyEMDqXMTgAAwGnZKIwHEaljD0++RYmRiyLdcIQzuGNLqHRsrRcZXQ05hOx40rQ82TdMmpCjGRsVFZyPiK4wPfM7hhTex2ji2PspEBwK5Kdyr0T8bQoNZNrUVkxlzdmo7HZaiNQczesKo17yWzRRRW8xsbEbqZjK5GrgP3GBAz0wu4XkqpIQ1EtkNpFdsSg/wC3/cpdS2RWHLYlx2bGxFg3E5FGQ2ZQs9FfGWOwkaGCqSV3JLLjHpHeQjctlYCi22K4tyDE6hvzbQh0p33EW7Or0urgaJgsTwo9xE8ihuo3MWUAgXcWTa7SA80JOTZ0YKqHB1W4wjjsyAQRoVCiWlIDJarxEW3oQ8h3jchCuIRCZFIIgRSRRVwDpTIYK7WYxsTYzrsYt7HaKx+hGYXZA2JOFiALFGEz13qYaoWIWKrCdRl9RNGKbESKDRrFCv3bgqQou7g0xx+ooIVYRjkhbi2yFySB29oagMoLCjJxZeSYunPbcjkU7Co0jjsQHC5R+YULIQ+Tke8g5SooQTjcXqDRB/MpcerJc2iS3IdhMVCxNHVSQFfTCpBJRqBk47EpMFlANXMAI7GDkezW4SkkVVCNFZtdEFhWzBJUKSohv0+rPb9weWNVKtHYspFNhdmoeBjezYgkAmw2phbgbAqFjTXsbkOOu9QVNdn1EZshcQVLEcQKjjsTmkNzKTtTcrsGB0ssKCt33i2uz6onoFJSB8ouAdgiYEC/df8AcJcvHV9oD5QR6okzSgcqqL/MQyrdAaktkBNd4PMKaEdBoYpTEbaLzODtBUlyryQEC7hdDTQheXci5gyurUpqGw91gqhLW1SXZVRFtkPLZJJks9KTDdAx9IgsmqMapiaT6Fow9tH3hOpOwdiAMHqsnUOgmySZT6JUGxYfIzbXQjUcXrRg8i5pVMNk4mqkjxLfS5TdH3mm63ID1eQcdDtNp02gb+Jp+sxDz2Yk17bhivZFScqEM7KTxuEpdz6m1EMC2TTH/Ms42NUQInFGm0Y/HVtMDJVJ3mFeQ9SwvLC7ESSXZSZBPtH4ilbu4kYuXqB3CK8TbKR/cpJIrKxoJLcQIwu2PvITKlAAVXYwWYu2x/cGGSH4soyCu0cgU/8AKVcagGrG/wAx64wPcyWktoV0PxEC4YcqaC3fvAQIF5AfuDzYn0ggTPYDSW7k95OKhpjBTkDbrYEcciOKC7mydISC2i8quSuTnalSJDP6aVYQvj7Ayfs3pjohcVH0x1BR6oKIw7whxv8A3DKUX+ipEAeqwxjwx4DfaADjBoCEStajoYSZrO5Ics/o7QVxcz67HxHYsKA6iYBBmrtuZZMNAqnZhFef2UIJJE1YIf07aSuUXrUjy6+4yChrUeSFX4NL1te8NcnPbG4jGaNMLlhTjL0BQg9k5NaGKVG6qErA9tQGFfatwkrYqoUWmzGejRkElj21CKXv2klkA7woptslAnZhqGfR9vYxakdxH3a2ADGhRS9kqzEdtiS3mgXUzEXB2AZPNslrUYV+EozEbe5lEt6TUB/QaqMwsq7gFtDBy7n2j8TmK5KxjMQWxyJlpqqC67CV2d+Lsaj1ALiidRTqUIYDRlnCCVsijIYKh+NuI0ojcbOxPFalZDRoGWcLAd/eItNmwIyvtl1MX7eJAMf5Z46JgKqEaNG/eJK2czmKPAekJZmVYACiG3pv0/3FrlJ/4iafE6sjL+kNyBIBEruzq/yI17DF7oQL5jkdfEhxY1NismVk0FNn3lc9QyXdkxmZmY0OwkY8KEEsbkqNEO5MXjzHLdpv8wnCml7GSBjs0aqA+Jr5A6laE1TCPT4wPvFxZxkAgQkxubJP+ZA0aa4DFKXUFdfuJyMxyAEyw5QHW5WZiz2BGjNzaYeQcqF6kDpyQSDqR6geTg/qNw5C6kfEvSNI8q6oq5AQ3BoKrx7nUfkOM5KIN9ovLiK77D4isvJMBxjHYgmQvD/3D9QDjvdmQcZUclEHReq6Dam0QKMqZyimljlyA/fcXmOEj0CzIE36orMAR2EDmRQoScnEUGNQiRx13+YCi17RjY2IDAgTOBC7XUxeTCrsyfUAATcCtCFxEMSN3GijphMXJwyUw1Hl8QGhUCG6K5de11M4gDUzKnPY1UA8iNNChqX8APuCYIC7sRjUB23JSmWgoito0TT9FfgjN3/qSMaq3q7SRjbmTMAdyVcf3FbDEr5Sita0R+ozGQe9QHxnlW5nqBoQth8YT8ru7EBgraIEmzUlFDiq3EyJKitk4j0qIHllj3FR+WlNe8SSQx5EASWNKxWQL2PtCCEqOIksuMi17yFyFL1GnXQNfwhsbDvdxNHkbOo/mcx49oLYwosmzKTYRUUKbGpF3FnGtUIw8vYSCHuytCFfo2r6FeRxN3qASC4XjHuC66O5XAyY25MLkPQlYeRVXQAMDyiy7MPlewpuCchGiJLK7AK8DXfUgA92FCMostjvMDMBxYXUqL/SX/wU7LVIdxaknvIyuQx1RJhY1dgD2ua6Bb9GAodEw3UUKF/qDwxiyp9Uwu3HiNwKToLEAL1Ayhuf7jMfPiQRuKdXskxYjUh/R3ZB3YqazrSpzFave5tegfg3LgW17TS9eWPU5KUrZuFmVu7KxTjluo9XxjRWzAV+QoqbEx8bfdZmbk0O/bGKytttQmKNtYoqWW6MJU1q4WmaRaC4sO3YwySVqj+5PMKAIV6B3+oWNuiAoIWzHLiFdwRFmyRa6MsY8YA7wtkpqRCY0x+qoSOHOrh8Aos7kBVr3EnZapD1GNB6m7w/T3FVcr8NW1wtkUIPZaocXu9gQE7gr3MhUYkA9o1ce7BqpSiVpDVIZeLLuEqKNEmQoKCmUkmC4ys3+3oR0FpFhlRF+/cWpLHd/HaGoZk4utkQkDJvjd+0naeybTJXpxRbluNColFu8HGXJNqajHxh+8TbXRPshcoJIFRgc9iKgjCBsTFDs2+0pJvsqgg1mhGqGC8hUFEC743CcPdUQDLqNE02Yvq3e/iYed/AmEcN0ZI5ZfTGkmR9gFJJu41EZjqYMJU1J4tsAgR0Ti7sarhdcpIN9jEYsb8qqWRiIjof2/CVaxRkPjvYMJa+KkZCq/cCIWWFiKqOLrGqoJoGVa5Dkp/UcgcDkNxWGkWfJVRXM0ZClcRoG4vG7fkkxnMge9/EECkhjCxbVMxqlbig2Q6IO4xUb4r9xjcrLCpj43dSAeJtYrzGUVoxikuARENNVTRbxGwLIMcxAH3b/EpIGLcSajsaMN2SIUTotILW+VRmNuXpB7RKEEUB2jMLKm6iplpG5DP2VD+ZGQKaCqRLKXdIomZGCaKxnHaqijlVh/yk4cZIJsSciBiZiYSByBqaRm0qMZfV6FZlLem6ld1KLV3G5/M9h7yGsrsVDK+wRWWuXqGo5lQj/bkMCaBT+5ON1BqqqK0xopZeSZKIoR7AHHqZmCZn9VQTjG1SpNFW76JxgutAxbL3BIMZiBx2IvIPerJiLy/gtko2FBi34k+kRgY8uJEzyqfl7fEdCu/QSelfXuATTWuhDegKMWxA+0XFWyU6E5EUvyBkOQx4ncOluu8jy0uwICX6GMCEAVRlXqA2P0EipZ8xu3HtqVsyHJZLUbks1i2U8iFh6TAXASDY3LS4+HvYECmv0iMJFXLhHGm7zBiAUU11HZwzDlQEBVIFivzAMWxdEbrUYFx+Xy95jZFI48e0lQnDRs/EYnFiDTXYhlKXl3mFPcCHiAOiNwuxJS9g8l49qgjjXa4WXGyb40PaAmQ19vaFmsdAZAK+24teIv2jMlPokrMTGtbNxdlKWxLMFPLcEs+X7TUbmVQKqoOMICfcSXZQh+d0RBINcgdxruhNGR6WF9hFYZCUUnbQyyAUNGFrjQMWymzcpNMiTFkg7icnG9xip6tmx8QMi29KsHEaboFGH2AQXFGj2mHGyMCwElkLG9VFSFbWweIr0mLJIPe49aGqisiG+QazBWiJfYAklobkUR7wV5fFH8SWSxfIRO2F0Je17GQuM16yZJGxcw5byAG6l0is0LalaovKRUsPjDENUTlCj7onFBYrGz3qNZXqwZHp42BF+Y1j8SNDTsFwR9wmKxoi7MLKSRy1RiweI/Mq6D/hJsg1oyMauDZMymJ3JLMo9IuLJg02MGgdxJdi3EjUnmTr3MFlycrPYRXIrF0X/D+I5G9zTeIMR1LHWzNn0ZJLdu01fXL/ALzCxdxpp9kuLYj1EdqgO2ctxQWJLMaoETFOZDY7ROh40gwmStncgO2NhyheZkUdoSo2QWy3CkJJjVrIAwqEyMaoxdY8YoEyVfl9og69FLXYQ5I3q38R2E3smoGNW7sbMlu9CofxjpIYMnqq7ELkpmYq0SBCeibqoJpDuyLNUTqOXjxHeZShdw1KgWRB7FdGFQa9VRqAhfSQYosp7LCxAdyCIqHlY4liBZhqtjRi7FEAjUlCx2DHspMatqO+4Y563Eix3r+45LIsN2hi2Nv8D5N2H9wgTezJQH7uIhXyFUBJxfZPZKm9XJvjsTFUjuBJ5D7QP7jtrsdkJkZvmEcjGtn/ADIXHxv1XcIKbsAf1LtBkMvko5AwwhGwfaYHULREFcjFvSNRpCtjGPAAtBLC7Uag5lyMRrUzEQNGPdhbQ9MmvzCXLYuL1/xjUCjuINsFsPEeXfUjLj+e0w13BkhuS7hYUCi6oRiA9+UgWoNAQbPvW4yWrHhu4A/uEnpFn/uRgKopLAWYTcXOzQgLAJmU18yXyKoAKm4ACltGqjLxgVow0GLMxgGyBHJxI3qBhZP/AGQ8jFhSqB+oWFMni/3XCV3DUe0FT6eLf/EWxyL/AOnHQJlzzKF33jcThl7ykmLOy8mENA4FXVRF5yOxXMmImiT/AFFnMMjbuNpQKCRLYyN1+pSTZxpX0MfCG2oiWYL/ALZB/oQsefIrcHGoPUZfZVG43FxJ30yq5Ck8bMEsborGcbB3uQ6kLfvUnZooqtAg6uJKEM3xG4Vcj1e0YAO+iI3L8CKp7KGPgcnquRmKrktNS02BCSQKP4i/9N35nVyewlNrpAhlCdrJkPwNaqMOGl9NgCKyYmq46Mvll1QrIPVYAg+q6PaEo1ZEhspJ4laERWcvwg4w2mJgBSCQAaqHrvIDhtEiA4yvsX5VbszFdS3Gv7h5CQKWVQAhJN3EXpbGuwVruJzFTsajEXzBZiuFufgQoG/wUSQC3G4AJZviOLkGqinyKv36/qMeLIyKg7m5WZOVhLlhgXo+0WUOMkg94FKVFdcZ5bfUYOKmv+5jKtE0bMWLb4EClJMsJw9tyQyA6TcUnFL5NGDjVhtmCHojMxZPUP6MQQoAhurM/FjC4DgfTAKroqllLUZPorR3BZfWdQ8eIk+o9/zAl/wWyHJ9x0IhkZW9J1Lb8VFAdokqT/xhYYlF0yc/u1G3S1cln9dcZj0DsVAlxdhAIBd7gOR8yQ3sFuQUs96hoqq7KvMq5sGF52PZA2I3gCTYuK/0/EmBdgFvM2V1A/5e9R3+3j0x7wSVOk/zJp+iXIVlpfciJJPcbj3Qk7Oop2A0I+icjDk4qIvzQ0wgN3keXe1FVJsdWQWs7upgCHtCVS2mqEcYXtHkFIW7n7Rr9xOYgLZNmPfGxPzF5MQYX2laaBtFZmY6uDTEgkdo5sZI17TMbX6SJm4gtmJkQ2pX/MAop2GEl8ZXtuQmMHvqFIbjRNIBsxWTQtSY7iP/AG/3AyUaA7ykkKmiuhs8mNEQ3yFhqLyryO7/AKkMjBRxFVHRSlXZsOhVSDepquvRf9Sy3c2fh+RiaqtTXdfvqmMVP0PKymMbIeQMM63d/iSz0KqQwAF2NyHKuyLJHqBtqjEdlPfUQisPUW/qMUk6Wod7KX4Pb1C+NSBxBpRJAZhQaZwOLbe8WvY3foIZigoDcIFXHJjVRNMTyH9Q1w5WNnt8QpDTvssYCp7HUY55aAicfpFcaMlORazcAsey0gu5PLXEAyWtlCg9vzBXG4b0t/mCTAfjWhsw+DAaMSxYkeqMXIQNwaYEnkDsDcajkCKy5QAB7wlJZe8q9bBOxtWCeQhYi4+Klfyyfc3G4mIG4smhlhsjLQG7jMVMPexFY2Fb3CDtWtSoytAtDSR/7jMTl8agpjZtkxg5LoCDsrIJRozOxoGQjE6Ik0Ae+40yQyrBbJhY21QgBSw22ozFQ9+0aYqMys91JRKFNCDWC5HaDzBFkxioNVVd2bknl37iLL2O8hXY2AYDLCHkPUKhnt6YCZPSAYywF7wKTRmP4MK1BqLBrZNwlI+6osbE2mNBLaEPy2YV2uLxWcg4mWMjFasX+pOIKgThaqVoKpwFsbMNQWo3UJuDaHtEtBiFiYHUYR2KmLxqtUO8b9tESxbiQ2RgRrX5jUCsQeVGYKZfUoMMYlVeQFf3DolZPZnmFBRNyUIOysUrcz27R2MnsQI0OmzsSVbtIKLIUEnncc+IBOXLc3Wjh1B6ZUzhSwAG4shVPqlgqKLEblRceQuTWhG5GbTvbEu1ualhMaMgJMQ6AiyCDcHI5Cjj7SMkCT/RjYzZ49oprU8SNxmDMw7mMbNj2TVwSsceR+xCIrn1NUFkZD6WsSCwcmoV6omTJGin+gDIpJUncgYw4ILamcMYBqrgdNZYgmokhSkrIfHjUcREPjs6O5Y6gFMg4m4AUud6ioakiudDRuQqJtiNy2+BbBuV82Mi+HYxF2mKJUmjUR1A4bA7xmEFWPLvMyKzMfTGNOKAwMKOqgOjG6MIBgY3gwBJbvALi+ikUIu2inUH7jqMzZCpNxQByC7jqxuWIIJHpU2JIQq1nY7zAoJ/UW5K2ATF12CkmicrlgaXQiQbBDajFs/MTlYhqi0Ut9AGyaBhICTVmQcg4kldmNTEXX7oEu0yTjYnkDdRi5bWjqLVHQEg1FqzAkgXAtTohhyYzApB0ZiMxYmoTOaoioDcrFZAO/uIByDh/wD5COKGrvUBcY7nvChR2VA6l+0hz6qKw8iA5CF7yArr90VCbrohQe9SCA1rcku1EAamYwK5HvHRSf6Vyjq1B9RnEAWTIcnlqQxPvFRWQrJyJ48AYOJCt8hu45j7iCGYntC60Kk2I6hiDQXvFLx7sJZKOWs7lbqGZW4ldSbt0NJMkYxkPpImPj4j7hADcajefNaDAXBopqisLB2dQwxGwZJCL+TBsQaE1Y0sGW6lbKpYUDUkszmgaiMr5UIBbUasnFozi6D5goxHtCTI1GzYgFxy9EA6HgqBbCotyH2sFjY25MzmAgoSWtjUk/YCsQaMDJyvXeF6jujIujsSsSqQAJA9Q3FuzlqVfaMbka4/MPiRsycQaQfQEhtijUo+IKRnZvmbLpPvIAmr8VLDOSI7cOhwpdiqVsd1uJolquEmTkKhcR90l/Y2+nYahWHaF5YXYofqLVzVBYY5HXtBaIbgHjt313EnMzAjkZCBcbaJuY4LEEkmOkydeg1B4gjckZc1gASVBI+APxDUq2h7RUCSZI5tRagfiMYArd9oouwNQla+5joGvwZiYXd+0s4yrJyIlbHxDAxxzCqHvChxr2GgViSRqCxVTS7kkqRYNyOKWORqCiU1EmlrYjEVSKF3B4quy1iH3FLBomkMBI0dwlAbsYtLQUTCOvUJNUCjZYVCutTGVtUNQBl8xRR3HKeQAcQIyVjlI4jdSPOC6BkjH6aA1BxY6Ygjt7yrtF2gkUk/uHkULUjjRsGYWLd+8pbEFjHLUMpxOxf6iRl4mhHByRfvCmJsbzUJYWhFEq66kcCVJOoHaEbXYsg+DMKUiZjRwSGEHm3YGoYyZVFCty7BOxyjGAbNSASWoH0wFQueTGqhK3t33JtDrQTMiGjuMT1a9hBJQUWEnmK9PaFkRouKgoMID5CPSIpMjBRugJPLdwtGil/B2FWyAgmMVcSGh6jEhmv07hjIV0RUaFZax+WFtu8Yhx+6mVsTgqTcPE2+8KIcmkWGcFTxFSEPIEE3M5qdNCAIpgbEKHGbYAWzxGpYx4SgtjMVkq+NGTkOTiCBFZTVnZBBfp7QnYAcdiAmTixCkGRmGVhyAnQzzvkvtAOSNg69xA81R2UyQjMPWaihYfivb8xYtjzX4Y+MEFvb4iMgxlaFgywzVqxEZV5i63JwZanFLoSmPVCY2BybuF5bjYkOHruZaTJbjIT5dHRkk0p9MzjZ/MaFCj1S6pbMCthViSXFRoCqxNdo9MVizURkNPSgySlp2Q2Nch5XUVlAB1LHBmqli+pxld/EjGzdctKqEBmBoWZmQhhVEGH07rsEi5OVgwI1Y7RYMeaZTOJlPI+8Aq4umjHZ2NEdoo5d0auS0JA8j9pr9xTMy2LNRwxh2th/iFkxLxoDUKYUrKGU+bpjJREVCPf2jTgQk1FFCLsRbQpJe2K8sg8idQSCfbuY8IpGzFnECb5HXtEwhXoUFflR7RGVWDbEugEHsaisxIbQ1JpnSmimG2RXf5jVLBfSDcjMULWBv8Q8b6BYgS0yXEgHIo9YsHtMxKXOwQIbMjD7u0zG4U1ujBuxKIt1GM2DB4Fzaxj+WX0d/EnIxQAdoqAWRwU2DFK1myscHLA8ouxdCA08RGZU7nR/EAD5BqFkX16MxQ1VDEm9lZ2NmhQh4mABuTkwtRa4oIQCC1VFRqku2Q7Lyr3kOU7gyOIGyLMwqp7jcKCvwAZVJoCM0p3AtQQFAuMod6Go9BTF5ORNjUr59sL7xz5bNAdvmLcg7MWikhGZeeq/xIGJsaxpKjuRIcOycgdCTVEuwCRX2QaHcwPMOwYVuwoRNsTbJYj/AIiKyLjI5OJIJT7x/iS4DL2u41J0K2VqU3xBqHixC7PaGFCDQAgFyTDIFb7ByqKISIUN+41si3xgEEfa3aFs0+pDFh8ySQygjZkhWdbYjUWppqA1BZAv4Zxf41JdfSWF9ow5SBWoBZv6MayY7J8OLjJbe8r+JcPPJIuXei4HJTDUp+LpjXNoalURps19Y0PIqd/mGMi5FpARFpkQ6McvlopoiS0apgjQ1DKMN9/xEszcgRHo7HWhJcWBKruyahMOWwSBFPyBuwYSNkc0VkpUJj8bEjjyjACBViIClD7RhYgXKyGgSrI9sxNxgAPaK5FtV3jMdx5Mm3Y8DVhdyQG78YAJqlMegbjy5dvaGbHYsWNsCBDLJpmN1JI56Y1A8tQfmNSYrHqUdaYGoxAP+PtAXiV49jDGOqIbcSlb2MNj7QkKnTVFKHLURoQiD2hQx4QDYjFdaA3crgmqsxiBBR5b/MFXsWBZGUgUe8NCR3igq5FBU7hKjXRbYipPodUMZx2JkheXb2mIisLbZEzad6jUWhGLjHLR3HH0+mhFhR9wO5juxFETRMWg2alC9z+It8TH1A6mAAUbBMaa4bbclyoNMTxWq943Hja7MFQCbJjw4CaPaTmTiATx0bgqCW9IImcw51DxqAbLQsnAZ3G1mBT21MyFitgQVVtMW1BJlY0OLqFojfzJwquU2TVTMQXJo3MZPLalMqkVst4RhQfcCYtm5sRqoONArAk3ce5RRyFRgTjwcBy7iFjpr1uRjzllr2kpjN3y7wD0OVFIodxJIKDubgYwVe/aNaqsmBm3L0gUe+57SymRiKqxFKiEcviZlZsdBDAE5HZ5H4Gxj/xC5nILNiNalJJ94kkc6nQ0+zznVinPJqUnXeSiqSbMsHBzxsw1KuLG6sd3JVvorJIjLhUG1JiiwX2lnJa9x3ilQlhqXiwzQtsuqqCTyW6ljJiQ6sXFPiASlO4U+ylNFVkIPpA3JPPjtdQlyItKyEmTlYOPSaEUpDSTJTMoXYkXjdtCJGQAHV7kqeR9xJTKpB59OpVqETkYtokmPC8CCRYish5NYBjtCErwU3w/uC4Vj6bsRyhiKKkwXRwOXaLsSaK7WoNymmDjkLndy/m5FAeMrsABYJ/MjEq0wBja7QwTlPPiVJqP6dls3MyBBZHcwSJpIr5GFEhZUskGhcslGokk7ikVNqTv5hiOk+wMWGxZmMQtqBDdig4gXAVPcmrktFwUUxN+ugfbtF9Qp70ajMiFXtTM5DsYjZfwpsoPtUxcYYUDLLYu/wCYjkwfgF1GJ0CcdH0mz+I7GrEU5EMNw/4xZZnawsOiU/QtsbBywYag8+TDlUNw6dwdwAvM7EG7LphZNrajQiwFrtsxuRQEqLRVCXu4hYsTkAG4HMjtHcOV3FPjb2gFJABsj6MHLhJ7CEUyAXUJmIGu9QD0UXDB+I1I5cW9RH+IxieW4vIAQSfaPQkiNFiyrZjFYkbWJTIAeLH/ADEdX4x0HRITl6hSfgGJ/wBKS/o/OWv0iIYHjYnPdd9aqfR0eMfsia8+O9d1ClR1IXl3CmZZJq0WoSZ1YyID6mA/uLbxFFcoravc57pulbqBebqcvL2Nmpsen8F8wW/UsAP7uTmWuJt7NmjJ1DeiifgRzdLlVeR0Jps/T5vD/wDd6bqyG+DLGLxzMMfHqcifuU5o6P8Axk1ouFbHEwQQfQdVNY3iqZchVMqH+xK+XxQ4mFoxHzcWa9mXxOOjdrjs3ygZMTD7WEodF4vhyngcnFj8zY+ZfYg/kSoxXYqa7Kz4xvkdwGpdd5YzJyTkO8DySyEs3btNVHRlNP0LXKQa9pjUx0Rv8QVQKbYxhHHajvJaaIim9WLZAPeQGIFTGa32JJVj7SG2h7iN6ZSz8h7Sn4njLvuXOmDB65UJW8SITJ3O5S32XGbRrFRdBhMfGAtiESC1rYklfMIG4ujRTshUFcr2JlknvuEylBxB1AHtr/EAuwgrjcbjbIdE6EAMwNBTUbjJqiBJd+yXYznqwRUwZLFGLq9RgwgilfvFQIheTGrEK8iNXtM1hNGGzAqLPeUnXRpFpdhorE6Oo+1UWBsRA0LHaMxnl3J/qPJDaj6C8xG2RuMw2x9S6iTjIsjtAR8qtQuNpMlxLLYyG1cep7AmLxZyTtf+ozIOQBIktVtDil7CU/mYdHvB5Ko2ZIyi9LcpS/USx+JeUY2NAdtEDIwPKq/EMMHFkwuLF0WMQULqQHblRFfmKVyugY5HB795NisMAr/yhA33gkr3MJHUH5jyKDDKBoGSG56r/qQcgIoKJKEdg0FL9EDxIPYakNd6hlSpswC19hH9QJGU9uIjl4MtSseV61G4uRBFwtAGiYw1CNbByAo9oCIFFs0lWblSsajtegQRZr4HtJRfUBMZTuzuYH4gC9wyAetJ2kiibaJLMSCNwxysEmPQZUWOa1V1MKkiwbiacmoynUbO47oLTGYl9JDLvvLCigADE4Wf/loQ1I8yuepOSGqHqzIeJIIjGfHx48Yg2G5SbLEQTXYBA8rUGoXH1AFvaAAQSLhqvHZjsj2d7kW6DXqAMSUKbccWNkvUqvkPKl7zrtnk5IsFXCFVUV+4pMbgE6BELC5Y8cjGEzBW4jtJxNIysVkJfTiLCW/p+I7N5Q2rWYkkpVCzBqRo3EDJhGNS7HcrNmUNvcuMOYppXz4EU811CN+yU7/1Eqoe27SCjE+oACYrsTQUVDyLyFcjYjaTC2hTIP8AjUNFKkFha/MJcBdR6u34jAhUVehDEMmKLoSTxOolgSSQO0flKrjoDv7yuvJT9wNx4k5E42FixI6ghlJGtQ8i0obUBmBWyNSHELopNkbjx7wAwUG1smXAMXLiq9xK+fAO6ncVNFKSYDYq9QmIoP3C5BTMB7yUeu/tFZSoHKoGqlTLhoFxLWXIpOiJXbIxGhcXZToBMliitfmEyKMfyfmAcWS+V6js7BMAvvEy40VMgrRifLx1sCPKsy2feVWV1NHtJVMpyog3yoNC8rsQP7hDGGIIMaykLsQ0Q2L4IdmSFQdhBTdhjUMqV2GsROqGk+yrm5C/xBU1thoxzDlcVkxH2NwHshmVgamVSHckIAlE7gOhqw0BfZCxbGgNwHxNd8iI1RQNd5Bs+9xqVD2xTK4X5EXa1sG49iTq6kMo479hZI9hKcr9BRRZhyIAv9zWeJeLdJ4ejP1DgEb43NT9W/WGHwhWw9I6vlbs08z8T8a8R8Ty882Y171Eo2R8yWkdR459cZuqJw9CpRe1jvOfXrOpynllyM5JvZlXAgCXdk95f6Lonz5AtlV+Y28dI6ofdA+a7mipoewl3osbL6lQzfeH/TOF8XmvlBP6l3H4P06niO4+Jzymujo4+Kt2VPDvE8GJeHVWp+a0JusfiHTFR5GZXPwDK7dJ0+JODYlYe4Img8RTF0edep6djj4najtFGN9ms+SMDpsjDP6nx3ftK2bwrpeqFMCv9mJ8N8V6bqU5DKAa2pm0Q48i8kyA/wBxSiojjyr0cV419Mddgc9R4fmdSu6B7yv4X4nn84dL4itMvufed43V9MB5LHkexuc/474V05K58DLYN0O8SaeimrdsDLjTNj5YiOXtWpSx+NeIeE5hjynmnwZawqU6bkWHpmr69V6sBgdiaRMueq+p2Hh3jPS+J4yyEF/db7R+TJ2C6qcJ0QbpgTjyFDfcGdD4f4uMjrgzuCx7Ga45dHnPlk9NG3HIdwDGeYvZjv4gDtyY0fiZak0RUmhxUrBbbWBqEMlUCNSHQhtdoDECqMnE2/6NR/WK+YrxEK72T27iN6VS2UX7QPGMVupQEX3jSoaSZrG0aAgcyu6IhsrLphZi2TmfuktIrS6JXk/eMFewgAKhq4RJsFRqJv8ABxHYqY01fiEcTF/TqJQsX3HHLuiQDB2y2YcRVq7xlnH+PiIOYg3faPxZPN2V1BWuyVBNiW5ZW5ExpTkBuMpOwoRGRXBtTcMiZRoeQUUKvePxAqlnvKaHKe8fjOQ6btHTfYtjijG2u4IR7uQxK9jUlWLHcGmhvkpbH43KHjUsVa1X9ytjGP7mbcaMgOhcnJoWSZIChqO4xQOwUCQOJG/6mAKDdxuTYJjGAWiQP1JRg3ZQDI9NWDZmC7DDXzJplZjV2uwIzGuNRs7i2AIsP/UleKrbMLktMMvYbgtoE1HoAFAI9okOeI7bhqWB2bjSYsshi0NVCpQbBkAgCLdidDUpbJoaWB9xI4A2RYEWmJ77wiT2BlYgmugu39QsWYqaKgxXc1ymAMD+oYg0WvPRjtZHmAvQGotSp7iYLOw3/UpIVtFk+oih2kNivZG5GN+H3GRkzsx9J7GMLGqpFEnUZ6TqCj6APeYcgvtAE09DCCK1D8xiKI3MxZQ2moycjANdR9j0yAXr7dRqIoALGrivNvTXUZjIydvb5kNDUUMOUXowwxY6PYRNMrVxBhrkA1VGCAzk6PTAmWVyGhQuKFHuI1VYLaiPROJ3zYzketwx0WNTy5blkqBpRZisy0vK9zvbSZ46SXornGQ9Cqkjp8atyVrMhMbuSaMJkC6Y1HplJtdCcgtqI3M48dESWDhrGxMC8yQTFiVl+kFhxpQIlguQ8SdxrYziFk6gMAW5DUVEqTiB5Yx+2hFZAwJI9xLBUMNmU8y5EfRhgmW+RNbH4WYISVhJT2feKxvkI4GMx4juzE4kLk/CHQMprdSnkwkMOWhLgbieJX+4vqCrCj7RUzRTXsr5cTkjjZB+JBCopSoYyMpCiwBA5cyb7wxYRkpaSFKQtkLuKy8srAgVUtehNMveAwHftJqh3XaENlYCqqB5mNh6lmZFvJ6YwYGbGAwFQbFJpdFN0Vm0sQ65BaqNS11GB0P+2ZUD5EJVtyckClXZAZ0Xi/8A3I6gs6CuwkZzk9xdwuLNioGT2WuRFcZHK8bOoHAMfUbjThYGm1BJCHQuDjfRSmvZHlsDqEVc6u4ast3GWOOpFNGycGVipB/UAnkfujuPJrMDIq/FVHlodRK+1sEVM4ud9hCZyTxUSGyOPSe0W2CkkQdrXE/uJZWSt3LHm4wONiQ7LxuoKLBziystAEiYvEKbJBka3cw+URwJNn3lYMnNUJyl/uVhrf6nB/Wv16enxv4X4SRzOsj3HfX31fj8N6dug6HMC9eog7nkuTq36nI2bI5JJ2TNIcdbZGaGZs3U9Tk8zqMpc/JgcWc8UuCjcz+JbxY1H2Cz7mE2hRSu2huFTgTlYNCYPGM4FdOQPzKviKv5Zp6FTR/6rgeKE3McXI6VNHd+FfUPX43U5n5IdED4m5z+P8Mi5MDXrYueedD4jnWsfe5ucZOZAzEiRgkaxnJdHTP9SDIT59gnYqavrfEPP0jXKq9L5i0LOu8PpPBuuyPSI1HsYUl0UlKexWI5A9rkYX8TaYer6jEPRmavcTdeDfRWbqByzKxY9tTpej/i/NmHII5/qDjfZpGEjg//ADPLy4kEt8w0z58m8jFhPUul/igAWem9X/0zY9P/ABMw/wD7ZTf4kYI64wk+zyDJkbySqgnU1H+rKMUKkXPeOq/izyEbIMABrQqeVfWH0zl8PzM7Yyjg/GosWinxWraOK6zrWxueLEC4zpOuZyHDHkNiVutxBWt+8p4mbHlBW50cM8Xs8vyIJP6npHgvjI6xRhzmnUAC/ebgFvixPPuh6lgquDxYbBnaeFeIjqsCvrmNES+WPtHPHklH/YucmZqknEQAxEMMrb1chmJ7G5zOddmqmmiemb/d2O0nxl+AQ4xZmdMVGUX8iWPH1x+RjNcTcKUlbE7RoGd8nqcb+IJKromSW3VTPLL9v8yMUioyskAKLrULGyOda95BxlV4lrkIlGwI9GlIfzS6Asycnl8a4nlF2pNgVUYETJ6mNGCYkxYWtmGr0KWTk9I4iAnz8x2WmNRQ/wA/mSa+1bhpRHpiy6q3fcFTYmGn51GqaMVxJIIaZypqYyrRI0qzG9kfiEE4EHZkK5A7xmMhj6jUTbG4xfZnBidRq+Yu9VCTEn/uhlVAoG4l/RUkQrg7I3CV1b2gNjJFgzApABOoOhqKLAClb3cwKfiKGQg1GplYmiNRNIRIcAgVHrjGQ2RqIdd3DxuydzUaSHpj8gqgvYSVyMPugOxK62ZCgkeobjwAcuUE1JKEmxBVEIoDcYt1UrFCCViurmPsb7yK/wAQXJulW/7hQnVgMoJBsw0JGu8gniPUJhZDXEER0KgwXJ0I1SAaYQMZI7f5hBSb5Hf4gTQRax6VNSF+eJmKQCFFwytmmPaAW/ZgycsnqFCXMaYSttKdKCBxMtYmXjuAZBUob0yeOT7t1AZSTYhg8VpoJlJMwktqtR2Asq6WIJHdbkcjeiaj0JplhVdsn3VXtLCkXWpURwW5buWFKd12YMhSp7GMrEWISKWG/aCjNXqP9RiEX8CKkytM9Hdzj2ag5M4yJSrDzqp7gkScYwkUhM9Ds8nGwcBIQgw2wYiOTn/MQWKMeLakO2V9BtQxVBi0RmOIWq+0ro6hte0zKDfG5AXiKrfvLitCbI6h2yDivf2EVjXIPvje3q95Iyjsy7kqNMMr6MVVAJMr5zjZgL3HFuTUAYvL01uHBqKUQu0Ls422oqH5wK2qw3C0AwHxEuQhpW1EkzPESWyM59BgeaFetlviOZ62oJgviUsXqv1BpM1hUewueJ0JNBhEYzbHQqEmO2sg1DC4+XxBRSRVq7QrL3BIuLZiRxC95bYr2iyl3YkOOxtspstKe1iSnUOEKGozLjsH2MQcFKTZuTJUJCH6jKGIABuVizNuvUJb/wBPXqbQiwqcjRqJRT7KUWVjkDGn1Dor9vEx4xYid1/cxsOEA8W38QqPoKorsFY/buJyYnJ9IlpVA0P+oI5FytEVE4gq9ldMJJor2h2eJVUAA/EnM7Y29O4aHmvbvJlE1iqZXVGGybkPjDdq13hMDiYk9op8gvkoqvaQ4pHQp62KyIAL7QHqgPYRteYO0x0FAR9dEvFiBhxnvJJQAiu0LhY0aMXlBRdmNMm0JPlkkXX9TnPrL6gweAeF5MqP/vtoD4m9zZlRWysaCCz+p4d/Inj2TxHxJ0TKSgNAe00hTdMy5G0c94h4hl8S6l8+Uks5vZlB+qHmeUlX2mZ+pXDhDMLMp+G426jK3UEgb0JryLFaYcP/AMjo3WLG2k9zOi6HwxTjBAuxNJ0jcswBnXeGkJh2D21ONv8ATtxxNN4n4TiOFubHl7TnE8Mws/HjyYn4nY9d0/V9dlXpsalVY7IE33gP0RjJV/KJ+blRi2iowb2cR4T9Mv1GblRAWdx4f9Fq+JLai3tO68J+iMQohUX5nZeEfSOAYwHRWIOjE9dndw8Wao848O/jlmAHG/k/M7TwH+M2yMqDDoV3novhX03h5LiZAOXYid54B4D0+BVYLZutiQ5L2ehxeJqjjPAv4v6Ppsa5M2EEj8Tpcf0lgwLfT9MgoTvcPhJYKAQAPiPbwghSKv8AqL5EdcfGijz7F4SFY3gXX4l/B4WpGsK/4nUZPCwD6Vv+ozF0YWvQBUyczaHBfRyvXeA4Oo6Zgca86+J4v/Jv8ejq0bJhxnko2K7z6O6vp1APpozn/FPCen60f7uPvrtOePLT2ac3ApQqj4E+pfpHN0eZ+KMCG7TmcvTpibhkTiwn17/I/wDHnTr5nUYenBJs2BPnH6t8BHT5yQhDBjdCdkWpK0fO8/Dgzjm6jMgATEQpNcp0PgfXKGUcwpPufeR0fSDqMR6YoGJ/ET0XRBupydI1qUbU7fGSk6Z5Pl0o2djiylgNgj8RqOzH7NCVuhwNjQInqAGyZbo0QomXLBRlRHFyWrQeGvNDMNAyx45kRukQnvepWwsFccluzUf40it0+OlJAMwo6INcjo0SkexmNk4juZJQLsLUwgP6RM3xtuzafGoqyeXJQB3kociDtIx4iuyYwtffY9o/9SI2RzPxCXi5HsYvmf1H4hi7ltwckyqZOSiKAFxePJR4ssLI4xEkgmCjrkPPjR+JFq9D2PA+DUjLhWuRIuFjp/kQmxKe7Ey1L9CmxAaiPxDA5bAkt5YABoCMxBeJoyklIWLQtGVW3LKtiK1oRVIT6hDTGp76EGlQmWAFAvlX4mY35Ag0Ik1dCzGIvzqKMRO/Q1W4nZ1DORW7e0SFYH5EzzlX0lTBjGWWalqWFQoBZFxKDVqsMMy0TsyaENbhrZJgOuQHkOwhDKfcCYS7UCKBguwMx5G+Lljly76lUFkb0kx2MNkPeppQFjEaOjDLEHv/AJgIvBSTJLoVNxgmSp0eTWIGR1Wt0IJBOgInMjKN/wDcFsLosFwQOFGGDy0alfEECX7w1dACb3FTGWQePZoJcgg3RgI197hUvejGTQ9TyIJgc/8AcPsPzMFd1atQVLMLIuoCaZcXYDWDUMEk9ojFmUCiajVdSe8BBlyNgf1GqS6+pK/qBon0gTGzZF7f4i6HY5VxKPWYsnHVKDMGTmnrWQvAdoVYx2LW2UR2NluqisfFxVxjMBoDcaVBQ00NgCT5icfUYtb4+o1YmcVrYgZtnqGTKgQ3v+4GNlcck0PeLyYu9AiTjx5UW1Fz0UmeU2kMrGFI4m+91FY6J2KmZczLjNAFviD0/UZD/wCpjEbTa0RaYOdlRqUbmLhyfcaoycrIzAlJD5iVAXQ9pcI/o1F3sQ49W/b8zFUZDobklKHIm4eDHyv1VKcUNR/GQxCarcEuPuIhOhLVdmZ5DFSSZm1RQtsnOvQKlfqVLGlAj2QIKuAU5EGJhoRhVV08Y1Nk4DcJsaqLqKxOUe1WxIIbD41YGogYshewZaDeYp9NH5kIqr3Nn4lYsacRZx5AQCBRmZMDcbUxxDf82oRDs3IBTqQ0y0yvkxsn3GDQK2D2j8uNcumeqERwVFoNdSGmy6RXzuAOPsZUSgbIuWsyh7Y+0qq/E1UtLQptxWjMhBOhUU4yBgR2j3DObCxDnKGoChFKOjPNlvCwK0yjt3iy1ch/3JDt5dVK5Zka2mTizWCyII78huPxcRj9S7gLTixJLlATJbNqYjKoIJMrnCQNV/mWwVy9x2lfqWTGSa/Ez7KVoVRXdyL9O+8FQxPI9oXLfYy0hNpA1uxBzBGFE/5jCy17xeVEK2BuoOJNo43678WPhPgeXLjA5ZCV7+08G6nO3WZny5W97qel/wAv+IZBnx9FhelVdj8meWdQrYMRctsidHGopGUpmr8R6rI7eSg1ftNv4X4e6dOGZaJF95o+lRsvVciffvOtwEJgAJJNTm5pPpHX4kO5E+HqRm4qd/md74H0gy4/WRc47o0x2rFanZ+CtwQUe8wi37O6/Zu+m8J5Z1YAVfcTt/DvCycSNj9Nj/M0f03jx5cxL2Qoueh9B0uFsalEoAVNVJRR0cHF820iPCvDiCC4J/udb4X0CAgLKPR4sa0KnReE48YcEznnzWe543jJUjovA+hxonNlBcn3HYTqujxqKpRrtOe6R1QjgZ0vhhD1Yuc3yN9norhUf9Te9CvCvTdy/wAFfVUZU6Y6oGpcxsQ2xcrImUUKydIir9sp5MHHYGptMzl/SBK5wk7YQslNxNL1PTFz6Zrs/TsPuWdUenWroSl1fSY1HI9pk9Gmf6cJ4x4fi63C/T5cYawd1PnD+RvpBMHV5uOMcSSRqfVXX48eJwzJ+55b/J/gWLqujbr+mTag8hU04p4ujy/P4lL7RPlXD4cOmzuqiqPeanxnp38P8RxeIqaxueLTs/EOkyYuoyBlrZJnNeOth6vpMnT8ltQa/c9Hx3jNM+X54OUWjoPDujyZ+gXrsI9FbMTkYobuveI+hfq7wzD4N1HhXXsfPXSX2k/6g5iSRQuej5PFFxyXZ5nDak4lrpsgdhYEt+MFW6REDUbu5rcTqmQCx3lvxbJ5vSqPx7TzHFndB/G7ZpHsGrv+4QRr/UVbLsrqMx5W/wCImbbOhTy2gyWRft/7ivU27IhMSwutyBQOu8zbaZadmDEMmrNw2x+XRFmZjKht3cc62vK9R5NjapAVzALjUIIDtNATAUdaMhWcekLqBn7HpyqqqCLJI5GGGIQfPxFqCxJqoWDkzDhT3eOxjiKWAVTjTxmJkXS7l2/RORIX5EwMR7aks+7OpK5cSr6gIWyrJVuIuu0chBFkSucgYEA95ivVAt2gpPphsuL3sSQiMSxG4GNtWIxQTZMWFgTrQBqoXqIEV5iBqjQNWJajQ/8AhhBVeRMk5AwCgwrBXjqAwoXQMKEmGoI+DGop5cmHH9SuvcEWDLC5DW429BoeASLNkfuCFU9hB84oBy94wOrL6dXIM55P/UwOeehqDnVMm77TFWjZMLgtEjVy7FByT+wAVUx2AYCpezMXISSt6ExuZ0pgbNpjVY1QEZjVmOzKiM4sXHYjkYV8Q2Tii2ETjZO4LkqKHYxXNgwXjHc7WquoCqkRiRW2ZZxYwf1EY7N1H42Ze8a/pDsdw4kGS7oo5kaEEsWGjBKE/cbg6GovsPzUyj0akoFoExa8U7Co8MpSmEO+h5tdjcRx3QEZlBWiBKYNG1McMjuQDCmHyIYMlHdwuXmGtiBlob5XUwZF1YiBtLbPWFII5MLhrlFFQKuA6Nfo7RZdlHqFT1nB2eFlEXlVd77wcCoLF79oD5XZ6ABEJSiHkxowxaDOKGnErC23K2e9KFoCObJdeXuBkZ21w38xbNFNMrnl2ic+R0+0ESwbB9XeMHlZBRAiTYWhGC2UOdmPOQ8KAkgYsZoVIzMgor3lZX2ESq3mM3E9obEVruJJvvUAkq2luDprRVpdhAqy0/eKOL1FlhsOR5MKqHQIoTPBlYqQJDIl1cUMwINKQZYchVrlqK5LWpatCwQrkT8yCUYEciphMxQcjEBRlsqTciStiujLHqVmsiV2JohTG5Oncg+qonyig2STJxQ8rKuUuG9RmKuEkEHcdmVD68nYfEBPIAv2lUiosmizd+0r/fkKv2jcudRrGJXFltXIasJb6GHkLC9oo77qY4syr2ii5Y7EnGuzSEsRTtko0JNOU77k5XoUBBXNxNERYlPkTFpkOPv3iswOQ8iNSxnQZByUSlkGZdA6iaXTJc/wkAjUb5JcWp7RQLVuo7HmGMGh3iqkNS0JZHBqovMSu/jf+JY80Fjoyt1h4YcuYnS42P8A1FFWxpnz1/IPiWXrfHs9gkK5r+pxHiXVu1Y6/qdl4sP9f431LY15eo6ien+jOp8a6p+oXBxXGO1Tq+NKOiJU2rOQ8PUqwNdzN4HfGAalfxjwzN4ZmZGUjiYC9YFw+qya1ODljs7+PSo2vT5nYqKnX+BO+QLepwvhvUnJxZtTu/pdsWd7OQADsIox/TVS9Hf+BPk6dlZTYPeeheD9YroPa5wfhgxHiqnc67wjljIsWJz+R/D2vAuK2dn0yllBDTcdByVgeRM53pOqBpROi8JD5GDbAnC7Z6/HOmdH0eSyOQPadf4Ll/2xr8Tl+mGIcSSLnUeEnGFCgb+YkdPyo6HpW9U2WMIF5GaVeoTCwHf9TZdN1eFwFya/c1jG0ZPkHMz5X0pljCmqf/EnE+IglCJr/EOvydKCUok9rMtRZPyWhniviHhvhqF+r6lcdDtc4jxb+Q/BFvH0mQZCPe5zv1x12bxDmjuwPvuhOT8Ix+F9OxHUFWb5O5rHhyOafK0dD1fj3W+KPzVyq9xK3UZzmxNh6liVYcTcbi8Q8LRq85VUEC67Szm6Req4v09OpHf5EJcOLtnPLlm+0fPP114W3hfi+VWSkc2v5E8L+p3fD4lkbExUVRFz65/mL6ZI8KweKrj9SXy/U+UvGuhfqPEcvmL3OtTq4UntHjeW8dnG/wDmmfouqHUoe5ozuPBPHHzLjfI143qch454RlwK1oR7yfpTPldz0N9+1mdkcpLZ5DcVK6PWsZxkrxIIOxHdcrnEGqtTT+CPmwk9H1KnkNgn3E3fXsBgQjtVHc5ZvE6VFSVs0rOSeJkq1fbBYKx1DxoWMwUrNEkuhbZeJ9XcwUsk0CI7Ngsil3AAKHYuDkiifKuiSBGKyD0cuUB2Vu1zFVVHIyMvwTv0PW/+OoKZW2pEWhLH7qlhGxKADtpSEr9ko1jtGBwB9sBciXQ7yT6h3Ig1ZRmb1AbmYQB/xih6XAuxLaANQJqWnQnCzLDGQ6aoCS3BTQNmRb1+InKycaYAVRb8jcaqhgOJixfupjsftUG7LHYyFFNDDj27QOIUciLuQGQmjYgpJgGVRjcYtAEqYggdhGKPRxH3ShWNRr7m6h8BfeLx6FHvCZ2IomJ6EE3CqU7kBnB2ZmNVvvHkhAGKaiSbCkShDKQe8FMzKSD7R4YFOSrKzsTk7QxCkOYlh3ieWTty1GFqAgZHZTxCiS0gpIzljC8QdyefFCQbgjGtWwIP7hoijue8MWH/AADCWbJZlpMnqqog4uL3cLGxL0FMqLAs36rr2mdx+4IrubjFahxXcrTJCxoy7BjkBPcysHyBqOhGjdeuIaoso4uie0liFNyuEIN3UNh5mgTqAmxpojYgoyk6mBlqjuSiBfUY02gxvsO2PtCx5HT7hGY2TuF1DDIxB47Edsj466CBLpz494K4+b2VqNOROwgjI1/bJthR6iHcH09oGbC+UWfeWlTg5DESMjcBdCp7FngFROn4CyakNi59/wDuHkYPtXgjNwWmjsqokjHjxgW9Ri8asNchAjizRv8AEMYgh12iyRcZJCMiqbsbiRhFkkhR+ZYyfd6R2iyyMac2fiKLTHkLyHEFHE2YAQt22JY4dO9qNGBx4HipEdIzcn6BVRk9LEaiMoZcnFSOMtnCFUvyqVeQL1YMKoM37IDAirggOrd7EaVWtCQ6ELRNGDRp8rXoX1A5J91QMaUoNgzMmFnFc9QD5mMcALk0wUmwshDJxYipmFFVCVqKYZXADAbhveFKX3kuI1P0B/6mQgkxPV43VCQe0lcjY3sC5mbrRk9BUX+JGIWmU0wtkxEu2/iLHBVKGrlxQpBvUruiAmhcbQ2q6KwRSaDSePHfIWYflIDZFXF5F36W1chuiot9Mklj3YGLOQXxkkkfMVyBf1C4rbL67A81eRBN1JOhyoSHTGmgNw2ZWSobHaYrGcmRuNgAQMysuTiWELGGRywBAg5WVmLHvE0xMArsAARqJrgaGoolhXFT/iEebitiZ20OJJwnZHYTWeNM48N6pMQtzjIAmxbJkxDj7RGYo/dbsVCMqZf9PF/ofwvzfHOtbr8P2BmozuvAOgwNhzZkAHLIR/QlDwLFjbxTxnIQAURwK/ubT6StvDd+2RhPVe+LRzcc5S8pt+kcL/JP08uNnz4sY4uLGp5O/T5UyFW1U+mvqXwpfE/D8mHy7ZFNGeDeN+F5Ol610dKI+Z5k0l6O+EvVmmweZj+2xOn+nOpyYs6bPeaXigTejL/g4H+oxgNW/mZyX16NeN/dHsvgeTK4x8wtd7E7zw90OMGxU8++nunzeSuQ5fTQoTs+hzsqhfgfE5P+n0fBPSOt6DybDHQm96DxnBhYo2QKV7Tih4gmPGAXIuN6fP5xBDWT2kSipHSuWuj0D/8AmrpOlXzcmYOTurlbP/MSdL6OnA1qwJzS+FdLmQZerc/5oATR+LdL0HT5gOiUMp+N7ihwGU/Kkj0To/5d6rPlW8gFn3nc+B/XeLr1RepyCz+Z835MufC9LiIB/E2fhv1Rl6F1R2PH5+JsoJD4udykkz678Iz4+owh8WXkD+Y3xHpsZxtkaiQvzPLf46+s/NwKr5LB/uegZuvPUJxViQwnLyctOket8EnG0eL/AMheI+IF82LpUbit/wBzgvpv/X9Z4jw6jI6kken2nuvjngGPPyyrjBu+QM1fg/0b4Th61Os8tuSm6/M6eHlSV2eV5PFyydRLfX/QPR9T4R0+fAOOVsalh8mbP6b+n8vQYAmeiANXOn6bB/qMYAFACqllOkKrxVdfmVzTz6Dxoy4ljM4X+R/A08S+lupwnGBwxtRHzU+M+t8MTB43mwvjs+1z748W6Fuo6LP05x8g6Efganxx9aeC5PC/rbL02bHQOU1+pXhN5YnJ/leOuPNI8++ofp9Oo6M5lxAnsdTzvwTol6P6pw4XICZMig2O1kT6K8Q8FC9DnAAruJ4P9U9Pk8P8ZTKtAh9ED2E9mfjSh2fKR51Oz3/+Sf4wz/TP0/4V9SdNmD4upRHBX2BE8+6o5c3Thhq+8+hPonwTxr+Wv4b6XMMi5cHRYvKPJthk/wD+TwzxboG8NyZukcANjyFDr41MvJ8Dk4YZy9nP4P8AlOHy+SXFCW49nP8Algr8GFiR12DJzWKqJDNdqxnl9HuRnGhzlt8mFxQLNYMkliNjcw8uNgSZKx50YMIG+UJ1DjjyGoKqxH4jDjK0yiTGH6PKxPksuzVRyYxXIbqNYF1FihIVgpqpVIZCYjfPQJjeOhe5COrmjqGaAoGJr8AX6Q1gXG3e9CCqqB3EkJyPY3BIVsLiDuNxjmvbQg2EHEizBtu4NCVpghoxhTu9xiog3oxAOUj0k1+TGYCbIYCLG+h2MXTWQOMzjjZr5AQWYJa7ijTHVwpoQ+lB0bjFCH1EkGDiULs/9w2dRX/4kPkrsDCoPqB3JUv7kVBGVX0ISFexBlKafQ3QzzMf2jvJ8xiOJOokKga+MIkLsR2K6H4y/blQmPo6IMXidm0FNfqMbkDpY6aIzIRXY+0NsZBsi/0ZAAqy1Q2elNHUKC2IyOzGhqpAL3owU9R1uMQMCRYgLLH0NwvyNuY8AA6lYEWBezG8Mo7N/wBRC+VscVFXIBIOhMWx94mclBuowyRhYsxJAEJVPIEGRyRjsbhhSRakVFoWQ8tsBjGrZXVASsA3Gif+pZRkCi27RizYBsHiq/u4w6x//aYjhyQB/cjJXuIys3QWJyq0puWE9QtojEUFCquPwsDko9otgpWSBR32jPMKj01GOqnQWQECr9twFjfR6lZZr7mY/PJYIoQgAMhIah7TDlOxQntHzabfsUMNITQldsZOmEd5r3R1uE6MRYANbi0WpAYlcChIfz7oQ1cILI4mCuZXYkmh+YUiu+jAr/ax7xORBjbtC89UY2eUZ6cjcjX6ipLoabEFUVgbO4OUMCCBHOuPlbmqk5SjKOFGUPX6J/1DshStGLxYkDEmNGPubAMAMuw25LG0v0B2p9DUxyzKRcxit99QQRdAykylvVicfmc+JJjvL4myBMakoirgZcmi3bUltlYv0KzuVcUJD5A6AEbi2Vsr/dFuXxnjy7SW9Cpp7LKYMZXbe0ovgCsxWPTIxYWaEnKUN1ElRcXRVKZAp9W5GEt2b/NRp173AV23a6ifRVor9WrMwqJ8q121GWs7EjtUrutC/mKMUxPYvJjdRd6iLB2o38x7ugFFtxY5AelbBg4oS2VcoyDbGAC7DRMsZ7b2i1PBbKbkNNF1sPED5ZDN/UUxUbHtC01krUF8bCiBItg6AOUkUpMIZHFEzOBAJJ/6gXftFYNMLIzZD2H9ROY+Wu41WI2NRHVNrle4teik0ed9B1X+m8V8W6dVJfIGubj6Jz//ALdmVzyIzkf9CUvC16DB9bddi6/KuLHkxN6nNCysP6eB6HpuuyFgcYzu4PsVAE9xxS8ZM8uGa8h/h0nX+IdN4fhbL1XUIiKDYLCzPEvrPxXw7rutOTpHFMT2M1/1/wDVHXdV1j4xlagdEH2nDp1HUDIXZyxPzPGakj2fiWKaezoWJc2ptZY8JPLrcSgn7hNJi6rNxFkATb+A9XjfrsfOh6hImnRrxOpI96+nsQXosK2bM6CygBupofpzPjPQ4W1rtN8mH/Ua0Nzgl3R7/FP6i83VF6UEn9TY9JlTo8PnZHNKLuP6LwEsnMo2t3UtZPpXrOsw0qngD2+YotJmuTZyvjf1R4l1qcejXIuM6BAm9+h+iy+IZ+lx5y2R3YBgRN94V9I4HxDp+qxhAujqdt9LfT3hng2cdR02I5Mg7EjtOvjko7OTl4+ab+oj6k/j3pMWBXx8VYrevmeeeMeCL0ieU+Kmv7p7X4nkz9YvrQmvtueefVWA5ep9QriNyOTlv0d/ieK0sp9mu+ifE/8Ay3qVwu5C2J7T4b4v/qcahGqho3PBcOLycvJaFGegfR/i7DIuLO9i9Tz+VW7PovFkorFnpxU9Un77zOj8PZcl+wh9CFOLkp7i9mbLpCr/AO17n3mC0zafHF7Rb6NlxKAe0uedjY0PaVl6ciiRYjUxkfbjm6mzlfCrse3Bl4mqbRnzT/4hfpx+h63F9QYMPbuQPcdp9GvyUkEUCZxn8nfTafUv0v1fRhQ2VVLKfzU28eTjyJnH/kfHXLwOJ8pn6vxdT0vkOKdhR1PGP5FyD/VNnV+zam++o36zwTxPL01kFHK0Zwf1J1mTrWLZCe0+mfNcE2fm/wD4z8blaPbv4I/mj6i+kfpfqfB/D+pDdNkJL429zK3jXireKdXn6txTZXLkewJnmP8AHvUp0+N0B2e+56BjtunGRlsHsfmdHPzrn8dRPN8Xwo+L5b5IR0yjmIelqosqBsC4zIjZH9JoQeXlvx46nzcuNps+mhUgObFewAmKrjQbvHZktPSu4GNuJpqNCZN0W40SoKij3jFutzFKOwJhZSAPSBuNBtAMSou7HxILoR3kqwA2IviMjFb3CmTbY7HjtuQ9pmTHlssDr4jMQ4LRjGZaqqhsuC/RC8a3ow7IFgmYWUmiISstelTCzRxSGYuLAkrv8wlosAQIGOz93aGTjVqiltaJUfdk5BQ9PaLDkHWjJbMLtRGJurXf6ii5R0wf9CChtsfaSWQekCjJ5Ip2IGQBxYWaKiMzA492uY2S6CjtAAHOqjcnlqorvM5QUmSpv2SilP7jMbWdRa5C60JiYjjPLkf1Gko9DUhuRWIsNUxcZK+pjAOS/TUkORWpRVWizgcqK9oWQsTY1EctchGJZHJt1GnfYsSUAb0FqknG499QVYM1VJLkt6gYNofQxKUWq7kshb1DvJGxqLYkHZibE9g24fY2JaTMALIicbY2O6uNaiRxW4WSk0SMhc9oQ339pIQd6qYwXvNFFP2J79AswDaX2jFd61qArJdmGGs6hggQ3G2Ru4hMp1V/oSFIFD3hDJRsLuS1RLX6NxAgWbEOw25gyFxRWFjwFj6TQlJESTogIDsxmI8WGrEBiqMQYaFQboyqGlqy6N+oN7TC1CwYhGLGvY/MeUUUoqQ4jhLZ6k2Ojam6iMxZTYNXHDv3qQ2NXNnsJ7B87X4ITIoPqAMsHKvEUABK+Tp8dkq3aThAcU1x4poWLMysoHayZGFAy+sDcs/6bzBSMBXzFZE4Hjy3JopKUNlfLgY5PSBUYyigBqoBZlJ5AmMQBxZ7R4WXnZUzNZpZIxuiXcPOMYJC3czzFXHwYbiorDLYK4WyAk5KJgLg4N6jf5jceJiQ3t+YTOEBtAY6Y8VDbK+SuwUQQij8GFyLN2oSSpHcQD/yYLUULOMN/wAriMylRxIv4j8nICkNRTK7bOyIg+ZvoSUyAggVqC2NhfKiTLHJkIZluDldSL47io0UnQvDgU2WMHMABo1G4GZu60IrqgDsSWEpaK7ULAMlQQICA8iTGNfDTDUkhNyZV6osp5ewlPz3Y/iX35sCp2Ihca3xIj0bxjT2I4KzBzUw5FGpOby1sCxFDGjGyTM72bKCaMcICCpuTkCFdf8AxBOVMbcSJgzgtXHUQJV2QFXgd1K75ivpDXLGREyKSho+8qeUASDuL/o5V6CLE99wao1DQjGNAXB5F8lsNRPEmNvsEgg2BBzUUIoD9ywz49hVlbOnmLQNSI7dFOKo8e/kbP8A6L6gXMGI5cQf1U6bqOoTpPoduoWl8zASD8k3OU/lfE/T+LpkfYNEf4iPHfHfP+g8fR48lPj70fadPLNpJBL/AFVHlviXUHqcztkyW19ofSdN59gAamnfqG8xv/q7zpvpI4Op6nycoOzr8zL5Muw4ock9CW6DNjFvjIX2NRnQ4h0fWYsjDRaekH6c/wBR0j4ig2LXW5xvVeHhGfAwp8ZlUpLRq4S42nZ619H9aOp6RVUg8QJ6P4OqZAruO3fU8I/j7xPJ02f/AEzMbH/c9p8E8WTPhUKwHHvc8/m4nF2z3vGmpxVHo3hOLG6DHWj3E6zw/pMYxBeCkfqcT4F1i5VDowLDRF+07PwrqCyAX29pwt0z1+GEZLZuMPgnTZSGfDys3Y1N90vh/S4cAGPEFIFWZqem60haDAVLmHxHlYPtqGbR2R8dvoT12PEhYdgLnBeM9C/U5WKLZLXO56xjnJoSri8OxuwLqLh8jejeHjOCs8e8aw5PDs/lMBubf6c6m82Km3cofyOR0vi3E6C7mo6DxoYOOcOEC7JMpQbVs1UlE+m/pTw3H1uBcuXK1AXQm+z9Bgw42yJakdjc8Q+kP5dw4cI6ZHuvcGbrx3+Reqz9Hy6fLRJHvCMF7Rb8i9PR6f4f4liyqcb2GXW/ebLFWWipsGcL9C+M9P4p0F9TnQZfljOyxOuKirCvkRSaTC1VouZejZlJImn63onZXwk0HUjtOl6XOmZK/wC5Q8TwnGbAsntNI4vo5ubkTWJ8Ff8AiI+ll8L+o+pzYcYxh7aqnz14y9pV3Ptb/wAUPgS5P/3BUB5WDU+Ouu8H6vN1LIvTsVvRqehCblCmfJ+f48VLKjV/T+TqVz+VhYjmantXQYfJ8Dw48mzxvc5H6W+lExsmXOgUgg7noOfAT0RONQOAlSnKMaPI5VFUc2+jQ+YvJvd2f1G5XU3y9jqAx4iyBOfJs045J6FK73RJMjy7a7qGQWPLt7TDjBGruQ0jdoYuE8aU/wBweLISHOjIxFwaBIjGxZGNlrh0K/QntkAuxLPDFdjRgt5nEDhX5kE8aZlqogUWg3ViPToTFAIpmIIkq/PUMICOVdoskLaYPFBu5nD3BkOdUBJxmxsGUKTrthLz7e0lhZ0dwua8aVb/ADIQ+q6iehpp6GYuIPa4TFlYfmL5OraEcvJqGSwYJg9BBAPU5qYuUcqAFTDjLeksSIJQJ6V2YzN3+BZEU7XvJTGGFsLiycg0xuEMwA4Ad4qGv6SyAbXUxVyk6YGGqtQsg1B5BG7GzKTovFA2ytRX+41TerEElHYD3h0qmO0JNxD4AAUZhehV1I5HiSsWrgtxYXJD5P0fhYA8jGtlxgxCWDdWIxlDepdfiGhZ2Gr8+8FkDHZMkc+JNiKHM7B/cTQNr0NXChIIYy5jAUC9yrh4t37yyO3eWolp2FmZQLHeJxnmf1GG67CYAP1DEVfoLMFNESEem7Q+ILbNwhi3YqoraCkxiMvK5hBLEiEFVRtqManGr7y7IcQMeRh6b3LIZ1Er1bcgI0u3GgIW/RnKLWxgAu5aU42UdrmvQ5TsmNXK4HGpNslS/haVXDWrCv1LDMorW5ri5X3IuWhwdQSxiuwVro9XOJ+Q3cN8bV8Ax751XQA/xFPkdx7AT2tyPEpIrZMVdzdwUTiKmPmyBqRP8yGLvVrUMGS+RRH8rAA1FNxZ9+0kABSSIg5SclKKErBic89BZKIpLgnNkxLRMJspxgcao94p35jkBcFGRShF9sheTEuw1JXErNdGZgzMF4FQbhZHIN1qKpX0J66YwFu1dop1trJhY8ovegYWVLXklGN6JbbAXGgWzJfApHOwIpcjBqbsJPUZlBFED8RWKMFdis3TvkKldSGVcakGN85gAAYnOWqz/wDEk7IqCWyq7JejccrY2xnQEXjRSbFajGTGNsT+oDdehL8wCMbd/iV8rOFAYS0z8VBVRX6lTPzYEkSWwqLBAA3feTlW19JiQ7VyPt7QHzZDoCS22NJLojJeMbaLXKBe9ycvqUXsytkoLob/ABIppFr9EdUznJpoGEsDswchYNRElWAX1XJa/C1IPIcT99GJYLy9JMzK6E32lc56Jo6i/wD0pu2WkfiO/vAy9QpNVUqt1B7AwMuUEAKZMn6HL+Fg5viQHceq9RWFrU8gJAzAML7SLQJWWw4YiZl2DR1FrkQWQKg5shK+gajVA4M8g/mJMv8Ar0cj08RRnHdD4Z1HXdBkyKSy8ftE9X/kXwpfEvCjmCAvi123OP8A4d/0mT6wweC+LsF6fqMgxEt2Fn/9Z0t3HRcYfWzxjr+hbpuryLTCmOjLn0913+k69ORr4ns3/iQ/jPofpfxc+IeBerpcw5Bl7XPBlzHFk5Eepdm/mQuOkmKPM09H0X4D1I67oseVDZAFzn/rXwg9LlXxHEvpf7wJr/49+oSMKY3a+Q7TsPHlx9b4bmwZHUkix+J6Xj+PCUbZ5Pmedy8XIklo4PwLP/p/FMWUKRyO5654UzYlV1NK1GhPEU6v/TdT5ZemR6E9d+mOuydX4fibkCaAM8/zuJR6Pp/8T5NxpnpngXWcGDI5B1O78J63KUBD6PeeYeE5ijAEj9TuPCOqtFXc8OXFXR9Lw8yaO76DPyoXc2eJvVakfqcz0OcKoF18Te+H5SxHIavvJwZ3w8mujZ4xkfXHUtp02VR6QD+YfSoKBB7y95vT4cRDmgv3MY1A7Fz5I8d/lb6Xy9Tk/wBXhJthPCfqPrOu8OxHpHyaJrvufR/8i/VfhS9LkxhlYgECp8rfUnX5vFPHTjxjmnLQm/DFS0zz/I8iUNm3+lPH16BG84s1H53N/wBf9d5MmHy8LMK/M0fgH0tl6oiwV5HtOnz/AMa5iFyqjDVnc0lGMXR5L8nk5WD9PfyT1/QOF/1GTGb+Z6X9N/zX4gcgw5M5cAjbGeZYP4+OXKA2Tdzb5PoM+H4TlxdQbUexmE+KN9nVw+TycffR9L/Qv8lY/F846XqWUcu07rrMyZ8RoixsGfHfg/jHiXgrY8iZTaHvPf8A6O+uV8W8LTJ1OQB1FEmYTi4vR0rnXKjkP/ED4YOs8KQEdiL/AMGfNDeFdPhyEYcSn8kT6Z/lzxLF1vQuC4YVqp87ZkC5DR952cbeJ4nm3J9mv/0yhhZ2OwEuvmKdC61oiCy0bMLqFH+mbjXadEVapnh8kd0c5lXGSb1QiuLPpTHZAGJBAuKVXRrUyXxGkNEeU57moQRgNG4X+4dlZKI2QEDRmUlRsmKVRdk7jFyIO9xL8sLU2/zDcjiG49/aFDtBNkRhoGDYbutzEIYD0gR6EKCKiC/6LNqAyrMHUcfS2rji4qqEr5MQyEECoUvZDsM5F12hB1PaAcagAEScaDsuh+YmS432MBrcP04xy7mDRBqxMJUfdv8AUA62YuUs1qseebd4sDeoZcgdrgNSDXIVHGiYL42JJDcYC5LNg0ZJyAmjZhQZ0ALB2YQIDAyWCkXqZjo+0qgc0ywMpPYReReR77MIE8aWpBZfzy9ohZIxaBA7Q8i+9xY5E/bBbqMgNcRXaBeOtDkDHYMg4yxu6IhplAWzomAclm/aPFsi67Ghzw43BXIx7xYJuwbEkF2b4ipkuhwb2+ZLAINbuQVoaMwGhuPseh2PIAutRmPKo97lbm1aA/xG4ADs0D+orotSSLIycrqK8wWQfmMCgC67yAiXsbiTsbkmSWA7fEzEzEmzJUMrGwCPzMZ1Ueqh+oCbv2WVTGV5ctwgtAblXE3uG1LAzKD6hceTIa/WWEK1BNE3dCCuQPpRVyfJbuX7ykyHKyVvlvtGK6AgA2YtwaABG4WPDXqMq0Q79MsMuPJTH27wsaAn0jUWHVAQahY8wrQ/xI0hRzPX8mRGs9qg8uQsGLWyDYFzAuQ6uhPeUGj5+U6MdwB2uoK5GYf/AIi3GUHiNiMxD00wjxfsjLe0M2V1K/D1ci9SzVDiIrL0vNeV1KSo0fWhB4MePK4ZxlfQgEwdCzjRqveRkTLjNAkwoSv2ThwEKbImcObcS0zCxD8WbvLRw8fUPeJuTKpMTjwBjxq5L9Pkxqfj4jByvRqZmxsV++rkP+jxfooceT0NE/MB+nqy2zHeSxeg11Dzk48dAbPvG0qKxkVOLLW4dlgbrtMDHh6twGamAJqR0XCUV2KIXG9g1Mz5Rx1JzFa0BftK3FrJc1JaZtLkVfUjzrBFRL5z9pGoZ0a1E5sRZSQw1IlSEk5C8xCp7/1Kwy/NiZkyvhFE3AOYP7TNtro2UImZGJ2DK2bI4FgRmTN5f3CKy5uSE+0nJlpJFd2Leo2YtsgK0NGRkyOCeOpXXIvP1XM3yUaKKZGdmDUbmCuNk7i+ob1a3EFm4aMwlK9mseNex4IuxEZXtxxJFQceYj761F5cwJPGtyMjVcaey1z9P3QPN5EC6ldcliiYSqeXLuIlIHBFxXbtyuFkc6AJlamu1WpOQMaAJH5uWuQn4yOr6fH1fT5OncAjIKnivjHS5/pr6i/1GMMrJk5A/Fdp7YoavkziP5G8Abr+lPXYl4ugtqm/FP7IlvCLTPTs/h3hX8o/w1m6/mD13TpsMRpgPa58V+O9GOm8RyYePEoxsfM9Y+lPr3xj6awdR4M2d/8AT5bBX2nm/wBV4r8RbqF2MmyZ7nJLjlwpJbPmocPkcXlTlKdxl1/APpvxh/D+oCFzRrv7Tv8AL4+2dRbmuI9+88zxopAYDc2nS9XmricmgKnHHl+Po73xKcUpGy8TpurOZCfVueg/x74o/wDp/Jd7LaE8t6nM7Cy//c3/ANF+IZMXUjGH7Ue8w8m+VWen/j2uJ0z37w3q+GRTlavmd34X1ChVK5bnjvQ+L8mQOdVRM9C8I8QXIUVGB9P6nmSgj6DinSPRfDus4mmNzp/Ds4Yim1PPeg6vkws0TOt8J6kIQWIr9zPGjt4Zo7zo+pRUAJ7zi/5N+ssnhXSHpenemI9RB7zd/wDmSLhd1oFFueB/yV9Q5fEOvbp2JPJuOjFtHY+WUI2aLx36g67xctiQkA+80/hngjYOrHV525sfYCbvw/wvO1KuEse5nRdD9KdbmYZMq8Mf47xwTTs4nyz5XjRngIyjInk4SWB1QnpHQeHeKeK4hjzouNQP7lH6a8ExdOoZQAF+e86fJ9QeH+FLwzFS4+DqaSxfZ63h8HHxq+QseFfx50fUEcmJs97M6rF/FfhGTp6dzsfM5/6e/kbww9SuBVFMasT0fo/EBlVWx0UyCwZz8nIo6NOWPHL/AEPJfrL+Ll6Lp8mXpBYUEippfpZXw+HnpkemxtTAd57v4kuHL0OYZOJUr7z558a6xvpnxzOVP+zmO/3CDT6PP5Yrjdoq/XviY/0jYeZsa3PKSDlNsdjvOj+rfFx12e8Tko25znH35VNoqSR4HkzuYD/FGGV/2GLj01Is9gRGPz8hvcVN4u0edyO9nPZinI8FrcTyIHzGZvuYj5gKLNe8G9GcZsgZSK5d5JbdgmjCcKBujAZWJHGZSSOmLdAZcmMiidwQWK2BYg5cBL8rjExHjQaCSoinewuOrBMlMRffI1CqhUkEgVdQpejRRiSBWrsSBQHa5AYcuI3JAGzRiFW+yCSewmD5Mxsi+xF/EBcjH7lhTYPQwNy7SVH/ALjUDGSftWGKP3iVg16HlEktwOjYjUIKFj7+0SQK7dpisR7xYBcRmIqGJcfqQ4UsSDQmMo7iHjxqwthuKqHcfYkPogntGY8jqKAinHrICk0Y1QwFkCohVFjRkr7h+oBLcg3tJDWD6bqA7NxoLKTE4DR1AA/MFiGPImLxHR9NyQ6seJWhFTBOtDLBXZ17SUKhdg1DGBePbUXkLqeIGpSk0OSbRC5CDS3J81rOtCLU02juEz8FJbYiyOepJ9FpMi8RTWYwEEEm5W6d8ZAIG4x2NUGqJmsbW2GWrVyUbIGpRE409Vl7uNTIUY6kNX2Oe19S4uUilPeECD6mJuUrZjzuo/BkFEsYKKI+yLDk1YMUy2LY3HLkFHtuJVj5hGjcaQWycGTZABAHzLQVXX094opY4kAR+AXQqqlp/iJjv/YxFKmmBhlwNXGuQBRAilVS1tHb/C/jiEmQHdaHzLSMpWpWx41opYIhYwQ1e0P/AMJwGuifuM6cKNdovje9UIVEHW44r9FiexZF4nt3gcnUUF17GMdXX7pLAsmv8T28mfOzWWzXs3Enm9bkjIhICPJyDIWIZZHlsh5rjuppHrZirY5mQKCDJ5HIAqnVScWQOo5Y6+YRKA0BUG66OmDbjskf7Yq4BUg8jsGMyMirYOveIy9WotRF2SyXxq+wNiSr5fsP2wFJZbF7jByQW0MlHsajZA58qb7RAzOCeJOxF5XbIaRiKgY0yq/I7ilJSBqUehiKL5hqierycjxBjWynlv2lbIVykm5P1LUpUCvI9zqYShuyI7EihDa3EMwUkEVcnRm79kjiQW1QlbL1GAgrxuFlelIV5TdKFg7MlysqEt6AfKoPYytlzZLNaEfkwkpppUzoymuR3Ikk+jdSkmKcqfu94JIBHGpjUq2dxXmIDszFtrTOmKyVh5Kq2lR/WtUauN6hwezExJchaHaQ3ejRQ/Stk9B1ZH5lPI6q1nUdnyFnNSvkAK7nO3RtFIXmymrGwYjmo94QNnj8QSwuiJm2bxin0SGDf8bqYcatsGpA1vtcguL2ZNo3jrTMbio9Ih4mr3gs3IUknEaoONSbCQ9C4a27Qnq+RNwbsemRbL9xuNGfRAduXpNQepwjqcL4MyApkXiZK5V5aXcJ33yBuVGVOyJRTVni31v4KfC/EDwWhdA/icnm6bD1i8M2x7me5/WHgePxvoGISsmMXf4njvW+H5uizshViAa7Tv4+RtUeXy8bcjlc/hz9J1HlqDwP2RvknEtkz1bwH6H6f6k8IGYHhkA9xNF47/HnXeHllKsVHYgaMJW+jeMVFbR5/nJqh2jvCerydH1iZlB7yx1vh3U9MxxthNj4ErJ0nVggrgc7vtJuSWy4csYs9Z8I8TR8SeYnqbc67wzxbJgZMqkip5f4B4xhGFcfUWmRdC503R+KNlcKGtR2nFLbs9jjknHTPZvCfGcPVYhmXMocAGp1PhHj+NiVyZkGq/ueK9J13DGGViCBLa+P5cHF/MujZuJ0dMZSTs906jxgjA2M5b5LQqeRfUfRZh4/jyZBYZwQP7m08D+rcfXYvKZxYHpmv+pfFA/iXTu9aIv/ADFijofO2qZ6N9OeEYj0q5ygs/ib0rjxY/VofAnLfTf1HjfD/p1caGp0WFsnUAc63MZ8ri6R0+OlyKyl1vjY6NWTpVOxOB8f8X8Qy598lUz0XqvBceXlkIFVOS63w4dS3lHQVqEcJ5dl81rSNf8ASXV9R/r1BY2an079E9WubwnFhyOC6Lq/3PmNOh6jwzrFyjfq9J/E9Q8B+oeoxdBjbFmKt+5lzxb6L8fkcV9j2Txsonh+Us1Ws+df5D/30ykNboSRO9zfVHiWfD5ebJyH7nkn174s2JczK9sbqLhUujHy+ZVZxefqGyNwZftO5gc+4FSh0eR3c5Mo7m5sGyY2FAGd0OOXbPnPI5lJ0jCy16Fsxi8jhYsfbtFhUXsY9KbE4v2mqSo5NtnO9SByLD5lYPvYMsZgDmYH5gEVu7EybdlKIA4tuQzAa2JjGh2ImLTfMMbNFoU7iqhYVsG4RVFIPG4QRf1LXHXYNJgANz0dCS5N7EJrRTW4gnIw32ky+pUUqGggPoQ7CizEYlKglYfmEniwkuqtDSt0FandCCG3XEmFxWiYAzNy4gXJU3FjcE+wiGXd6My8nIACA6ZHYNWhCRm5UZsp5LbOeSSY4ljIUAbMw8j6rglmA9RMhx/DWNE7J1CXIRpzIIJFg1BLBRvcloqT/BlkGgbuGWHCmaVxlQ9mi8jsTttQocZpFlWbsnaNZTxJMqYXZRpv1G/6g49vZiKzsFuSt91SbBIPKYXXKCQtGAN6LS6ZLLQ6kqAoNwDlctbLcSijlt5YC8TY3JdiUq7IYqzfBhnGpxkMdwFX1WZYJxOKPeTZUZbFJ05xgHGbmOMjWG1HoGAFN29pOSuJNdoypNCkxMf+XtHcAKAbcUi8jZMYqtYs6h/0yx/B4xALd3IAUg2O0J/WoQNuSv8AsrxyN3hoBmMgLpYYoG7AmYSOOhqQXsgBfeJoVh0zkHlLWBlQeqVSz12jEL2KvcuLYm0OZxZPe4eLNhH3CBiQ0xJ7xeTijek7E0dizLBKXzQVBXIHOjuTjKuAWMysSP6RJyYsmMQsrcSLlhAQPMI1EqytQEYXZRxJ1FmJN+z2nI+PItqblY5ipFrUxUC7Uw3cMtEC59DKKj0fMLlcuwMjqbb8RSZaB7xgxcyRYEFsKqaMnsvOglAot8xGRWOQG6EYVK7DaES2Qu/Fv8wopScuic2bHw4AWf3FeQfv2B+5Z8hTRoa94ToclL2ETJcZLYGB1HtoR+VsTigaMQ+FcYsNE5HQKa7waQouS2Ld0xMQpsx3+qHECrlAIrZORJv4jhk4boambjI0+VvSROXIXNkVFuVJPEgXDOYZR2AicyKASD2+JaS9jzYa5WQUSdwsaI4YuPyIlKZbaEz/AO2fVK01oFLeytm4q5K7ld2HsKhKxDEjYiXcuTQmDWy7/DPMa+2ojNs9rjTkVKDCAzYnBo0ZNFqTTKLoztvtK2bGFNntLhRyTvUrZmAPHvJcUdcItq7K2Ukr6DKuUuF0ZadSraoj8SvnZQDZ38TnkqNuON6ZUYnZJ3K5YsSrxmRsjN6ai2LBrNTlk22brRBAQ8q0Zn+yVs6MjLyqu4iOLA20zpmqkPKqR3uLVFumWFdL3rUBGN7MWOjRS9MMHyzoipj5AwB1Ek8m/EllAGpODRVpjFyAaFwgC53cXjWhyJkpl32lR12FJjDi47JhhbGjqJbOW9Nw1ajXIS0kzJregziJ/X595rOr+l/COtc5XwiydibYFW9IaEUQ0a7TWE8DKcU9i/DfD+j8PwjpukxBV94zN0WLOGGRA6N7NGICTYJqWFZeJsdviXm07M5NyVHL9V9BeBdbk5t07ITs71NV4p9J+EdCnDFhux3IndY2Zi3v+JpPqPGyYxm4a7ETohNyOWXG70eX+L/SuJmOXpKDDdTW9D179A/kdbjKkGganf5cGLLTpXL3E1HiHg+DrVK5EAYdiBE+LNbNuLlnxdgdH4imUDystj8mN6jqQEskETnep8L6vw17ALod8hcnF1bMlFyfwZyvx6PR4ueUzeeEePt0HUtxTRvfxL2fxzJ4h1q869q3OUDsrc7qIydcyZwwNEfmT1qjtjOlTPVvC/F3wNaPRX8z0zwDx5MvSqcuYX3u58+dD41jKgnKOZ7zp/DPHHKcE6mvxc5uSLl0Xw+R8T0eyeIfV3TYMTYseS2IrW5pU8YwOymzZ+Z55k8UIyDllJ/uWMPi4OYEEED8zL42dcvLyR3nV9S2YKUIIl/wfxn/AETLgyLyVjOI6f6gQngcyqQff3lp+uy5SGx5LZdiptG+qMJeSz0Xq/Esq9PlKhtiwQe08y8azZvEsjedyADdj7zsfBuvy+I+HeVk/wDUQ0RWzNnk+kMPi/Rl0xBMqC+3ed3D40pbPK8ry3J0zyrDhGKw3b9R3BCNDct+JdDk6DqHwZFIIJGxKfLj395q4OLo5G4vYLAdgty10oXym5D2MQpHcGPxgHE9mtGSoivZznWH/eel1crMzEUuqlvq0HNvVe5UGMjudTNqmaVKXQK2VIJ3IXkBUeMaqt3BAEG0hpS9gMSBepiOx9oL2Tx7yVSuzSMomzimtDFKdm1AcCyFIgZedV7QEpSWO4NJkxUl0TjyOrEONRgdCdjcDzsbGh3/AFCASraZSTRcb9hsyEVcQWVSeJhZPLI9LTFXGReiRMpQbCb9DMTOB6jd9oTL/wC4bP5g4Wdx27dpGVnL1xgk1sS47QYUexOvzByZa1CWgLiMpYndblqdegcHFDObHYMWRzamNCMw4iNswgZkBs8h+IZ2Sv6L4BH9Rse0diCsdi6lRseQDdxuBnxrv3iex6ZZ0NKuxEPncnhwkedu2O4xsi6phv8AEE6NFSQa5FK12MWVXlQJizn4n7bk+Y7MCFEvK0F0WDSC6h4c632uB3A5AbkqoQ3xk0n2S2/Y4vbbFCEo5m1FQGcOvxCxlse13Jx3oiUIy7GqfJHc7knIWFEE3IT/AHSGND8Q8rhdKBG7WhfGl/qYnqHGqqS/JBRNiCuRFFtVwlZX7bj2Ur/SMWRrGtj5lhnv7u5iwosEr+43jjbd8T7XAmpD+n0O/eHoNYlbGDsKRftCZnTudyXsKZcOQMApEbj4cdnYmuxk8r53LeIk7BAMSTTHss8gtk3FNTg63DCvk0x18zGCY9XNUwFB61XaNRgp5Ef9xZrZEEuBRYWIrDT2XU4v6lIH9yXcnRBP6lXG2NjxsqJaHBBtrisTpntGZHfaHURiVyxXidRqh1IDPD5qg9PefQpXpHyqhFiPNON+LCiDGM4ydotlGYljqArDDdnUtwaBqKDZGo8bqKGEEDZuGeoYKWo1BVg68+VfiQ012OMkuhwYKlchr8weTE3Yr9yux5g0YePIoTg2vzBKx/JQeQB9OxlPJ07h7W6j2yY7vlJfqEOMgDcpQa2ivli9FIZEGUKVP+JY6hVABVRuVioDc2NbjTlUqVLUYbIbUXoDDjJaqq43qcIFIGgo5DCmEHqMjk99yXZpFpk+WUTkADKeYZGQ6MtrkIT1nUBiG0rSaZdGup1XsYlsjgehdzY5MD1od5A6IlbN/wCJDTfoErNW2LNkFtqAMVbZTNm/TldcCagnp8rKeOBzfwDIxf4a8cYp7Neykqa7TXZsROS6M6LH4V1mQFvIYD9Sv1HhubEOJwPf6kSi2ddxOfdeBNk2ZSzY9liJuep6LITsV/UodR0OS/Tuu8wnFnRG0ayiSaWLfCznU2GbpciC1Wv6lfHhyMSTr+pyNNM6YtVRXyIAnE+0rEAtZJr8ibLJ07r33K2fA9A8Zm7NRDqp0guLpgCCBLHkOouA+F6FAxOwsRxB7Xczi4NVGFQm9kyPMs/AklKSMDezCEvAniB3hBUYEg2ZgQLv3lIVoJsaKL47iaBbsRJfK4aiIS+YRZXUaIdEqRi37xvmFvtgnDyAIManSZXFY0Yn8CWv4TSYzpy1VqGqG2mL0XVYxbYmFfiWvDeg6nr8/lYQS3vqbx45NdGMnGPZXLrjFk0Zz/jnip6pG6DBhLEd2A1PRuo+klXED1N2R3HaabqvpbFjU5OnALD2+Z6XjeLmtnneR5keN6PM/DCX6nJ0zqeS/ibVugxEciveM8S8Lbw/xpOtA4KxAce02w6bGcY17XOiXj46RlDy81ZyPX9N/wDwwoKHvYnLeKeD5EyeZ0iggnt8T0fqvDhkUjiQ01x8ByqfMK3W5jLxJMuPmU9M86zeE+LL6vKNV8TUdWmXESMuIgj8T1v/AErKKKfjtKnU+BdP1Slmwcj+pzS8VrtHdHy9dnlfT9TlxvZ0JtfD/qLJ0mXkcRdfmddn+iukzL/tpxMVh/jTqM28Tn/EyfiezVeWjXt44nVgPjaiR2l/wl+u6l+CYSb95tfDf4y6zCwOXAzTvfp/6Ww9CV87AFA+RIl4+MbSOvi8lS9nM+D/AEh4l4l1CBsbJRsmp6L0H0mOkQKTyy0NkanXeE9H0g6Vf9NjQa2feHnxlHHBde5mDhWzdPNnCdF4h0/hv1A3TBhpgGWp6p4bgpEz4qIej+J4L4l1tfXWTGNgvU91+k+q83o0xZENBdGen4nMpQx9nnedwOLtHKfyn9LjHixeMdPjpTpwB7zyjOrA0TPpXx/w5vFvAuo6N1sceS/ufO/i3TjouqfC6m1JEjlW7OaDTWzXl/LF95e6Z0y4GBHtKVLk3RlvphwxsKrXeYUVaNB4haZSAtblZmIBJl3rXB6girlN/wBWJnJ0dfHxpq7FLm5Gu0x2F6uZwoWFgs5KkcdyJu0NxaCviL73M/JFRS+ZzAfXxDs1RM512D0iS3IgVYg5DwFr/cEuAauA4r1crHvL2+zHKa2gGa8nJdX+I3mSll9fErsWLaWviShrTC4KjSPK/YxXxjsf3GIVolTFIlsNajHUKRUei9T2GpYe+4DuV2RIbKVPaSxGWhdVJaRVX0QMx+ak2+Qdu0HJgIHIEReLISxUtUSoeLStscmV/sBhkcdn3iSPK3d3J5ljZBAk0kZpbGllqqgHkuwNHtIJU/Y37mAbvkf1AdUwAx5WU1+pJA8wEDUb62FcdQMnINQHaGimNbHjZeRNV+IOJk50Qa+ZCkswDQ2x8Td94N/hOdaHauwZnFmNgxVZCKURmIZB7xDysY6MoAFGFjYgcXExmZlsDtJx48zeo0RHFX2FWHxCgEGYQCwNzGu64/4gI5TJTe/uZo4otRVDHXGF3AwZghNSeoA1Tgj4igjLTVqTROMUW1z8ju9zGV8h9LVFKAWBBjWtRyDVBqtk/V6G4y+IU7WYRyeabuV1cN9zQg44kASf+jw/CwCFax8R+NywCg7lLGDR5NuWMWRUTXeGkTUi8rvxoGK5OH9RBEUmRyL5SQwU2xMOzSMb7LJbXaJ80hvUNCSj8gaIizyJ4nsJOypca9FrnjIuv8SUcXoE/uJQUKJjsbcdBbipshNo9z6hVBtTK6ZFLVe/eQ78tX3mYSiN6vf8T6bHZ8o2WEVKJJ/UqZ2vIMYEu5c2NkAVRKpLcgeP/Ut3+ieLWyXXhh4/IlcYMgUnlqXGploLcwEqnChRk2xKMWtMp4xR0bkZHAjnHHGSO/xFoARbijKjYmlESArA3HjJjOLy+IsRZUXQIgu64h3BhbQfVgZgnHtsRQZGIBAPtCbqcbCqJP6ldUyDLzVTUW/YSxRc4KjDdwMzANdXUxszBbZaMW2TmAQQbkOUkaQ0rQ0N5i2FOpc8H8I6jxXrl6TpsZZ3NRfh/TZuqyphxoWdjVCfQP8AGH8cYfCOkXxLrsd9RkHJbWql8dy7Kb1aNX4F/B3Q5OlxZPFMxDMLIX5nQ4P4U+lcZHI5j/Y//E9B6TpvI0ex9oxuKsdAToxicc+Tks4Ufw79J0AEyV/X/wCJDfxX9L4TQ6VmH5IH/wBp3vMLtqIH4klMeUWv9QxTM8pN9nEYf44+k1FN4XyP/wBf/wCkT1n8ZfSfUGj4aU/IYf8A4nb8TjamFStlygNZ7SXFGyUq7PPOq/hf6T6ockXKh7Vr/wDE12T+A/p4glMzi/1PUhkxsbBEMkVdb/El8aZtDn5YayPF+p/8P3gTGh1L/wCBNfk/8PXhVEJ1YH7We5ElzRsRD4VvZJkPij+Gq8rl9M8C6z/w5dPkUnpvEMYI+V//AFmo6n/w5eJcf9nqkyEfjU+jWxqjEL7xTpxB9I3M348H6Lj5vOu2fMub+APHFBUYuRHss0/WfwV9T9P6l6LIV/dz6sGNSdiovKq9taificf4ax/yXKuz4/6z+I/qDpwWbosn59Jmi6v6A8Y6ckHpXI/+ifaXUopQggEH5E5zxPB0uMHliQ/1M4/46EmEv8pKPaPj8/TPimA0emf+1i28B8T8y26ZiP1PozxfBgOUuuNQPwJoeoTEWIr/AKnR/wCmilZh/wC83VHiR8B69gC/TEf1Nn4Z9G+Kdf8AZg4pfuJ630vQYs+VRk0v6m4HQ9NiQJgQLOef+NhF9nVx/wCTfIro838P/j7psKhuqaz8Tb9L9M9F04vD0wJHYkTsv9JjosqblPNjYHsQZpHxoR9ES8qU/ZzPV+H4VTjk6ZDr2EV4V4EnQu3WJj4nJ2FTox4eaOXJ/gyvlVsp44ySBNMK1QLmo1fVYvPHE+01+bwhclNxIs95vc/QviTmAfzAxOjLwydppFqHREorkVs83+s/pU5sDPjB9OwfzOQ8P6jKf/6bOlZENX8ie7Z/CcXXYGxHd9p5h9S/SvV+GdWerxJag71U3fJm7OVceCpGry4SUDlRQHf5isLYXtMi/wBza9N0w6jplFWCBBbw5MQvItEfidC5Iz7OaXFODtFZfAen6rHyQlSe01+XwDrOkfi2IlT2InWeE5MYIxHsDOl/8q6fq8au47D2l1BqmJS5eN5NnmGDw3Flem9pssfh1AKg0J0HiH0zlw5Wz9GoYe47St0zph/2uqxkNfczmlxR9HVDynIT0RydI1FLE2B8RwMP92h+DGV0uRaB3KXX+FDNjHC7/EXxQRouRvtnQ+CdVgdwDkWvYXNn4hmGLBkyqQQFM89HTdT4YV6jFlbiO/4juu8X6zP04RchAYbnL5HBGUT0PF8icZdnFdH0mbxL60yZAhJZ+/xufQ30703+i6LFjZbYrRnn30X4V0i9X/r82MKR3Nd56Nh6oOnHp8b2RSmp5vFBcR6fPzPmpM3qdZ0q4WORwAoPK587fW+Tps3j3UN01FCzVX7nYfU/ivjGAZemxJlAcmzPOOq5+czZeXI79QinzO+jB8UYbRW5FABVGWumDZAQa7RF48i8iDYlvo1vlXtM48iZDVHNeIK+LqnRvb3lVslHtQmx8WBPUuaB+ZrnWzZMiXJFuqN1G1aFnKrHWjFvlKP8xrDH395XYBmu5MkmNz/CMj5XN0fxCxseJ5ntGAMVAWonJjyAnvM3Guhqd6Bf1UQO0DkSaMYw44rvfxFKwKk1uK36LdIerigHAgs4RvtuKUlm21VCskjlqosW+xpVslshJsCpJctVSShYWov8xXbuDIaaZe/wYHI2wv8AcHmFazMV8baJIgMCDoWI7QqlehzZldaAiFVfMsCjCUC+0N8aqLBuJJEyTeiGpTs3CAdloC6mJ5ZPqOqmM+6Q0Im0EViFjJUEldwefu2oQbgRe/zBzFT+Se8mkDbGjqqW+OoGPOrPyZTuJDAiq7RwZSvGgI1EnYb5Mam12YL58h9XHUgYy26hAAaY2I3oaV9k4+qyqNpcZizs93j7xXMA6PvHY3BU0NiS7RtGEeww7AepajMedkX7qBiPMbh66qAqo/puwIRkEor0XUysLN3IDBySVmYlx40qybig4shTG99GTm12MZxddxCWsnov9RNe6m5n+o8vIF7yfsuilNMseUcW+UJHD+jlM/1CZFowSt2UWiIlJ+ylg9lh8ahfTUUuQralbEUuR74sTG5mATkveFt9A6Gg79IG4ziyizKSdQ1Vq45Mjv8A+odRNS9lKaSLeLKFG93G2Mg9IlQgGgAajsL8DV94ZGTnJdD8QIMYyiqgK6qfuBkHPZ0pjyKhyL2Slhu0uYWBOwIhByF1Rhoj38RZI0XGns9fLDG9FjcuIysobjcr5+lOuJFmNTHkVKu6n1zimfDK30OUctgEASRlXlxB3FYOfKm7Rj4ScgycqEWKKcXWgzkWtmCzkLyC3ByKoBPK4P8AqUX0cYnCNBGTumRmYlAQtROLlk9B/wAxmfMONAjcXhemNCriiq7G3Zj4WXfeIyBP+ZuNzM4JKtf4lTMuXTAEgncWvQmqG4+BFqomFXLWrScaLxqoI+/9QbsuP2F5VZ/SbqH0PQ5M2cY8YLEnsI0L5hCrsz07+LvoQ9d1WPruqwtwAu+NRxVs3bqOjof4t/jbHgfF454tjIIF4kYe89lwYzx99bA+JWwdMMWFMCrSIKE2fT4FC/d2mlKJhHkm2CpC7cXIZ0y9h2k51Fb1E4UVbJNwVBKUgyC44VUFGbCeJawJYLpx1Ur5Qa5e8bZDX6P5JlX1HZmu6jGMZPIipJdu9yCpyj1C4gzrRRduJtTHdN1HqAdoPUYeAv4lN2a/T7RpWRaTs3LlCPSZXy38Sjj6zIp2Y9OrV/uicTePLEVn5IbK6lVs/LQl7O4yLqa3IjA+kXciqZeaYa5EHqaV+oyIW5L7yp1DshKkmUcvVNjBXlBoTaou5mLA0Zz3i/Ts1m/zHZfGePoH+ZpPGvqXpumx8ApfIwlRn8eyJcfyqkcx4vnIZ1qqmjCHJkljrOqydXnOU6BOhC6XGuTPjDUBe5pLzHLQuPwYw+zNx4b4Wh6cZXaiPmPduhQ+WFtvkSr1PUZFBxYWIsUfxE4O/J7NTFzbO2EUjcY8ijGQmMHUpdUM7HkuAV8wMXV8snFTNkmZXAUrI+Ro0wjWjR5um6jP6TdQ+l8NbG/qFidDh6VMg1QhHp8WNSCBch8rBQTNB13SY/JbQnNZsDcqxjsZ2nWdOciMFGpz+bpxiYkj9yflb7NI8aS0Vuk6fLS8gdzZ9V9MdN4t0TYupoEjRlFcx80AGhN30nU+lULQXK10KPBl2eVeLfR/in071DnAnPp2JJIE1uTGnU4uLimHzPdTi6fqcZTKispFbE5Xxj6I6POXfpVonc6Icyl2RLhx2eSYU8jqOIOge877wfN03UdKlKeQ7zU+J/RfU9IGyqrGJ8J6jP0h8tgVKmqmvy4nJyceemdW/QIAWUbM0vX+Dea/LPiUi/YTb9J1qsoDNZl4Kucj0gy1zWc/wYdHG5fpsXz6VuLfDRKeH9Zhycc6Ej8TtOpxBGFILP4lFsWLLk4kf3FlZrxxOY6rw9MxGOqB7iafrfDymUYcaWT8Cd7/AOVocoK9++5yvjXiGToPGFXp8Ksbo6mHLKkdXBFynR0v0Z9N+bgV+oXiimzc7zpekTEvlY1VR20Jqvpbl1fhS9RkQo3eptcWQDNW7HtMEoS2elycvx/UX4h4H0PWpx63p1YV9wG5xPjf8VdB16l+kYB+4VhPSj61qojJjFgEG/kTKUV7M1yXs+ePH/498T8GVnGFiAfYTQ9Ng4PxyKQfcT6hz9Jgz4inVYkyIR2I3OB+o/4x6TNlbrvDl4htlRMXxxNE/wBPn7xxVTqX4jiJpchY3U7T6v8AAer6TrMuM4G9OhqcZ1GN8ZONgymYTikzdW1orMuRtgwAj3syyUVU5MLPzBQqFJ1chixFHzAbB38QMjZLosYzIvL1AxXHdvJZpGF9A8OYuzcxCo9Lgwj29EUWe+4MlSSCSx2wzjBNqO8lBv1e3tFHqGFBlAPtMdslWCNxOdDUm1pFvzlVCg1cr+YL3EDkTTEyPLflYbUzpPsvNjeQZtLDtr/EUuFlYMG1GsSaGgJf1WmC5ZJ0YeIFnuILZiFo9oSleJBNmLyJYNjUm4mttq2ThVa777xyYizb/qVunPE0Ws/Etc3NGqAiaT6M7MW8R9Q1Abk7kj/Mlsre4i/MZjVipnsqKCYEkgAGYhcewuECigN3PvBDDlyEebiVKMX0T5+TsRAOXfFjJyO3suovygx5gm5rlGSM3CXoarEt20I5GfkdalEM/md9CO8xz6R/mZOn0CTRZd8f2ub+JmJWRuQBqVkId/Ue0d574zwsVIZSX6XGzAVfvMwLZNnRMrI6ufV7Riu2FrB7xZ+gePodl440bjfL4lfCS9l/aG+TzBf+YKhEagTuUpIbxa7LGPZBAloucaXomU0Jv7aqPoMuzUlxT2EErBY8iCKsxjHjj2LiWUKQbMIOT32PzCKSRpJX0QoYjlxqWentge2jFcnquAqGquy2gAkuVkKDuyyhF0Y0qporcXgwkoS/eSHZDQMzdM2TjW0M8gBrsj9xoQhgbgplRwOeowoNMpsS4r0YyUX0hhBG1MNGdtAxDN2ABj8TADQETlRMbR7Yq5XHK9fmS4PEgZAKgPlPD0MKiuRq7ufY5emfGwWHYeFmokPRh42NHnkuI5NWtyxjWktwBHS7Nc3IIqMi9wZX9HIq+iI8smIE2NxHoLciZKYpcdrsr5lyqSVGpOHKUX1d47OwKUrbiqSqcSkzBfUnG4Z7IBg9TmcEIAAD+Ivmik8L/qIz5gTRu42kzWPKumE2Zse+ULHld9qtyuSMg2LPtLnh+FsvV4+mRSSxAkSpOmaQlfSO0/j76Ufx/wARTLkwMMKH1H2n0b4T0nT9FgXB0+MKi60Kucn9D+Cp4X4Tgx48VZMgHOd30nSOpWwaEaiVOdei706hhxAEuKq41sncDCExbA38SMzWC0aVmS5Cp1XUhjxC9pibxXR3KjsW6ilOveWSXCfgTRR0c8uS5B4kLAl9VGMnLH6YhMx7NLKnkpNRYlZR9lFk4mjZg2V2LjLHmEN2i8zgigKEVDSi1odkxDqMXpq6mr6npcmE0ZcTOMWuRh5XXOm6Ji6KUEzS5bUg6lZ+oCtZapd6xADxAmm6yh8ybY5RpaLw69SKLQ/9ZjZbQ9pzmTqmxBlLfqavN43lwmvMPeVVkxTZ1HU5MWTk1i5zviOZS/obt3lNfqHHR8zKs57xv6jw48TpicHI1jXaZTk4dHZxcT5Oyv4z424zNiw5AK0SBNC+dnbm7FifcxPmPmcuxJ5Rnl8tA1Uyyb7N8VHoxayE2PzH4FCkv8doOHGBag7gZsnkOFJJjToT+2kW06h/M2P8x5PPQNStgZc3E9psun6Tm1hSQPeS57LXHStikwFKIon5l3AjkaNTY4fDMPkhmGzAZcOHsJTTY1PHoDE+TE1GzLJz4cy+oUYg5MejYFyBmwk0JDjZcZ2RnalIE0XXX6qXv31OgbEuRe81vWdNxBLGxIaSK/qOeRgGl3p8tuCDKPUYmXKSNAwulycX3ItFxkvZ0eJmagLoS4GXShbPzUpdDmxhbOzU2OAo5FJsxfIgfZW6npU6hSropWvicj439JKAc/TAhu+hO8yp5RsiwZWdfNBUPU2jzVol8UHs8oxvl6TMcOYEH9ToPD8tgEG5v/FfpvpurQOOKufcTRL4V1HhuQrkB4+xlrlRnLhLOdPMHJSL7TXHpsqZwT2m2TpWcWrE38SMXSZFzDzVJHzKjzUYS4GuhCqPUzL2U7nC9P4f/wCbeNdQ7ZKKPr9T1NvDQUahQZTOKXwTqfD/ABcnDRXKST+Jly8lnZ4XFjbZ3n0/0fDokRTxxqoAv3PvLadHXUEj5943wpQnSpjyEFgo7dps+n6cu3JhowU0kHJBzKj9M64+QN/qVDyLcWm/y4guIhQJpOrxlG5g0BM5T/C+OKiti34AhO5kgE3xsVqUm6tedA7lrpup59jMk3Zrp6NF9Q/Rnh3jiHz8Qx5D/wA1E8L+uv428R8G6p8q4zkxHsyiwf8A8T6YduS8QBNb1vSYM2NsHU4Vy43FEMNSZfZlRbTo+NOr6fJhJx5sZUia/wAsrdN2nvn8hfxWpxZOv8LS0+5lH/GeK9d4fk6LM2PNjIrQ1MZRcTS0zUHKQaO5OViVB9o3qFVByCyqzvk0NCZNplq10QuQN6QakZQyryX/ADJZFxjkW3ILBlvdTLE1yT7AQNlFsdj8Q7H2nuJHnY1F/EA5FfV18SKKi0hWR2XJd6jfMV10faC3EHiRY+TJIxBfTGkyJ3egR1DgFQpP5h48xb23BGRFFETCQ4tQRLpE5Ndh5CxAqhJ81wAhqViaayT/AHGs6MB8iTSGuQlcdPyD0ZZ85lGyK/UqcuILsB2gjLyYLzPGNOgyvosNkXJ7m4hufOh2hediUGu8VlycqKkxOTZcUmrY5sjKKPvGYsiKuzK/ll0+65mOlFMGkyGNfqeJAKE32hjLyGxQiC6r6WF/EKy2l2Jmn6DNrQ0ohhkjGBKjZGxH7SY5s2NkBJ/qNpobTMK825Kaj+KFdtuVsfUJfEXFpn45e+pKTM5WW1JVgBqPyligJaILoQCG3LOLIjpwc3BxfZMcX2LSiRTyGy8cgPxMcBWpe0UrqcgHvJs0fGq0bDzeahgKEnzzxIWKOVOPFBCVQlMT3k1L0JQ/o3AWybfUaFVd3F2CLQ694akHXvFv2aQWPsl8jFqBFD8QsT5CaOlmHiLIXclVJXkLJ+I7iinfotnKEx2rbgpkL94rG6v6GEcoUABRqSqsasbhVXejuWuTAcVWgJTDUQVFR651Ke9zRypA0/QZyU0cp5CwBKYZR6jdyyrgAWYoyXsyaXs9rcIvo94v0g7jXVQSRuMCBhdDtPsm0fHuOXRGF8YW6r9wcz86ptfiYw0VBB/EhfQ4DEQtMIpx0LDAmnhOeO+GvaoWVhlb0KBUku3ALa/EMEym0tsrllccqqQMZyKVbUHqQyiie0qefkV6D6k/6kfVlhlGAaFyrlcO213Iz9RkAsnUrHNzOjUTnQKMbHDmGBGhc9N/i/6bXr+oPiPU4rXHsEzznwLos/i3iGPo8ILEsLn0X9OeHY/CvDsHSYk4vQ5CveOP2ezSTUFo7P6exF35E0F0BOtCnQE5/wABwDGoLD1ToFsbubNJo5vkfseoWti5X6nNjopYFQxk9JFzVdc5830yFGmTPk10LxcjmZxfeWWdyvHlI6VQtfnvGPjDNrU0v0cltvQC4mAHIyylql8tSsxdfTfaCchGrkttHQk0ugw4OQ2O8VnUnQMMZFv1d/aI6jMR2ivRar2a/qcrYWIG5mHrCgvl3g50DnkTKWduJ17SfWw3ejYdQ6ZVtSL95puuyKmjVmYOqYaI7yl4hlRgSWqoWilKRpvFcwQ3ynK+KdRlRWYHRm68R6nG7EA9pzHiXUjISl6qcfkeSuLo9DxfHz7Oe8R8VyFvKwue+zEY/My0zsSfzK3U5MfnsAbIMsdNlPatTKPK+TbO9RXGqRexN5a/aLMs4sfOi4/xK3Sqcr2ftE3vSYMJQfM2VGEn+C+k6SyXZdKJrer4v1BBWhOgceUnFPfvNL1WKspJEbSBSa6I6cooB+J1nheDn04JTR95yLUQtrQE6Pwfq8rY0wl6UCJVEJSk+zd+Q/CgtiU8vT8SSV3Nr0nUoqhSbMjqum888hKU7JpnL9aCrE7A9pqcnWvjfR9503inREJoXOW6zp2Vm9hEpiSbZs+h65mFudSxmyrmXiCP1OXPWN09cW1Nh4b4gmf1M2x8zOWzpjBx2D1/TEniBU1yY2xvV7nTZFx9WuqutTT9Th8lm1OdumapP2W+hy0tWP7m76XPyUUu5yXTZicnE6m/6PqcaBRyMynKKLws3ObE7pZPtNYHOPNxm26fKMqDdxfWYsSryCi4lyeilCmUGzhX4sAah5WwdSox5UBv3qUOoNNzVu0dgdMyCz2mmbKlFVbCfwdcTDJ0uUED/iTDQY+QHUY+B/Wv8xObz+ncPicsP/bLPTdb0vUf7WY8W91b5lrkrszSTY5MePN6EXkKi+q8Dwp0+POVqnr8zZ9H0uNWvGKEb4mAOjYA3xIaZz5N6N1FJaNb064kpUUiptsWalCr3msXioBJ3UsJnCLZuHyX2ZVXot5Q1FuXearrVtWDCrmxx5eQBJsSr16hsZHa4lIlps5nqVAviAD2kdFmONuLHvJ63FwBN3U0WXxjD0vmc7LL2EJcqitmnHwyk9Ha48gZQeQJ+LljJ0L5MfLgaPtU5L6N6zrPE/E1z9VYxA6E9i6fw7H1WP0oADPI5v8AI4SqKPpfH/wuXHlyHnXUdA/qAWwdEGebfX38V4/E8eXrfDMajJxLsgHv+J9HZfpjBnFY8JJGiZzfjP0x1nROz4VJX8TXi/yC5dM4/J/xc+B3HZ8HeOeEdV4bnbp+pQqVJG9TTMAtgz6b/mH+N/8AW9I3jPRdLxyot5AB3+TPm3xHp26fI+NlorL09pnntOOpIoZQj6DSAFxrbPqKbIEb0izAylz3GoLYoyTDIxZH03/UmlXd3UrgjZLVI5D2MfQm6ZYOZTpjuEz4QmruU63cM7Fw2hKS9jqVhYk4+o/4cZXTKPcmoVgnkkG2E3BjMmHfI5BBdGA5A6gjMLrJ3gvl5aDRGdIxnYji2xJVgy0B2iyOS7aTjQgUrXcBtSQVgA2LMxgGBJaqjP8ATMFsxFWCKkOQqknaHYMqjVyyy430MlXNco4XGplphfaLT7Nflkh2bCB6lbkRBR2UdpD5GKHhqApcj1ruPo0U2wzkcjj3BkKFIPI7gl23SiCoUnm2jDJFZstNjREDCBeIEALuAuTzNctCNxY1L2TqZylK9A5jfJBonUfjPEa7SvlYqCFOpOJnIFQuTBMc+QA6PeFwxBeY7+8BMIL8juC7cWoCpEt6NF/SygQJyJ2YSuXWj2EWhHEAkVLaIhT0kb7yEmg+rIwHiKBG44Eg2JGPGBfzMfGwFD3mr43VkuAZyGu3eNTI4T0qJUUZENEWJYxOeVUKkJUFMfiDVy40YYyhSF3cghmFBpi4iHFgx37QnF12WVJUWe0kIMmxII9PG4SYmUXzAiTXszSknTYzGuJRwZf7mfaSFW4AbID9wMkHLdmtxxa9GuMX2e5Y2V1IzbaQMzKxX2mI3AMWWLDhmsifZ4pnxS5UvQ+wKaLzOHPp1UPzsVXexFZHQtYIhSQOc30CMvBSO5lbJ1bl9poe8HPms0AYjLZQUaqTkJNrsPqOrDelm79pVyMQvINREDLRHcEiV2zn7SBqLsElN00ZkzZKPrg4cuTKwVTyY6EVlyKRRA3Ol/j/AOmup8f8WxriQ+Vja2avaQnnLFHZCChG/wAPRv4r+kT0fTHxbq8fqO1v5nqXQjl1AHYipV8P6HH0fSY+nQUMa1Nj4biV86g/NzohxuHZ5XP5GctHaeGIMeIEi9S5l5FeQOzK/Sjh0/f2k5Op4A2BQ/MpguVNURlzeUhJbsJqm6jN1OX0X3i+v64ZPQDV/mWPDMRIurlxjaMZ8qWkbLp8TLjv3qQy5CdGNQsmiIrJlNmomqHx49g5AUTZ/coZcjn395ZyM2RTRMpMGXZMR2fImtDmcgd9xLtyFsNwGJPqHtKubLkNbIqKkQ5JmZs5viJQ6l69RuWMlMOV7lHPl5aPftE0ieyn1HWAA8fb5nPdd4sbZeUseL9UcZPEmcX4j1bLkLFjR/M4+flUD1/D8b51TRZ6/wARVuQ95yHifiWYckVquXuo64OrN/8AM5nq+oOR2P5nj55zPWfEuBUZ05KOSzE2bmzx5FI0SJp0Vvu2ZsOgR8ptxYE9KCbOPmnGHZtvDmyM/DuJ0OHy8ajmT27TQ9MRiYMFqXv9aiUOX+Zvg0jnXKjbhceTSMRFZvDcjtfNhFdF1aFx+fibnmuRQV7yN2P5EzTp4anKncn9y903Rri/9LIwkt02RmtdSSeoxC0QkCS0/ZOWzY4cGfGoZmJmywdVSBX0O057F48MfpzoRR71Nt0vWdN1WPzEdf0TJo2hNfpc6jGj4+RHK5zPifS+Ujkpat7TrMOZOABUV7yn4x0+DqcJONSDIbo3ivaPMfEcflgkLoyh0vV+UebGtzqfFfDxi+/1AjtOJ8QIx5H4A0DoSHO9F1ezqug8UfNkVUYAdjubnJ02LPiLMCSR3nkeTxvqehPNb/zPQvpDx4+I9OuLOfVXzMJtro6uJRkqYwdMMOf1DQ0Jb84IoCCh+I3xTp2ZPMxr271NZjysopr/ALMxlbG4xidJ4d1BCje5s2I6jFVbnMdJ1J9jX9zfdD1QZOLNEmxafRqfEMZws1+8qdL1JRgvtOk63w4dWhZWAPtOd6hV6Z2xlPUp7zpjNYktrpm5wMGUNW44+H9N1S/7+O39jNN0HXk+lpt+n6m3sHX7mTmSoxJxdH1OBwMXUZAv5MsZ3YdOcbuSfcw3t/UrQXwP1CFCAtgm5lORvH8KgZbUn1KIfU9UpQUKE1a9auAOrmypIlfJ4gMpsHQhF6LlBnRdH1SleJaD1jmu9j2mhXxHFhF+4jU8WPUEpxIlWltE/Gaz6gy5en6dsquVB1U5DGgyMcuVu/eb7606v/TeGiySXbU4rp+s6jLxV/8AE4OfnbdHs+D40KUmej/SHh3W9TvpSQinVT0PoOp8b8O9WRVyhe1d5zP0HWPoUx43AOjdz0PpunxZFBNg/ieJyLKTPreNxhxoueF/VHT5l8rqkOFyNX8y31GfE+IopUhvb5lM+C9NnT/dWz8+8qZPBeq6fkej6okd+L7/APmZXKOzGcIcnsT4h4J4f4mjdP1GEBWUqa97nzP/ADD/AABm8IXqPHfCEGbpsjFmUD7Z9M4cnUYnrqlIP51LfVY+i8R6HL0eZVfHlUoVI+ROni8rki0m9HLzeDxTg67PzH8T6NulztiyKQVNdpRdnHc6nqn83/R7/Tv1L1eLHjrHzL4/yDPK8o4DZue5xtTjkmfKcvj/ABTcRfAvvvBxKyt6xqEja794nM2TG9hrBlWY/Gu2PyMikVA8zXEMIl35DvuJ5EH07MpOPszcUuiyTRNn+5YxugShsykrE1yGoWTIiEUxgQxz0xIvcAKyavUQ2VlP+37yHy5Kok38wCLQ3KGqz2/EHA3AmmMjA75VYE9pKY/Lst/8ysNEyUn0Px9Y+1uScgYUTKy+XysmgYeRFFFXsATNxFH5G9kNyU+n3+Y3pq2xqJwZQ3pbfxDVirfaK+fiQzbGxrZsYJFRRyuzWpoCQUBNqLMwpYpvTAnOtFjG6sKLbkOB2+ZWxoOYok/mPc8SLIk0maKRKoBpRGcWC8iSIpcjN2Ah5OWRKDERV/SffRD5iO5JEs9PkC0wvcpjE3EDkTXvH4sbMp4g6EJJVtlu/wALhz5A1pAyHJm9TmqgYXABVgQYxOCkhm7zmprpmim+qMxZCmmNyzj6lhfHUq0BfEA/mNxAD2lxbXZm7vRsenzudmv8xwzsxokGa6mJ9BjcAcPthKUr9i+79F7MSUtffUUgZBV7k5MpVQCO0gMrLfvNYuJacvZZxu1a7ywjZtMSCBKuIqRLSnimpE0mGQbsWa/aO5oiCmlcObo6khQ/pkKCYKSJORr5Be8Yue1omotU4gggxmHHjf7zG4L0ZyUZHt65jkveonK4U0DZimb1ek0JWyuMZ5AmfbSpPR8RjqzYEgrWgalbmQSTVDUXj6jzVs3dSpnzgAoCY9NCXI10XWzCqoGVc2UcwFcfkSMWSl+YjqeJJYaPvMpI3jOU1RPUZkVTbCa/LmRhYIA9zJ6gjyyCZqc4YA1kO/ac8p4nRCFbZtuhwN1/UJgS2JatT6S/jf6ax+BeCpkZAMuUAk1sTxv+HPB8PininmZxYxtPpXpsCY8QC6VRxA/U6vG4n/uyPO8h8cVGATqEUfj/ALm0+nsIyOcjY9D5E02TKzuMd17TqvA8Yx4OJ3c6pUjzFLLUkbFsgUcF1K/UvxxkNLOTEo9XzKPiOsfCZ1bFKCStGt8tOoygKOxm/wCgUY0UCppehATLvdzd3wUV7i5rSijljc3ouZHWwOQErZShsCV3yEDZ7yBlbidTJ76Onie6aCc+WhqU3JyA2QKhPlyHudStnZq1EdNoVlsaDEf3K7OSSO8zIzb3KTdSVc3CgtDsjFNGa/rcyItk7lh+oLbYTT+KZgyenvM5aRvwxjKWuzQ+M5eRIDVOM8SV2Y+rsZ0HinVOCwPcTneqLOhf2ngeZyW6R9Z4aUIdGk69+CMpfc0wyIHogmWvEWbJlIsxHT9OGcKe5keGs3sflztF7p8AzAAChNjj6Y41rGf3D6PCMaKtDc2OHp1BPLdie1FKOkeJKpdo1gbNyAo18weqyBE3ZImxbGC/lqABcvJ4b07YvMyqDYqaWvZPx30c/wBF4v5TAE9jOr8L8TxdTxVsgQ/B95yfiPhaYMruh0DYifD/ABUdLlOPIpIvuO4hOGStGcGlLZ6h0+TFXYGPXGjNoCpzHQ+KeYF4XVe86LospyYracck12daplvJ4V02dR5nTqB8gbmi6zpF8N6usX2ne51nRsufHRNe00X1JjOPIAxBNakJs0XHB9B9H1xyYwnaXV6lFrGwDTmegyvjccjozeIgYLkB3Jcq7NU0tFfxjo06lS3D2vU8/wDE/BmZMmVQKBOveelZFOW8V1Y3ND414Zjw9OcyMddxM3JGnHWWzyLxjw7G2Jk+1xD+h/ETg6sYMmTYNd5e+oECM5HfvOW8AzBfGlU+5mLbatm2KTtM+gOjOLqemUqQQVFj4mi8V6RenzsOOu4qP+nuqAXyd0ygy74p06Mofv7bmFfrJfIkaXp2UMoAM3fT5MSqp5Vc1SYQvIVs9o3pw12x1GqReVro6npsqZMdBu3aa3xToUylstU0PoSFUcSRcv5+mOTH37wf/ScHdtHInF/pyf3LvRZ9gk6/MDxTpnxgkGa7F1T4VBb5ii97Cr6OsTNzrhr9QOu6jNiTniYk0Yjw/OM+JeBoy1lXivJjYOopR9mkU4tM5Bs7Zsjg6+Yls5xkroCL8Wdul69lQ+ljcXkfkgb3mNv0dcm1toT1PVr93M/1F4vqHo/DyMnUOWvstzWdd1S4gx3YBM4TxDxnLm6onIdDQEznyOC2dXi+OuZ7O9+ovH+m8cxY8HTpXEzV4On8tgS2wJpvD+prHzB/uT1Pi2TLkx9JiYgsaJnHLltnu8XBHj0j1L6Z+o+m8NxhTmU3XvO88J/kfw7GeOXKn9zgPpD+P/Des6LH1HXZ8pZxemnRZ/4j8MyDn03iOZG9pyzUUzvjyRaxkj1Lwz6i6DxDGHwZwS3tL3+tQH1UB8zw7N4J9S/Szq+DxHzMY7WRc6v6d+ofEOq6fl1ZDHtMXGVWN8MJf6s9FK9L1Tc3YMa94g+E4xb4n7+wmu6LM2Vb7XLZ6vLgFXIUlJUzPFwZ4P8A+JT6GPW9AvjODFyyYAVfWyP/APTPjfxNDgzFDjqtEfmfo99U9Nj8a6HqOm6pQyZEogz4M/knwXD4d471WDCNLkYT0/DnUaZ4/wDlOJRakcMzD7aq4vyi9lm/7hZlIamiWXJRp9Tuin2eK9gsCLF3+pnEKhYNuAATZBgHLxNfMKMJJQ2FjZiT6pNa5DcUrsWr2hHl7Stkxkp9DsG29WoefJhB+4XEY3Kje4twH9R7RbNfrH0OVqJ8s3caOTrRMr4uHHTEVGh1sUxlrRMZpsx8Dr6vaSpUD1MJDZGYlGOoDrVH2mebfRulFjAycvSKEnLquLHftEqaYAx9BjY7iFMzlS6JRhjArvDCM5t+0TkXJrjCU5EFs0LaMsE9seOK9lgti5tyJ/qCHXj5hJ1MOYOtrcm6NFGIQZMYqPwujDa3KnIPoiH5nlqAp0ZSkn2S0ltF3I+MrSCDg5FqRtTOnTmpNCqkYz5bGu8mSKjK+y3ak8SsU/TsSTevaAXYkG+8JmZ02xFQjGK2POMdMAK+NhZMcrZMgNED4iMY5HbnZltcQSgjExSphjntD8CkLTMLkqxD2ImnsEtGiuPPkdTFceydxfZdV1dafZimtGoNQMHAwZrh5AH0PuEb+vRtH7Lsu4EUqLahLWNEPZtTV4GZRTEy7hzAjiQf3Hcn0ZuKQ91Cj0i6k48i0TrUT57WQAKhhlH9/iUot9smMU/Q5OrVgVKyOdmwKgIVv7QYx8wUaQSop+xOB//Z', true, '2025-04-07 13:15:21.670406+02');
+
+
+--
+-- Data for Name: privacy_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.privacy_form_submissions VALUES ('7a87fef1-aee3-40b1-b9f0-391f2a9f6db5', '4d73e406-cad3-4bb8-a514-ba11511b9b1a', '7a87fef1-aee3-40b1-b9f0-391f2a9f6db5', '2025-05-05 16:14:18.375848+02', '2025-05-05 16:14:18.375848+02', false, false, false, false, false, NULL);
+INSERT INTO public.privacy_form_submissions VALUES ('4a040c18-3d63-49d8-97bd-4173ae0d1bec', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-06 10:04:59.067712+02', '2025-05-06 10:04:59.067712+02', false, false, false, false, false, NULL);
+INSERT INTO public.privacy_form_submissions VALUES ('26ebbf6a-6565-4f31-9d06-546d0a0b4fda', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-04-23 09:08:35.189+02', '2025-05-15 14:09:35.087383+02', false, true, true, true, true, true);
+INSERT INTO public.privacy_form_submissions VALUES ('9f5ad24d-f869-4e17-b345-2e43ca97ceb0', '5a503793-1a3a-48b4-9f0f-e64fc2546618', '9f5ad24d-f869-4e17-b345-2e43ca97ceb0', '2025-05-15 16:52:11.891208+02', '2025-05-15 16:52:11.891208+02', false, false, false, false, false, NULL);
+
+
+--
+-- Data for Name: prostate_followup_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.prostate_followup_form_submissions VALUES ('7f0c4a88-e41d-4939-b47e-64fc30101509', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-04-28 15:01:28.368+02', '2025-05-09 14:47:02.42136+02', 2, '01.01.2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{"ja, wegen Prostatakrebs","ja, wegen Prostatakrebs","ja, wegen Prostataentzündung (Prostatitis)","ja, wegen Prostataentzündung (Prostatitis)","ja, wegen Prostataentzündung (Prostatitis)","ja, wegen Prostataentzündung (Prostatitis)","ja, wegen Prostataentzündung (Prostatitis)","ja, wegen gutartiger Prostatavergrösserung (BPH, BPS, Hyperplasie)","ja, wegen gutartiger Prostatavergrösserung (BPH, BPS, Hyperplasie)","ja, wegen gutartiger Prostatavergrösserung (BPH, BPS, Hyperplasie)","ja, wegen gutartiger Prostatavergrösserung (BPH, BPS, Hyperplasie)","ja, wegen gutartiger Prostatavergrösserung (BPH, BPS, Hyperplasie)","ja, wegen gutartiger Prostatavergrösserung (BPH, BPS, Hyperplasie)","ja, wegen Prostataentzündung (Prostatitis)","ja, wegen Prostatakrebs"}', '', '{TURP,Medikamente,"andere Behandlung"}', 'andere Methode', 'vor zwei Jahren', '{pflanzlich/naturheilkundlich/homöopathisch,"andere (z.B. Tamsulosin, Finasterid)"}', 'ganz andere Medikamente', 'seit drei Jahren', '{Antibiotika,"andere Behandlung"}', 'Prostataentzündung', 'Mai 2023', '2 Wochen', '{"andere Behandlung","Active-Surveillance (aktive Überwachung)"}', 'Andere Prostatakrebs Therapue', 'April 2024', '{nein,Schmerzen}', 'überall', '2 mal', '1 bis 5 Jahre', 'gemischt, teils zufrieden, teils unzufrieden', true, 'Viele', 'Seit Jahren', '{"ja, in der ALTA Klinik"}', 'vor drei Jahren', NULL, NULL, NULL, NULL, 'durch den Enddarm (transrektal)', 2, 'kein Karzinom (negativ)', '{}');
+
+
+--
+-- Data for Name: prostate_holep_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.prostate_holep_form_submissions VALUES ('fd4c071a-24bc-48c6-90e3-f8d956437636', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-04-28 17:15:25.473+02', '2025-05-09 15:07:03.716868+02', 2, '01.01.2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, true, 'Schmerzen', true, true, '4', true, true, 'Kopfschmerzen', '2 mal', true, 'Kokain', true, 'Kokain', '2022', true, 'abends', 'seit 3 Jahren', true, 'Aspirin', '2020');
+
+
+--
+-- Data for Name: prostate_new_patient_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.prostate_new_patient_form_submissions VALUES ('ed2fc043-368d-424b-ae14-a5753975d506', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-06 16:26:29.188+02', '2025-05-09 14:19:42.584761+02', 2, '01.01.2022', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, '{}', '{}', false, '{}', false, '{}', '', '{}', '', '', '{}', '', '', '{}', '', '', '', '{}', '', '', '{nein}', '', 'gar nicht', 'ich habe keine Beschwerden', 'ausgezeichnet', '{nein}', '{nein}', false, '', '', '{"ja, ultraschallgesteuert (klassisch ohne MRT)","ja, Sättigungsbiopsie (mehr als 20 Proben)"}', 'Mai 2023', NULL, 'Ferbruar 2022', NULL, 'durch den Enddarm (transrektal)', 2, 'Karzinom (positiv)', '{4+5=9,5+3=8}', '{}');
+INSERT INTO public.prostate_new_patient_form_submissions VALUES ('985d9fe9-a4e4-4365-a1b4-ce238dab01c3', '5a503793-1a3a-48b4-9f0f-e64fc2546618', '9f5ad24d-f869-4e17-b345-2e43ca97ceb0', '2025-05-15 16:46:04.189639+02', '2025-05-15 16:46:04.189639+02', 2, '01.01.2022', 2.3, '01.06.2022', 3, '01.01.2023', 4.2, '01.04.2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, '{}', '{}', false, '{}', false, '{}', NULL, '{}', '', '', '{}', '', '', '{}', '', '', '', '{}', '', '', '{nein}', '', 'gar nicht', 'seit kurzem', 'zufrieden', '{nein}', '{nein}', false, '', '', '{nein}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{}', '{}');
+
+
+--
+-- Data for Name: prostate_tulsa_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.prostate_tulsa_form_submissions VALUES ('ed6c7499-0e79-4a76-bf45-19d29fe100ed', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-04-28 16:20:02.847+02', '2025-05-09 12:54:46.639991+02', 2, '01.01.2022', 3, '03.04.2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, true, 'Viele', true, true, '3', true, true, 'Kopfschmerzen', true, 'Na', '4 mal', true, 'Kokain', '2022', true, 'abends', 'seit 3 Jahren', true, 'Aspirin', '2020');
+
+
+--
+-- Data for Name: registration_bg_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.registration_bg_form_submissions VALUES ('864350b7-a06d-479c-85b9-e0500b2366a4', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-04-23 16:28:34.402+02', '2025-04-28 12:06:30.038419+02', 'M', '', 'Paul', 'Ehrlich', 'Stolberger Straße', '150', '52068', 'Aachen', 'Deutschland', '', '01713251744', 'paul99.mail@gmail.com', '1999-08-11', '2025-04-24 02:00:00+02', 'Test Betrieb', 'Stolberger Straße', '150', '52068', 'Aachen', 'Software Entwicklert', 'Seit 3 Jahren', 'Müller', true, true);
+INSERT INTO public.registration_bg_form_submissions VALUES ('cb83e896-a24c-4677-a8bc-614e87394a00', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-05 12:47:28.715082+02', '2025-05-05 12:47:28.715082+02', 'M', 'Dr.', 'Gottschalk', 'Thomas ', 'Bahnhofsstraße', '42', '12345', 'Stendal', 'Deutschland', '017102399339', '017102399339', 'tg@gmail.com', '2010-10-10', '2025-05-21 02:00:00+02', 'ZDF', 'Stolberger Straße', '150', '52068', 'Aachen', 'Moderator', 'Seit 30 Jahren', 'Dr. Bibber', true, true);
+
+
+--
+-- Data for Name: registration_form_submissions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.registration_form_submissions VALUES ('452dc19c-094f-4624-9efa-e95597f02b8b', 'e23dcfac-4b67-4c50-a5d4-de4b5f619f2a', '5bbad366-efbd-4796-8ca6-b77c4a2f4234', '2025-03-31 11:51:35.534172+02', '2025-03-31 11:51:35.534172+02', 'M', 'Dr.', 'Paul', 'Muster', 'Kölnerweg', '4', '23334', 'Köln', '', '015323424444', 'paulmuster@muster.de', '1995-01-01', 'Ich zahle die Untersuchung selbst und bin gesetzlich Krankenversichert (GKV)', NULL, false, false, NULL, false, NULL, false, false, 'E-Mail', '{"Recall – Terminerinnerung von der ALTA Klinik"}', 'Deutschland');
+INSERT INTO public.registration_form_submissions VALUES ('75abac13-5e06-453b-ba78-3924aac583ca', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-03-26 11:38:43.272+01', '2025-04-23 09:00:51.573594+02', 'M', 'Dr.', 'Timo', 'Erber', 'Alfred-Bozi_Str.', '3', '33602', 'Bielefeld', '015146270300', '05215464651', 'Tim@erber.de', '1988-03-12', 'Private Krankenversicherung (PKV)', '890e86a5-2f05-4b4f-9bc7-f1cff7e95a7a', true, false, 'Müller', true, '{"Empfehlung zur Biopsie"}', false, false, 'Post', '{"ich bin bereits Patient","Recall – Terminerinnerung von der ALTA Klinik",Internet}', 'Deutschland');
+INSERT INTO public.registration_form_submissions VALUES ('cb83e896-a24c-4677-a8bc-614e87394a00', 'f6933fad-c247-44ce-9182-70715d5898d0', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-05 12:44:12.457+02', '2025-05-05 15:14:02.079902+02', 'F', 'Dr.', 'Gottschalk', 'Thomas ', 'Bahnhofsstraße', '42', '12345', 'Stendal', '017102399339', '017102399339', 'tg@gmail.com', '2010-10-10', 'Ich zahle die Untersuchung selbst und bin nicht versichert', NULL, NULL, false, NULL, false, NULL, false, false, 'beides', '{Empfehlung}', 'Deutschland');
+INSERT INTO public.registration_form_submissions VALUES ('7a87fef1-aee3-40b1-b9f0-391f2a9f6db5', '4d73e406-cad3-4bb8-a514-ba11511b9b1a', '7a87fef1-aee3-40b1-b9f0-391f2a9f6db5', '2025-05-05 16:06:31.6737+02', '2025-05-05 16:06:31.6737+02', 'F', '', 'Hanni', 'Engelage', 'Bahnhofsstraße', '42', '12345', 'Stendal', '015146270300', '015146270300', 'lucas.engelage@altaklinik.de', '1989-04-19', 'Ich zahle die Untersuchung selbst und bin nicht versichert', NULL, NULL, false, NULL, false, NULL, false, false, 'E-Mail', '{"ich bin bereits Patient"}', 'Deutschland');
+
+
+--
+-- Data for Name: report_templates; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.report_templates VALUES ('90df6f4b-185d-4dce-b362-4a2598ac4e58', 'MRT-Befund Standard', '', 'mrt', true, '', '<p><strong>Indikation</strong></p><p>{{finding.indication}}</p><p><br></p><p><strong>Befund</strong></p><p>{{finding.description}}</p><p><br></p><p><strong>Beurteilung</strong></p><p>{{finding.assessment}}</p>', '', '[]', '2025-03-24 13:59:28.301+01', '2025-03-24 13:59:28.301+01');
+
+
+--
+-- Data for Name: reports; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.reports VALUES ('e895e343-e2f1-4b88-bf07-0cb03b334da3', '539b0bcc-6968-48a4-911f-714ef176c1ce', 'MRT Kopf', '<p>jkenwfjnfejkwfwe</p>', '<p>Normalbefund. Regelrechte anatomische Verhältnisse. Keine pathologischen Veränderungen nachweisbar. Altersentsprechender Normalbefund.</p>', '<p>Kein Hinweis auf pathologische Veränderungen. Altersentsprechender Normalbefund.</p>', false, NULL, '2025-03-21 12:50:21.105127+01', '2025-03-21 20:41:32.731+01');
+INSERT INTO public.reports VALUES ('d5f690d1-6e2f-4647-b7fd-04598facdc26', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', 'MRT Kopf links', '<p>nndsjfnjewnfwef</p>', '<p>fwefwefwefwe</p>', '<p>fwefwefweff</p>', false, NULL, '2025-03-24 09:53:37.401387+01', '2025-03-24 13:59:59.082+01');
+INSERT INTO public.reports VALUES ('0bba232d-135f-4ddf-b71d-529259756a85', '90f79dfe-beb5-4f54-b3a8-7b18a5531607', 'MRT Knie', '<p>Z. n. Unterschenkeldistorsion links (Skiunfall).</p>', '<p>Im linken Kniegelenk regelhafte Artikulation femorotibial sowie femoropatellar.</p><p>Regelhafte Konfiguration und homogenes Markraumsignal der abgebildeten Skelettanteile ohne</p><p>Hinweis auf frische Frakturen oder Luxationsfehlstellungen. Kleine Knochenzyste im ventralen</p><p>Tibiaplateau von ca. 7 mm, DD in erster Linie intraossäres Ganglion.</p><p>Kreuzbänder, Kollateralbänder und Retinacula kontinuierlich und signalarm abgrenzbar. Kein Hinweis</p><p>auf eine relevante Kontinuitätsunterbrechung oder Retraktion.</p><p>Moderate Chondropathie II bis III im Bereich der medialen Patellafacette sowie im Bereich der</p><p>medialen Femurkondyle. Kein Nachweis einer fortgeschrittenen Arthrose.</p><p>Dezente Extrusion des Innenmeniskus um ca. 2-3 mm ohne überzeugenden Hinweis auf eine frische</p><p>Ruptur. Außenmeniskus glatt konturiert und kontinuierlich abgrenzbar bei initialen</p><p>Degenerationszeichen.</p><p>Dezente Ergussbildung mit Betonung im Recessus suprapatellaris sowie diskretes, subkutanes</p><p>Weichteilödem und infrapatellär.</p><p>Ausgeprägte, intramuskuläre Einblutung im Caput mediale des linken Musculus gastrocnemius mit</p><p>ödematöser Auffiederung und großvolumiger Konturunterbrechung der Muskelfasern sowie Nachweis</p><p>einer langstreckigen, perifaszialen Flüssigkeitsansammlung von ca. 7,0 x 1,0 x 13,0 cm, passend zu</p><p>dem Bild eines ausgeprägten Muskelfaserrisses. Kein Hinweis auf einen signifikanten Sehnenabriss.</p><p>Unauffällige Signalgebung der miterfassten Unterschenkelmuskulatur rechtsseitig.</p>', '<ol><li>Bild eines ausgeprägten Muskelfaser-/ bzw. Muskelbündelrisses des Caput mediale des linken M. gastrocnemius mit kräftiger intramuskulärer Einblutung und langstreckiger, perifaszialer Flüssigkeitsansammlung. Kein Hinweis auf einen signifikanten Sehnenabriss.</li><li>Im linken Kniegelenk kein überzeugender Anhalt für akute Traumafolgen bei moderaten</li><li>Degenerationszeichen (Chondropathie II-III) im Bereich der medialen Femurkondyle sowie der medialen Patellafacette sowie leichte Extrusion des Innenmeniskus).</li><li>Dezente Ergussbildung im linken Kniegelenk sowie subkutanes Weichteilödem im Bereich des linken Unterschenkels mit Betonung bimalleolär.</li></ol>', false, NULL, '2025-04-06 14:31:28.955134+02', '2025-04-06 14:31:28.955134+02');
+
+
+--
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.roles VALUES ('29bcd942-8482-46d9-ba5c-4b0e988c1852', 'Admin', 'Vollzugriff auf alle Funktionen', '2025-03-16 22:45:23.394536+01', '2025-03-16 22:45:23.394536+01');
+INSERT INTO public.roles VALUES ('a0d15b78-d393-484b-b7d8-c200d8044cac', 'MTRA', 'Zugriff auf Terminplanung und Patientenverwaltung', '2025-03-16 22:45:23.394536+01', '2025-03-16 22:45:23.394536+01');
+INSERT INTO public.roles VALUES ('0a86b1bb-e240-4e4e-bcc8-0cda62ff72f4', 'Arzt', 'Zugriff auf medizinische Funktionen und Befunde', '2025-03-16 22:45:23.394536+01', '2025-03-16 22:45:23.394536+01');
+
+
+--
+-- Data for Name: scheduled_emails; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+
+
+--
+-- Data for Name: signature_requests; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.signature_requests VALUES ('7aff2f44-0f41-4fa8-9f79-7cc273e89c5e', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-14 10:04:54.659037+02', '0', false);
+INSERT INTO public.signature_requests VALUES ('8a7dd186-19c1-43ad-9161-db9d9ec654b3', 'c8f624c1-24cb-454e-af61-6afecb63e12a', 'b8b01602-20fe-48e9-a76e-85ebfbf6c5dc', '2025-05-15 14:12:31.716676+02', '0', false);
+INSERT INTO public.signature_requests VALUES ('56688bfb-b090-4127-b8dc-00439f4cf3ad', 'c8f624c1-24cb-454e-af61-6afecb63e12a', 'b8b01602-20fe-48e9-a76e-85ebfbf6c5dc', '2025-05-15 16:32:01.953471+02', '0', false);
+INSERT INTO public.signature_requests VALUES ('6e743bc3-7d4f-434d-a716-913b3db7af16', '5a503793-1a3a-48b4-9f0f-e64fc2546618', '9f5ad24d-f869-4e17-b345-2e43ca97ceb0', '2025-05-15 16:46:07.561993+02', '0', false);
+
+
+--
+-- Data for Name: signatures; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.signatures VALUES ('e0124e0b-054c-4ddb-bc03-6809d67b202b', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', '129cc0ff-74d7-45d3-95ec-41ae7f2eb5ab', 'cb83e896-a24c-4677-a8bc-614e87394a00', '2025-05-15 13:32:27.270432+02', 'data:image/png;base64,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');
+INSERT INTO public.signatures VALUES ('8fb51dff-c19f-48da-a8ba-a892e0336b52', 'c8f624c1-24cb-454e-af61-6afecb63e12a', 'b1971e1e-d726-426a-9a4c-e47a858d03cb', 'b8b01602-20fe-48e9-a76e-85ebfbf6c5dc', '2025-05-15 16:32:14.78276+02', 'data:image/png;base64,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');
+INSERT INTO public.signatures VALUES ('40b52aea-52a8-4efe-aad1-488999588ba0', '5a503793-1a3a-48b4-9f0f-e64fc2546618', 'b246f245-f16d-41d4-8e62-118b6199164d', '9f5ad24d-f869-4e17-b345-2e43ca97ceb0', '2025-05-15 16:46:18.487984+02', 'data:image/png;base64,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');
+
+
+--
+-- Data for Name: user_profiles; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.user_profiles VALUES ('e539d673-4786-4b76-bf5d-13ded2885a44', 'a22821f9-6e9c-4d97-bd32-74ab22ab72ab', NULL, 'Admin', 'ALTA Klinik', '2025-03-16 22:26:08.148129+01', '2025-03-16 22:26:08.148129+01');
+INSERT INTO public.user_profiles VALUES ('2ce9dcdc-de62-4e02-accf-4e819397a56f', '93c43d55-7a00-4d58-b77e-f14a081d931f', NULL, 'Admin', 'ALTA Klinik', '2025-03-17 09:28:29.144016+01', '2025-03-17 09:28:29.144016+01');
+
+
+--
+-- Data for Name: user_roles; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+INSERT INTO public.user_roles VALUES ('392e2abd-dbe0-4b78-a6f0-02c8aef2fc68', '93c43d55-7a00-4d58-b77e-f14a081d931f', '29bcd942-8482-46d9-ba5c-4b0e988c1852', '2025-03-17 09:28:29.144016+01');
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: realtime; Owner: -
+--
+
+INSERT INTO realtime.schema_migrations VALUES (20211116024918, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211116045059, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211116050929, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211116051442, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211116212300, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211116213355, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211116213934, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211116214523, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211122062447, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211124070109, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211202204204, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211202204605, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211210212804, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20211228014915, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20220107221237, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20220228202821, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20220312004840, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20220603231003, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20220603232444, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20220615214548, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20220712093339, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20220908172859, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20220916233421, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20230119133233, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20230128025114, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20230128025212, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20230227211149, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20230228184745, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20230308225145, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20230328144023, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20231018144023, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20231204144023, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20231204144024, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20231204144025, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240108234812, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240109165339, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240227174441, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240311171622, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240321100241, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240401105812, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240418121054, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240523004032, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240618124746, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240801235015, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240805133720, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240827160934, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240919163303, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20240919163305, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20241019105805, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20241030150047, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20241108114728, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20241121104152, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20241130184212, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20241220035512, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20241220123912, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20241224161212, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20250107150512, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20250110162412, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20250123174212, '2025-03-18 11:12:38');
+INSERT INTO realtime.schema_migrations VALUES (20250128220012, '2025-03-18 11:12:38');
+
+
+--
+-- Data for Name: subscription; Type: TABLE DATA; Schema: realtime; Owner: -
+--
+
+
+
+--
+-- Data for Name: buckets; Type: TABLE DATA; Schema: storage; Owner: -
+--
+
+INSERT INTO storage.buckets VALUES ('documents', 'documents', NULL, '2025-03-18 12:21:20.575534+01', '2025-03-18 12:21:20.575534+01', false, false, NULL, NULL, NULL);
+INSERT INTO storage.buckets VALUES ('patient_photos', 'Patientenfotos', NULL, '2025-03-20 11:29:17.630311+01', '2025-03-20 11:29:17.630311+01', true, false, NULL, NULL, NULL);
+INSERT INTO storage.buckets VALUES ('letterheads', 'letterheads', NULL, '2025-03-21 19:08:59.425225+01', '2025-03-21 19:08:59.425225+01', true, false, NULL, NULL, NULL);
+INSERT INTO storage.buckets VALUES ('patient-documents', 'patient-documents', NULL, '2025-03-23 16:39:23.547321+01', '2025-03-23 16:39:23.547321+01', true, false, NULL, NULL, NULL);
+
+
+--
+-- Data for Name: migrations; Type: TABLE DATA; Schema: storage; Owner: -
+--
+
+INSERT INTO storage.migrations VALUES (0, 'create-migrations-table', 'e18db593bcde2aca2a408c4d1100f6abba2195df', '2025-03-18 11:13:49.613408');
+INSERT INTO storage.migrations VALUES (1, 'initialmigration', '6ab16121fbaa08bbd11b712d05f358f9b555d777', '2025-03-18 11:13:49.624181');
+INSERT INTO storage.migrations VALUES (2, 'storage-schema', '5c7968fd083fcea04050c1b7f6253c9771b99011', '2025-03-18 11:13:49.625841');
+INSERT INTO storage.migrations VALUES (3, 'pathtoken-column', '2cb1b0004b817b29d5b0a971af16bafeede4b70d', '2025-03-18 11:13:49.706244');
+INSERT INTO storage.migrations VALUES (4, 'add-migrations-rls', '427c5b63fe1c5937495d9c635c263ee7a5905058', '2025-03-18 11:13:49.725524');
+INSERT INTO storage.migrations VALUES (5, 'add-size-functions', '79e081a1455b63666c1294a440f8ad4b1e6a7f84', '2025-03-18 11:13:49.727313');
+INSERT INTO storage.migrations VALUES (6, 'change-column-name-in-get-size', 'f93f62afdf6613ee5e7e815b30d02dc990201044', '2025-03-18 11:13:49.729332');
+INSERT INTO storage.migrations VALUES (7, 'add-rls-to-buckets', 'e7e7f86adbc51049f341dfe8d30256c1abca17aa', '2025-03-18 11:13:49.731416');
+INSERT INTO storage.migrations VALUES (8, 'add-public-to-buckets', 'fd670db39ed65f9d08b01db09d6202503ca2bab3', '2025-03-18 11:13:49.732786');
+INSERT INTO storage.migrations VALUES (9, 'fix-search-function', '3a0af29f42e35a4d101c259ed955b67e1bee6825', '2025-03-18 11:13:49.734403');
+INSERT INTO storage.migrations VALUES (10, 'search-files-search-function', '68dc14822daad0ffac3746a502234f486182ef6e', '2025-03-18 11:13:49.736824');
+INSERT INTO storage.migrations VALUES (11, 'add-trigger-to-auto-update-updated_at-column', '7425bdb14366d1739fa8a18c83100636d74dcaa2', '2025-03-18 11:13:49.739301');
+INSERT INTO storage.migrations VALUES (12, 'add-automatic-avif-detection-flag', '8e92e1266eb29518b6a4c5313ab8f29dd0d08df9', '2025-03-18 11:13:49.741627');
+INSERT INTO storage.migrations VALUES (13, 'add-bucket-custom-limits', 'cce962054138135cd9a8c4bcd531598684b25e7d', '2025-03-18 11:13:49.743521');
+INSERT INTO storage.migrations VALUES (14, 'use-bytes-for-max-size', '941c41b346f9802b411f06f30e972ad4744dad27', '2025-03-18 11:13:49.74494');
+INSERT INTO storage.migrations VALUES (15, 'add-can-insert-object-function', '934146bc38ead475f4ef4b555c524ee5d66799e5', '2025-03-18 11:13:49.89301');
+INSERT INTO storage.migrations VALUES (16, 'add-version', '76debf38d3fd07dcfc747ca49096457d95b1221b', '2025-03-18 11:13:49.895633');
+INSERT INTO storage.migrations VALUES (17, 'drop-owner-foreign-key', 'f1cbb288f1b7a4c1eb8c38504b80ae2a0153d101', '2025-03-18 11:13:49.897031');
+INSERT INTO storage.migrations VALUES (18, 'add_owner_id_column_deprecate_owner', 'e7a511b379110b08e2f214be852c35414749fe66', '2025-03-18 11:13:49.899102');
+INSERT INTO storage.migrations VALUES (19, 'alter-default-value-objects-id', '02e5e22a78626187e00d173dc45f58fa66a4f043', '2025-03-18 11:13:49.903163');
+INSERT INTO storage.migrations VALUES (20, 'list-objects-with-delimiter', 'cd694ae708e51ba82bf012bba00caf4f3b6393b7', '2025-03-18 11:13:49.90499');
+INSERT INTO storage.migrations VALUES (21, 's3-multipart-uploads', '8c804d4a566c40cd1e4cc5b3725a664a9303657f', '2025-03-18 11:13:49.908474');
+INSERT INTO storage.migrations VALUES (22, 's3-multipart-uploads-big-ints', '9737dc258d2397953c9953d9b86920b8be0cdb73', '2025-03-18 11:13:49.923772');
+INSERT INTO storage.migrations VALUES (23, 'optimize-search-function', '9d7e604cddc4b56a5422dc68c9313f4a1b6f132c', '2025-03-18 11:13:49.937006');
+INSERT INTO storage.migrations VALUES (24, 'operation-function', '8312e37c2bf9e76bbe841aa5fda889206d2bf8aa', '2025-03-18 11:13:49.939159');
+INSERT INTO storage.migrations VALUES (25, 'custom-metadata', 'd974c6057c3db1c1f847afa0e291e6165693b990', '2025-03-18 11:13:49.940947');
+INSERT INTO storage.migrations VALUES (26, 'objects-prefixes', 'ef3f7871121cdc47a65308e6702519e853422ae2', '2025-03-18 11:13:49.942155');
+INSERT INTO storage.migrations VALUES (27, 'search-v2', '33b8f2a7ae53105f028e13e9fcda9dc4f356b4a2', '2025-03-18 11:13:49.95266');
+INSERT INTO storage.migrations VALUES (28, 'object-bucket-name-sorting', '8f385d71c72f7b9f6388e22f6e393e3b78bf8617', '2025-03-18 11:13:49.956818');
+INSERT INTO storage.migrations VALUES (29, 'create-prefixes', '8416491709bbd2b9f849405d5a9584b4f78509fb', '2025-03-18 11:13:49.959658');
+INSERT INTO storage.migrations VALUES (30, 'update-object-levels', 'f5899485e3c9d05891d177787d10c8cb47bae08a', '2025-03-18 11:13:49.961487');
+INSERT INTO storage.migrations VALUES (31, 'objects-level-index', '33f1fef7ec7fea08bb892222f4f0f5d79bab5eb8', '2025-03-18 11:13:49.964439');
+INSERT INTO storage.migrations VALUES (32, 'backward-compatible-index-on-objects', '2d51eeb437a96868b36fcdfb1ddefdf13bef1647', '2025-03-18 11:13:49.967816');
+INSERT INTO storage.migrations VALUES (33, 'backward-compatible-index-on-prefixes', 'fe473390e1b8c407434c0e470655945b110507bf', '2025-03-18 11:13:49.970076');
+INSERT INTO storage.migrations VALUES (34, 'optimize-search-function-v1', '82b0e469a00e8ebce495e29bfa70a0797f7ebd2c', '2025-03-18 11:13:49.970531');
+INSERT INTO storage.migrations VALUES (35, 'add-insert-trigger-prefixes', '63bb9fd05deb3dc5e9fa66c83e82b152f0caf589', '2025-03-18 11:13:49.973209');
+
+
+--
+-- Data for Name: objects; Type: TABLE DATA; Schema: storage; Owner: -
+--
+
+INSERT INTO storage.objects VALUES ('7b9bd990-4f53-4c2f-9c2e-0b4338debaeb', 'documents', '539b0bcc-6968-48a4-911f-714ef176c1ce/f54ymfupd0f.pdf', NULL, '2025-03-18 18:39:15.920199+01', '2025-03-18 18:39:15.920199+01', '2025-03-18 18:39:15.920199+01', '{"eTag": "\"5de16eb6c6e09ce10887cf41ce8f2b0b\"", "size": 91975, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-03-18T17:39:16.000Z", "contentLength": 91975, "httpStatusCode": 200}', DEFAULT, 'd416ae26-db13-46a7-bca2-4a69adb231fe', NULL, '{}', 2);
+INSERT INTO storage.objects VALUES ('e09aabd9-6599-42b8-b692-5e2512a1c209', 'documents', '7a495466-f0e7-4c46-b56f-f68b43769b8c/lsnrjni735n.pdf', NULL, '2025-03-18 18:41:12.804955+01', '2025-03-18 18:41:12.804955+01', '2025-03-18 18:41:12.804955+01', '{"eTag": "\"5de16eb6c6e09ce10887cf41ce8f2b0b\"", "size": 91975, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-03-18T17:41:13.000Z", "contentLength": 91975, "httpStatusCode": 200}', DEFAULT, '603165e8-f938-405b-9e21-4adfc9a145f4', NULL, '{}', 2);
+INSERT INTO storage.objects VALUES ('56d6a41c-d623-44ef-9d1f-c10a2fc3e42e', 'documents', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc/xehi0owbnra.pdf', NULL, '2025-03-18 18:58:17.442178+01', '2025-03-18 18:58:17.442178+01', '2025-03-18 18:58:17.442178+01', '{"eTag": "\"d9f7b65932a7d1e848d1df7e7888ea40\"", "size": 199927, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-03-18T17:58:18.000Z", "contentLength": 199927, "httpStatusCode": 200}', DEFAULT, '2a5242a6-86f5-4499-958e-799056ebbaac', NULL, '{}', 2);
+INSERT INTO storage.objects VALUES ('af23d22c-3793-46a2-add9-1424ae268e61', 'documents', '3c923f08-c9c8-4104-b1a3-9f709bc03b49/4ws7ryffpuw.pdf', NULL, '2025-03-19 10:10:36.815284+01', '2025-03-19 10:10:36.815284+01', '2025-03-19 10:10:36.815284+01', '{"eTag": "\"5de16eb6c6e09ce10887cf41ce8f2b0b\"", "size": 91975, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-03-19T09:10:37.000Z", "contentLength": 91975, "httpStatusCode": 200}', DEFAULT, '503d9157-f68d-439b-aabe-00e1e1cabb87', NULL, '{}', 2);
+INSERT INTO storage.objects VALUES ('3d55fe5a-1bd0-4e08-b66b-1de27cbffc2c', 'documents', '3c923f08-c9c8-4104-b1a3-9f709bc03b49/yp9f44m3tej.png', NULL, '2025-03-19 10:12:25.669845+01', '2025-03-19 10:12:25.669845+01', '2025-03-19 10:12:25.669845+01', '{"eTag": "\"17736bf549d918be9548b0788439a1da\"", "size": 33929, "mimetype": "image/png", "cacheControl": "max-age=3600", "lastModified": "2025-03-19T09:12:26.000Z", "contentLength": 33929, "httpStatusCode": 200}', DEFAULT, 'd718c87a-f905-484e-85cf-b3b598857d19', NULL, '{}', 2);
+INSERT INTO storage.objects VALUES ('b850fe14-68c6-491c-b432-05e323a2a108', 'documents', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc/xjs8x1eivy.png', NULL, '2025-03-19 10:24:57.88746+01', '2025-03-19 10:24:57.88746+01', '2025-03-19 10:24:57.88746+01', '{"eTag": "\"63f285e3226fdc01d421a211e8ff449e\"", "size": 115449, "mimetype": "image/png", "cacheControl": "max-age=3600", "lastModified": "2025-03-19T09:24:58.000Z", "contentLength": 115449, "httpStatusCode": 200}', DEFAULT, 'af73c297-eb76-465d-a54a-b24437c5ad46', NULL, '{}', 2);
+INSERT INTO storage.objects VALUES ('5e168cff-8019-4ac3-8dde-6d8001d819e1', 'documents', '723a4da1-3deb-41ec-9049-8d59cc3cb892/gx9ha8rtu2b.pdf', NULL, '2025-03-19 22:06:35.43995+01', '2025-03-19 22:06:35.43995+01', '2025-03-19 22:06:35.43995+01', '{"eTag": "\"5de16eb6c6e09ce10887cf41ce8f2b0b\"", "size": 91975, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-03-19T21:06:36.000Z", "contentLength": 91975, "httpStatusCode": 200}', DEFAULT, '57fa79ee-7c07-4a09-a6c1-998b6457323d', NULL, '{}', 2);
+INSERT INTO storage.objects VALUES ('37d05a75-0b97-4e70-b204-45db876d2022', 'documents', '539b0bcc-6968-48a4-911f-714ef176c1ce/yscrwvcdkr.pdf', NULL, '2025-03-20 09:06:47.250244+01', '2025-03-20 09:06:47.250244+01', '2025-03-20 09:06:47.250244+01', '{"eTag": "\"d9f7b65932a7d1e848d1df7e7888ea40\"", "size": 199927, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-03-20T08:06:48.000Z", "contentLength": 199927, "httpStatusCode": 200}', DEFAULT, 'b4e8a1b7-aad3-4c19-bf42-b0e76596943a', NULL, '{}', 2);
+INSERT INTO storage.objects VALUES ('55e868e1-ee27-49e8-ba85-8992c719722b', 'patient_photos', '7a87fef1-aee3-40b1-b9f0-391f2a9f6db5_1742468092816.jpg', NULL, '2025-03-20 11:54:53.129428+01', '2025-03-20 11:54:53.129428+01', '2025-03-20 11:54:53.129428+01', '{"eTag": "\"32e6bfd1aa9a1db9080817c522f34d97\"", "size": 56761, "mimetype": "image/jpeg", "cacheControl": "max-age=3600", "lastModified": "2025-03-20T10:54:54.000Z", "contentLength": 56761, "httpStatusCode": 200}', DEFAULT, 'fe677d6c-28e1-4fcc-93f1-37cef7799874', NULL, '{}', 1);
+INSERT INTO storage.objects VALUES ('ec33eec2-781c-4e42-914e-7551abf61f7d', 'letterheads', 'letterhead_1742583565179_2180.png', NULL, '2025-03-21 19:59:25.199203+01', '2025-03-21 19:59:25.199203+01', '2025-03-21 19:59:25.199203+01', '{"eTag": "\"3dc3a7b50c71c0ce35a455790f40d146\"", "size": 395090, "mimetype": "image/png", "cacheControl": "max-age=3600", "lastModified": "2025-03-21T18:59:26.000Z", "contentLength": 395090, "httpStatusCode": 200}', DEFAULT, 'feaa9bbd-05bb-4741-97b7-0424cb865a89', NULL, '{}', 1);
+INSERT INTO storage.objects VALUES ('a6bb9f65-dc19-4213-91fe-853955cdee77', 'letterheads', 'letterhead_1742584370978_4923.png', NULL, '2025-03-21 20:12:51.118293+01', '2025-03-21 20:12:51.118293+01', '2025-03-21 20:12:51.118293+01', '{"eTag": "\"3dc3a7b50c71c0ce35a455790f40d146\"", "size": 395090, "mimetype": "image/png", "cacheControl": "max-age=3600", "lastModified": "2025-03-21T19:12:51.000Z", "contentLength": 395090, "httpStatusCode": 200}', DEFAULT, 'cd5fd92f-28d5-4ad3-9cd5-99a1f007209a', NULL, '{}', 1);
+INSERT INTO storage.objects VALUES ('f5ca1240-b9a7-4f01-8044-031082d1ff56', 'documents', '89c4e10a-c888-40a2-8e88-a4e72b8e3559/pytvd7i1hm8.pdf', NULL, '2025-03-25 16:24:27.46319+01', '2025-03-25 16:24:27.46319+01', '2025-03-25 16:24:27.46319+01', '{"eTag": "\"15572bdb4529fae5520f8889020fd938\"", "size": 44154, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-03-25T15:24:28.000Z", "contentLength": 44154, "httpStatusCode": 200}', DEFAULT, '77c0c39c-c539-4b14-9b2a-f0755477fc73', NULL, '{}', 2);
+
+
+--
+-- Data for Name: prefixes; Type: TABLE DATA; Schema: storage; Owner: -
+--
+
+INSERT INTO storage.prefixes VALUES ('documents', '539b0bcc-6968-48a4-911f-714ef176c1ce', DEFAULT, '2025-03-31 13:35:44.186565+02', '2025-03-31 13:35:44.186565+02');
+INSERT INTO storage.prefixes VALUES ('documents', '7a495466-f0e7-4c46-b56f-f68b43769b8c', DEFAULT, '2025-03-31 13:35:44.186565+02', '2025-03-31 13:35:44.186565+02');
+INSERT INTO storage.prefixes VALUES ('documents', 'ba5131b0-b4d7-4809-af3a-2cfd68e6c8fc', DEFAULT, '2025-03-31 13:35:44.186565+02', '2025-03-31 13:35:44.186565+02');
+INSERT INTO storage.prefixes VALUES ('documents', '3c923f08-c9c8-4104-b1a3-9f709bc03b49', DEFAULT, '2025-03-31 13:35:44.186565+02', '2025-03-31 13:35:44.186565+02');
+INSERT INTO storage.prefixes VALUES ('documents', '723a4da1-3deb-41ec-9049-8d59cc3cb892', DEFAULT, '2025-03-31 13:35:44.186565+02', '2025-03-31 13:35:44.186565+02');
+INSERT INTO storage.prefixes VALUES ('documents', '89c4e10a-c888-40a2-8e88-a4e72b8e3559', DEFAULT, '2025-03-31 13:35:44.186565+02', '2025-03-31 13:35:44.186565+02');
+
+
+--
+-- Data for Name: s3_multipart_uploads; Type: TABLE DATA; Schema: storage; Owner: -
+--
+
+
+
+--
+-- Data for Name: s3_multipart_uploads_parts; Type: TABLE DATA; Schema: storage; Owner: -
+--
+
+
+
+--
+-- Data for Name: hooks; Type: TABLE DATA; Schema: supabase_functions; Owner: -
+--
+
+
+
+--
+-- Data for Name: migrations; Type: TABLE DATA; Schema: supabase_functions; Owner: -
+--
+
+INSERT INTO supabase_functions.migrations VALUES ('initial', '2025-03-18 12:12:03.457863+01');
+INSERT INTO supabase_functions.migrations VALUES ('20210809183423_update_grants', '2025-03-18 12:12:03.457863+01');
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: supabase_migrations; Owner: -
+--
+
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313113955', '{"/*
+  # Create examination management tables
+
+  1. New Tables
+    - `devices`
+      - `id` (uuid, primary key)
+      - `name` (text) - Name of the device (e.g., \"MRT Skyra\")
+      - `type` (text) - Type of device (e.g., \"MRT\", \"CT\")
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+    - `forms`
+      - `id` (uuid, primary key)
+      - `name` (text) - Name of the form
+      - `description` (text) - Description of the form
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+    - `examinations`
+      - `id` (uuid, primary key)
+      - `name` (text) - Name of the examination
+      - `description` (text) - Description of the examination
+      - `cost` (numeric) - Cost of the examination
+      - `duration` (interval) - Duration of the examination
+      - `device_id` (uuid, foreign key) - Reference to devices table
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+    - `examination_forms`
+      - `id` (uuid, primary key)
+      - `examination_id` (uuid, foreign key)
+      - `form_id` (uuid, foreign key)
+      - `order` (integer) - Order in which forms should be presented
+      - `created_at` (timestamp)
+
+  2. Security
+    - Enable RLS on all tables
+    - Add policies for authenticated admin users
+*/
+
+-- Create devices table
+CREATE TABLE devices (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  type text NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","ALTER TABLE devices ENABLE ROW LEVEL SECURITY","CREATE POLICY \"Allow full access for authenticated users\"
+  ON devices
+  FOR ALL
+  TO authenticated
+  USING (true)","-- Create forms table
+CREATE TABLE forms (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  description text,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","ALTER TABLE forms ENABLE ROW LEVEL SECURITY","CREATE POLICY \"Allow full access for authenticated users\"
+  ON forms
+  FOR ALL
+  TO authenticated
+  USING (true)","-- Create examinations table
+CREATE TABLE examinations (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  description text,
+  cost numeric NOT NULL,
+  duration interval NOT NULL,
+  device_id uuid REFERENCES devices(id),
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","ALTER TABLE examinations ENABLE ROW LEVEL SECURITY","CREATE POLICY \"Allow full access for authenticated users\"
+  ON examinations
+  FOR ALL
+  TO authenticated
+  USING (true)","-- Create examination_forms table
+CREATE TABLE examination_forms (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  examination_id uuid REFERENCES examinations(id) ON DELETE CASCADE,
+  form_id uuid REFERENCES forms(id) ON DELETE CASCADE,
+  \"order\" integer NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  UNIQUE(examination_id, form_id)
+)","ALTER TABLE examination_forms ENABLE ROW LEVEL SECURITY","CREATE POLICY \"Allow full access for authenticated users\"
+  ON examination_forms
+  FOR ALL
+  TO authenticated
+  USING (true)","-- Create trigger to update updated_at timestamp
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = now();
+  RETURN NEW;
+END;
+$$ language ''plpgsql''","CREATE TRIGGER update_devices_updated_at
+  BEFORE UPDATE ON devices
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column()","CREATE TRIGGER update_forms_updated_at
+  BEFORE UPDATE ON forms
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column()","CREATE TRIGGER update_examinations_updated_at
+  BEFORE UPDATE ON examinations
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column()"}', 'still_boat');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313114917', '{"/*
+  # Update devices table RLS policies
+
+  1. Changes
+    - Add RLS policies for both authenticated and anon roles
+    - Ensure full access for all operations
+
+  2. Security
+    - Enable RLS on devices table
+    - Add policies for both authenticated and anon users
+*/
+
+-- Create devices table if it doesn''t exist
+CREATE TABLE IF NOT EXISTS devices (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  type text NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Enable Row Level Security
+ALTER TABLE devices ENABLE ROW LEVEL SECURITY","-- Drop existing policies if they exist and create new ones
+DO $$ 
+BEGIN
+    -- Drop existing policies
+    DROP POLICY IF EXISTS \"Allow full access for authenticated users\" ON devices;
+    DROP POLICY IF EXISTS \"Allow full access for anon users\" ON devices;
+    
+    -- Create new policies for both authenticated and anon users
+    CREATE POLICY \"Allow full access for authenticated users\"
+      ON devices
+      FOR ALL
+      TO authenticated
+      USING (true)
+      WITH CHECK (true);
+
+    CREATE POLICY \"Allow full access for anon users\"
+      ON devices
+      FOR ALL
+      TO anon
+      USING (true)
+      WITH CHECK (true);
+END $$","-- Create or replace the updated_at trigger function
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = now();
+  RETURN NEW;
+END;
+$$ language ''plpgsql''","-- Drop existing trigger if it exists and create new one
+DROP TRIGGER IF EXISTS update_devices_updated_at ON devices","CREATE TRIGGER update_devices_updated_at
+  BEFORE UPDATE ON devices
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column()"}', 'black_palace');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313115108', '{"/*
+  # Fix RLS policies for devices table
+
+  1. Changes
+    - Drop and recreate RLS policies with proper permissions
+    - Add separate policies for each operation type
+    - Enable access for both authenticated and anon roles
+
+  2. Security
+    - Maintain RLS on devices table
+    - Ensure proper access control for all operations
+*/
+
+-- Drop existing policies
+DROP POLICY IF EXISTS \"Allow full access for authenticated users\" ON devices","DROP POLICY IF EXISTS \"Allow full access for anon users\" ON devices","-- Create separate policies for each operation
+CREATE POLICY \"Enable read access for all users\" ON devices
+    FOR SELECT
+    TO public
+    USING (true)","CREATE POLICY \"Enable insert access for all users\" ON devices
+    FOR INSERT
+    TO public
+    WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON devices
+    FOR UPDATE
+    TO public
+    USING (true)
+    WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON devices
+    FOR DELETE
+    TO public
+    USING (true)"}', 'red_mud');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313115533', '{"/*
+  # Add form type and data fields
+
+  1. Changes
+    - Create form_type_enum type for predefined form types
+    - Add form_type column with enum type
+    - Add form_data and form_fields columns for storing form configuration
+
+  2. Security
+    - Maintain existing RLS policies
+*/
+
+-- Create enum type for predefined forms
+CREATE TYPE form_type_enum AS ENUM (
+  ''registration'',
+  ''cost_reimbursement'',
+  ''privacy'',
+  ''examination'',
+  ''custom''
+)","-- Add new columns to forms table
+ALTER TABLE forms 
+ADD COLUMN IF NOT EXISTS form_data jsonb DEFAULT ''{}''::jsonb,
+ADD COLUMN IF NOT EXISTS form_fields jsonb DEFAULT ''[]''::jsonb,
+ADD COLUMN IF NOT EXISTS form_type form_type_enum DEFAULT ''custom''::form_type_enum NOT NULL"}', 'violet_cottage');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313115632', '{"/*
+  # Update forms table RLS policies
+
+  1. Changes
+    - Add RLS policies for both authenticated and anon roles
+    - Ensure full access for all operations
+
+  2. Security
+    - Enable RLS on forms table
+    - Add policies for both authenticated and anon users
+*/
+
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS \"Allow full access for authenticated users\" ON forms","DROP POLICY IF EXISTS \"Allow full access for anon users\" ON forms","-- Create separate policies for each operation
+CREATE POLICY \"Enable read access for all users\" ON forms
+    FOR SELECT
+    TO public
+    USING (true)","CREATE POLICY \"Enable insert access for all users\" ON forms
+    FOR INSERT
+    TO public
+    WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON forms
+    FOR UPDATE
+    TO public
+    USING (true)
+    WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON forms
+    FOR DELETE
+    TO public
+    USING (true)"}', 'soft_prism');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313115827', '{"/*
+  # Update examinations table RLS policies
+
+  1. Changes
+    - Add RLS policies for both authenticated and anon roles
+    - Ensure full access for all operations
+
+  2. Security
+    - Enable RLS on examinations table
+    - Add policies for both authenticated and anon users
+*/
+
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS \"Allow full access for authenticated users\" ON examinations","DROP POLICY IF EXISTS \"Allow full access for anon users\" ON examinations","-- Create separate policies for each operation
+CREATE POLICY \"Enable read access for all users\" ON examinations
+    FOR SELECT
+    TO public
+    USING (true)","CREATE POLICY \"Enable insert access for all users\" ON examinations
+    FOR INSERT
+    TO public
+    WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON examinations
+    FOR UPDATE
+    TO public
+    USING (true)
+    WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON examinations
+    FOR DELETE
+    TO public
+    USING (true)","-- Also add policies for examination_forms table
+DROP POLICY IF EXISTS \"Allow full access for authenticated users\" ON examination_forms","DROP POLICY IF EXISTS \"Allow full access for anon users\" ON examination_forms","CREATE POLICY \"Enable read access for all users\" ON examination_forms
+    FOR SELECT
+    TO public
+    USING (true)","CREATE POLICY \"Enable insert access for all users\" ON examination_forms
+    FOR INSERT
+    TO public
+    WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON examination_forms
+    FOR UPDATE
+    TO public
+    USING (true)
+    WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON examination_forms
+    FOR DELETE
+    TO public
+    USING (true)"}', 'warm_union');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313120252', '{"/*
+  # Add locations table and relations
+
+  1. New Tables
+    - `locations`
+      - `id` (uuid, primary key)
+      - `name` (text) - Name of the location
+      - `address` (text) - Rich text address
+      - `phone` (text) - Phone number
+      - `email` (text) - Email address
+      - `directions` (text) - Rich text directions
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+    - `location_devices`
+      - `id` (uuid, primary key)
+      - `location_id` (uuid, foreign key)
+      - `device_id` (uuid, foreign key)
+      - `created_at` (timestamp)
+
+  2. Security
+    - Enable RLS on both tables
+    - Add policies for all operations
+*/
+
+-- Create locations table
+CREATE TABLE locations (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  address text NOT NULL,
+  phone text NOT NULL,
+  email text NOT NULL,
+  directions text,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Create location_devices junction table
+CREATE TABLE location_devices (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  location_id uuid REFERENCES locations(id) ON DELETE CASCADE,
+  device_id uuid REFERENCES devices(id) ON DELETE CASCADE,
+  created_at timestamptz DEFAULT now(),
+  UNIQUE(location_id, device_id)
+)","-- Enable RLS
+ALTER TABLE locations ENABLE ROW LEVEL SECURITY","ALTER TABLE location_devices ENABLE ROW LEVEL SECURITY","-- Create policies for locations
+CREATE POLICY \"Enable read access for all users\" ON locations
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON locations
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON locations
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON locations
+    FOR DELETE TO public USING (true)","-- Create policies for location_devices
+CREATE POLICY \"Enable read access for all users\" ON location_devices
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON location_devices
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON location_devices
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON location_devices
+    FOR DELETE TO public USING (true)","-- Add updated_at trigger for locations
+CREATE TRIGGER update_locations_updated_at
+    BEFORE UPDATE ON locations
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()"}', 'fierce_salad');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313122225', '{"/*
+  # Update examinations schema with new cost fields and device relations
+
+  1. Changes
+    - Add new cost fields for different patient types
+    - Add duration field with specific intervals
+    - Create examination_devices junction table
+    - Update examination_forms to include order field
+
+  2. Security
+    - Maintain existing RLS policies
+    - Add policies for new tables
+*/
+
+-- Add new cost fields to examinations table
+ALTER TABLE examinations
+DROP COLUMN cost,
+ADD COLUMN self_payer_without_contrast numeric NOT NULL,
+ADD COLUMN self_payer_with_contrast numeric NOT NULL,
+ADD COLUMN private_patient_without_contrast numeric NOT NULL,
+ADD COLUMN private_patient_with_contrast numeric NOT NULL,
+ADD COLUMN foreign_patient_without_contrast numeric NOT NULL,
+ADD COLUMN foreign_patient_with_contrast numeric NOT NULL,
+ALTER COLUMN duration TYPE integer USING EXTRACT(epoch FROM duration)/60,
+ADD CONSTRAINT valid_duration CHECK (duration IN (15, 30, 45, 60, 75, 90))","-- Create examination_devices junction table
+CREATE TABLE examination_devices (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  examination_id uuid REFERENCES examinations(id) ON DELETE CASCADE,
+  device_id uuid REFERENCES devices(id) ON DELETE CASCADE,
+  created_at timestamptz DEFAULT now(),
+  UNIQUE(examination_id, device_id)
+)","-- Enable RLS on new table
+ALTER TABLE examination_devices ENABLE ROW LEVEL SECURITY","-- Create policies for examination_devices
+CREATE POLICY \"Enable read access for all users\" ON examination_devices
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON examination_devices
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON examination_devices
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON examination_devices
+    FOR DELETE TO public USING (true)"}', 'broken_heart');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313123605', '{"/*
+  # Add form field mappings support
+
+  1. Changes
+    - Add form_fields column to store field definitions
+    - Add api_mappings column to store API key mappings
+    - Add api_endpoint column for the target URL
+
+  2. Security
+    - Maintain existing RLS policies
+*/
+
+-- Add new columns to forms table
+ALTER TABLE forms 
+ADD COLUMN IF NOT EXISTS api_endpoint text,
+ADD COLUMN IF NOT EXISTS api_mappings jsonb DEFAULT ''[]''::jsonb","-- Update form_fields column to have a better default structure
+ALTER TABLE forms 
+ALTER COLUMN form_fields SET DEFAULT ''{\"fields\": []}''::jsonb","-- Add comment explaining the structure
+COMMENT ON COLUMN forms.api_mappings IS ''Array of objects mapping form field IDs to API keys. Structure: [{\"fieldId\": \"string\", \"apiKey\": \"string\"}]''","COMMENT ON COLUMN forms.form_fields IS ''Object containing form field definitions. Structure: {\"fields\": [{\"id\": \"string\", \"type\": \"string\", \"label\": \"string\", \"required\": boolean, ...}]}''"}', 'noisy_resonance');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313124152', '{"/*
+  # Add API authentication support
+
+  1. Changes
+    - Add api_auth_token column to store authentication tokens
+    - Update form_data structure to include API configuration
+
+  2. Security
+    - Maintain existing RLS policies
+*/
+
+-- Add new column for API authentication
+ALTER TABLE forms 
+ADD COLUMN IF NOT EXISTS api_auth_token text","-- Update form_data column comment to include API configuration structure
+COMMENT ON COLUMN forms.form_data IS ''Object containing form configuration including API settings. Structure: {\"component\": \"string\", \"api\": {\"method\": \"POST\", \"format\": \"JSON\", \"charset\": \"Use blog charset\", \"endpoint\": \"string\", \"auth_token\": \"string\"}}''"}', 'square_sun');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313125853', '{"/*
+  # Add examination category and billing info
+
+  1. Changes
+    - Add category enum type for examination categories
+    - Add category column to examinations table
+    - Add billing_info column for rich text billing information
+
+  2. Security
+    - Maintain existing RLS policies
+*/
+
+-- Create enum type for examination categories
+CREATE TYPE examination_category_enum AS ENUM (
+  ''MRT'',
+  ''CT'',
+  ''Biopsie'',
+  ''TULSA-PRO'',
+  ''DaVinci-OP'',
+  ''HoLEP'',
+  ''TURP'',
+  ''Urologie'',
+  ''Kardiologie'',
+  ''Checkup-Frau'',
+  ''Checkup-Mann''
+)","-- Add new columns to examinations table
+ALTER TABLE examinations 
+ADD COLUMN category examination_category_enum NOT NULL DEFAULT ''MRT'',
+ADD COLUMN billing_info text"}', 'aged_cake');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313134644', '{"/*
+  # Add appointments table and relations
+
+  1. New Tables
+    - `appointments`
+      - `id` (uuid, primary key)
+      - `location_id` (uuid, foreign key) - Reference to locations
+      - `device_id` (uuid, foreign key) - Reference to devices
+      - `examination_id` (uuid, foreign key) - Reference to examinations
+      - `start_time` (timestamptz) - Start time of the appointment
+      - `end_time` (timestamptz) - End time of the appointment
+      - `status` (enum) - Status of the appointment (scheduled, completed, cancelled)
+      - `patient_data` (jsonb) - Patient information from the form
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+  2. Security
+    - Enable RLS on appointments table
+    - Add policies for all operations
+*/
+
+-- Create appointment status enum
+CREATE TYPE appointment_status_enum AS ENUM (
+  ''scheduled'',
+  ''completed'',
+  ''cancelled''
+)","-- Create appointments table
+CREATE TABLE appointments (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  location_id uuid REFERENCES locations(id) ON DELETE RESTRICT,
+  device_id uuid REFERENCES devices(id) ON DELETE RESTRICT,
+  examination_id uuid REFERENCES examinations(id) ON DELETE RESTRICT,
+  start_time timestamptz NOT NULL,
+  end_time timestamptz NOT NULL,
+  status appointment_status_enum NOT NULL DEFAULT ''scheduled'',
+  patient_data jsonb NOT NULL DEFAULT ''{}''::jsonb,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  
+  -- Ensure end_time is after start_time
+  CONSTRAINT valid_appointment_times CHECK (end_time > start_time)
+)","-- Enable RLS
+ALTER TABLE appointments ENABLE ROW LEVEL SECURITY","-- Create policies
+CREATE POLICY \"Enable read access for all users\" ON appointments
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON appointments
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON appointments
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON appointments
+    FOR DELETE TO public USING (true)","-- Add updated_at trigger
+CREATE TRIGGER update_appointments_updated_at
+    BEFORE UPDATE ON appointments
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()"}', 'flat_meadow');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250314092324', '{"/*
+  # Add Previous Appointment Reference
+
+  1. Changes
+    - Add previous_appointment_id column to appointments table
+    - Add foreign key constraint to reference original appointment
+
+  2. Security
+    - No changes to RLS policies needed
+*/
+
+-- Add previous_appointment_id column if it doesn''t exist
+DO $$ 
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns 
+    WHERE table_name = ''appointments'' 
+    AND column_name = ''previous_appointment_id''
+  ) THEN
+    ALTER TABLE appointments 
+    ADD COLUMN previous_appointment_id uuid REFERENCES appointments(id);
+  END IF;
+END $$"}', 'bright_block');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313152101', '{"/*
+  # Add patient management
+
+  1. New Tables
+    - `patients`
+      - `id` (uuid, primary key)
+      - `patient_number` (integer) - Auto-incrementing patient number starting from 48000
+      - `gender` (text) - Patient''s gender
+      - `title` (text) - Academic/professional title
+      - `first_name` (text) - Patient''s first name
+      - `last_name` (text) - Patient''s last name
+      - `birth_date` (date) - Patient''s date of birth
+      - `phone` (text) - Phone number
+      - `email` (text) - Email address
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+  2. Functions
+    - Create function to generate next patient number
+    - Add trigger to automatically set patient number on insert
+
+  3. Security
+    - Enable RLS
+    - Add policies for all operations
+*/
+
+-- Create sequence for patient numbers starting at 48000
+CREATE SEQUENCE IF NOT EXISTS patient_number_seq START WITH 48000","-- Create patients table
+CREATE TABLE patients (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  patient_number integer UNIQUE NOT NULL,
+  gender text NOT NULL,
+  title text,
+  first_name text NOT NULL,
+  last_name text NOT NULL,
+  birth_date date NOT NULL,
+  phone text NOT NULL,
+  email text NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Enable RLS
+ALTER TABLE patients ENABLE ROW LEVEL SECURITY","-- Create policies
+CREATE POLICY \"Enable read access for all users\" ON patients
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON patients
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON patients
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON patients
+    FOR DELETE TO public USING (true)","-- Create trigger for updated_at
+CREATE TRIGGER update_patients_updated_at
+    BEFORE UPDATE ON patients
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","-- Create function to set patient number
+CREATE OR REPLACE FUNCTION set_patient_number()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.patient_number IS NULL THEN
+    NEW.patient_number = nextval(''patient_number_seq'');
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql","-- Create trigger to automatically set patient number
+CREATE TRIGGER set_patient_number_trigger
+    BEFORE INSERT ON patients
+    FOR EACH ROW
+    EXECUTE FUNCTION set_patient_number()","-- Add patient_id to appointments table
+ALTER TABLE appointments
+ADD COLUMN patient_id uuid REFERENCES patients(id) ON DELETE RESTRICT"}', 'peaceful_wildflower');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250313152842', '{"/*
+  # Add insurance providers and update appointment billing types
+
+  1. New Tables
+    - `insurance_providers`
+      - `id` (uuid, primary key)
+      - `name` (text) - Name of the insurance provider
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+  2. Changes
+    - Add billing_type column to appointments table
+    - Add insurance_provider_id column to appointments table
+
+  3. Security
+    - Enable RLS on insurance_providers table
+    - Add policies for all operations
+*/
+
+-- Create insurance_providers table
+CREATE TABLE insurance_providers (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL UNIQUE,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Enable RLS
+ALTER TABLE insurance_providers ENABLE ROW LEVEL SECURITY","-- Create policies
+CREATE POLICY \"Enable read access for all users\" ON insurance_providers
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON insurance_providers
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON insurance_providers
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON insurance_providers
+    FOR DELETE TO public USING (true)","-- Add trigger for updated_at
+CREATE TRIGGER update_insurance_providers_updated_at
+    BEFORE UPDATE ON insurance_providers
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","-- Add billing type enum
+CREATE TYPE billing_type_enum AS ENUM (
+  ''self_payer'',
+  ''private_patient'',
+  ''foreign_patient'',
+  ''work_accident''
+)","-- Add new columns to appointments table
+ALTER TABLE appointments
+ADD COLUMN billing_type billing_type_enum NOT NULL DEFAULT ''self_payer'',
+ADD COLUMN insurance_provider_id uuid REFERENCES insurance_providers(id)","-- Insert insurance providers
+INSERT INTO insurance_providers (name) VALUES
+  (''Allianz''),
+  (''Alte Oldenburger''),
+  (''ARAG''),
+  (''ASSTEL''),
+  (''AXA''),
+  (''Barmenia''),
+  (''Bayrische''),
+  (''BBKK''),
+  (''Berlin-Kölnische''),
+  (''Berufsgenossenschaft''),
+  (''Central''),
+  (''Concordia''),
+  (''Continentale''),
+  (''DBV''),
+  (''Debeka''),
+  (''Deutscher''),
+  (''DEVK''),
+  (''DKV''),
+  (''DÜSSELDORFER''),
+  (''Envivas''),
+  (''ERGO''),
+  (''EUROPA''),
+  (''Evang. Pfarrverein Württemberg''),
+  (''FREIE ARZT- UND MEDIZINKASSE (FAMK)''),
+  (''Generali''),
+  (''Globale''),
+  (''Gothaer''),
+  (''HALLESCHE''),
+  (''HanseMerkur''),
+  (''HUK-Coburg''),
+  (''Inter''),
+  (''KarstadtQuelle''),
+  (''Kranken- und Sterbekasse''),
+  (''Krankenunterstützungskasse Berufsfeuerwehr Hannover (KUK)''),
+  (''Krankenversorgung der Bundesbeamten (KVB I - III)''),
+  (''Krankenversorgung der Bundesbeamten (KVB IV)''),
+  (''Krankenversorgung der Bundesbeamten (KVB)''),
+  (''LIGA Krankenversicherung katholischer Priester''),
+  (''LKH''),
+  (''LVM''),
+  (''Mannheimer''),
+  (''Mecklenburgische''),
+  (''Münchener Verein''),
+  (''Nürnberger''),
+  (''ottonova''),
+  (''PAX-Familienfürsorge''),
+  (''Postbeamtenkrankenkasse (PBeaKK)''),
+  (''Provinzial''),
+  (''R+V''),
+  (''Signal Iduna''),
+  (''SONO''),
+  (''ST. MARTINUS Priesterverein der Diözese Rottenburg-Stuttgart''),
+  (''Süddeutsche''),
+  (''UKV''),
+  (''Universa''),
+  (''Verein Pfälzischer Pfarrerinnen und Pfarrer''),
+  (''Versicherungskammer Bayern (BK / VKB)''),
+  (''VGH''),
+  (''VICTORIA''),
+  (''vigo''),
+  (''Volksfürsorge''),
+  (''Württembergische''),
+  (''Zürich Agrippina'')"}', 'mute_leaf');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250314081205', '{"/*
+  # Add email templates functionality
+
+  1. New Tables
+    - `email_templates`
+      - `id` (uuid, primary key)
+      - `name` (text) - Template name
+      - `description` (text) - Template description
+      - `trigger_form` (form_type_enum) - Form that triggers the email
+      - `recipient_field` (text) - Field ID from form to use as recipient
+      - `sender_email` (text) - Sender email address
+      - `subject` (text) - Email subject
+      - `body` (text) - Email body content
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+  2. Security
+    - Enable RLS on email_templates table
+    - Add policies for all operations
+*/
+
+-- Create email_templates table
+CREATE TABLE email_templates (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  description text,
+  trigger_form form_type_enum NOT NULL,
+  recipient_field text NOT NULL,
+  sender_email text NOT NULL,
+  subject text NOT NULL,
+  body text NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Enable RLS
+ALTER TABLE email_templates ENABLE ROW LEVEL SECURITY","-- Create policies
+CREATE POLICY \"Enable read access for all users\" ON email_templates
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON email_templates
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON email_templates
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON email_templates
+    FOR DELETE TO public USING (true)","-- Add updated_at trigger
+CREATE TRIGGER update_email_templates_updated_at
+    BEFORE UPDATE ON email_templates
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()"}', 'throbbing_cottage');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250314081423', '{"/*
+  # Add email templates functionality
+
+  1. Changes
+    - Add RLS policies for email_templates table
+    - Add updated_at trigger
+
+  2. Security
+    - Enable RLS on email_templates table
+    - Add policies for all operations
+*/
+
+-- Only enable RLS and add policies if they don''t exist
+DO $$ 
+BEGIN
+  -- Enable RLS
+  ALTER TABLE IF EXISTS email_templates ENABLE ROW LEVEL SECURITY;
+
+  -- Create policies if they don''t exist
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE tablename = ''email_templates'' AND policyname = ''Enable read access for all users''
+  ) THEN
+    CREATE POLICY \"Enable read access for all users\" ON email_templates
+      FOR SELECT TO public USING (true);
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE tablename = ''email_templates'' AND policyname = ''Enable insert access for all users''
+  ) THEN
+    CREATE POLICY \"Enable insert access for all users\" ON email_templates
+      FOR INSERT TO public WITH CHECK (true);
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE tablename = ''email_templates'' AND policyname = ''Enable update access for all users''
+  ) THEN
+    CREATE POLICY \"Enable update access for all users\" ON email_templates
+      FOR UPDATE TO public USING (true) WITH CHECK (true);
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE tablename = ''email_templates'' AND policyname = ''Enable delete access for all users''
+  ) THEN
+    CREATE POLICY \"Enable delete access for all users\" ON email_templates
+      FOR DELETE TO public USING (true);
+  END IF;
+
+  -- Add updated_at trigger if it doesn''t exist
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_trigger WHERE tgname = ''update_email_templates_updated_at''
+  ) THEN
+    CREATE TRIGGER update_email_templates_updated_at
+      BEFORE UPDATE ON email_templates
+      FOR EACH ROW
+      EXECUTE FUNCTION update_updated_at_column();
+  END IF;
+END $$"}', 'hidden_heart');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250314081426', '{"/*
+  # Add email templates functionality
+
+  1. Changes
+    - Add email_templates table if it doesn''t exist
+    - Enable RLS and add policies
+    - Add updated_at trigger
+
+  2. Security
+    - Enable RLS on email_templates table
+    - Add policies for all operations
+*/
+
+-- Create email_templates table if it doesn''t exist
+CREATE TABLE IF NOT EXISTS email_templates (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  description text,
+  trigger_form form_type_enum NOT NULL,
+  recipient_field text NOT NULL,
+  sender_email text NOT NULL,
+  subject text NOT NULL,
+  body text NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Enable RLS (safe to run multiple times)
+ALTER TABLE email_templates ENABLE ROW LEVEL SECURITY","-- Drop existing policies if they exist and create new ones
+DO $$ 
+BEGIN
+    -- Drop existing policies
+    DROP POLICY IF EXISTS \"Enable read access for all users\" ON email_templates;
+    DROP POLICY IF EXISTS \"Enable insert access for all users\" ON email_templates;
+    DROP POLICY IF EXISTS \"Enable update access for all users\" ON email_templates;
+    DROP POLICY IF EXISTS \"Enable delete access for all users\" ON email_templates;
+    
+    -- Create new policies
+    CREATE POLICY \"Enable read access for all users\" ON email_templates
+        FOR SELECT TO public USING (true);
+
+    CREATE POLICY \"Enable insert access for all users\" ON email_templates
+        FOR INSERT TO public WITH CHECK (true);
+
+    CREATE POLICY \"Enable update access for all users\" ON email_templates
+        FOR UPDATE TO public USING (true) WITH CHECK (true);
+
+    CREATE POLICY \"Enable delete access for all users\" ON email_templates
+        FOR DELETE TO public USING (true);
+END $$","-- Drop existing trigger if it exists and create new one
+DROP TRIGGER IF EXISTS update_email_templates_updated_at ON email_templates","CREATE TRIGGER update_email_templates_updated_at
+    BEFORE UPDATE ON email_templates
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()"}', 'hidden_spire');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250314130413', '{"/*
+  # Add billing type support to examination forms
+
+  1. Changes
+    - Add billing_type column to examination_forms table
+    - Add check constraint to ensure valid billing types
+    - Update existing records to use default billing type
+
+  2. Security
+    - Maintain existing RLS policies
+*/
+
+-- Add billing_type column if it doesn''t exist
+DO $$ 
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns 
+    WHERE table_name = ''examination_forms'' 
+    AND column_name = ''billing_type''
+  ) THEN
+    -- Add the column
+    ALTER TABLE examination_forms 
+    ADD COLUMN billing_type billing_type_enum[];
+
+    -- Set default value for existing records (all billing types)
+    UPDATE examination_forms 
+    SET billing_type = ARRAY[''self_payer'', ''private_patient'', ''foreign_patient'', ''work_accident'']::billing_type_enum[];
+
+    -- Make the column not nullable
+    ALTER TABLE examination_forms 
+    ALTER COLUMN billing_type SET NOT NULL;
+
+    -- Add check constraint to ensure at least one billing type is selected
+    ALTER TABLE examination_forms 
+    ADD CONSTRAINT examination_forms_billing_type_not_empty 
+    CHECK (array_length(billing_type, 1) > 0);
+  END IF;
+END $$","-- Update or create RLS policies
+DO $$ 
+BEGIN
+  -- Drop existing policies if they exist
+  DROP POLICY IF EXISTS \"Enable read access for all users\" ON examination_forms;
+  DROP POLICY IF EXISTS \"Enable insert access for all users\" ON examination_forms;
+  DROP POLICY IF EXISTS \"Enable update access for all users\" ON examination_forms;
+  DROP POLICY IF EXISTS \"Enable delete access for all users\" ON examination_forms;
+
+  -- Create new policies
+  CREATE POLICY \"Enable read access for all users\" 
+    ON examination_forms FOR SELECT 
+    TO public 
+    USING (true);
+
+  CREATE POLICY \"Enable insert access for all users\" 
+    ON examination_forms FOR INSERT 
+    TO public 
+    WITH CHECK (true);
+
+  CREATE POLICY \"Enable update access for all users\" 
+    ON examination_forms FOR UPDATE 
+    TO public 
+    USING (true) 
+    WITH CHECK (true);
+
+  CREATE POLICY \"Enable delete access for all users\" 
+    ON examination_forms FOR DELETE 
+    TO public 
+    USING (true);
+END $$"}', 'humble_union');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250314145900', '{"/*
+  # Add form token functionality for appointments
+
+  1. New Tables
+    - `form_tokens`
+      - `id` (uuid, primary key)
+      - `appointment_id` (uuid, references appointments)
+      - `token` (text, unique)
+      - `expires_at` (timestamptz)
+      - `created_at` (timestamptz)
+      - `updated_at` (timestamptz)
+
+  2. Security
+    - Enable RLS on form_tokens table
+    - Add policies for both authenticated and anon users
+    - Add unique constraint on token
+*/
+
+-- Create form_tokens table
+CREATE TABLE IF NOT EXISTS form_tokens (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  appointment_id uuid REFERENCES appointments(id) ON DELETE CASCADE,
+  token text NOT NULL,
+  expires_at timestamptz NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  CONSTRAINT form_tokens_token_key UNIQUE (token)
+)","-- Enable RLS
+ALTER TABLE form_tokens ENABLE ROW LEVEL SECURITY","-- Create RLS policies
+CREATE POLICY \"Enable read access for all users\"
+  ON form_tokens
+  FOR SELECT
+  TO public
+  USING (true)","CREATE POLICY \"Enable insert access for all users\"
+  ON form_tokens
+  FOR INSERT
+  TO public
+  WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\"
+  ON form_tokens
+  FOR UPDATE
+  TO public
+  USING (true)
+  WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\"
+  ON form_tokens
+  FOR DELETE
+  TO public
+  USING (true)","-- Create updated_at trigger
+CREATE TRIGGER update_form_tokens_updated_at
+  BEFORE UPDATE ON form_tokens
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column()","-- Create function to generate secure random token
+CREATE OR REPLACE FUNCTION generate_secure_token() 
+RETURNS text 
+LANGUAGE plpgsql 
+AS $$
+DECLARE
+  chars text := ''abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'';
+  result text := '''';
+  i integer := 0;
+  rand_bytes bytea;
+BEGIN
+  -- Generate 32 random characters
+  WHILE i < 32 LOOP
+    -- Get random bytes
+    rand_bytes := gen_random_bytes(1);
+    -- Convert to integer and use modulo to get index into chars
+    result := result || substr(chars, (get_byte(rand_bytes, 0)::integer % length(chars)) + 1, 1);
+    i := i + 1;
+  END LOOP;
+  RETURN result;
+END;
+$$"}', 'graceful_flame');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250314150024', '{"/*
+  # Create view for appointment forms
+
+  1. New Views
+    - `appointment_forms_view`
+      - Combines appointment data with required forms based on billing type
+      - Filters forms by billing type
+      - Includes form token for secure access
+
+  2. Security
+    - Add RLS policies for underlying tables
+*/
+
+-- Create view for appointment forms
+CREATE OR REPLACE VIEW appointment_forms_view AS
+SELECT 
+  a.id AS appointment_id,
+  a.patient_id,
+  a.examination_id,
+  a.billing_type,
+  a.start_time,
+  a.device_id,
+  a.location_id,
+  ef.form_id,
+  f.name AS form_name,
+  f.description AS form_description,
+  f.form_type,
+  f.form_data,
+  f.form_fields,
+  ft.token AS form_token
+FROM 
+  appointments a
+  JOIN examination_forms ef ON ef.examination_id = a.examination_id
+  JOIN forms f ON f.id = ef.form_id
+  LEFT JOIN form_tokens ft ON ft.appointment_id = a.id
+WHERE 
+  a.billing_type = ANY(ef.billing_type)","-- Create RLS policies for the underlying tables if not exists
+DO $$ 
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE tablename = ''appointments'' AND policyname = ''Enable read access for all users''
+  ) THEN
+    CREATE POLICY \"Enable read access for all users\" ON appointments FOR SELECT TO public USING (true);
+  END IF;
+END $$"}', 'late_bush');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250316212043', '{"/*
+  # Add user management and roles
+
+  1. New Tables
+    - `roles`
+      - `id` (uuid, primary key)
+      - `name` (text) - Role name (Admin, Verwaltung, MTRA, Arzt)
+      - `description` (text) - Role description
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+    - `user_roles`
+      - `id` (uuid, primary key)
+      - `user_id` (uuid, foreign key) - Reference to auth.users
+      - `role_id` (uuid, foreign key) - Reference to roles
+      - `created_at` (timestamp)
+
+    - `user_profiles`
+      - `id` (uuid, primary key)
+      - `user_id` (uuid, foreign key) - Reference to auth.users
+      - `title` (text) - Academic/professional title
+      - `first_name` (text) - First name
+      - `last_name` (text) - Last name
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+  2. Security
+    - Enable RLS on all tables
+    - Add policies for authenticated users
+*/
+
+-- Create roles table
+CREATE TABLE roles (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL UNIQUE,
+  description text,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Create user_roles junction table
+CREATE TABLE user_roles (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,
+  role_id uuid REFERENCES roles(id) ON DELETE CASCADE,
+  created_at timestamptz DEFAULT now(),
+  UNIQUE(user_id, role_id)
+)","-- Create user_profiles table
+CREATE TABLE user_profiles (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
+  title text,
+  first_name text NOT NULL,
+  last_name text NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Enable RLS
+ALTER TABLE roles ENABLE ROW LEVEL SECURITY","ALTER TABLE user_roles ENABLE ROW LEVEL SECURITY","ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY","-- Create policies for roles
+CREATE POLICY \"Enable read access for authenticated users\" ON roles
+    FOR SELECT TO authenticated USING (true)","CREATE POLICY \"Enable insert access for admin users\" ON roles
+    FOR INSERT TO authenticated WITH CHECK (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    )","CREATE POLICY \"Enable update access for admin users\" ON roles
+    FOR UPDATE TO authenticated USING (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    ) WITH CHECK (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    )","CREATE POLICY \"Enable delete access for admin users\" ON roles
+    FOR DELETE TO authenticated USING (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    )","-- Create policies for user_roles
+CREATE POLICY \"Enable read access for authenticated users\" ON user_roles
+    FOR SELECT TO authenticated USING (true)","CREATE POLICY \"Enable insert access for admin users\" ON user_roles
+    FOR INSERT TO authenticated WITH CHECK (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    )","CREATE POLICY \"Enable update access for admin users\" ON user_roles
+    FOR UPDATE TO authenticated USING (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    ) WITH CHECK (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    )","CREATE POLICY \"Enable delete access for admin users\" ON user_roles
+    FOR DELETE TO authenticated USING (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    )","-- Create policies for user_profiles
+CREATE POLICY \"Enable read access for authenticated users\" ON user_profiles
+    FOR SELECT TO authenticated USING (true)","CREATE POLICY \"Enable insert access for admin users\" ON user_profiles
+    FOR INSERT TO authenticated WITH CHECK (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    )","CREATE POLICY \"Enable update access for admin users\" ON user_profiles
+    FOR UPDATE TO authenticated USING (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    ) WITH CHECK (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    )","CREATE POLICY \"Enable delete access for admin users\" ON user_profiles
+    FOR DELETE TO authenticated USING (
+      EXISTS (
+        SELECT 1 FROM user_roles ur
+        WHERE ur.user_id = auth.uid()
+        AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+      )
+    )","-- Add updated_at triggers
+CREATE TRIGGER update_roles_updated_at
+    BEFORE UPDATE ON roles
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","CREATE TRIGGER update_user_profiles_updated_at
+    BEFORE UPDATE ON user_profiles
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","-- Insert default roles
+INSERT INTO roles (name, description) VALUES
+  (''Admin'', ''Vollzugriff auf alle Funktionen''),
+  (''Verwaltung'', ''Zugriff auf administrative Funktionen''),
+  (''MTRA'', ''Zugriff auf Terminplanung und Patientenverwaltung''),
+  (''Arzt'', ''Zugriff auf medizinische Funktionen und Befunde'')"}', 'amber_wind');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250316212331', '{"/*
+  # Add user management and roles
+
+  1. Changes
+    - Create tables if they don''t exist
+    - Add RLS policies
+    - Insert default roles
+    - Handle existing tables gracefully
+
+  2. Security
+    - Enable RLS on all tables
+    - Add policies for authenticated users
+*/
+
+-- Create tables if they don''t exist
+DO $$ 
+BEGIN
+  -- Create roles table if it doesn''t exist
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = ''roles'') THEN
+    CREATE TABLE roles (
+      id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+      name text NOT NULL UNIQUE,
+      description text,
+      created_at timestamptz DEFAULT now(),
+      updated_at timestamptz DEFAULT now()
+    );
+  END IF;
+
+  -- Create user_roles table if it doesn''t exist
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = ''user_roles'') THEN
+    CREATE TABLE user_roles (
+      id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+      user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,
+      role_id uuid REFERENCES roles(id) ON DELETE CASCADE,
+      created_at timestamptz DEFAULT now(),
+      UNIQUE(user_id, role_id)
+    );
+  END IF;
+
+  -- Create user_profiles table if it doesn''t exist
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = ''user_profiles'') THEN
+    CREATE TABLE user_profiles (
+      id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+      user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE UNIQUE,
+      title text,
+      first_name text NOT NULL,
+      last_name text NOT NULL,
+      created_at timestamptz DEFAULT now(),
+      updated_at timestamptz DEFAULT now()
+    );
+  END IF;
+END $$","-- Enable RLS
+ALTER TABLE roles ENABLE ROW LEVEL SECURITY","ALTER TABLE user_roles ENABLE ROW LEVEL SECURITY","ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY","-- Drop existing policies if they exist and create new ones
+DO $$ 
+BEGIN
+  -- Policies for roles
+  DROP POLICY IF EXISTS \"Enable read access for authenticated users\" ON roles;
+  DROP POLICY IF EXISTS \"Enable insert access for admin users\" ON roles;
+  DROP POLICY IF EXISTS \"Enable update access for admin users\" ON roles;
+  DROP POLICY IF EXISTS \"Enable delete access for admin users\" ON roles;
+
+  CREATE POLICY \"Enable read access for authenticated users\" ON roles
+      FOR SELECT TO authenticated USING (true);
+
+  CREATE POLICY \"Enable insert access for admin users\" ON roles
+      FOR INSERT TO authenticated WITH CHECK (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      );
+
+  CREATE POLICY \"Enable update access for admin users\" ON roles
+      FOR UPDATE TO authenticated USING (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      ) WITH CHECK (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      );
+
+  CREATE POLICY \"Enable delete access for admin users\" ON roles
+      FOR DELETE TO authenticated USING (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      );
+
+  -- Policies for user_roles
+  DROP POLICY IF EXISTS \"Enable read access for authenticated users\" ON user_roles;
+  DROP POLICY IF EXISTS \"Enable insert access for admin users\" ON user_roles;
+  DROP POLICY IF EXISTS \"Enable update access for admin users\" ON user_roles;
+  DROP POLICY IF EXISTS \"Enable delete access for admin users\" ON user_roles;
+
+  CREATE POLICY \"Enable read access for authenticated users\" ON user_roles
+      FOR SELECT TO authenticated USING (true);
+
+  CREATE POLICY \"Enable insert access for admin users\" ON user_roles
+      FOR INSERT TO authenticated WITH CHECK (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      );
+
+  CREATE POLICY \"Enable update access for admin users\" ON user_roles
+      FOR UPDATE TO authenticated USING (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      ) WITH CHECK (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      );
+
+  CREATE POLICY \"Enable delete access for admin users\" ON user_roles
+      FOR DELETE TO authenticated USING (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      );
+
+  -- Policies for user_profiles
+  DROP POLICY IF EXISTS \"Enable read access for authenticated users\" ON user_profiles;
+  DROP POLICY IF EXISTS \"Enable insert access for admin users\" ON user_profiles;
+  DROP POLICY IF EXISTS \"Enable update access for admin users\" ON user_profiles;
+  DROP POLICY IF EXISTS \"Enable delete access for admin users\" ON user_profiles;
+
+  CREATE POLICY \"Enable read access for authenticated users\" ON user_profiles
+      FOR SELECT TO authenticated USING (true);
+
+  CREATE POLICY \"Enable insert access for admin users\" ON user_profiles
+      FOR INSERT TO authenticated WITH CHECK (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      );
+
+  CREATE POLICY \"Enable update access for admin users\" ON user_profiles
+      FOR UPDATE TO authenticated USING (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      ) WITH CHECK (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      );
+
+  CREATE POLICY \"Enable delete access for admin users\" ON user_profiles
+      FOR DELETE TO authenticated USING (
+        EXISTS (
+          SELECT 1 FROM user_roles ur
+          WHERE ur.user_id = auth.uid()
+          AND ur.role_id IN (SELECT id FROM roles WHERE name = ''Admin'')
+        )
+      );
+END $$","-- Create or replace triggers
+DROP TRIGGER IF EXISTS update_roles_updated_at ON roles","CREATE TRIGGER update_roles_updated_at
+    BEFORE UPDATE ON roles
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","DROP TRIGGER IF EXISTS update_user_profiles_updated_at ON user_profiles","CREATE TRIGGER update_user_profiles_updated_at
+    BEFORE UPDATE ON user_profiles
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","-- Insert default roles if they don''t exist
+INSERT INTO roles (name, description)
+SELECT name, description
+FROM (VALUES
+  (''Admin'', ''Vollzugriff auf alle Funktionen''),
+  (''Verwaltung'', ''Zugriff auf administrative Funktionen''),
+  (''MTRA'', ''Zugriff auf Terminplanung und Patientenverwaltung''),
+  (''Arzt'', ''Zugriff auf medizinische Funktionen und Befunde'')
+) AS new_roles(name, description)
+WHERE NOT EXISTS (
+  SELECT 1 FROM roles WHERE roles.name = new_roles.name
+)"}', 'spring_grass');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317115719', '{"/*
+  # Add new form types
+
+  1. Changes
+    - Add new form types to form_type_enum
+    - Update comment to include new types
+
+  2. Security
+    - Maintain existing RLS policies
+*/
+
+-- Add new types to form_type_enum
+ALTER TYPE form_type_enum ADD VALUE IF NOT EXISTS ''ct_therapy''","ALTER TYPE form_type_enum ADD VALUE IF NOT EXISTS ''mrt_ct_consent''","ALTER TYPE form_type_enum ADD VALUE IF NOT EXISTS ''prostate_questionnaire''","-- Update comment
+COMMENT ON TYPE form_type_enum IS ''Available form types: registration, cost_reimbursement, privacy, examination, ct_consent, ct_therapy, mrt_ct_consent, prostate_questionnaire, custom''"}', 'heavy_coral');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250316212549', '{"/*
+  # Create initial admin user
+
+  1. Changes
+    - Create admin user with minimal required fields
+    - Create user profile
+    - Assign admin role
+    
+  2. Security
+    - Set secure initial password
+    - Use only required auth.users fields
+*/
+
+-- Create initial admin user if it doesn''t exist
+DO $$
+DECLARE
+  admin_id uuid;
+  admin_role_id uuid;
+BEGIN
+  -- Only proceed if no users exist yet
+  IF NOT EXISTS (SELECT 1 FROM auth.users) THEN
+    -- Create admin user in auth.users with minimal required fields
+    INSERT INTO auth.users (
+      id,
+      aud,
+      role,
+      email,
+      encrypted_password,
+      email_confirmed_at,
+      raw_app_meta_data,
+      raw_user_meta_data,
+      created_at,
+      updated_at
+    )
+    VALUES (
+      gen_random_uuid(),
+      ''authenticated'',
+      ''authenticated'',
+      ''admin@alta-klinik.local'',
+      crypt(''Admin123!'', gen_salt(''bf'')),
+      now(),
+      jsonb_build_object(''provider'', ''email'', ''providers'', ARRAY[''email'']::text[]),
+      ''{}''::jsonb,
+      now(),
+      now()
+    )
+    RETURNING id INTO admin_id;
+
+    -- Get admin role ID
+    SELECT id INTO admin_role_id FROM roles WHERE name = ''Admin'';
+
+    -- Create user profile
+    INSERT INTO user_profiles (user_id, first_name, last_name)
+    VALUES (admin_id, ''Admin'', ''ALTA Klinik'');
+
+    -- Assign admin role
+    INSERT INTO user_roles (user_id, role_id)
+    VALUES (admin_id, admin_role_id);
+  END IF;
+END $$"}', 'broad_prism');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250316213211', '{"/*
+  # Create initial admin user
+
+  1. Changes
+    - Create admin user with correct auth.users schema
+    - Create user profile
+    - Assign admin role
+    
+  2. Security
+    - Set secure initial password
+    - Use only required auth.users fields
+*/
+
+-- Create initial admin user if it doesn''t exist
+DO $$
+DECLARE
+  admin_id uuid;
+  admin_role_id uuid;
+BEGIN
+  -- Only proceed if no users exist yet
+  IF NOT EXISTS (SELECT 1 FROM auth.users) THEN
+    -- Create admin user in auth.users with correct schema
+    INSERT INTO auth.users (
+      instance_id,
+      id,
+      aud,
+      role,
+      email,
+      raw_user_meta_data,
+      raw_app_meta_data,
+      is_super_admin,
+      created_at,
+      updated_at,
+      last_sign_in_at,
+      confirmation_token,
+      email_change,
+      email_change_token_new,
+      recovery_token,
+      email_confirmed_at,
+      encrypted_password,
+      confirmation_sent_at,
+      recovery_sent_at,
+      email_change_sent_at,
+      phone,
+      phone_confirmed_at,
+      phone_change,
+      phone_change_token,
+      invited_at,
+      is_sso_user,
+      deleted_at
+    )
+    VALUES (
+      ''00000000-0000-0000-0000-000000000000'',
+      gen_random_uuid(),
+      ''authenticated'',
+      ''authenticated'',
+      ''admin@alta-klinik.local'',
+      ''{}''::jsonb,
+      jsonb_build_object(''provider'', ''email'', ''providers'', ARRAY[''email'']::text[]),
+      FALSE,
+      NOW(),
+      NOW(),
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NOW(),
+      crypt(''Admin123!'', gen_salt(''bf'')),
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      FALSE,
+      NULL
+    )
+    RETURNING id INTO admin_id;
+
+    -- Get admin role ID
+    SELECT id INTO admin_role_id FROM roles WHERE name = ''Admin'';
+
+    -- Create user profile
+    INSERT INTO user_profiles (user_id, first_name, last_name)
+    VALUES (admin_id, ''Admin'', ''ALTA Klinik'');
+
+    -- Assign admin role
+    INSERT INTO user_roles (user_id, role_id)
+    VALUES (admin_id, admin_role_id);
+  END IF;
+END $$"}', 'nameless_mouse');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250316213340', '{"/*
+  # Fix auth schema and admin user creation
+
+  1. Changes
+    - Update auth.users schema to match Supabase requirements
+    - Create admin user with correct schema
+    - Add required metadata fields
+    
+  2. Security
+    - Set secure initial password
+    - Use only required auth.users fields
+*/
+
+-- Create initial admin user if it doesn''t exist
+DO $$
+DECLARE
+  admin_id uuid;
+  admin_role_id uuid;
+BEGIN
+  -- Only proceed if no users exist yet
+  IF NOT EXISTS (SELECT 1 FROM auth.users) THEN
+    -- Create admin user in auth.users with correct schema
+    INSERT INTO auth.users (
+      id,
+      aud,
+      role,
+      email,
+      encrypted_password,
+      email_confirmed_at,
+      raw_app_meta_data,
+      raw_user_meta_data,
+      created_at,
+      updated_at,
+      confirmation_token,
+      recovery_token,
+      instance_id,
+      is_super_admin,
+      is_sso_user
+    )
+    VALUES (
+      gen_random_uuid(),
+      ''authenticated'',
+      ''authenticated'',
+      ''admin@alta-klinik.local'',
+      crypt(''Admin123!'', gen_salt(''bf'')),
+      now(),
+      jsonb_build_object(''provider'', ''email'', ''providers'', ARRAY[''email'']::text[]),
+      ''{}''::jsonb,
+      now(),
+      now(),
+      NULL,
+      NULL,
+      ''00000000-0000-0000-0000-000000000000'',
+      FALSE,
+      FALSE
+    )
+    RETURNING id INTO admin_id;
+
+    -- Get admin role ID
+    SELECT id INTO admin_role_id FROM roles WHERE name = ''Admin'';
+
+    -- Create user profile
+    INSERT INTO user_profiles (user_id, first_name, last_name)
+    VALUES (admin_id, ''Admin'', ''ALTA Klinik'');
+
+    -- Assign admin role
+    INSERT INTO user_roles (user_id, role_id)
+    VALUES (admin_id, admin_role_id);
+  END IF;
+END $$"}', 'bitter_bread');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250316213555', '{"/*
+  # Fix auth schema and admin user creation
+
+  1. Changes
+    - Update auth.users schema to match Supabase requirements
+    - Create admin user with correct schema
+    - Add required metadata fields
+    
+  2. Security
+    - Set secure initial password
+    - Use only required auth.users fields
+*/
+
+-- Create initial admin user if it doesn''t exist
+DO $$
+DECLARE
+  admin_id uuid;
+  admin_role_id uuid;
+BEGIN
+  -- Only proceed if no users exist yet
+  IF NOT EXISTS (SELECT 1 FROM auth.users) THEN
+    -- Create admin user in auth.users with correct schema
+    INSERT INTO auth.users (
+      id,
+      aud,
+      role,
+      email,
+      encrypted_password,
+      email_confirmed_at,
+      raw_app_meta_data,
+      raw_user_meta_data,
+      created_at,
+      updated_at,
+      confirmation_token,
+      recovery_token,
+      instance_id,
+      is_super_admin,
+      is_sso_user
+    )
+    VALUES (
+      gen_random_uuid(),
+      ''authenticated'',
+      ''authenticated'',
+      ''admin@alta-klinik.local'',
+      crypt(''Admin123!'', gen_salt(''bf'')),
+      now(),
+      jsonb_build_object(''provider'', ''email'', ''providers'', ARRAY[''email'']::text[]),
+      ''{}''::jsonb,
+      now(),
+      now(),
+      NULL,
+      NULL,
+      ''00000000-0000-0000-0000-000000000000'',
+      FALSE,
+      FALSE
+    )
+    RETURNING id INTO admin_id;
+
+    -- Get admin role ID
+    SELECT id INTO admin_role_id FROM roles WHERE name = ''Admin'';
+
+    -- Create user profile
+    INSERT INTO user_profiles (user_id, first_name, last_name)
+    VALUES (admin_id, ''Admin'', ''ALTA Klinik'');
+
+    -- Assign admin role
+    INSERT INTO user_roles (user_id, role_id)
+    VALUES (admin_id, admin_role_id);
+  END IF;
+END $$"}', 'odd_resonance');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250316213703', '{"/*
+  # Fix auth schema and admin user creation
+
+  1. Changes
+    - Update auth.users schema to match Supabase requirements
+    - Create admin user with correct schema
+    - Add required metadata fields
+    
+  2. Security
+    - Set secure initial password
+    - Use only required auth.users fields
+*/
+
+-- Create initial admin user if it doesn''t exist
+DO $$
+DECLARE
+  admin_id uuid;
+  admin_role_id uuid;
+BEGIN
+  -- Only proceed if no users exist yet
+  IF NOT EXISTS (SELECT 1 FROM auth.users) THEN
+    -- Create admin user in auth.users with correct schema
+    INSERT INTO auth.users (
+      id,
+      aud,
+      role,
+      email,
+      encrypted_password,
+      email_confirmed_at,
+      raw_app_meta_data,
+      raw_user_meta_data,
+      created_at,
+      updated_at,
+      confirmation_token,
+      recovery_token,
+      instance_id,
+      is_super_admin,
+      is_sso_user,
+      last_sign_in_at,
+      confirmation_sent_at,
+      recovery_sent_at,
+      email_change_token_new,
+      email_change_token_current,
+      email_change_confirm_status,
+      banned_until,
+      reauthentication_token,
+      reauthentication_sent_at,
+      is_anonymous,
+      phone,
+      phone_confirmed_at,
+      phone_change,
+      phone_change_token,
+      phone_change_sent_at,
+      email_change,
+      email_change_sent_at,
+      invited_at,
+      deleted_at
+    )
+    VALUES (
+      gen_random_uuid(),
+      ''authenticated'',
+      ''authenticated'',
+      ''admin@alta-klinik.local'',
+      crypt(''Admin123!'', gen_salt(''bf'')),
+      now(),
+      jsonb_build_object(''provider'', ''email'', ''providers'', ARRAY[''email'']::text[]),
+      ''{}''::jsonb,
+      now(),
+      now(),
+      NULL,
+      NULL,
+      ''00000000-0000-0000-0000-000000000000'',
+      FALSE,
+      FALSE,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      0,
+      NULL,
+      NULL,
+      NULL,
+      FALSE,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL
+    )
+    RETURNING id INTO admin_id;
+
+    -- Get admin role ID
+    SELECT id INTO admin_role_id FROM roles WHERE name = ''Admin'';
+
+    -- Create user profile
+    INSERT INTO user_profiles (user_id, first_name, last_name)
+    VALUES (admin_id, ''Admin'', ''ALTA Klinik'');
+
+    -- Assign admin role
+    INSERT INTO user_roles (user_id, role_id)
+    VALUES (admin_id, admin_role_id);
+  END IF;
+END $$"}', 'divine_stream');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250316214450', '{"/*
+  # Simplify user management and authentication
+
+  1. Changes
+    - Update roles table with simplified roles
+    - Add default admin user with simple login
+    - Update RLS policies for simplified access control
+
+  2. Security
+    - Maintain RLS on all tables
+    - Set secure initial password for admin
+*/
+
+-- Drop existing roles and recreate with simplified set
+TRUNCATE roles CASCADE","INSERT INTO roles (name, description) VALUES
+  (''Admin'', ''Vollzugriff auf alle Funktionen''),
+  (''MTRA'', ''Zugriff auf Terminplanung und Patientenverwaltung''),
+  (''Arzt'', ''Zugriff auf medizinische Funktionen und Befunde'')","-- Create initial admin user if it doesn''t exist
+DO $$
+DECLARE
+  admin_id uuid;
+  admin_role_id uuid;
+BEGIN
+  -- Only proceed if no users exist yet
+  IF NOT EXISTS (SELECT 1 FROM auth.users) THEN
+    -- Create admin user with simple login
+    INSERT INTO auth.users (
+      id,
+      aud,
+      role,
+      email,
+      encrypted_password,
+      email_confirmed_at,
+      raw_app_meta_data,
+      raw_user_meta_data,
+      created_at,
+      updated_at,
+      confirmation_token,
+      recovery_token,
+      instance_id,
+      is_super_admin,
+      is_sso_user,
+      last_sign_in_at,
+      confirmation_sent_at,
+      recovery_sent_at,
+      email_change_token_new,
+      email_change_token_current,
+      email_change_confirm_status,
+      banned_until,
+      reauthentication_token,
+      reauthentication_sent_at,
+      is_anonymous,
+      phone,
+      phone_confirmed_at,
+      phone_change,
+      phone_change_token,
+      phone_change_sent_at,
+      email_change,
+      email_change_sent_at,
+      invited_at,
+      deleted_at
+    )
+    VALUES (
+      gen_random_uuid(),
+      ''authenticated'',
+      ''authenticated'',
+      ''admin@alta-klinik.local'',
+      crypt(''Admin123!'', gen_salt(''bf'')),
+      now(),
+      jsonb_build_object(''provider'', ''email'', ''providers'', ARRAY[''email'']::text[]),
+      ''{}''::jsonb,
+      now(),
+      now(),
+      NULL,
+      NULL,
+      ''00000000-0000-0000-0000-000000000000'',
+      FALSE,
+      FALSE,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      0,
+      NULL,
+      NULL,
+      NULL,
+      FALSE,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL
+    )
+    RETURNING id INTO admin_id;
+
+    -- Get admin role ID
+    SELECT id INTO admin_role_id FROM roles WHERE name = ''Admin'';
+
+    -- Create user profile
+    INSERT INTO user_profiles (user_id, first_name, last_name)
+    VALUES (admin_id, ''Admin'', ''ALTA Klinik'');
+
+    -- Assign admin role
+    INSERT INTO user_roles (user_id, role_id)
+    VALUES (admin_id, admin_role_id);
+  END IF;
+END $$"}', 'tiny_darkness');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250316214736', '{"-- Drop and recreate admin user with correct credentials
+DO $$
+DECLARE
+  admin_id uuid;
+  admin_role_id uuid;
+BEGIN
+  -- Delete existing admin user if exists
+  DELETE FROM auth.users WHERE email = ''admin@alta-klinik.local'';
+  
+  -- Create admin user with simple login
+  INSERT INTO auth.users (
+    id,
+    aud,
+    role,
+    email,
+    encrypted_password,
+    email_confirmed_at,
+    raw_app_meta_data,
+    raw_user_meta_data,
+    created_at,
+    updated_at,
+    confirmation_token,
+    recovery_token,
+    instance_id,
+    is_super_admin,
+    is_sso_user,
+    last_sign_in_at,
+    confirmation_sent_at,
+    recovery_sent_at,
+    email_change_token_new,
+    email_change_token_current,
+    email_change_confirm_status,
+    banned_until,
+    reauthentication_token,
+    reauthentication_sent_at,
+    is_anonymous,
+    phone,
+    phone_confirmed_at,
+    phone_change,
+    phone_change_token,
+    phone_change_sent_at,
+    email_change,
+    email_change_sent_at,
+    invited_at,
+    deleted_at
+  )
+  VALUES (
+    gen_random_uuid(),
+    ''authenticated'',
+    ''authenticated'',
+    ''admin@alta-klinik.local'',
+    crypt(''Admin123!'', gen_salt(''bf'')),
+    now(),
+    jsonb_build_object(''provider'', ''email'', ''providers'', ARRAY[''email'']::text[]),
+    ''{}''::jsonb,
+    now(),
+    now(),
+    NULL,
+    NULL,
+    ''00000000-0000-0000-0000-000000000000'',
+    FALSE,
+    FALSE,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    0,
+    NULL,
+    NULL,
+    NULL,
+    FALSE,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL,
+    NULL
+  )
+  RETURNING id INTO admin_id;
+
+  -- Get admin role ID
+  SELECT id INTO admin_role_id FROM roles WHERE name = ''Admin'';
+
+  -- Delete existing profile if exists
+  DELETE FROM user_profiles WHERE user_id = admin_id;
+  
+  -- Create user profile
+  INSERT INTO user_profiles (user_id, first_name, last_name)
+  VALUES (admin_id, ''Admin'', ''ALTA Klinik'');
+
+  -- Delete existing role assignments
+  DELETE FROM user_roles WHERE user_id = admin_id;
+  
+  -- Assign admin role
+  INSERT INTO user_roles (user_id, role_id)
+  VALUES (admin_id, admin_role_id);
+END $$"}', 'flat_crystal');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317082805', '{"/*
+  # Fix authentication schema and admin user
+
+  1. Changes
+    - Drop and recreate admin user with correct schema
+    - Ensure all required auth fields are present
+    - Set email confirmation to true
+    - Add proper metadata
+
+  2. Security
+    - Use secure password hashing
+    - Enable proper authentication flags
+*/
+
+-- Drop existing admin user if exists
+DELETE FROM auth.users WHERE email LIKE ''%@alta-klinik.local''","-- Create admin user with proper schema
+INSERT INTO auth.users (
+  id,
+  aud,
+  role,
+  email,
+  encrypted_password,
+  email_confirmed_at,
+  raw_app_meta_data,
+  raw_user_meta_data,
+  created_at,
+  updated_at,
+  confirmation_token,
+  recovery_token,
+  instance_id,
+  is_super_admin,
+  is_sso_user,
+  last_sign_in_at,
+  confirmation_sent_at,
+  recovery_sent_at,
+  email_change_token_new,
+  email_change_token_current,
+  email_change_confirm_status,
+  banned_until,
+  reauthentication_token,
+  reauthentication_sent_at,
+  is_anonymous,
+  phone,
+  phone_confirmed_at,
+  phone_change,
+  phone_change_token,
+  phone_change_sent_at,
+  email_change,
+  email_change_sent_at,
+  invited_at,
+  deleted_at
+)
+SELECT
+  gen_random_uuid(),                    -- id
+  ''authenticated'',                      -- aud
+  ''authenticated'',                      -- role
+  ''admin@alta-klinik.local'',           -- email
+  crypt(''Admin123!'', gen_salt(''bf'')),  -- encrypted_password
+  now(),                               -- email_confirmed_at
+  ''{\"provider\": \"email\", \"providers\": [\"email\"]}''::jsonb,  -- raw_app_meta_data
+  ''{}''::jsonb,                         -- raw_user_meta_data
+  now(),                               -- created_at
+  now(),                               -- updated_at
+  null,                                -- confirmation_token
+  null,                                -- recovery_token
+  ''00000000-0000-0000-0000-000000000000''::uuid,  -- instance_id
+  false,                               -- is_super_admin
+  false,                               -- is_sso_user
+  now(),                               -- last_sign_in_at
+  null,                                -- confirmation_sent_at
+  null,                                -- recovery_sent_at
+  null,                                -- email_change_token_new
+  null,                                -- email_change_token_current
+  0,                                   -- email_change_confirm_status
+  null,                                -- banned_until
+  null,                                -- reauthentication_token
+  null,                                -- reauthentication_sent_at
+  false,                               -- is_anonymous
+  null,                                -- phone
+  null,                                -- phone_confirmed_at
+  null,                                -- phone_change
+  null,                                -- phone_change_token
+  null,                                -- phone_change_sent_at
+  null,                                -- email_change
+  null,                                -- email_change_sent_at
+  null,                                -- invited_at
+  null                                 -- deleted_at
+WHERE NOT EXISTS (
+  SELECT 1 FROM auth.users WHERE email = ''admin@alta-klinik.local''
+)
+RETURNING id","-- Create user profile and role assignments
+DO $$
+DECLARE
+  admin_id uuid;
+  admin_role_id uuid;
+BEGIN
+  -- Get the admin user ID
+  SELECT id INTO admin_id FROM auth.users WHERE email = ''admin@alta-klinik.local'';
+  
+  -- Get the admin role ID
+  SELECT id INTO admin_role_id FROM roles WHERE name = ''Admin'';
+
+  -- Create user profile if it doesn''t exist
+  INSERT INTO user_profiles (user_id, first_name, last_name)
+  SELECT admin_id, ''Admin'', ''ALTA Klinik''
+  WHERE NOT EXISTS (
+    SELECT 1 FROM user_profiles WHERE user_id = admin_id
+  );
+
+  -- Create role assignment if it doesn''t exist
+  INSERT INTO user_roles (user_id, role_id)
+  SELECT admin_id, admin_role_id
+  WHERE NOT EXISTS (
+    SELECT 1 FROM user_roles WHERE user_id = admin_id AND role_id = admin_role_id
+  );
+END $$"}', 'bronze_mouse');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317085754', '{"/*
+  # Fix timezone settings for date handling
+
+  1. Changes
+    - Set timezone to Europe/Berlin for consistent date handling
+    - Ensure dates are stored without timezone conversion
+*/
+
+-- Set timezone to Europe/Berlin
+ALTER DATABASE postgres SET timezone TO ''Europe/Berlin''","-- Ensure birth_date column uses date type without timezone
+ALTER TABLE patients ALTER COLUMN birth_date TYPE date"}', 'quick_scene');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317090002', '{"/*
+  # Fix timezone settings for date handling
+
+  1. Changes
+    - Set timezone to Europe/Berlin for consistent date handling
+    - Ensure dates are stored without timezone conversion
+    - Add explicit timezone handling for date inputs
+*/
+
+-- Set timezone to Europe/Berlin
+SET timezone TO ''Europe/Berlin''","ALTER DATABASE postgres SET timezone TO ''Europe/Berlin''","-- Ensure birth_date column uses date type without timezone
+ALTER TABLE patients ALTER COLUMN birth_date TYPE date USING birth_date::date","-- Create function to handle date inputs with timezone
+CREATE OR REPLACE FUNCTION handle_date_input(input_date text)
+RETURNS date AS $$
+BEGIN
+  -- Parse the input date in European format (DD.MM.YYYY)
+  RETURN TO_DATE(input_date, ''DD.MM.YYYY'');
+EXCEPTION
+  WHEN OTHERS THEN
+    -- If parsing fails, try ISO format (YYYY-MM-DD)
+    RETURN input_date::date;
+END;
+$$ LANGUAGE plpgsql"}', 'dusty_night');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317090902', '{"/*
+  # Add date handling functions for patients
+
+  1. Changes
+    - Set timezone to Europe/Berlin
+    - Add functions for consistent date handling
+    - Add helper functions for patient operations
+    
+  2. Security
+    - Ensure safe date parsing and formatting
+    - Add input validation
+*/
+
+-- Set timezone to Europe/Berlin
+SET timezone TO ''Europe/Berlin''","ALTER DATABASE postgres SET timezone TO ''Europe/Berlin''","-- Ensure birth_date column uses date type without timezone
+ALTER TABLE patients ALTER COLUMN birth_date TYPE date USING birth_date::date","-- Create function to handle date inputs with timezone
+CREATE OR REPLACE FUNCTION handle_date_input(input_date text)
+RETURNS date AS $$
+BEGIN
+  -- First try European format (DD.MM.YYYY)
+  BEGIN
+    RETURN TO_DATE(input_date, ''DD.MM.YYYY'');
+  EXCEPTION
+    WHEN OTHERS THEN
+      -- Then try ISO format (YYYY-MM-DD)
+      BEGIN
+        RETURN TO_DATE(input_date, ''YYYY-MM-DD'');
+      EXCEPTION
+        WHEN OTHERS THEN
+          -- Finally try other common formats
+          BEGIN
+            RETURN TO_DATE(input_date, ''DD.MM.YY'');
+          EXCEPTION
+            WHEN OTHERS THEN
+              RAISE EXCEPTION ''Invalid date format. Please use DD.MM.YYYY or YYYY-MM-DD'';
+          END;
+      END;
+  END;
+END;
+$$ LANGUAGE plpgsql","-- Create function to find patients by birth date
+CREATE OR REPLACE FUNCTION find_patients_by_birth_date(date_string text)
+RETURNS SETOF patients AS $$
+DECLARE
+  parsed_date date;
+BEGIN
+  -- Try to parse the input date using the handle_date_input function
+  BEGIN
+    parsed_date := handle_date_input(date_string);
+    RETURN QUERY SELECT * FROM patients 
+      WHERE birth_date = parsed_date
+      ORDER BY last_name, first_name;
+  EXCEPTION
+    WHEN OTHERS THEN
+      -- If exact match fails, try fuzzy matching
+      RETURN QUERY SELECT * FROM patients 
+        WHERE birth_date::text ILIKE ''%'' || date_string || ''%''
+        ORDER BY last_name, first_name;
+  END;
+END;
+$$ LANGUAGE plpgsql","-- Create function to update patient safely with date handling
+CREATE OR REPLACE FUNCTION update_patient(p_id uuid, p_data jsonb)
+RETURNS uuid AS $$
+DECLARE
+  birth_date_text text;
+  parsed_date date;
+BEGIN
+  -- Extract birth_date from JSON
+  birth_date_text := p_data->>''birth_date'';
+  
+  -- Parse the date using our helper function
+  parsed_date := handle_date_input(birth_date_text);
+  
+  -- Update the patient data with the correctly parsed date
+  UPDATE patients 
+  SET 
+    gender = (p_data->>''gender'')::text,
+    title = (p_data->>''title'')::text,
+    first_name = (p_data->>''first_name'')::text,
+    last_name = (p_data->>''last_name'')::text,
+    birth_date = parsed_date,
+    phone = (p_data->>''phone'')::text,
+    email = (p_data->>''email'')::text,
+    updated_at = now()
+  WHERE id = p_id;
+  
+  RETURN p_id;
+END;
+$$ LANGUAGE plpgsql","-- Create function to create new patient safely with date handling
+CREATE OR REPLACE FUNCTION create_patient(p_data jsonb)
+RETURNS uuid AS $$
+DECLARE
+  birth_date_text text;
+  parsed_date date;
+  new_id uuid;
+BEGIN
+  -- Extract birth_date from JSON
+  birth_date_text := p_data->>''birth_date'';
+  
+  -- Parse the date using our helper function
+  parsed_date := handle_date_input(birth_date_text);
+  
+  -- Insert the new patient with the correctly parsed date
+  INSERT INTO patients (
+    gender,
+    title,
+    first_name,
+    last_name,
+    birth_date,
+    phone,
+    email
+  ) VALUES (
+    (p_data->>''gender'')::text,
+    (p_data->>''title'')::text,
+    (p_data->>''first_name'')::text,
+    (p_data->>''last_name'')::text,
+    parsed_date,
+    (p_data->>''phone'')::text,
+    (p_data->>''email'')::text
+  )
+  RETURNING id INTO new_id;
+  
+  RETURN new_id;
+END;
+$$ LANGUAGE plpgsql"}', 'peaceful_frog');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317092603', '{"/*
+  # Add improved date search function
+
+  1. Changes
+    - Add new function for improved date searching
+    - Support multiple date formats and partial matches
+    - Return results ordered by last name and first name
+    
+  2. Features
+    - Exact match for DD.MM.YYYY format
+    - Fuzzy search in date string
+    - Search by day, month, or year components
+*/
+
+-- Create improved date search function
+CREATE OR REPLACE FUNCTION improved_date_search(search_term text)
+RETURNS TABLE (
+  id uuid, 
+  patient_number int, 
+  gender text, 
+  title text, 
+  first_name text, 
+  last_name text, 
+  birth_date date, 
+  phone text, 
+  email text, 
+  created_at timestamptz
+) AS $$
+DECLARE
+  parsed_date date;
+  search_pattern text;
+BEGIN
+  -- 1. Versuche exakte Übereinstimmung
+  BEGIN
+    -- Für DD.MM.YYYY Format
+    IF search_term ~ ''^\\d{1,2}\\.\\d{1,2}\\.\\d{4}$'' THEN
+      parsed_date := TO_DATE(search_term, ''DD.MM.YYYY'');
+      RETURN QUERY SELECT p.* FROM patients p
+        WHERE p.birth_date = parsed_date
+        ORDER BY p.last_name, p.first_name;
+      
+      -- Wenn wir Ergebnisse zurückgeben, beenden wir die Funktion
+      IF FOUND THEN
+        RETURN;
+      END IF;
+    END IF;
+  EXCEPTION
+    WHEN OTHERS THEN
+      -- Bei Fehlern mit der Datumsparsierung weitermachen
+      NULL;
+  END;
+  
+  -- 2. Fuzzy-Suche im Datumsstring
+  RETURN QUERY 
+  SELECT p.* FROM patients p
+  WHERE TO_CHAR(p.birth_date, ''DD.MM.YYYY'') ILIKE ''%'' || search_term || ''%''
+  ORDER BY p.last_name, p.first_name;
+  
+  -- 3. Wenn keine Ergebnisse gefunden wurden, versuche andere Teile des Datums
+  IF NOT FOUND AND search_term ~ ''^\\d+$'' THEN
+    -- Könnte ein Tag, Monat oder Jahr sein
+    RETURN QUERY 
+    SELECT p.* FROM patients p
+    WHERE 
+      EXTRACT(DAY FROM p.birth_date) = search_term::int OR
+      EXTRACT(MONTH FROM p.birth_date) = search_term::int OR
+      EXTRACT(YEAR FROM p.birth_date) = search_term::int
+    ORDER BY p.last_name, p.first_name;
+  END IF;
+END;
+$$ LANGUAGE plpgsql","-- Add comment to explain function usage
+COMMENT ON FUNCTION improved_date_search(text) IS 
+''Sucht Patienten nach Geburtsdatum mit verschiedenen Suchstrategien:
+1. Exakte Übereinstimmung im Format DD.MM.YYYY
+2. Fuzzy-Suche im formatierten Datumsstring
+3. Suche nach einzelnen Datumsteilen (Tag, Monat, Jahr)''"}', 'amber_frog');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317092652', '{"/*
+  # Fix patient search date handling
+
+  1. Changes
+    - Add function to safely convert dates between formats
+    - Add function to search patients by birth date
+    - Add function to handle fuzzy date searches
+    
+  2. Features
+    - Support multiple date formats (DD.MM.YYYY, YYYY-MM-DD, DD.MM.YY)
+    - Support partial date searches
+    - Return results ordered by name
+*/
+
+-- Create function to safely convert dates between formats
+CREATE OR REPLACE FUNCTION safe_date_convert(input_date text)
+RETURNS date AS $$
+BEGIN
+  -- Try European format (DD.MM.YYYY)
+  BEGIN
+    RETURN TO_DATE(input_date, ''DD.MM.YYYY'');
+  EXCEPTION
+    WHEN OTHERS THEN
+      -- Try ISO format (YYYY-MM-DD)
+      BEGIN
+        RETURN TO_DATE(input_date, ''YYYY-MM-DD'');
+      EXCEPTION
+        WHEN OTHERS THEN
+          -- Try short year format (DD.MM.YY)
+          BEGIN
+            RETURN TO_DATE(input_date, ''DD.MM.YY'');
+          EXCEPTION
+            WHEN OTHERS THEN
+              RAISE EXCEPTION ''Invalid date format: %'', input_date;
+          END;
+      END;
+  END;
+END;
+$$ LANGUAGE plpgsql","-- Create function to search patients by birth date with fuzzy matching
+CREATE OR REPLACE FUNCTION search_patients_by_birth_date(search_term text)
+RETURNS TABLE (
+  id uuid,
+  patient_number integer,
+  gender text,
+  title text,
+  first_name text,
+  last_name text,
+  birth_date date,
+  phone text,
+  email text,
+  created_at timestamptz,
+  updated_at timestamptz
+) AS $$
+BEGIN
+  -- First try exact date match
+  BEGIN
+    RETURN QUERY
+    SELECT p.*
+    FROM patients p
+    WHERE p.birth_date = safe_date_convert(search_term)
+    ORDER BY p.last_name, p.first_name;
+    
+    IF FOUND THEN
+      RETURN;
+    END IF;
+  EXCEPTION
+    WHEN OTHERS THEN
+      -- Continue to fuzzy search if exact match fails
+      NULL;
+  END;
+
+  -- Then try partial matches using formatted date string
+  RETURN QUERY
+  SELECT p.*
+  FROM patients p
+  WHERE TO_CHAR(p.birth_date, ''DD.MM.YYYY'') LIKE ''%'' || search_term || ''%''
+  ORDER BY p.last_name, p.first_name;
+
+  -- If still no results and search term is numeric, try matching parts
+  IF NOT FOUND AND search_term ~ ''^\\d+$'' THEN
+    RETURN QUERY
+    SELECT p.*
+    FROM patients p
+    WHERE 
+      EXTRACT(DAY FROM p.birth_date)::text = search_term OR
+      EXTRACT(MONTH FROM p.birth_date)::text = search_term OR
+      EXTRACT(YEAR FROM p.birth_date)::text = search_term
+    ORDER BY p.last_name, p.first_name;
+  END IF;
+END;
+$$ LANGUAGE plpgsql","-- Add comment explaining the search function
+COMMENT ON FUNCTION search_patients_by_birth_date(text) IS 
+''Search patients by birth date with support for:
+- Exact matches in DD.MM.YYYY, YYYY-MM-DD, or DD.MM.YY format
+- Partial matches in formatted date string
+- Matching individual date components (day, month, year)
+Returns results ordered by last name, first name''"}', 'frosty_truth');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317094251', '{"/*
+  # Fix patient search function
+
+  1. Changes
+    - Simplify search function to use basic text comparison
+    - Remove complex date parsing logic that was causing errors
+    - Add proper error handling
+    - Ensure consistent date format handling
+
+  2. Security
+    - Maintain RLS policies
+    - Use safe text operations
+*/
+
+-- Create or replace the search function with simpler logic
+CREATE OR REPLACE FUNCTION search_patients_by_birthdate(search_term text)
+RETURNS SETOF patients AS $$
+BEGIN
+  -- First try exact date match if the input looks like a date
+  IF search_term ~ ''^\\d{1,2}\\.\\d{1,2}\\.\\d{4}$'' THEN
+    RETURN QUERY 
+    SELECT * FROM patients 
+    WHERE TO_CHAR(birth_date, ''DD.MM.YYYY'') = search_term
+    ORDER BY last_name, first_name;
+    
+    IF FOUND THEN
+      RETURN;
+    END IF;
+  END IF;
+
+  -- Then try partial text match
+  RETURN QUERY 
+  SELECT * FROM patients 
+  WHERE TO_CHAR(birth_date, ''DD.MM.YYYY'') LIKE ''%'' || search_term || ''%''
+  ORDER BY last_name, first_name;
+
+  -- If still no results and search term is numeric, try matching parts
+  IF NOT FOUND AND search_term ~ ''^\\d+$'' THEN
+    RETURN QUERY 
+    SELECT * FROM patients 
+    WHERE 
+      TO_CHAR(birth_date, ''DD'') = search_term OR
+      TO_CHAR(birth_date, ''MM'') = search_term OR 
+      TO_CHAR(birth_date, ''YYYY'') = search_term
+    ORDER BY last_name, first_name;
+  END IF;
+END;
+$$ LANGUAGE plpgsql","-- Add helpful comment
+COMMENT ON FUNCTION search_patients_by_birthdate(text) IS 
+''Search patients by birth date using:
+1. Exact match for DD.MM.YYYY format
+2. Partial text match in formatted date
+3. Match individual components (day, month, year)
+Returns results ordered by patient name.''"}', 'patient_glade');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317102050', '{"/*
+  # Add appointment comments functionality
+
+  1. New Tables
+    - `appointment_comments`
+      - `id` (uuid, primary key)
+      - `appointment_id` (uuid, foreign key)
+      - `user_id` (uuid, foreign key)
+      - `content` (text)
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+  2. Security
+    - Enable RLS
+    - Add policies for authenticated users
+*/
+
+-- Create appointment_comments table
+CREATE TABLE appointment_comments (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  appointment_id uuid REFERENCES appointments(id) ON DELETE CASCADE,
+  user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,
+  content text NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Enable RLS
+ALTER TABLE appointment_comments ENABLE ROW LEVEL SECURITY","-- Create policies
+CREATE POLICY \"Enable read access for authenticated users\" ON appointment_comments
+    FOR SELECT TO authenticated USING (true)","CREATE POLICY \"Enable insert access for authenticated users\" ON appointment_comments
+    FOR INSERT TO authenticated WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable update access for own comments\" ON appointment_comments
+    FOR UPDATE TO authenticated USING (auth.uid() = user_id)
+    WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable delete access for own comments\" ON appointment_comments
+    FOR DELETE TO authenticated USING (auth.uid() = user_id)","-- Add updated_at trigger
+CREATE TRIGGER update_appointment_comments_updated_at
+    BEFORE UPDATE ON appointment_comments
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","-- Add helpful comment
+COMMENT ON TABLE appointment_comments IS 
+''Stores comments made by users on appointments for patient history tracking''"}', 'plain_crystal');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317130643', '{"/*
+  # Add appointment status management
+
+  1. New Tables
+    - `appointment_statuses`
+      - `id` (uuid, primary key)
+      - `name` (text) - Name of the status
+      - `color` (text) - Color code for calendar display
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+  2. Changes
+    - Add status_id to appointments table
+    - Add default statuses
+    - Update appointment_status_enum to use new table
+
+  3. Security
+    - Enable RLS on appointment_statuses table
+    - Add policies for all operations
+*/
+
+-- Create appointment_statuses table
+CREATE TABLE appointment_statuses (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text NOT NULL,
+  color text NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now()
+)","-- Enable RLS
+ALTER TABLE appointment_statuses ENABLE ROW LEVEL SECURITY","-- Create policies
+CREATE POLICY \"Enable read access for all users\" ON appointment_statuses
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON appointment_statuses
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON appointment_statuses
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON appointment_statuses
+    FOR DELETE TO public USING (true)","-- Add updated_at trigger
+CREATE TRIGGER update_appointment_statuses_updated_at
+    BEFORE UPDATE ON appointment_statuses
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","-- Insert default statuses
+
+-- Add status_id to appointments table
+ALTER TABLE appointments
+ADD COLUMN status_id uuid REFERENCES appointment_statuses(id)","-- Set default status for existing appointments
+UPDATE appointments
+SET status_id = (
+  SELECT id FROM appointment_statuses WHERE name = ''Geplant''
+)
+WHERE status_id IS NULL","-- Make status_id required for future appointments
+ALTER TABLE appointments
+ALTER COLUMN status_id SET NOT NULL"}', 'spring_snowflake');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317102508', '{"/*
+  # Fix appointment comments relationships
+
+  1. Changes
+    - Add foreign key constraints with proper references
+    - Update RLS policies
+    - Add indexes for performance
+
+  2. Security
+    - Maintain RLS policies
+    - Ensure proper cascade behavior
+*/
+
+-- Drop existing foreign key if it exists
+ALTER TABLE appointment_comments 
+  DROP CONSTRAINT IF EXISTS appointment_comments_user_id_fkey","-- Recreate foreign key with proper reference
+ALTER TABLE appointment_comments 
+  ADD CONSTRAINT appointment_comments_user_id_fkey 
+  FOREIGN KEY (user_id) 
+  REFERENCES auth.users(id) 
+  ON DELETE CASCADE","-- Create index for performance
+CREATE INDEX IF NOT EXISTS idx_appointment_comments_user_id 
+  ON appointment_comments(user_id)","-- Update RLS policies
+DROP POLICY IF EXISTS \"Enable read access for authenticated users\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable insert access for authenticated users\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable update access for own comments\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable delete access for own comments\" ON appointment_comments","CREATE POLICY \"Enable read access for authenticated users\"
+  ON appointment_comments FOR SELECT
+  TO authenticated
+  USING (true)","CREATE POLICY \"Enable insert access for authenticated users\"
+  ON appointment_comments FOR INSERT
+  TO authenticated
+  WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable update access for own comments\"
+  ON appointment_comments FOR UPDATE
+  TO authenticated
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable delete access for own comments\"
+  ON appointment_comments FOR DELETE
+  TO authenticated
+  USING (auth.uid() = user_id)"}', 'blue_ocean');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317102658', '{"/*
+  # Fix appointment comments relationships and add user profiles view
+
+  1. Changes
+    - Add proper foreign key constraints
+    - Create view for user profile data
+    - Update RLS policies
+    - Add indexes for performance
+
+  2. Security
+    - Maintain RLS policies
+    - Ensure proper cascade behavior
+*/
+
+-- Create view for user profiles to simplify joins
+CREATE OR REPLACE VIEW user_profile_view AS
+SELECT 
+  u.id as user_id,
+  up.title,
+  up.first_name,
+  up.last_name
+FROM auth.users u
+LEFT JOIN user_profiles up ON up.user_id = u.id","-- Drop existing foreign key if it exists
+ALTER TABLE appointment_comments 
+  DROP CONSTRAINT IF EXISTS appointment_comments_user_id_fkey","-- Recreate foreign key with proper reference
+ALTER TABLE appointment_comments 
+  ADD CONSTRAINT appointment_comments_user_id_fkey 
+  FOREIGN KEY (user_id) 
+  REFERENCES auth.users(id) 
+  ON DELETE CASCADE","-- Create index for performance
+CREATE INDEX IF NOT EXISTS idx_appointment_comments_user_id 
+  ON appointment_comments(user_id)","-- Update RLS policies
+DROP POLICY IF EXISTS \"Enable read access for authenticated users\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable insert access for authenticated users\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable update access for own comments\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable delete access for own comments\" ON appointment_comments","CREATE POLICY \"Enable read access for authenticated users\"
+  ON appointment_comments FOR SELECT
+  TO authenticated
+  USING (true)","CREATE POLICY \"Enable insert access for authenticated users\"
+  ON appointment_comments FOR INSERT
+  TO authenticated
+  WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable update access for own comments\"
+  ON appointment_comments FOR UPDATE
+  TO authenticated
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable delete access for own comments\"
+  ON appointment_comments FOR DELETE
+  TO authenticated
+  USING (auth.uid() = user_id)","-- Add helpful comment
+COMMENT ON TABLE appointment_comments IS 
+''Stores comments made by users on appointments for patient history tracking''","-- Add helpful comment for view
+COMMENT ON VIEW user_profile_view IS
+''Provides easy access to user profile data including name and title''"}', 'white_feather');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317103655', '{"/*
+  # Fix appointment comments schema and relationships
+
+  1. Changes
+    - Create appointment_comments table if not exists
+    - Set up proper relationships and cascading deletes
+    - Create updated_at trigger
+    - Create user_profile_view
+    - Set up RLS policies
+    - Add performance indexes
+    - Add helpful comments
+
+  2. Security
+    - Enable RLS
+    - Add policies for authenticated users
+    - Ensure proper cascading behavior
+*/
+
+-- Create appointment_comments table if not exists
+CREATE TABLE IF NOT EXISTS public.appointment_comments (
+    id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+    appointment_id uuid NOT NULL REFERENCES public.appointments(id) ON DELETE CASCADE,
+    user_id uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+    content text NOT NULL,
+    created_at timestamp with time zone DEFAULT now(),
+    updated_at timestamp with time zone DEFAULT now()
+)","-- Create or replace updated_at trigger function
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$ language ''plpgsql''","-- Create trigger for updated_at
+DROP TRIGGER IF EXISTS update_appointment_comments_updated_at ON appointment_comments","CREATE TRIGGER update_appointment_comments_updated_at
+    BEFORE UPDATE ON public.appointment_comments
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","-- Create or replace user_profile_view
+CREATE OR REPLACE VIEW user_profile_view AS
+SELECT 
+  u.id as user_id,
+  up.title,
+  up.first_name,
+  up.last_name
+FROM auth.users u
+LEFT JOIN public.user_profiles up ON up.user_id = u.id","-- Enable RLS
+ALTER TABLE appointment_comments ENABLE ROW LEVEL SECURITY","-- Drop existing policies to avoid conflicts
+DROP POLICY IF EXISTS \"Enable read access for authenticated users\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable insert access for authenticated users\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable update access for own comments\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable delete access for own comments\" ON appointment_comments","-- Create new RLS policies
+CREATE POLICY \"Enable read access for authenticated users\"
+  ON appointment_comments FOR SELECT
+  TO authenticated
+  USING (true)","CREATE POLICY \"Enable insert access for authenticated users\"
+  ON appointment_comments FOR INSERT
+  TO authenticated
+  WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable update access for own comments\"
+  ON appointment_comments FOR UPDATE
+  TO authenticated
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable delete access for own comments\"
+  ON appointment_comments FOR DELETE
+  TO authenticated
+  USING (auth.uid() = user_id)","-- Create performance indexes
+CREATE INDEX IF NOT EXISTS idx_appointment_comments_appointment_id 
+  ON appointment_comments(appointment_id)","CREATE INDEX IF NOT EXISTS idx_appointment_comments_user_id 
+  ON appointment_comments(user_id)","-- Add helpful comments
+COMMENT ON TABLE appointment_comments IS 
+  ''Speichert Kommentare von Benutzern zu Terminen für die Patientenhistorie''","COMMENT ON VIEW user_profile_view IS
+  ''Bietet einfachen Zugriff auf Benutzerprofildaten einschließlich Name und Titel''"}', 'tender_silence');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317111033', '{"-- Add type column to insurance_providers
+ALTER TABLE insurance_providers 
+ADD COLUMN IF NOT EXISTS type text NOT NULL DEFAULT ''private'' 
+CHECK (type IN (''private'', ''statutory''))","-- Add comment explaining the type column
+COMMENT ON COLUMN insurance_providers.type IS 
+''Type of insurance provider: private (private insurance) or statutory (gesetzliche Krankenversicherung)''","-- Insert statutory insurance providers
+INSERT INTO insurance_providers (name, type)
+SELECT name, ''statutory''
+FROM (VALUES
+  (''AOK''),
+  (''Audi BKK''),
+  (''Bahn-BKK''),
+  (''Barmer Ersatzkasse''),
+  (''Bertelsmann BKK''),
+  (''Betriebskrankenkasse BPW Bergische Achsen KG''),
+  (''Betriebskrankenkasse der BMW AG''),
+  (''Betriebskrankenkasse der G. M. Pfaff AG''),
+  (''Betriebskrankenkasse Firmus''),
+  (''Betriebskrankenkasse Groz-Beckert''),
+  (''Betriebskrankenkasse Mahle''),
+  (''Betriebskrankenkasse Miele''),
+  (''Betriebskrankenkasse Mobil''),
+  (''Betriebskrankenkasse Schwarzwald-Baar-Heuberg''),
+  (''Betriebskrankenkasse Vereinigte Deutsche Nickel-Werke''),
+  (''Betriebskrankenkasse WMF Württembergische Metallwarenfabrik AG''),
+  (''BKK Akzo Nobel Bayern''),
+  (''BKK B. Braun Aesculap''),
+  (''BKK Deutsche Bank AG''),
+  (''BKK Diakonie''),
+  (''BKK Dürkopp Adler''),
+  (''BKK Euregio''),
+  (''BKK evm''),
+  (''BKK EWE''),
+  (''BKK exklusiv''),
+  (''BKK Faber-Castell & Partner''),
+  (''BKK Freudenberg''),
+  (''BKK Gildemeister Seidensticker''),
+  (''BKK Herkules''),
+  (''BKK Linde''),
+  (''BKK Melitta HMR''),
+  (''BKK MTU''),
+  (''BKK Pfalz''),
+  (''BKK Provita''),
+  (''BKK Public''),
+  (''BKK PwC''),
+  (''BKK Rieker Ricosta Weisser''),
+  (''BKK Salzgitter''),
+  (''BKK Scheufelen''),
+  (''BKK Technoform''),
+  (''BKK VBU''),
+  (''BKK Verbundplus''),
+  (''BKK Voralb Heller Index Leuze''),
+  (''BKK Werra-Meissner''),
+  (''BKK Wirtschaft & Finanzen''),
+  (''BKK Würth''),
+  (''BKK ZF & Partner''),
+  (''BKK24''),
+  (''Bosch BKK''),
+  (''Bundesinnungskrankenkasse Gesundheit''),
+  (''Continentale Betriebskrankenkasse''),
+  (''DAK-Gesundheit''),
+  (''Debeka BKK''),
+  (''Die Bergische Krankenkasse''),
+  (''Energie-Betriebskrankenkasse''),
+  (''Ernst & Young BKK''),
+  (''Gemeinsame Betriebskrankenkasse der Gesellschaften der Textilgruppe Hof''),
+  (''Handelskrankenkasse''),
+  (''Heimat Krankenkasse''),
+  (''HEK – Hanseatische Krankenkasse''),
+  (''IKK''),
+  (''Innungskrankenkasse Brandenburg und Berlin''),
+  (''Karl Mayer Betriebskrankenkasse''),
+  (''Kaufmännische Krankenkasse''),
+  (''Knappschaft''),
+  (''Koenig & Bauer BKK''),
+  (''Krones Betriebskrankenkasse''),
+  (''Landwirtschaftliche Krankenkasse''),
+  (''Mercedes-Benz Betriebskrankenkasse''),
+  (''Merck BKK''),
+  (''Mhplus Betriebskrankenkasse''),
+  (''Novitas BKK''),
+  (''Pronova BKK''),
+  (''R+V Betriebskrankenkasse''),
+  (''Salus BKK''),
+  (''Securvita BKK''),
+  (''Siemens-Betriebskrankenkasse''),
+  (''SKD BKK''),
+  (''Südzucker BKK''),
+  (''Techniker Krankenkasse''),
+  (''TUI BKK''),
+  (''Viactiv BKK''),
+  (''Vivida BKK'')
+) AS v(name)
+WHERE NOT EXISTS (
+  SELECT 1 FROM insurance_providers 
+  WHERE name = v.name AND type = ''statutory''
+)","-- Update existing providers to be private type if not already set
+UPDATE insurance_providers 
+SET type = ''private'' 
+WHERE type IS NULL"}', 'humble_thunder');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317112435', '{"/*
+  # Add CT consent form type
+
+  1. Changes
+    - Add ''ct_consent'' to form_type_enum
+    - Update existing form_type_enum comment
+
+  2. Security
+    - Maintain existing RLS policies
+*/
+
+-- Add new type to form_type_enum
+ALTER TYPE form_type_enum ADD VALUE IF NOT EXISTS ''ct_consent''","-- Update comment
+COMMENT ON TYPE form_type_enum IS ''Available form types: registration, cost_reimbursement, privacy, examination, ct_consent, custom''"}', 'shiny_flame');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317112648', '{"/*
+  # Update form type enum with CT consent form
+
+  1. Changes
+    - Add ''ct_consent'' to form_type_enum
+    - Update existing form_type_enum comment
+
+  2. Security
+    - Maintain existing RLS policies
+*/
+
+-- Add new type to form_type_enum
+ALTER TYPE form_type_enum ADD VALUE IF NOT EXISTS ''ct_consent''","-- Update comment
+COMMENT ON TYPE form_type_enum IS ''Available form types: registration, cost_reimbursement, privacy, examination, ct_consent, custom''"}', 'lively_island');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317115532', '{"/*
+  # Add new form types
+
+  1. Changes
+    - Add new form types to form_type_enum
+    - Update comment to include new types
+
+  2. Security
+    - Maintain existing RLS policies
+*/
+
+-- Add new types to form_type_enum
+ALTER TYPE form_type_enum ADD VALUE IF NOT EXISTS ''ct_therapy''","ALTER TYPE form_type_enum ADD VALUE IF NOT EXISTS ''mrt_ct_consent''","ALTER TYPE form_type_enum ADD VALUE IF NOT EXISTS ''prostate_questionnaire''","-- Update comment
+COMMENT ON TYPE form_type_enum IS ''Available form types: registration, cost_reimbursement, privacy, examination, ct_consent, ct_therapy, mrt_ct_consent, prostate_questionnaire, custom''"}', 'super_tooth');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317131250', '{"/*
+  # Add appointment status management
+
+  1. Changes
+    - Create appointment_statuses table if not exists
+    - Add status_id to appointments table
+    - Set up default statuses
+    - Handle existing table gracefully
+
+  2. Security
+    - Enable RLS
+    - Add policies for all operations
+*/
+
+-- Create appointment_statuses table if it doesn''t exist
+DO $$ 
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = ''appointment_statuses'') THEN
+    CREATE TABLE appointment_statuses (
+      id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+      name text NOT NULL,
+      color text NOT NULL,
+      created_at timestamptz DEFAULT now(),
+      updated_at timestamptz DEFAULT now()
+    );
+
+    -- Enable RLS
+    ALTER TABLE appointment_statuses ENABLE ROW LEVEL SECURITY;
+
+    -- Create policies
+    CREATE POLICY \"Enable read access for all users\" ON appointment_statuses
+        FOR SELECT TO public USING (true);
+
+    CREATE POLICY \"Enable insert access for all users\" ON appointment_statuses
+        FOR INSERT TO public WITH CHECK (true);
+
+    CREATE POLICY \"Enable update access for all users\" ON appointment_statuses
+        FOR UPDATE TO public USING (true) WITH CHECK (true);
+
+    CREATE POLICY \"Enable delete access for all users\" ON appointment_statuses
+        FOR DELETE TO public USING (true);
+
+    -- Add updated_at trigger
+    CREATE TRIGGER update_appointment_statuses_updated_at
+        BEFORE UPDATE ON appointment_statuses
+        FOR EACH ROW
+        EXECUTE FUNCTION update_updated_at_column();
+
+    -- Insert default statuses
+
+  END IF;
+END $$","-- Add status_id to appointments table if it doesn''t exist
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns 
+    WHERE table_name = ''appointments'' AND column_name = ''status_id''
+  ) THEN
+    -- Add status_id column
+    ALTER TABLE appointments
+    ADD COLUMN status_id uuid REFERENCES appointment_statuses(id);
+
+    -- Set default status for existing appointments
+    UPDATE appointments
+    SET status_id = (
+      SELECT id FROM appointment_statuses WHERE name = ''Geplant''
+    )
+    WHERE status_id IS NULL;
+
+    -- Make status_id required for future appointments
+    ALTER TABLE appointments
+    ALTER COLUMN status_id SET NOT NULL;
+  END IF;
+END $$"}', 'raspy_base');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317131357', '{"/*
+  # Add appointment status management
+
+  1. Changes
+    - Create appointment_statuses table if not exists
+    - Add status_id to appointments table
+    - Set up default statuses
+    - Handle existing table gracefully
+
+  2. Security
+    - Enable RLS
+    - Add policies for all operations
+*/
+
+-- Create appointment_statuses table if it doesn''t exist
+DO $$ 
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = ''appointment_statuses'') THEN
+    CREATE TABLE appointment_statuses (
+      id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+      name text NOT NULL,
+      color text NOT NULL,
+      created_at timestamptz DEFAULT now(),
+      updated_at timestamptz DEFAULT now()
+    );
+
+    -- Enable RLS
+    ALTER TABLE appointment_statuses ENABLE ROW LEVEL SECURITY;
+
+    -- Create policies
+    CREATE POLICY \"Enable read access for all users\" ON appointment_statuses
+        FOR SELECT TO public USING (true);
+
+    CREATE POLICY \"Enable insert access for all users\" ON appointment_statuses
+        FOR INSERT TO public WITH CHECK (true);
+
+    CREATE POLICY \"Enable update access for all users\" ON appointment_statuses
+        FOR UPDATE TO public USING (true) WITH CHECK (true);
+
+    CREATE POLICY \"Enable delete access for all users\" ON appointment_statuses
+        FOR DELETE TO public USING (true);
+
+    -- Add updated_at trigger
+    CREATE TRIGGER update_appointment_statuses_updated_at
+        BEFORE UPDATE ON appointment_statuses
+        FOR EACH ROW
+        EXECUTE FUNCTION update_updated_at_column();
+  END IF;
+END $$","-- Add status_id to appointments table if it doesn''t exist
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns 
+    WHERE table_name = ''appointments'' AND column_name = ''status_id''
+  ) THEN
+    -- Add status_id column
+    ALTER TABLE appointments
+    ADD COLUMN status_id uuid REFERENCES appointment_statuses(id);
+
+    -- Set default status for existing appointments
+    UPDATE appointments
+    SET status_id = (
+      SELECT id FROM appointment_statuses WHERE name = ''Geplant''
+    )
+    WHERE status_id IS NULL;
+
+    -- Make status_id required for future appointments
+    ALTER TABLE appointments
+    ALTER COLUMN status_id SET NOT NULL;
+  END IF;
+END $$"}', 'foggy_dust');
+INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317210452', '{"/*
+  # Add device working hours functionality
+
+  1. New Tables
+    - `device_working_hours`
+      - `id` (uuid, primary key)
+      - `device_id` (uuid, foreign key)
+      - `day_of_week` (integer) - 1 (Monday) to 7 (Sunday)
+      - `start_time` (time) - Start of working hours
+      - `end_time` (time) - End of working hours
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+    - `device_working_hours_exceptions`
+      - `id` (uuid, primary key)
+      - `device_id` (uuid, foreign key)
+      - `start_date` (date) - Start date of exception period
+      - `end_date` (date) - End date of exception period
+      - `start_time` (time) - Temporary start time
+      - `end_time` (time) - Temporary end time
+      - `reason` (text) - Reason for the exception
+      - `created_at` (timestamp)
+      - `updated_at` (timestamp)
+
+  2. Security
+    - Enable RLS on both tables
+    - Add policies for all operations
+*/
+
+-- Create device_working_hours table
+CREATE TABLE device_working_hours (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  device_id uuid REFERENCES devices(id) ON DELETE CASCADE,
+  day_of_week integer NOT NULL CHECK (day_of_week BETWEEN 1 AND 7),
+  start_time time NOT NULL,
+  end_time time NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  
+  -- Ensure end_time is after start_time
+  CONSTRAINT valid_working_hours CHECK (end_time > start_time),
+  
+  -- Only one time range per device per day
+  UNIQUE(device_id, day_of_week)
+)","-- Create device_working_hours_exceptions table
+CREATE TABLE device_working_hours_exceptions (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  device_id uuid REFERENCES devices(id) ON DELETE CASCADE,
+  start_date date NOT NULL,
+  end_date date NOT NULL,
+  start_time time,
+  end_time time,
+  reason text NOT NULL,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  
+  -- Ensure end_date is after or equal to start_date
+  CONSTRAINT valid_exception_dates CHECK (end_date >= start_date),
+  
+  -- If times are provided, ensure end_time is after start_time
+  CONSTRAINT valid_exception_times CHECK (
+    (start_time IS NULL AND end_time IS NULL) OR
+    (start_time IS NOT NULL AND end_time IS NOT NULL AND end_time > start_time)
+  )
+)","-- Enable RLS
+ALTER TABLE device_working_hours ENABLE ROW LEVEL SECURITY","ALTER TABLE device_working_hours_exceptions ENABLE ROW LEVEL SECURITY","-- Create policies for device_working_hours
+CREATE POLICY \"Enable read access for all users\" ON device_working_hours
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON device_working_hours
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON device_working_hours
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON device_working_hours
+    FOR DELETE TO public USING (true)","-- Create policies for device_working_hours_exceptions
+CREATE POLICY \"Enable read access for all users\" ON device_working_hours_exceptions
+    FOR SELECT TO public USING (true)","CREATE POLICY \"Enable insert access for all users\" ON device_working_hours_exceptions
+    FOR INSERT TO public WITH CHECK (true)","CREATE POLICY \"Enable update access for all users\" ON device_working_hours_exceptions
+    FOR UPDATE TO public USING (true) WITH CHECK (true)","CREATE POLICY \"Enable delete access for all users\" ON device_working_hours_exceptions
+    FOR DELETE TO public USING (true)","-- Add updated_at triggers
+CREATE TRIGGER update_device_working_hours_updated_at
+    BEFORE UPDATE ON device_working_hours
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","CREATE TRIGGER update_device_working_hours_exceptions_updated_at
+    BEFORE UPDATE ON device_working_hours_exceptions
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column()","-- Add helpful comments
+COMMENT ON TABLE device_working_hours IS 
+''Stores regular working hours for each device per day of week''","COMMENT ON TABLE device_working_hours_exceptions IS 
+''Stores temporary changes to device working hours (e.g., maintenance, holidays)''"}', 'silver_summit');
+
+
+--
+-- Data for Name: secrets; Type: TABLE DATA; Schema: vault; Owner: -
+--
+
+
+
+--
+-- Name: refresh_tokens_id_seq; Type: SEQUENCE SET; Schema: auth; Owner: -
+--
+
+SELECT pg_catalog.setval('auth.refresh_tokens_id_seq', 1, false);
+
+
+--
+-- Name: key_key_id_seq; Type: SEQUENCE SET; Schema: pgsodium; Owner: -
+--
+
+SELECT pg_catalog.setval('pgsodium.key_key_id_seq', 1, false);
+
+
+--
+-- Name: patient_number_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.patient_number_seq', 48028, true);
+
+
+--
+-- Name: subscription_id_seq; Type: SEQUENCE SET; Schema: realtime; Owner: -
+--
+
+SELECT pg_catalog.setval('realtime.subscription_id_seq', 1, false);
+
+
+--
+-- Name: hooks_id_seq; Type: SEQUENCE SET; Schema: supabase_functions; Owner: -
+--
+
+SELECT pg_catalog.setval('supabase_functions.hooks_id_seq', 1, false);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
