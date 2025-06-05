@@ -198,16 +198,3 @@ CREATE TRIGGER update_user_profiles_updated_at
     BEFORE UPDATE ON user_profiles
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
-
--- Insert default roles if they don't exist
-INSERT INTO roles (name, description)
-SELECT name, description
-FROM (VALUES
-  ('Admin', 'Vollzugriff auf alle Funktionen'),
-  ('Verwaltung', 'Zugriff auf administrative Funktionen'),
-  ('MTRA', 'Zugriff auf Terminplanung und Patientenverwaltung'),
-  ('Arzt', 'Zugriff auf medizinische Funktionen und Befunde')
-) AS new_roles(name, description)
-WHERE NOT EXISTS (
-  SELECT 1 FROM roles WHERE roles.name = new_roles.name
-);
