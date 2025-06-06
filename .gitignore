@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 .env
 
-supabase/config.toml
 supabase/functions
 supabase/.branches
 supabase/.temp
