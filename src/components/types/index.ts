@@ -21,3 +21,5 @@ export type * from "./forms";
 export interface FormProps {
 	onRender?: () => void;
 }
+
+export { type User } from "./user";

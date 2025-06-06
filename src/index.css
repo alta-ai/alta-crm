@@ -2,20 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	:root {
+		--background: 210 20% 98%;
+		--foreground: 224 71% 4%;
+
+		--primary: 349 84% 45%;
+		--primary-foreground: 210 40% 98%;
+
+		--secondary: 170 87% 29%;
+		--secondary-foreground: 210 40% 98%;
+
+		--accent: 25 95% 53%;
+		--accent-foreground: 210 40% 98%;
+
+		--success: 142 72% 29%;
+		--success-foreground: 210 40% 98%;
+
+		--warning: 38 92% 50%;
+		--warning-foreground: 224 71% 4%;
+
+		--error: 0 91% 58%;
+		--error-foreground: 210 40% 98%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 224 71% 4%;
+
+		--border: 220 13% 91%;
+		--input: 220 13% 91%;
+
+		--muted: 220 14% 96%;
+		--muted-foreground: 220 8% 46%;
+
+		--radius: 0.5rem;
+	}
+
+	body {
+		@apply bg-background text-foreground antialiased;
+		font-feature-settings: "rlig" 1, "calt" 1;
+	}
+}
+
+@layer components {
+	.btn {
+		@apply inline-flex h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors 
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 
+    disabled:pointer-events-none disabled:opacity-50;
+	}
+
+	.btn-primary {
+		@apply bg-primary text-primary-foreground hover:bg-primary/90;
+	}
+
+	.btn-secondary {
+		@apply bg-secondary text-secondary-foreground hover:bg-secondary/90;
+	}
+
+	.btn-outline {
+		@apply border border-input bg-transparent hover:bg-muted hover:text-foreground;
+	}
+
+	.input {
+		@apply flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm 
+    file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground 
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-0 
+    disabled:cursor-not-allowed disabled:opacity-50;
+	}
+
+	.card {
+		@apply rounded-lg border border-border bg-card p-6 shadow-sm transition-shadow duration-200 hover:shadow-md;
+	}
+}
+
 /* Direct targeting of body and common table containers */
 body {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
 }
 
 body::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
 }
 
 /* Target common container classes used in tables */
-.overflow-x-auto, 
+.overflow-x-auto,
 .overflow-y-auto,
 .overflow-auto,
 .overflow-scroll,
@@ -23,11 +95,11 @@ body::-webkit-scrollbar {
 .overflow-y-scroll,
 table,
 .inline-block {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
 }
 
-.overflow-x-auto::-webkit-scrollbar, 
+.overflow-x-auto::-webkit-scrollbar,
 .overflow-y-auto::-webkit-scrollbar,
 .overflow-auto::-webkit-scrollbar,
 .overflow-scroll::-webkit-scrollbar,
@@ -35,47 +107,47 @@ table,
 .overflow-y-scroll::-webkit-scrollbar,
 table::-webkit-scrollbar,
 .inline-block::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
 }
 
 /* Global scrollbar hiding for the patient list page */
 html.hide-all-scrollbars,
 html.hide-all-scrollbars * {
-  scrollbar-width: none !important; /* Firefox */
-  -ms-overflow-style: none !important; /* IE and Edge */
+	scrollbar-width: none !important; /* Firefox */
+	-ms-overflow-style: none !important; /* IE and Edge */
 }
 
 html.hide-all-scrollbars *::-webkit-scrollbar,
 html.hide-all-scrollbars::-webkit-scrollbar {
-  display: none !important; /* Chrome, Safari, Opera */
-  width: 0 !important;
-  height: 0 !important;
-  background: transparent !important;
+	display: none !important; /* Chrome, Safari, Opera */
+	width: 0 !important;
+	height: 0 !important;
+	background: transparent !important;
 }
 
 /* Improved styles to hide the scrollbar - adding !important to ensure they're not overridden */
 .hide-scrollbar {
-  -ms-overflow-style: none !important; /* IE and Edge */
-  scrollbar-width: none !important; /* Firefox */
+	-ms-overflow-style: none !important; /* IE and Edge */
+	scrollbar-width: none !important; /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none !important; /* Chrome, Safari, Opera */
-  width: 0 !important;
-  height: 0 !important;
-  background: transparent !important;
+	display: none !important; /* Chrome, Safari, Opera */
+	width: 0 !important;
+	height: 0 !important;
+	background: transparent !important;
 }
 
 /* Adding styles for all scrollable elements within the patient list */
 .hide-scrollbar * {
-  -ms-overflow-style: none !important;
-  scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
+	scrollbar-width: none !important;
 }
 
 .hide-scrollbar *::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
 }

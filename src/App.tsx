@@ -1,9 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+	Navigate,
+} from "react-router-dom";
 import { Settings } from "lucide-react";
 import RegistrationForm from "./components/forms/registration/RegistrationForm";
-import CostReimbursementForm from "./components/forms/CostReimbursementForm";
-import PrivacyForm from "./components/forms/privacy/PrivacyForm";
 import AdminLayout from "./components/admin/AdminLayout";
 import ExaminationList from "./components/admin/ExaminationList";
 import ExaminationForm from "./components/admin/ExaminationForm";
@@ -36,6 +39,10 @@ import BillingForm from "./components/admin/BillingForm";
 import { SignaturePage } from "./components/admin/signatures";
 import BillingFormList from "./components/admin/billing/BillingFormList";
 import BillingFormEditor from "./components/admin/billing/BillingFormEditor";
+import { LoginPage } from "@pages";
+import { PublicLayout } from "@layouts";
+import ProtectedRoute from "@components/auth/ProtectedRoute";
+import TestComponent from "@components/TestComponent";
 
 function App() {
 	return (
@@ -76,8 +83,21 @@ function App() {
 					}
 				/>
 
-				{/* Admin Routes */}
-				<Route path="/admin" element={<AdminLayout />}>
+				{/* Public routes */}
+				<Route element={<PublicLayout />}>
+					<Route path="/login" element={<LoginPage />} />
+					<Route path="/formInput" element={<TestComponent />} />
+				</Route>
+
+				{/* Admin routes */}
+				<Route
+					path="/admin"
+					element={
+						<ProtectedRoute allowedRoles={["admin"]}>
+							<AdminLayout />
+						</ProtectedRoute>
+					}
+				>
 					<Route index element={<ExaminationList />} />
 					<Route path="examinations/new" element={<ExaminationForm />} />
 					<Route path="examinations/:id" element={<ExaminationForm />} />
@@ -136,6 +156,9 @@ function App() {
 					</Route>
 				</Route>
 				<Route path="signatures" element={<SignaturePage />} />
+
+				{/* Fallback route
+				<Route path="*" element={<Navigate to="/login" replace />} /> */}
 			</Routes>
 		</Router>
 	);
