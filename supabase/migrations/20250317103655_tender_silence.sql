@@ -5,7 +5,6 @@
     - Create appointment_comments table if not exists
     - Set up proper relationships and cascading deletes
     - Create updated_at trigger
-    - Create user_profile_view
     - Set up RLS policies
     - Add performance indexes
     - Add helpful comments
@@ -41,16 +40,6 @@ CREATE TRIGGER update_appointment_comments_updated_at
     BEFORE UPDATE ON public.appointment_comments
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
-
--- Create or replace user_profile_view
-CREATE OR REPLACE VIEW user_profile_view AS
-SELECT 
-  u.id as user_id,
-  up.title,
-  up.first_name,
-  up.last_name
-FROM auth.users u
-LEFT JOIN public.user_profiles up ON up.user_id = u.id;
 
 -- Enable RLS
 ALTER TABLE appointment_comments ENABLE ROW LEVEL SECURITY;
@@ -93,6 +82,3 @@ CREATE INDEX IF NOT EXISTS idx_appointment_comments_user_id
 -- Add helpful comments
 COMMENT ON TABLE appointment_comments IS 
   'Speichert Kommentare von Benutzern zu Terminen für die Patientenhistorie';
-
-COMMENT ON VIEW user_profile_view IS
-  'Bietet einfachen Zugriff auf Benutzerprofildaten einschließlich Name und Titel';

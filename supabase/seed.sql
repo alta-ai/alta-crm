@@ -17,6 +17,80 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+
+-- Add auth hook
+
+INSERT INTO auth.hooks (id, hook_table_id, hook_name, created_at, request_id)
+VALUES (
+  gen_random_uuid(),
+  (SELECT id FROM auth.hook_table WHERE table_name = 'custom_access_token'),
+  'custom_access_token_hook',
+  NOW(),
+  NULL
+) ON CONFLICT DO NOTHING;
+
+grant usage on schema public to supabase_auth_admin;
+grant execute on function public.custom_access_token_hook to supabase_auth_admin;
+revoke execute on function public.custom_access_token_hook from authenticated, anon, public;
+grant all on table public.user_roles to supabase_auth_admin;
+revoke all on table public.user_roles from authenticated, anon, public;
+
+-- Add cross-schema relations
+DO $$
+BEGIN
+  -- Add foreign key constraint to auth.users if it doesn't exist
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints 
+    WHERE constraint_name = 'user_roles_user_id_fkey'
+    AND table_name = 'user_roles'
+    AND table_schema = 'public'
+  ) THEN
+    ALTER TABLE public.user_roles 
+    ADD CONSTRAINT user_roles_user_id_fkey 
+    FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE SET NULL;
+  END IF;
+EXCEPTION 
+  WHEN OTHERS THEN
+    RAISE NOTICE 'Could not create foreign key to auth.users: %', SQLERRM;
+END $$;
+
+DO $$
+BEGIN
+  -- Add foreign key constraint to auth.users if it doesn't exist
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints 
+    WHERE constraint_name = 'user_profiles_user_id_fkey'
+    AND table_name = 'user_profiles'
+    AND table_schema = 'public'
+  ) THEN
+    ALTER TABLE public.user_profiles 
+    ADD CONSTRAINT user_profiles_user_id_fkey 
+    FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE SET NULL;
+  END IF;
+EXCEPTION 
+  WHEN OTHERS THEN
+    RAISE NOTICE 'Could not create foreign key to auth.users: %', SQLERRM;
+END $$;
+
+DO $$
+BEGIN
+  -- Add foreign key constraint to auth.users if it doesn't exist
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints 
+    WHERE constraint_name = 'user_profiles_user_id_fkey'
+    AND table_name = 'user_profiles'
+    AND table_schema = 'public'
+  ) THEN
+    ALTER TABLE public.user_profiles 
+    ADD CONSTRAINT user_profiles_user_id_fkey 
+    FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE SET NULL;
+  END IF;
+EXCEPTION 
+  WHEN OTHERS THEN
+    RAISE NOTICE 'Could not create foreign key to auth.users: %', SQLERRM;
+END $$;
+
+
 --
 -- Data for Name: tenants; Type: TABLE DATA; Schema: _realtime; Owner: -
 --
@@ -214,10 +288,7 @@ INSERT INTO auth.schema_migrations VALUES ('20241009103726');
 
 
 INSERT INTO public.user_profiles VALUES ('91a4bf67-a5db-457a-ace4-b545914b99a2', 'a22821f9-6e9c-4d97-bd32-74ab22ab72ab', NULL, 'Paul', 'Ehrlich', '2025-03-17 14:10:27.977825+01', '2025-03-17 14:10:27.977825+01');
-
-
-
-INSERT INTO public.user_roles VALUES ('91a4ba67-a5db-457a-ace4-b545914b99a2', 'a22821f9-6e9c-4d97-bd32-74ab22ab72ab','e6249b89-282b-47e6-890c-05142a879c0d', '2025-03-17 14:10:27.977825+01');
+INSERT INTO public.user_roles VALUES ('91a4ba67-a5db-457a-ace4-b545914b99a2', 'a22821f9-6e9c-4d97-bd32-74ab22ab72ab', '2e12c4f5-c9d1-4c48-8a1d-00f71cdeeb42', '2025-03-17 14:10:27.977825+01');
 
 
 --
@@ -4362,43 +4433,6 @@ INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317102658', '{"/
     - Maintain RLS policies
     - Ensure proper cascade behavior
 */
-
--- Create view for user profiles to simplify joins
-CREATE OR REPLACE VIEW user_profile_view AS
-SELECT 
-  u.id as user_id,
-  up.title,
-  up.first_name,
-  up.last_name
-FROM auth.users u
-LEFT JOIN user_profiles up ON up.user_id = u.id","-- Drop existing foreign key if it exists
-ALTER TABLE appointment_comments 
-  DROP CONSTRAINT IF EXISTS appointment_comments_user_id_fkey","-- Recreate foreign key with proper reference
-ALTER TABLE appointment_comments 
-  ADD CONSTRAINT appointment_comments_user_id_fkey 
-  FOREIGN KEY (user_id) 
-  REFERENCES auth.users(id) 
-  ON DELETE CASCADE","-- Create index for performance
-CREATE INDEX IF NOT EXISTS idx_appointment_comments_user_id 
-  ON appointment_comments(user_id)","-- Update RLS policies
-DROP POLICY IF EXISTS \"Enable read access for authenticated users\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable insert access for authenticated users\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable update access for own comments\" ON appointment_comments","DROP POLICY IF EXISTS \"Enable delete access for own comments\" ON appointment_comments","CREATE POLICY \"Enable read access for authenticated users\"
-  ON appointment_comments FOR SELECT
-  TO authenticated
-  USING (true)","CREATE POLICY \"Enable insert access for authenticated users\"
-  ON appointment_comments FOR INSERT
-  TO authenticated
-  WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable update access for own comments\"
-  ON appointment_comments FOR UPDATE
-  TO authenticated
-  USING (auth.uid() = user_id)
-  WITH CHECK (auth.uid() = user_id)","CREATE POLICY \"Enable delete access for own comments\"
-  ON appointment_comments FOR DELETE
-  TO authenticated
-  USING (auth.uid() = user_id)","-- Add helpful comment
-COMMENT ON TABLE appointment_comments IS 
-''Stores comments made by users on appointments for patient history tracking''","-- Add helpful comment for view
-COMMENT ON VIEW user_profile_view IS
-''Provides easy access to user profile data including name and title''"}', 'white_feather');
 INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317103655', '{"/*
   # Fix appointment comments schema and relationships
 
@@ -4406,7 +4440,6 @@ INSERT INTO supabase_migrations.schema_migrations VALUES ('20250317103655', '{"/
     - Create appointment_comments table if not exists
     - Set up proper relationships and cascading deletes
     - Create updated_at trigger
-    - Create user_profile_view
     - Set up RLS policies
     - Add performance indexes
     - Add helpful comments

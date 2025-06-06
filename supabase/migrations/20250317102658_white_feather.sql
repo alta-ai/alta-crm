@@ -13,15 +13,6 @@
 */
 
 -- Create view for user profiles to simplify joins
-CREATE OR REPLACE VIEW user_profile_view AS
-SELECT 
-  u.id as user_id,
-  up.title,
-  up.first_name,
-  up.last_name
-FROM auth.users u
-LEFT JOIN user_profiles up ON up.user_id = u.id;
-
 -- Drop existing foreign key if it exists
 ALTER TABLE appointment_comments 
   DROP CONSTRAINT IF EXISTS appointment_comments_user_id_fkey;
@@ -67,7 +58,3 @@ CREATE POLICY "Enable delete access for own comments"
 -- Add helpful comment
 COMMENT ON TABLE appointment_comments IS 
 'Stores comments made by users on appointments for patient history tracking';
-
--- Add helpful comment for view
-COMMENT ON VIEW user_profile_view IS
-'Provides easy access to user profile data including name and title';

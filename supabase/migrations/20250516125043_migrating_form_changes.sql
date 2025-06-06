@@ -8,10 +8,6 @@ DROP POLICY IF EXISTS "Enable read access for authenticated users" on "public"."
 
 DROP POLICY IF EXISTS "Enable update access for own comments" on "public"."appointment_comments";
 
-alter table "public"."user_profiles" drop constraint "user_profiles_user_id_fkey";
-
-alter table "public"."user_roles" drop constraint "user_roles_user_id_fkey";
-
 alter table "public"."insurance_providers" drop constraint "insurance_providers_type_check";
 
 drop view if exists "public"."appointment_forms_view";

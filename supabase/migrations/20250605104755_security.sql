@@ -25,8 +25,8 @@ ALTER TABLE public.role_permissions DISABLE ROW LEVEL SECURITY;
 comment on table public.role_permissions is 'Application permissions for each role.';
 
 -- Insert default admin role
-INSERT INTO public.roles (name, description) 
-VALUES ('admin', 'Administrator role with full system access')
+INSERT INTO public.roles (id, name, description) 
+VALUES ('2e12c4f5-c9d1-4c48-8a1d-00f71cdeeb42','admin', 'Administrator role with full system access')
 ON CONFLICT (name) DO NOTHING;
 
 -- Insert default permissions for admin role
@@ -35,7 +35,6 @@ SELECT r.id, unnest(ARRAY['all.delete', 'all.select', 'all.update', 'all.insert'
 FROM public.roles r WHERE r.name = 'admin'
 ON CONFLICT (role_id, permission) DO NOTHING;
 
--- Create the auth hook function (FIXED VERSION)
 create or replace function public.custom_access_token_hook(event jsonb)
 returns jsonb
 language plpgsql
@@ -46,14 +45,20 @@ as $$
 declare
   claims jsonb;
   user_role_name text;
+  user_uuid uuid;
 begin
+  -- Extract user ID from event
+  user_uuid := (event->>'user_id')::uuid;
+  
   -- Fetch the user role name from the user_roles and roles tables
   select r.name into user_role_name 
   from public.user_roles ur
   join public.roles r on ur.role_id = r.id
-  where ur.user_id = (event->>'user_id')::uuid;
+  where ur.user_id = user_uuid;
   
-  claims := event->'claims';
+  -- Get existing claims or initialize empty object
+  claims := coalesce(event->'claims', '{}'::jsonb);
+  
   if user_role_name is not null then
     -- Set the claim with proper jsonb conversion
     claims := jsonb_set(claims, '{user_role}', to_jsonb(user_role_name));
@@ -64,6 +69,10 @@ begin
   
   -- Update the 'claims' object in the original event
   event := jsonb_set(event, '{claims}', claims);
+  
+  -- Log for debugging (remove in production)
+  raise log 'Auth hook executed for user %, role: %', user_uuid, user_role_name;
+  
   -- Return the modified event
   return event;
 exception when others then
@@ -72,6 +81,17 @@ exception when others then
   return event;
 end;
 $$;
+
+-- Add a test function to manually trigger token refresh
+create or replace function public.force_token_refresh_test()
+returns jsonb as $$
+begin
+  return jsonb_build_object(
+    'message', 'To refresh your token, sign out and sign in again, or call supabase.auth.refreshSession() from your client'
+  );
+end;
+$$ language plpgsql;
+
 
 -- Grant permissions for auth hook
 grant usage on schema public to supabase_auth_admin;
@@ -85,7 +105,7 @@ as permissive for select
 to supabase_auth_admin
 using (true);
 
--- Create authorize function (FIXED VERSION)
+-- Updated authorize function that works without JWT claims
 create or replace function public.authorize(
   requested_permission app_permission
 )
@@ -93,11 +113,28 @@ returns boolean as $$
 declare
   bind_permissions int;
   user_role_name text;
+  current_user_id uuid;
 begin
-  -- Fetch user role name from JWT claims
+  current_user_id := auth.uid();
+  
+  -- If no user, deny access
+  if current_user_id is null then
+    return false;
+  end if;
+  
+  -- Try to get role from JWT first
   select auth.jwt() ->> 'user_role' into user_role_name;
   
-  -- Default to 'user' if no role found
+  -- If no role in JWT, look it up directly from database
+  if user_role_name is null then
+    select r.name into user_role_name
+    from public.user_roles ur
+    join public.roles r on ur.role_id = r.id
+    where ur.user_id = current_user_id
+    limit 1;
+  end if;
+  
+  -- Default to 'user' if still no role found
   user_role_name := coalesce(user_role_name, 'user');
   
   select count(*)
@@ -115,6 +152,300 @@ exception when others then
 end;
 $$ language plpgsql stable security definer set search_path = public;
 
--- NOTE: RLS policies are intentionally NOT created here to prevent recursion
--- You can add them later once authentication is working properly
--- For now, tables will be accessible but you have the role system in place
+-- Try to configure auth hook, but ignore errors if auth schema is different
+DO $$
+BEGIN
+  INSERT INTO auth.hooks (id, hook_table_id, hook_name, created_at, request_id)
+  VALUES (
+    gen_random_uuid(),
+    (SELECT id FROM auth.hook_table WHERE table_name = 'custom_access_token'),
+    'custom_access_token_hook',
+    NOW(),
+    NULL
+  ) ON CONFLICT DO NOTHING;
+EXCEPTION WHEN OTHERS THEN
+  RAISE NOTICE 'Could not configure auth hook automatically: %', SQLERRM;
+  RAISE NOTICE 'Please configure the auth hook manually in the Supabase Dashboard';
+END
+$$;
+
+
+
+
+-- DROP all existing policies to avoid conflicts
+DO $$
+DECLARE
+    r RECORD;
+BEGIN
+    -- Drop all policies on all tables in public schema
+    FOR r IN (
+        SELECT schemaname, tablename, policyname 
+        FROM pg_policies 
+        WHERE schemaname = 'public'
+    ) LOOP
+        EXECUTE format('DROP POLICY IF EXISTS %I ON %I.%I', 
+                      r.policyname, r.schemaname, r.tablename);
+    END LOOP;
+    
+    RAISE NOTICE 'All RLS policies have been dropped';
+END
+$$;
+
+
+-- Enable RLS on all tables in public schema
+DO $$
+DECLARE
+    r RECORD;
+BEGIN
+    FOR r IN (
+        SELECT tablename 
+        FROM pg_tables 
+        WHERE schemaname = 'public'
+    ) LOOP
+        EXECUTE format('ALTER TABLE public.%I ENABLE ROW LEVEL SECURITY', r.tablename);
+    END LOOP;
+    
+    RAISE NOTICE 'RLS has been enabled for all tables in public schema';
+END
+$$;
+
+
+-- Create policies 
+-- Create RLS policies for all tables based on role permissions
+DO $$
+DECLARE
+    table_record RECORD;
+    policy_sql TEXT;
+BEGIN
+    -- Loop through all tables in public schema (except auth-related tables)
+    FOR table_record IN (
+        SELECT tablename 
+        FROM pg_tables 
+        WHERE schemaname = 'public' 
+        AND tablename NOT IN ('role_permissions', 'user_roles', 'roles', 'user_profiles')
+    ) LOOP
+        
+        -- CREATE SELECT policy
+        policy_sql := format('
+            CREATE POLICY "Allow select for users with all.select permission" ON public.%I
+            AS PERMISSIVE FOR SELECT
+            TO authenticated
+            USING (authorize(''all.select''::app_permission))', 
+            table_record.tablename);
+        EXECUTE policy_sql;
+        
+        -- CREATE INSERT policy  
+        policy_sql := format('
+            CREATE POLICY "Allow insert for users with all.insert permission" ON public.%I
+            AS PERMISSIVE FOR INSERT
+            TO authenticated
+            WITH CHECK (authorize(''all.insert''::app_permission))', 
+            table_record.tablename);
+        EXECUTE policy_sql;
+        
+        -- CREATE UPDATE policy
+        policy_sql := format('
+            CREATE POLICY "Allow update for users with all.update permission" ON public.%I
+            AS PERMISSIVE FOR UPDATE
+            TO authenticated
+            USING (authorize(''all.update''::app_permission))
+            WITH CHECK (authorize(''all.update''::app_permission))', 
+            table_record.tablename);
+        EXECUTE policy_sql;
+        
+        -- CREATE DELETE policy
+        policy_sql := format('
+            CREATE POLICY "Allow delete for users with all.delete permission" ON public.%I
+            AS PERMISSIVE FOR DELETE
+            TO authenticated
+            USING (authorize(''all.delete''::app_permission))', 
+            table_record.tablename);
+        EXECUTE policy_sql;
+        
+    END LOOP;
+    
+    RAISE NOTICE 'RLS policies have been created for all tables';
+END
+$$;
+
+-- Create specific policies for auth-related tables
+CREATE POLICY "Users can read their own role assignments" ON public.user_roles
+AS PERMISSIVE FOR SELECT
+TO authenticated
+USING (user_id = auth.uid() OR authorize('all.select'::app_permission));
+
+CREATE POLICY "Only admins can modify user roles" ON public.user_roles
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (authorize('all.update'::app_permission))
+WITH CHECK (authorize('all.insert'::app_permission));
+
+CREATE POLICY "Users can read roles" ON public.roles
+AS PERMISSIVE FOR SELECT
+TO authenticated
+USING (true);
+
+CREATE POLICY "Only admins can modify roles" ON public.roles
+AS PERMISSIVE FOR ALL
+TO authenticated
+USING (authorize('all.update'::app_permission))
+WITH CHECK (authorize('all.insert'::app_permission));
+
+
+
+
+
+-- Add debugging function to check authorization
+create or replace function public.debug_rls_issue()
+returns jsonb as $$
+declare
+  current_user_id uuid;
+  jwt_data jsonb;
+  user_role_data jsonb;
+  permission_data jsonb;
+  auth_hook_test jsonb;
+  sample_table_count int;
+begin
+  current_user_id := auth.uid();
+  jwt_data := auth.jwt();
+  
+  -- Test if user has any role assignments
+  select jsonb_agg(
+    jsonb_build_object(
+      'user_id', ur.user_id,
+      'role_id', ur.role_id,
+      'role_name', r.name,
+      'created_at', ur.created_at
+    )
+  ) into user_role_data
+  from public.user_roles ur
+  join public.roles r on ur.role_id = r.id
+  where ur.user_id = current_user_id;
+  
+  -- Get permission data for user's role
+  select jsonb_agg(
+    jsonb_build_object(
+      'role_name', r.name,
+      'permission', rp.permission,
+      'role_id', r.id
+    )
+  ) into permission_data
+  from public.user_roles ur
+  join public.roles r on ur.role_id = r.id
+  join public.role_permissions rp on rp.role_id = r.id
+  where ur.user_id = current_user_id;
+  
+  -- Test authorize function
+  select jsonb_build_object(
+    'all_select', public.authorize('all.select'::app_permission),
+    'all_insert', public.authorize('all.insert'::app_permission),
+    'all_update', public.authorize('all.update'::app_permission),
+    'all_delete', public.authorize('all.delete'::app_permission)
+  ) into auth_hook_test;
+  
+  -- Try to count records from a sample table (this will fail if RLS blocks it)
+  begin
+    select count(*) into sample_table_count from public.roles;
+  exception when others then
+    sample_table_count := -1; -- Indicates RLS blocked the query
+  end;
+  
+  return jsonb_build_object(
+    'timestamp', now(),
+    'current_user_id', current_user_id,
+    'jwt_claims', jwt_data,
+    'user_roles', coalesce(user_role_data, '[]'::jsonb),
+    'permissions', coalesce(permission_data, '[]'::jsonb),
+    'authorize_results', auth_hook_test,
+    'sample_table_count', sample_table_count,
+    'diagnostics', jsonb_build_object(
+      'has_jwt', jwt_data is not null,
+      'has_user_id', current_user_id is not null,
+      'jwt_user_role', jwt_data ->> 'user_role',
+      'role_count', (select count(*) from public.user_roles where user_id = current_user_id)
+    )
+  );
+end;
+$$ language plpgsql security definer set search_path = public;
+
+-- Function to manually assign admin role to current user (for testing)
+create or replace function public.assign_admin_role_to_current_user()
+returns jsonb as $$
+declare
+  current_user_id uuid;
+  admin_role_id uuid;
+  result jsonb;
+begin
+  current_user_id := auth.uid();
+  
+  if current_user_id is null then
+    return jsonb_build_object('error', 'No authenticated user found');
+  end if;
+  
+  -- Get admin role ID
+  select id into admin_role_id from public.roles where name = 'admin';
+  
+  if admin_role_id is null then
+    return jsonb_build_object('error', 'Admin role not found');
+  end if;
+  
+  -- Assign role
+  insert into public.user_roles (user_id, role_id)
+  values (current_user_id, admin_role_id)
+  on conflict (user_id, role_id) do nothing;
+  
+  return jsonb_build_object(
+    'success', true,
+    'user_id', current_user_id,
+    'admin_role_id', admin_role_id,
+    'message', 'Admin role assigned to current user'
+  );
+end;
+$$ language plpgsql security definer set search_path = public;
+
+-- Function to check if auth hook is configured correctly
+create or replace function public.check_auth_hook_config()
+returns jsonb as $$
+declare
+  hook_exists boolean;
+  hook_grants text[];
+begin
+  -- Check if the auth hook function exists
+  select exists(
+    select 1 from pg_proc p
+    join pg_namespace n on p.pronamespace = n.oid
+    where n.nspname = 'public' and p.proname = 'custom_access_token_hook'
+  ) into hook_exists;
+  
+  -- Check grants (this is approximate)
+  select array_agg(privilege_type) into hook_grants
+  from information_schema.routine_privileges
+  where routine_schema = 'public' 
+  and routine_name = 'custom_access_token_hook'
+  and grantee = 'supabase_auth_admin';
+  
+  return jsonb_build_object(
+    'hook_function_exists', hook_exists,
+    'hook_grants', coalesce(hook_grants, array[]::text[]),
+    'note', 'Check Supabase Dashboard > Authentication > Hooks to ensure the hook is configured'
+  );
+end;
+$$ language plpgsql security definer set search_path = public;
+
+-- Temporarily disable RLS on a test table to verify basic connectivity
+create table if not exists public.debug_test_table (
+  id uuid default gen_random_uuid() primary key,
+  message text default 'RLS test data',
+  created_at timestamp with time zone default now()
+);
+
+-- Insert test data
+insert into public.debug_test_table (message) 
+values ('Test data for RLS debugging') 
+on conflict do nothing;
+
+-- Disable RLS on debug table
+alter table public.debug_test_table disable row level security;
+
+-- Grant access to authenticated users
+grant all on public.debug_test_table to authenticated;
