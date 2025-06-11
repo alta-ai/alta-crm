@@ -25,13 +25,13 @@ ALTER TABLE public.role_permissions DISABLE ROW LEVEL SECURITY;
 comment on table public.role_permissions is 'Application permissions for each role.';
 
 -- Insert default admin role
-INSERT INTO public.roles (id, name, description) 
-VALUES ('2e12c4f5-c9d1-4c48-8a1d-00f71cdeeb42','admin', 'Administrator role with full system access')
+INSERT INTO public.roles (id, name, description, default_route) 
+VALUES ('2e12c4f5-c9d1-4c48-8a1d-00f71cdeeb42','admin', 'Administrator role with full system access', '/admin/appointments')
 ON CONFLICT (name) DO NOTHING;
 
 -- Insert default user role
-INSERT INTO public.roles (id, name, description) 
-VALUES ('6a12d4a5-c9d1-4c48-8a1d-00f71cdeeb42', 'user', 'The standard user role with basic permissions')
+INSERT INTO public.roles (id, name, description, default_route) 
+VALUES ('6a12d4a5-c9d1-4c48-8a1d-00f71cdeeb42', 'user', 'The standard user role with basic permissions', '/home')
 ON CONFLICT (name) DO NOTHING;
 
 -- Insert default permissions for admin role
@@ -50,17 +50,25 @@ as $$
 declare
   claims jsonb;
   user_role_name text;
+  role_uuid uuid;
   user_uuid uuid;
   user_profile_data jsonb;
+  role_default_route text;
+  user_email text;
 begin
   -- Extract user ID from event
   user_uuid := (event->>'user_id')::uuid;
 
-  -- Fetch the user role name from the user_roles and roles tables
-  select r.name into user_role_name 
+  -- Fetch the user role name and default_route from the user_roles and roles tables
+  select r.id, r.name, r.default_route into role_uuid, user_role_name, role_default_route
   from public.user_roles ur
   join public.roles r on ur.role_id = r.id
   where ur.user_id = user_uuid;
+
+  -- Fetch user email from auth.users
+  select email into user_email
+  from auth.users
+  where id = user_uuid;
 
   -- Fetch user profile data
   select to_jsonb(up.*) into user_profile_data
@@ -77,10 +85,38 @@ begin
     claims := jsonb_set(claims, '{user_role}', to_jsonb('user'::text));
   end if;
 
-  -- Add user profile data to claims
-  if user_profile_data is not null then
-    claims := jsonb_set(claims, '{user_profile}', user_profile_data);
+  -- Add user profile data to claims with role and default_route fields
+  -- If no user profile exists, create an empty one
+  if user_profile_data is null then
+    user_profile_data := '{}'::jsonb;
   end if;
+  
+  -- Always add role name as "role" field
+  if user_role_name is not null then
+    user_profile_data := jsonb_set(user_profile_data, '{role}', to_jsonb(user_role_name));
+  else
+    user_profile_data := jsonb_set(user_profile_data, '{role}', to_jsonb('user'::text));
+  end if;
+  
+  -- Always add default_route field
+  if role_default_route is not null then
+    user_profile_data := jsonb_set(user_profile_data, '{default_route}', to_jsonb(role_default_route));
+  else
+    user_profile_data := jsonb_set(user_profile_data, '{default_route}', to_jsonb('/home'::text));
+  end if;
+
+  
+  if role_uuid is not null then
+    user_profile_data := jsonb_set(user_profile_data, '{role_id}', to_jsonb(role_uuid));
+  end if;
+  
+  -- Always add email field
+  if user_email is not null then
+    user_profile_data := jsonb_set(user_profile_data, '{email}', to_jsonb(user_email));
+  end if;
+  
+  -- Set the user_profile in claims
+  claims := jsonb_set(claims, '{user_profile}', user_profile_data);
 
   -- Add a static admin claim for testing
   claims := jsonb_set(claims, '{admin}', 'true'::jsonb);
@@ -91,8 +127,8 @@ begin
   event := jsonb_set(event, '{claims}', claims);
 
   -- Log for debugging (remove in production)
-  raise log 'Auth hook executed for user %, role: %, profile added: %, claims: %', 
-    user_uuid, user_role_name, (user_profile_data is not null), claims;
+  raise log 'Auth hook executed for user %, role: %, default_route: %, profile added: %, claims: %', 
+    user_uuid, user_role_name, role_default_route, (user_profile_data is not null), claims;
 
   -- Return the modified event
   return event;
@@ -125,64 +161,43 @@ create or replace function public.authorize(
   requested_permission app_permission
 )
 returns boolean as $$
-declare
-  bind_permissions int;
-  user_role_name text;
-  current_user_id uuid;
-begin
-  current_user_id := auth.uid();
-  
-  -- If no user, deny access
-  if current_user_id is null then
-    return false;
-  end if;
-  
-  -- Try to get role from JWT first
-  select auth.jwt() ->> 'user_role' into user_role_name;
-  
-  -- If no role in JWT, look it up directly from database
-  if user_role_name is null then
-    select r.name into user_role_name
-    from public.user_roles ur
-    join public.roles r on ur.role_id = r.id
-    where ur.user_id = current_user_id
-    limit 1;
-  end if;
-  
-  -- Default to 'user' if still no role found
-  user_role_name := coalesce(user_role_name, 'user');
-  
-  select count(*)
-  into bind_permissions
-  from public.role_permissions rp
-  join public.roles r on rp.role_id = r.id
-  where rp.permission = requested_permission
-    and r.name = user_role_name;
+  declare
+    bind_permissions int;
+    user_role_name text;
+    current_user_id uuid;
+  begin
+    current_user_id := auth.uid();
     
-  return bind_permissions > 0;
-exception when others then
-  -- Log error and deny access
-  raise log 'Error in authorize function: %', sqlerrm;
-  return false;
-end;
+    -- If no user, deny access
+    if current_user_id is null then
+      return false;
+    end if;
+    
+    select auth.jwt() ->> 'user_role' into user_role_name;
+
+    if user_role_name is null then
+      select r.name into user_role_name
+      from public.user_roles ur
+      join public.roles r on ur.role_id = r.id
+      where ur.user_id = current_user_id;
+    end if;
+
+    select count(*)
+    into bind_permissions
+    from public.role_permissions rp
+    join public.roles r on rp.role_id = r.id
+    where rp.permission = requested_permission
+      and r.name = user_role_name;
+      
+    return bind_permissions > 0;
+  exception when others then
+    -- Log error and deny access
+    raise notice 'Error in authorize function: %', sqlerrm;
+    return false;
+  end;
 $$ language plpgsql stable security definer set search_path = public;
 
--- Try to configure auth hook, but ignore errors if auth schema is different
-DO $$
-BEGIN
-  INSERT INTO auth.hooks (id, hook_table_id, hook_name, created_at, request_id)
-  VALUES (
-    gen_random_uuid(),
-    (SELECT id FROM auth.hook_table WHERE table_name = 'custom_access_token'),
-    'custom_access_token_hook',
-    NOW(),
-    NULL
-  ) ON CONFLICT DO NOTHING;
-EXCEPTION WHEN OTHERS THEN
-  RAISE NOTICE 'Could not configure auth hook automatically: %', SQLERRM;
-  RAISE NOTICE 'Please configure the auth hook manually in the Supabase Dashboard';
-END
-$$;
+
 
 
 
@@ -313,6 +328,7 @@ USING (authorize('all.update'::app_permission))
 WITH CHECK (authorize('all.insert'::app_permission));
 
 
-
-
-
+-- Ensure authenticated users can access public schema
+GRANT SELECT, INSERT, UPDATE, DELETE
+  ON ALL TABLES IN SCHEMA public
+  TO authenticated;

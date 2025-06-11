@@ -33,33 +33,26 @@ function Login() {
 		}
 	}, [location.state, navigate, location.pathname]);
 
-	// Effekt für die Weiterleitung, wenn der Benutzer bereits authentifiziert ist (z.B. nach Seiten-Reload)
 	useEffect(() => {
 		console.log(
 			"[Login Page] useEffect for redirect CHECKING. Auth user:",
-			auth.user?.email,
+			auth.userData?.email,
 			"isLoading:",
 			auth.isLoading
 		);
-		if (auth.user && !auth.isLoading && auth.user.role) {
-			const path = getRedirectPath(auth.user.role);
+		if (auth.userData && !auth.isLoading) {
+			const path = auth.userData.default_route || "/home";
 			console.log(
 				"[Login Page] USER AUTHENTICATED (isLoading is false). Redirecting to:",
 				path
 			);
 			navigate(path, { replace: true });
-		} else if (!auth.user && !auth.isLoading) {
+		} else if (!auth.userData && !auth.isLoading) {
 			console.log("[Login Page] User NOT authenticated (isLoading is false).");
 		} else if (auth.isLoading) {
 			console.log("[Login Page] Auth is LOADING...");
 		}
-	}, [auth.user, auth.isLoading, navigate]);
-
-	const getRedirectPath = (role: string) => {
-		const from = (location.state as any)?.from?.pathname;
-		if (from) return from;
-		return role === "admin" ? "/admin" : "/doctor";
-	};
+	}, [auth.userData, auth.isLoading, navigate]);
 
 	const handleLogin = async (e: React.FormEvent) => {
 		e.preventDefault();

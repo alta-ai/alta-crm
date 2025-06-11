@@ -21,6 +21,7 @@ BEGIN
       id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
       name text NOT NULL UNIQUE,
       description text,
+      default_route text,
       created_at timestamptz DEFAULT now(),
       updated_at timestamptz DEFAULT now()
     );

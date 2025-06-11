@@ -5,10 +5,14 @@ import { cn } from "../../lib/utils";
 
 interface UserMenuProps {
 	sidebarOpen: boolean;
+	dropdownDirection?: "up" | "down";
 }
 
-const UserMenu: React.FC<UserMenuProps> = ({ sidebarOpen }) => {
-	const { user, userData, logout } = useAuth();
+const UserMenu: React.FC<UserMenuProps> = ({
+	sidebarOpen,
+	dropdownDirection = "up",
+}) => {
+	const { userData, logout } = useAuth();
 	const [isOpen, setIsOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 
@@ -36,10 +40,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ sidebarOpen }) => {
 	};
 
 	const getUserDisplayName = () => {
-		if (!user) return "Unbekannter Benutzer";
+		if (!userData) return "Unbekannter Benutzer";
 		return (
 			`${userData?.first_name} ${userData?.last_name}` ||
-			user.email ||
+			userData.email ||
 			"Benutzer"
 		);
 	};
@@ -57,7 +61,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ sidebarOpen }) => {
 		return name.substring(0, 2).toUpperCase();
 	};
 
-	if (!user) {
+	if (!userData) {
 		return null;
 	}
 
@@ -86,7 +90,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ sidebarOpen }) => {
 							<p className="text-sm font-medium text-gray-900 truncate">
 								{getUserDisplayName()}
 							</p>
-							<p className="text-xs text-gray-500 truncate">{user.email}</p>
+							<p className="text-xs text-gray-500 truncate">{userData.email}</p>
 						</div>
 						<ChevronUp
 							className={cn(
@@ -102,7 +106,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ sidebarOpen }) => {
 			{isOpen && (
 				<div
 					className={cn(
-						"absolute bottom-full mb-2 bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50",
+						"absolute bg-white rounded-md shadow-lg border border-gray-200 py-1 z-50",
+						dropdownDirection === "up" ? "bottom-full mb-2" : "top-full mt-2",
 						sidebarOpen ? "left-0 right-0" : "left-0 w-48"
 					)}
 				>
@@ -110,8 +115,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ sidebarOpen }) => {
 						<p className="text-sm font-medium text-gray-900 truncate">
 							{getUserDisplayName()}
 						</p>
-						<p className="text-xs text-gray-500 truncate">{user.email}</p>
-						<p className="text-xs text-gray-400 capitalize">{user.role}</p>
+						<p className="text-xs text-gray-500 truncate">{userData.email}</p>
+						<p className="text-xs text-gray-400 capitalize">{userData.role}</p>
 					</div>
 
 					<button

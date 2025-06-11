@@ -39,10 +39,15 @@ import BillingForm from "./components/admin/BillingForm";
 import { SignaturePage } from "./components/admin/signatures";
 import BillingFormList from "./components/admin/billing/BillingFormList";
 import BillingFormEditor from "./components/admin/billing/BillingFormEditor";
-import { LoginPage } from "@pages";
 import { PublicLayout } from "@layouts";
+import {
+	LoginPage,
+	RedirectPage,
+	FormInputPage,
+	CreateTokenPage,
+} from "@pages";
 import ProtectedRoute from "@components/auth/ProtectedRoute";
-import TestComponent from "@components/TestComponent";
+import TestComponent from "@pages/TestInput";
 
 function App() {
 	return (
@@ -86,7 +91,10 @@ function App() {
 				{/* Public routes */}
 				<Route element={<PublicLayout />}>
 					<Route path="/login" element={<LoginPage />} />
-					<Route path="/formInput" element={<TestComponent />} />
+					<Route path="/form-input" element={<FormInputPage />} />
+					<Route path="/token" element={<CreateTokenPage />} />
+					<Route path="/redirect" element={<RedirectPage />} />
+					<Route path="/test" element={<TestComponent />} />
 				</Route>
 
 				{/* Admin routes */}

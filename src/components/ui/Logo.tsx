@@ -1,8 +1,14 @@
 import React from "react";
 
-const Logo: React.FC = () => {
+interface LogoProps {
+	className?: string;
+}
+
+const Logo: React.FC<LogoProps> = ({
+	className = "flex items-center justify-center mb-8",
+}) => {
 	return (
-		<div className="flex items-center justify-center mb-8">
+		<div className={className}>
 			<div className="flex flex-col">
 				<div className="text-2xl md:text-3xl font-bold text-primary">
 					ALTA Klinik

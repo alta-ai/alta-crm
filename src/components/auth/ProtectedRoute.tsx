@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
 }
 
 function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) {
-	const { user, isLoading } = useAuth();
+	const { userData, isLoading } = useAuth();
 	const location = useLocation();
 
 	if (isLoading) {
@@ -22,16 +22,16 @@ function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) {
 		);
 	}
 
-	if (!user) {
+	if (!userData) {
 		console.log("[ProtectedRoute] No user, redirecting to login");
 		// Redirect to login if not authenticated
 		return <Navigate to="/login" state={{ from: location }} replace />;
 	}
 
-	if (!allowedRoles.includes(user.role)) {
+	if (!allowedRoles.includes(userData.role)) {
 		console.log("[ProtectedRoute] User role not allowed, redirecting");
 		// Redirect based on role
-		const redirectPath = user.role === "admin" ? "/admin" : "/doctor";
+		const redirectPath = "/redirect";
 		return <Navigate to={redirectPath} replace />;
 	}
 
