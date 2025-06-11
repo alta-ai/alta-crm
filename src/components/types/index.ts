@@ -22,4 +22,4 @@ export interface FormProps {
 	onRender?: () => void;
 }
 
-export { type User } from "./user";
+export { type User, type UserProfile } from "./user";

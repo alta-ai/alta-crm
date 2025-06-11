@@ -288,7 +288,10 @@ INSERT INTO auth.schema_migrations VALUES ('20241009103726');
 
 
 INSERT INTO public.user_profiles VALUES ('91a4bf67-a5db-457a-ace4-b545914b99a2', 'a22821f9-6e9c-4d97-bd32-74ab22ab72ab', NULL, 'Paul', 'Ehrlich', '2025-03-17 14:10:27.977825+01', '2025-03-17 14:10:27.977825+01');
+INSERT INTO public.user_profiles VALUES ('92a4bf67-a5db-457a-ace4-b545914b99a2', 'b22821f9-6e9c-4d97-bd32-74ab22ab72ab', NULL, 'Max', 'Mustermann', '2025-03-17 14:10:27.977825+01', '2025-03-17 14:10:27.977825+01');
 INSERT INTO public.user_roles VALUES ('91a4ba67-a5db-457a-ace4-b545914b99a2', 'a22821f9-6e9c-4d97-bd32-74ab22ab72ab', '2e12c4f5-c9d1-4c48-8a1d-00f71cdeeb42', '2025-03-17 14:10:27.977825+01');
+INSERT INTO public.user_roles VALUES ('92a4ba67-a5db-457a-ace4-b545914b99a2', 'b22821f9-6e9c-4d97-bd32-74ab22ab72ab', '6a12d4a5-c9d1-4c48-8a1d-00f71cdeeb42', '2025-03-17 14:10:27.977825+01');
+
 
 
 --

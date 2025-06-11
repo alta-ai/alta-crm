@@ -8,7 +8,7 @@ interface UserMenuProps {
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ sidebarOpen }) => {
-	const { user, logout } = useAuth();
+	const { user, userData, logout } = useAuth();
 	const [isOpen, setIsOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +37,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ sidebarOpen }) => {
 
 	const getUserDisplayName = () => {
 		if (!user) return "Unbekannter Benutzer";
-		return user.name || user.email || "Benutzer";
+		return (
+			`${userData?.first_name} ${userData?.last_name}` ||
+			user.email ||
+			"Benutzer"
+		);
 	};
 
 	const getUserInitials = () => {

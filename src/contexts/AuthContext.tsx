@@ -5,14 +5,14 @@ import {
 	useEffect,
 	ReactNode,
 } from "react";
+import { jwtDecode } from "jwt-decode";
 import { supabase } from "../lib/supabase";
-import { User } from "@components/types";
+import { User, UserProfile } from "@components/types";
 
 interface AuthContextType {
 	user: User | null;
+	userData: UserProfile | null;
 	isLoading: boolean;
-	needsPasswordChange: boolean;
-	doctorSpecialtyId: string | null;
 	login: (email: string, password: string) => Promise<void>;
 	logout: () => Promise<void>;
 	changePassword: (newPassword: string) => Promise<void>;
@@ -22,11 +22,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
 	const [user, setUser] = useState<User | null>(null);
+	const [userData, setUserData] = useState<UserProfile | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
-	const [needsPasswordChange, setNeedsPasswordChange] = useState(false);
-	const [doctorSpecialtyId, setDoctorSpecialtyId] = useState<string | null>(
-		null
-	);
 
 	console.log(
 		"[AuthContext] AuthProvider MOUNTED/UPDATED. Current user:",
@@ -37,20 +34,27 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 	const loadUserData = async (authUser: any) => {
 		try {
-			console.log("📊 Lade User-Daten für:", authUser.email);
+			console.log("📊 Lade User-Daten für:", authUser.user_metadata);
 
 			// Verwende erstmal nur die Auth-Metadaten ohne DB-Abfrage
-			const displayName =
-				authUser.user_metadata.display_name ||
-				authUser.user_metadata.name ||
-				`${authUser.user_metadata.first_name || ""} ${
-					authUser.user_metadata.last_name || ""
-				}`.trim() ||
-				authUser.email;
+			const displayName = userData
+				? `${userData.title ? userData.title + " " : ""}${
+						userData.first_name
+				  } ${userData.last_name}`.trim()
+				: authUser.user_metadata.display_name ||
+				  authUser.user_metadata.name ||
+				  `${authUser.user_metadata.first_name || ""} ${
+						authUser.user_metadata.last_name || ""
+				  }`.trim() ||
+				  authUser.email;
 
 			const role = authUser.user_metadata.role || "admin";
 
-			console.log("✅ User-Daten gesetzt:", { displayName, role });
+			console.log("✅ User-Daten gesetzt:", {
+				displayName,
+				role,
+				hasProfile: !!userData,
+			});
 
 			setUser({
 				id: authUser.id,
@@ -62,6 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 			console.error("❌ Fehler beim Laden der Benutzerdaten:", error);
 
 			// Fallback: Minimale User-Daten setzen
+			setUserData(null);
 			setUser({
 				id: authUser.id,
 				email: authUser.email!,
@@ -106,10 +111,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 						);
 						// Set user to null if we can't load user data
 						setUser(null);
+						setUserData(null);
 					}
 				} else {
 					// No session, make sure user is null
 					setUser(null);
+					setUserData(null);
 				}
 			} catch (error) {
 				console.error(
@@ -117,6 +124,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 					error
 				);
 				setUser(null);
+				setUserData(null);
 			} finally {
 				setIsLoading(false);
 				console.log("[AuthContext] Initial isLoading set to false");
@@ -136,29 +144,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 				session
 			);
 
-			try {
-				if (session?.user) {
-					console.log(
-						"[AuthContext] User BEFORE loadUserData in onAuthStateChange:",
-						session.user.email
-					);
-					await loadUserData(session.user);
-					console.log(
-						"[AuthContext] User AFTER loadUserData in onAuthStateChange:",
-						session.user.email
-					);
-				} else {
-					setUser(null);
-					console.log("[AuthContext] User set to NULL in onAuthStateChange");
-					setNeedsPasswordChange(false);
-					setDoctorSpecialtyId(null);
-				}
-			} catch (error) {
-				console.error("[AuthContext] Error in onAuthStateChange:", error);
-				// If there's an error loading user data, still clear the user
-				setUser(null);
-				setNeedsPasswordChange(false);
-				setDoctorSpecialtyId(null);
+			if (session) {
+				const jwt = jwtDecode(session.access_token);
+				setUserData(jwt.user_profile as UserProfile);
 			}
 		});
 
@@ -298,7 +286,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 				}
 
 				// Lokalen State immer aktualisieren
-				setNeedsPasswordChange(false);
 				console.log("✅ Lokaler State aktualisiert");
 			}
 
@@ -313,8 +300,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 		try {
 			await supabase.auth.signOut();
 			setUser(null);
-			setNeedsPasswordChange(false);
-			setDoctorSpecialtyId(null);
+			setUserData(null);
 			console.log("[AuthContext] Logout: User set to null and flags reset");
 		} catch (error) {
 			console.error("Logout failed:", error);
@@ -332,9 +318,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 		<AuthContext.Provider
 			value={{
 				user,
+				userData,
 				isLoading,
-				needsPasswordChange,
-				doctorSpecialtyId,
 				login,
 				logout,
 				changePassword,

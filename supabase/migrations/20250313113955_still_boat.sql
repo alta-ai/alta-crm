@@ -232,13 +232,66 @@ BEGIN
     0
   )
   ON CONFLICT (id) DO NOTHING;
-  
-  -- Assign admin role
-  SELECT id INTO admin_role_id FROM public.roles WHERE name = 'admin';
-  
-  IF admin_role_id IS NOT NULL THEN
-    INSERT INTO public.user_roles (user_id, role_id)
-    VALUES (admin_id, admin_role_id)
-    ON CONFLICT (user_id, role_id) DO NOTHING;
-  END IF;
+END $$;
+
+
+DO $$
+DECLARE
+  admin_id uuid := 'b22821f9-6e9c-4d97-bd32-74ab22ab72ab';
+  admin_role_id uuid;
+BEGIN
+  -- Create admin user with exact working format
+  INSERT INTO auth.users (
+      id,
+      instance_id,
+      aud,
+      role,
+      email,
+      encrypted_password,
+      email_confirmed_at,
+      confirmation_sent_at,
+      recovery_sent_at,
+      raw_app_meta_data,
+      raw_user_meta_data,
+      is_super_admin,
+      created_at,
+      updated_at,
+      phone,
+      phone_confirmed_at,
+      phone_change,
+      phone_change_token,
+      confirmation_token,
+      recovery_token,
+      email_change_token_new,
+      email_change,
+      email_change_token_current,
+      email_change_confirm_status
+  )
+  VALUES (
+    admin_id,
+    '00000000-0000-0000-0000-000000000000',
+    'authenticated',
+    'authenticated',
+    'test2@test.de',
+    crypt('password', gen_salt('bf', 10)),
+    now(),
+    null,  -- confirmation_sent_at = null
+    null,
+    jsonb_build_object('provider', 'email', 'providers', ARRAY['email']::text[]),
+    jsonb_build_object('email_verified', true),  -- proper user metadata
+    null,  -- is_super_admin = null
+    now(),
+    now(),
+    null,
+    null,
+    '',
+    '',
+    '',    -- confirmation_token = ''
+    '',    -- recovery_token = ''
+    '',    -- email_change_token_new = ''
+    '',
+    '',
+    0
+  )
+  ON CONFLICT (id) DO NOTHING;
 END $$;

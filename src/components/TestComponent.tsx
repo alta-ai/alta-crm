@@ -47,48 +47,6 @@ const TestComponent: React.FC = () => {
 
 	useEffect(() => {
 		fetchAppointments();
-
-		const testDB1 = async () => {
-			const { data: debugInfo } = await supabase.rpc("debug_rls_issue");
-			console.log("Debug Info:", debugInfo);
-			const { data: hookInfo } = await supabase.rpc("check_auth_hook_config");
-			console.log("Auth Hook Info:", hookInfo);
-
-			const { data: testData } = await supabase
-				.from("debug_test_table")
-				.select("*");
-			console.log("Test Data (should work):", testData);
-
-			const { data: roleAssignment } = await supabase.rpc(
-				"assign_admin_role_to_current_user"
-			);
-			console.log("Role Assignment:", roleAssignment);
-
-			const { data: rolesData, error } = await supabase
-				.from("roles")
-				.select("*");
-			console.log("Roles Data:", rolesData, "Error:", error);
-		};
-
-		const testDB2 = async () => {
-			// First, refresh the session to get updated JWT claims
-			const { error: refreshError } = await supabase.auth.refreshSession();
-			if (refreshError) {
-				console.error("Refresh error:", refreshError);
-			} else {
-				console.log("Session refreshed successfully");
-			}
-
-			// Wait a moment for the refresh to complete
-			await new Promise((resolve) => setTimeout(resolve, 1000));
-
-			const { data: debugInfo } = await supabase.rpc("debug_rls_issue");
-			console.log("Debug Info:", debugInfo);
-
-			// ... rest of your existing test code
-		};
-
-		testDB2();
 	}, []);
 
 	if (loading) {
