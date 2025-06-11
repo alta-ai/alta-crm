@@ -27,3 +27,5 @@ dist-ssr
 supabase/functions
 supabase/.branches
 supabase/.temp
+supabase-git/*
+.docker/volumes
