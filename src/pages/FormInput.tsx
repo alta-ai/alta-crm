@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { validateFormInputToken, type DecodedToken } from "../lib/supabase";
+import {
+	validateFormInputToken,
+	anonReadDataFromTable,
+	type DecodedToken,
+} from "../lib/supabase";
 
 const FormInput: React.FC = () => {
 	const [searchParams] = useSearchParams();
 	const [decodedData, setDecodedData] = useState<DecodedToken | null>(null);
+	const [appointmentData, setAppointmentData] = useState<any>(null);
 	const [error, setError] = useState<string>("");
 	const [loading, setLoading] = useState<boolean>(true);
 
@@ -17,9 +22,22 @@ const FormInput: React.FC = () => {
 			return;
 		}
 
+		// First validate the token, then fetch appointment data
 		validateFormInputToken(token)
-			.then((data) => {
+			.then(async (data) => {
 				setDecodedData(data);
+
+				// Fetch appointment data using the validated token
+				try {
+					const appointmentInfo = await anonReadDataFromTable({
+						token: token,
+						table_name: "appointments",
+					});
+					setAppointmentData(appointmentInfo);
+				} catch (appointmentError) {
+					console.error("Failed to fetch appointment data:", appointmentError);
+					// Don't set error here, just log it - the token is valid but appointment might not exist
+				}
 			})
 			.catch((err) => {
 				setError(err.message);
@@ -123,6 +141,59 @@ const FormInput: React.FC = () => {
 										<p className="text-lg font-mono text-green-900">
 											{decodedData.examination_id}
 										</p>
+									</div>
+								</div>
+							</div>
+						)}
+
+						{/* Appointment Data */}
+						{appointmentData && (
+							<div className="mb-8">
+								<h2 className="text-xl font-semibold text-gray-800 mb-4">
+									Appointment Details
+								</h2>
+								<div className="bg-blue-50 border border-blue-200 p-6 rounded-lg">
+									<div className="grid md:grid-cols-2 gap-6">
+										{Object.entries(appointmentData).map(([key, value]) => (
+											<div key={key} className="space-y-1">
+												<label className="block text-sm font-medium text-blue-700 capitalize">
+													{key.replace(/_/g, " ")}
+												</label>
+												<p className="text-gray-900 break-words">
+													{value !== null && value !== undefined ? (
+														String(value)
+													) : (
+														<span className="text-gray-400 italic">
+															Not provided
+														</span>
+													)}
+												</p>
+											</div>
+										))}
+									</div>
+								</div>
+							</div>
+						)}
+
+						{/* Show message if no appointment data found */}
+						{decodedData && !appointmentData && (
+							<div className="mb-8">
+								<div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+									<div className="flex items-center">
+										<svg
+											className="w-5 h-5 text-yellow-500 mr-2"
+											fill="currentColor"
+											viewBox="0 0 20 20"
+										>
+											<path
+												fillRule="evenodd"
+												d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+												clipRule="evenodd"
+											/>
+										</svg>
+										<span className="text-yellow-800 font-medium">
+											No appointment details found for this ID
+										</span>
 									</div>
 								</div>
 							</div>

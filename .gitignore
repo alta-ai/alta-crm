@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 .env
 
-supabase/functions
 supabase/.branches
 supabase/.temp
 supabase-git/*

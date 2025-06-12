@@ -101,3 +101,49 @@ export async function generateFormInputToken(
 		);
 	}
 }
+
+// Types for anonymous data reading
+export interface AnonReadDataRequest {
+	token: string;
+	table_name: string;
+}
+
+export interface AnonReadDataResponse {
+	success: boolean;
+	data?: any;
+	error?: string;
+}
+
+// Utility function to read data from table anonymously via Edge Function
+export async function anonReadDataFromTable(
+	requestData: AnonReadDataRequest
+): Promise<any> {
+	try {
+		const { data, error } = await supabase.functions.invoke(
+			"anon-read-data-from-table-by-id",
+			{
+				body: requestData,
+			}
+		);
+
+		if (error) {
+			throw new Error(`Edge Function error: ${error.message}`);
+		}
+
+		const response = data as AnonReadDataResponse;
+
+		if (!response.success) {
+			throw new Error(response.error || "Data retrieval failed");
+		}
+
+		if (!response.data) {
+			throw new Error("No data received from server");
+		}
+
+		return response.data;
+	} catch (error) {
+		throw new Error(
+			error instanceof Error ? error.message : "Data retrieval failed"
+		);
+	}
+}
