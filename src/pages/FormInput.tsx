@@ -1,101 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-
-interface DecodedToken {
-	appointment_id: string;
-	examination_id: string;
-}
+import { validateFormInputToken, type DecodedToken } from "../lib/supabase";
 
 const FormInput: React.FC = () => {
 	const [searchParams] = useSearchParams();
 	const [decodedData, setDecodedData] = useState<DecodedToken | null>(null);
 	const [error, setError] = useState<string>("");
 	const [loading, setLoading] = useState<boolean>(true);
-
-	// Helper function to verify HMAC signature using Web Crypto API
-	const verifyTokenSignature = async (
-		payloadBase64: string,
-		signature: string
-	): Promise<boolean> => {
-		try {
-			const secretKey = import.meta.env.VITE_SECRET_KEY;
-			if (!secretKey) {
-				throw new Error("Secret key not configured");
-			}
-
-			// Import the secret key
-			const key = await crypto.subtle.importKey(
-				"raw",
-				new TextEncoder().encode(secretKey),
-				{ name: "HMAC", hash: "SHA-256" },
-				false,
-				["verify"]
-			);
-
-			// Convert signature from base64 to ArrayBuffer
-			const signatureBuffer = Uint8Array.from(atob(signature), (c) =>
-				c.charCodeAt(0)
-			);
-
-			// Verify the signature
-			const isValid = await crypto.subtle.verify(
-				"HMAC",
-				key,
-				signatureBuffer,
-				new TextEncoder().encode(payloadBase64)
-			);
-
-			return isValid;
-		} catch (error) {
-			console.error("Token verification error:", error);
-			return false;
-		}
-	};
-
-	// Helper function to verify and decode token
-	const verifyAndDecodeToken = async (token: string): Promise<DecodedToken> => {
-		try {
-			// Split token into payload and signature
-			const [payloadBase64, signatureBase64] = token.split(".");
-
-			if (!payloadBase64 || !signatureBase64) {
-				throw new Error("Invalid token format");
-			}
-
-			// Verify the signature client-side
-			const isValidSignature = await verifyTokenSignature(
-				payloadBase64,
-				signatureBase64
-			);
-
-			if (!isValidSignature) {
-				throw new Error("Invalid token signature");
-			}
-
-			// Decode the payload
-			const payloadString = atob(payloadBase64);
-			const payload = JSON.parse(payloadString);
-
-			// Validate payload structure
-			if (!payload.appointment_id || !payload.examination_id) {
-				throw new Error("Invalid token payload - missing required fields");
-			}
-
-			// Check expiration if present
-			if (payload.exp && Date.now() / 1000 > payload.exp) {
-				throw new Error("Token has expired");
-			}
-
-			return {
-				appointment_id: payload.appointment_id,
-				examination_id: payload.examination_id,
-			};
-		} catch (err) {
-			throw new Error(
-				err instanceof Error ? err.message : "Token verification failed"
-			);
-		}
-	};
 
 	useEffect(() => {
 		const token = searchParams.get("token");
@@ -106,7 +17,7 @@ const FormInput: React.FC = () => {
 			return;
 		}
 
-		verifyAndDecodeToken(token)
+		validateFormInputToken(token)
 			.then((data) => {
 				setDecodedData(data);
 			})
@@ -183,7 +94,7 @@ const FormInput: React.FC = () => {
 								/>
 							</svg>
 							<span className="text-green-800 font-medium">
-								Access Verified (Client-Side)
+								Access Verified (Server-Side)
 							</span>
 						</div>
 					</div>

@@ -308,7 +308,8 @@ services:
     image: supabase/edge-runtime:v1.67.4
     restart: unless-stopped
     volumes:
-      - ./volumes/functions:/home/deno/functions:Z
+      - ../supabase/functions:/home/deno/functions:Z
+      - ./logs:/var/log/functions:Z
     depends_on:
       analytics:
         condition: service_healthy
@@ -318,9 +319,14 @@ services:
       SUPABASE_ANON_KEY: ${ANON_KEY}
       SUPABASE_SERVICE_ROLE_KEY: ${SERVICE_ROLE_KEY}
       SUPABASE_DB_URL: postgresql://postgres:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
-      # TODO: Allow configuring VERIFY_JWT per function. This PR might help: https://github.com/supabase/cli/pull/786
+      SECRET_KEY: ${SECRET_KEY}
       VERIFY_JWT: "${FUNCTIONS_VERIFY_JWT}"
-    command: ["start", "--main-service", "/home/deno/functions/main"]
+    entrypoint: ["/bin/sh"]
+    command:
+      [
+        "-c",
+        "mkdir -p /var/log/functions && echo 'Starting container' && ls -la /home/deno/functions && edge-runtime start --main-service /home/deno/functions/main 2>&1 | tee /var/log/functions/edge-runtime.log",
+      ]
 
   analytics:
     container_name: supabase-analytics

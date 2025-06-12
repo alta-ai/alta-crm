@@ -295,6 +295,9 @@ deno_version = 1
 # [edge_runtime.secrets]
 # secret_key = "env(SECRET_VALUE)"
 
+[edge_runtime.secrets]
+SECRET_KEY = "env(SECRET_KEY)"
+
 [analytics]
 enabled = true
 port = 54327

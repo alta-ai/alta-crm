@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import {
+	generateFormInputToken,
+	type GenerateTokenRequest,
+} from "../lib/supabase";
 
 interface TokenData {
 	appointment_id: string;
@@ -17,61 +21,23 @@ const CreateToken: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [error, setError] = useState<string>("");
 
-	// Generate HMAC signature using Web Crypto API
-	const generateHmacSignature = async (
-		data: string,
-		secretKey: string
-	): Promise<string> => {
-		const key = await crypto.subtle.importKey(
-			"raw",
-			new TextEncoder().encode(secretKey),
-			{ name: "HMAC", hash: "SHA-256" },
-			false,
-			["sign"]
-		);
-
-		const signature = await crypto.subtle.sign(
-			"HMAC",
-			key,
-			new TextEncoder().encode(data)
-		);
-
-		// Convert ArrayBuffer to base64
-		const signatureArray = new Uint8Array(signature);
-		return btoa(String.fromCharCode(...signatureArray));
-	};
-
 	const generateToken = async () => {
 		setLoading(true);
 		setError("");
 
 		try {
-			const secretKey = import.meta.env.VITE_SECRET_KEY;
-
-			if (!secretKey) {
-				throw new Error("Secret key not configured");
-			}
-
 			if (!formData.appointment_id.trim() || !formData.examination_id.trim()) {
 				throw new Error("Both Appointment ID and Examination ID are required");
 			}
 
-			// Create payload
-			const payload = {
+			// Call the utility function to generate the token
+			const tokenRequest: GenerateTokenRequest = {
 				appointment_id: formData.appointment_id.trim(),
 				examination_id: formData.examination_id.trim(),
-				exp: Math.floor(Date.now() / 1000) + formData.expiration_hours * 3600,
-				iat: Math.floor(Date.now() / 1000),
+				expiration_hours: formData.expiration_hours,
 			};
 
-			// Encode payload as base64
-			const payloadBase64 = btoa(JSON.stringify(payload));
-
-			// Generate HMAC signature
-			const signature = await generateHmacSignature(payloadBase64, secretKey);
-
-			// Combine payload and signature
-			const token = `${payloadBase64}.${signature}`;
+			const token = await generateFormInputToken(tokenRequest);
 
 			// Generate full URL
 			const baseUrl = window.location.origin;
